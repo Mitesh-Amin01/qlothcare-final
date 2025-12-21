@@ -8,12 +8,15 @@ module.exports = {
     extend: {
       colors: {
         /* =========================
-           CRYONIX IT – CORE COLORS
+           CLOTHCARE – CORE COLORS
+           Teal + White + Navy
         ========================= */
-        cryonix: {
-          blue: '#0E2554',     // Main brand blue
-          blueSoft: '#142E66', // UI sections, cards
-          blueLight: '#1B3B8A',// Gradients / hover
+        clothcare: {
+          teal: '#0FB9B1',        // Primary brand color
+          tealSoft: '#D9F5F3',    // Soft backgrounds
+          tealDark: '#0C8F8A',    // Hover / active states
+          navy: '#0A2540',        // Admin / headings
+          navySoft: '#142E4F',    // Cards / sections
           white: '#FFFFFF',
           black: '#000000',
         },
@@ -22,20 +25,20 @@ module.exports = {
            TEXT COLORS
         ========================= */
         text: {
-          primary: '#0E2554',
+          primary: '#0A2540',     // Main text
           inverse: '#FFFFFF',
-          dark: '#000000',
-          muted: '#1B3B8A',
+          muted: '#64748B',       // Secondary text
+          teal: '#0FB9B1',
         },
 
         /* =========================
            BACKGROUND COLORS
         ========================= */
         bg: {
-          primary: '#0E2554',
-          soft: '#142E66',
-          light: '#F8FAFF',
-          dark: '#000000',
+          primary: '#0FB9B1',     // Buttons / highlights
+          soft: '#D9F5F3',        // Page sections
+          light: '#F8FAFC',       // App background
+          navy: '#0A2540',        // Admin panels
           white: '#FFFFFF',
         },
 
@@ -43,10 +46,20 @@ module.exports = {
            BORDER COLORS
         ========================= */
         border: {
-          primary: '#0E2554',
-          soft: '#1B3B8A',
-          dark: '#000000',
-          white: '#FFFFFF',
+          primary: '#0FB9B1',
+          soft: '#B2E7E4',
+          navy: '#0A2540',
+          light: '#E5E7EB',
+        },
+
+        /* =========================
+           STATUS COLORS (CRM)
+        ========================= */
+        status: {
+          success: '#22C55E',
+          warning: '#F97316',
+          danger: '#EF4444',
+          info: '#0FB9B1',
         },
       },
 
@@ -54,14 +67,14 @@ module.exports = {
          GRADIENTS
       ========================= */
       backgroundImage: {
-        'cryonix-blue-gradient':
-          'linear-gradient(135deg, #0E2554 0%, #1B3B8A 100%)',
+        'clothcare-primary-gradient':
+          'linear-gradient(135deg, #0FB9B1 0%, #0C8F8A 100%)',
 
-        'cryonix-dark-gradient':
-          'linear-gradient(135deg, #000000 0%, #0E2554 100%)',
+        'clothcare-navy-gradient':
+          'linear-gradient(135deg, #0A2540 0%, #142E4F 100%)',
 
-        'cryonix-light-gradient':
-          'linear-gradient(135deg, #FFFFFF 0%, #E9EEFF 100%)',
+        'clothcare-light-gradient':
+          'linear-gradient(135deg, #FFFFFF 0%, #E6FAF8 100%)',
       },
 
       /* =========================
@@ -73,11 +86,11 @@ module.exports = {
       },
 
       /* =========================
-         SHADOWS (Premium IT Feel)
+         SHADOWS (Premium CRM Feel)
       ========================= */
       boxShadow: {
-        cryonix: '0 10px 30px rgba(14, 37, 84, 0.35)',
-        cryonixSoft: '0 6px 18px rgba(14, 37, 84, 0.2)',
+        clothcare: '0 10px 30px rgba(10, 37, 64, 0.25)',
+        clothcareSoft: '0 6px 18px rgba(15, 185, 177, 0.25)',
       },
 
       /* =========================
