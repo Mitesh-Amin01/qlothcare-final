@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-6 left-0 right-0 z-50 px-4">
-      <nav className="mx-auto w-full max-w-[1500px] rounded-2xl border border-white/40 bg-white/70 backdrop-blur-md shadow-clothcareSoft transition-all hover:bg-white/90">
+      <nav className="mx-auto w-full max-w-375 rounded-2xl border border-white/40 bg-white/70 backdrop-blur-md shadow-clothcareSoft transition-all hover:bg-white/90">
 
         {/* ================= Desktop / Header ================= */}
         <div className="flex items-center justify-between px-8 py-4">
