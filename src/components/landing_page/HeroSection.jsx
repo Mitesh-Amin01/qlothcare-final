@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useRef } from 'react';
-import { ArrowRight, RefreshCcw, Play } from 'lucide-react';
+import { ArrowRight, RefreshCcw } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function HeroSection() {
@@ -23,7 +23,8 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full h-screen bg-clothcare-midnight overflow-hidden selection:bg-clothcare-primary selection:text-white">
+    // Changed h-screen to min-h-dvh for better mobile browser support (address bar handling)
+    <section className="relative w-full min-h-dvh bg-clothcare-midnight overflow-hidden selection:bg-clothcare-primary selection:text-white flex flex-col">
       
       {/* =======================================
           LAYER 1: BACKGROUND VIDEO
@@ -42,10 +43,7 @@ export default function HeroSection() {
           <source src="/video/intro.mp4" type="video/mp4" />
         </video>
         
-        {/* SMART OVERLAY: 
-            Fades in when video ends to darken the background 
-            so White Text is readable.
-        */}
+        {/* SMART OVERLAY */}
         <motion.div 
           className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-black/20"
           initial={{ opacity: 0 }}
@@ -57,27 +55,29 @@ export default function HeroSection() {
 
       {/* =======================================
           LAYER 2: HERO CONTENT
-          (Aligns Text & Buttons Perfectly)
       ======================================= */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-center">
+      <div className="relative z-10 w-full grow flex flex-col justify-center py-12 lg:py-0">
         
-        <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Adjusted padding and gap for responsiveness */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center h-full">
           
           {/* --- LEFT SIDE: MASSIVE HEADLINE --- */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {introFinished && (
               <motion.div
-                initial={{ x: -50, opacity: 0 }}
+                initial={{ x: -30, opacity: 0 }} // Reduced movement slightly for mobile
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                className="text-left"
               >
-                <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-white leading-[0.95] tracking-tight drop-shadow-2xl">
-                  The AI journey of <br />
-                  <span className="block pl-2 lg:pl-0 text-white/90">your</span>
+                {/* Responsive Text Sizes: text-4xl on mobile -> text-8xl on desktop */}
+                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold text-white leading-[1.1] sm:leading-[0.95] tracking-tight drop-shadow-2xl">
+                  The AI journey<br />
+                  <span className="block pl-1 lg:pl-0 text-white/90">of your</span>
                   
                   {/* Outline / Stroke Text Effect */}
                   <span 
-                    className="relative block text-transparent bg-clip-text bg-linear-to-r from-white/40 via-white/80 to-white/40 font-bold my-3 lg:my-5" 
+                    className="relative block text-transparent bg-clip-text bg-linear-to-r from-white/40 via-white/80 to-white/40 font-bold my-2 sm:my-3 lg:my-5" 
                     style={{ WebkitTextStroke: '1px rgba(255,255,255,0.5)' }}
                   >
                     value chain
@@ -90,17 +90,18 @@ export default function HeroSection() {
           </div>
 
           {/* --- RIGHT SIDE: SUBTEXT & BUTTONS --- */}
-          {/* Aligned slightly lower to balance the huge headline */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-start space-y-8 lg:mt-20">
+          {/* Added mt-4 for mobile spacing, lg:mt-20 for desktop alignment */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-start space-y-6 sm:space-y-8 mt-4 lg:mt-20">
              {introFinished && (
                <>
                 <motion.p 
-                  initial={{ x: 50, opacity: 0 }}
+                  initial={{ x: 30, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-                  className="text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-lg drop-shadow-md"
+                  className="text-base sm:text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-lg drop-shadow-md"
                 >
                   Harness the power of digital intelligence for the physical world. 
+                  {/* Hide line break on small mobile, show on md+ */}
                   <br className="hidden md:block" />
                   Automate your logistics with precision.
                 </motion.p>
@@ -109,23 +110,24 @@ export default function HeroSection() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full"
+                  // Stack buttons vertically on mobile (flex-col), row on sm+ devices
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto"
                 >
-                  {/* Primary CTA: Orange Background, White Text */}
-                  <button className="group relative flex items-center gap-4 bg-clothcare-primary text-white rounded-full pl-8 pr-2 py-2 h-16 font-semibold transition-all hover:bg-clothcare-primaryDark shadow-lg shadow-orange-900/20 hover:shadow-orange-700/40 hover:scale-105 active:scale-95">
-                    <span className="text-lg tracking-wide">Book a demo</span>
-                    <span className="w-12 h-12 bg-white text-clothcare-primary rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
-                      <ArrowRight className="w-5 h-5 stroke-3" />
+                  {/* Primary CTA */}
+                  <button className="group relative flex items-center justify-between sm:justify-start gap-4 bg-clothcare-primary text-white rounded-full pl-6 sm:pl-8 pr-2 py-2 h-14 sm:h-16 font-semibold transition-all hover:bg-clothcare-primaryDark shadow-lg shadow-orange-900/20 hover:shadow-orange-700/40 hover:scale-[1.02] sm:hover:scale-105 active:scale-95 w-full sm:w-auto">
+                    <span className="text-base sm:text-lg tracking-wide whitespace-nowrap">Book a demo</span>
+                    <span className="w-10 h-10 sm:w-12 sm:h-12 bg-white text-clothcare-primary rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-3" />
                     </span>
                   </button>
 
-                  {/* Secondary CTA: Outline White */}
+                  {/* Secondary CTA */}
                   <button 
                     onClick={handleReplay}
-                    className="group flex items-center gap-3 px-8 h-14 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 hover:border-white/60 backdrop-blur-sm transition-all active:scale-95"
+                    className="group flex items-center justify-center sm:justify-start gap-3 px-8 h-12 sm:h-14 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 hover:border-white/60 backdrop-blur-sm transition-all active:scale-95 w-full sm:w-auto"
                   >
-                    <RefreshCcw className="w-5 h-5 text-white/70 group-hover:text-white group-hover:-rotate-180 transition-transform duration-700" /> 
-                    <span>Replay Intro</span>
+                    <RefreshCcw className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 group-hover:text-white group-hover:-rotate-180 transition-transform duration-700" /> 
+                    <span className="text-sm sm:text-base">Replay Intro</span>
                   </button>
                 </motion.div>
                </>
