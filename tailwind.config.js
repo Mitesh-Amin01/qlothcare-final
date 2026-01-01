@@ -8,15 +8,16 @@ module.exports = {
     extend: {
       colors: {
         /* =========================
-           CLOTHCARE – CORE COLORS
-           Teal + White + Navy
+           CLOTHCARE – IMAGE COLORS
+           Orange + Dark Navy + Soft Gray
         ========================= */
         clothcare: {
-          teal: '#0FB9B1',        // Primary brand color
-          tealSoft: '#D9F5F3',    // Soft backgrounds
-          tealDark: '#0C8F8A',    // Hover / active states
-          navy: '#0A2540',        // Admin / headings
-          navySoft: '#142E4F',    // Cards / sections
+          primary: '#E46F33',     // CTA buttons, highlights
+          primaryDark: '#CC5F2B', // Hover state
+          dark: '#3C4249',        // Hero background
+          darker: '#2F343A',      // Deep sections
+          gray: '#778582',        // Muted text/icons
+          graySoft: '#D1D3CF',    // Cards, borders
           white: '#FFFFFF',
           black: '#000000',
         },
@@ -25,56 +26,52 @@ module.exports = {
            TEXT COLORS
         ========================= */
         text: {
-          primary: '#0A2540',     // Main text
-          inverse: '#FFFFFF',
-          muted: '#64748B',       // Secondary text
-          teal: '#0FB9B1',
+          primary: '#FFFFFF',     // Hero text
+          dark: '#2F343A',        // Normal sections
+          muted: '#778582',
+          accent: '#E46F33',
         },
 
         /* =========================
            BACKGROUND COLORS
         ========================= */
         bg: {
-          primary: '#0FB9B1',     // Buttons / highlights
-          soft: '#D9F5F3',        // Page sections
-          light: '#F8FAFC',       // App background
-          navy: '#0A2540',        // Admin panels
+          hero: '#3C4249',
+          dark: '#2F343A',
+          soft: '#D1D3CF',
           white: '#FFFFFF',
+          accent: '#E46F33',
         },
 
         /* =========================
            BORDER COLORS
         ========================= */
         border: {
-          primary: '#0FB9B1',
-          soft: '#B2E7E4',
-          navy: '#0A2540',
-          light: '#E5E7EB',
+          soft: '#D1D3CF',
+          dark: '#3C4249',
+          accent: '#E46F33',
         },
 
         /* =========================
-           STATUS COLORS (CRM)
+           STATUS COLORS
         ========================= */
         status: {
           success: '#22C55E',
-          warning: '#F97316',
+          warning: '#F59E0B',
           danger: '#EF4444',
-          info: '#0FB9B1',
+          info: '#E46F33',
         },
       },
 
       /* =========================
-         GRADIENTS
+         GRADIENTS (Hero Exact Feel)
       ========================= */
       backgroundImage: {
-        'clothcare-primary-gradient':
-          'linear-gradient(135deg, #0FB9B1 0%, #0C8F8A 100%)',
+        'clothcare-hero-gradient':
+          'linear-gradient(135deg, #2F343A 0%, #3C4249 100%)',
 
-        'clothcare-navy-gradient':
-          'linear-gradient(135deg, #0A2540 0%, #142E4F 100%)',
-
-        'clothcare-light-gradient':
-          'linear-gradient(135deg, #FFFFFF 0%, #E6FAF8 100%)',
+        'clothcare-accent-gradient':
+          'linear-gradient(135deg, #E46F33 0%, #CC5F2B 100%)',
       },
 
       /* =========================
@@ -86,11 +83,11 @@ module.exports = {
       },
 
       /* =========================
-         SHADOWS (Premium CRM Feel)
+         SHADOWS
       ========================= */
       boxShadow: {
-        clothcare: '0 10px 30px rgba(10, 37, 64, 0.25)',
-        clothcareSoft: '0 6px 18px rgba(15, 185, 177, 0.25)',
+        clothcare: '0 12px 30px rgba(0,0,0,0.35)',
+        clothcareSoft: '0 8px 20px rgba(228,111,51,0.35)',
       },
 
       /* =========================
