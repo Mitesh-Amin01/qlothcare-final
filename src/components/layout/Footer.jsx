@@ -79,83 +79,99 @@ const Footer = () => {
         {/* =========================
             PART 2: LINKS & INFO
         ========================= */}
-        <div className="py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          
-          {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-clothcare-teal rounded-lg flex items-center justify-center">
-                 <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              </div>
-              <span className="font-display text-2xl font-bold tracking-tight">
-                Qlothcare<span className="text-clothcare-teal">.</span>
-              </span>
-            </div>
-            <p className="text-clothcare-tealSoft/60 leading-relaxed max-w-sm">
-              The world's most advanced fabric care infrastructure. We combine sustainable chemistry with logistics technology to extend the life of your wardrobe.
-            </p>
-            <div className="flex gap-4">
-               <SocialLink icon={<Facebook size={20} />} />
-               <SocialLink icon={<Twitter size={20} />} />
-               <SocialLink icon={<Instagram size={20} />} />
-               <SocialLink icon={<Linkedin size={20} />} />
-            </div>
-          </div>
+<div className="py-20 grid grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Company</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="About Us" />
-              <FooterLink text="Careers" badge="Hiring" />
-              <FooterLink text="Sustainability" />
-              <FooterLink text="Press & Media" />
-              <FooterLink text="Partners" />
-            </ul>
-          </div>
+  {/* Brand */}
+  <div className="col-span-2 lg:col-span-4 space-y-8">
+    <div className="flex items-center gap-2">
+      <div className="w-8 h-8 bg-clothcare-teal rounded-lg flex items-center justify-center">
+        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+            d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <span className="font-display text-2xl font-bold tracking-tight">
+        Qlothcare<span className="text-clothcare-teal">.</span>
+      </span>
+    </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Services</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="Wash & Fold" />
-              <FooterLink text="Dry Cleaning" />
-              <FooterLink text="Shoe Care" />
-              <FooterLink text="Alterations" />
-              <FooterLink text="Corporate" />
-            </ul>
-          </div>
+    <p className="text-clothcare-tealSoft/60 leading-relaxed max-w-sm">
+      The world's most advanced fabric care infrastructure. We combine
+      sustainable chemistry with logistics technology to extend the life of
+      your wardrobe.
+    </p>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Locations</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="Ahmedabad" />
-              <FooterLink text="Gandhinagar" />
-            </ul>
-          </div>
+    <div className="flex gap-4">
+      <SocialLink icon={<Facebook size={20} />} />
+      <SocialLink icon={<Twitter size={20} />} />
+      <SocialLink icon={<Instagram size={20} />} />
+      <SocialLink icon={<Linkedin size={20} />} />
+    </div>
+  </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Contact</h4>
-            <ul className="space-y-6 text-clothcare-tealSoft/60">
-              <li className="flex items-start gap-3">
-                <div className="mt-1 shrink-0 text-clothcare-tealSoft">
-                  <MapPinnedIcon size={20} />
-                </div>
-                <span className="leading-relaxed text-sm">
-                  First Floor, 101 Ansh Arambh, Nr. Saligram Prime, <br />
-                  Sobo Center Road, South Bopal, Ahmedabad 380058
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="mt-1 shrink-0 text-clothcare-tealSoft">
-                  <PhoneCall size={20} />
-                </div>
-                <div className="flex flex-col gap-1 text-sm">
-                  <a href="tel:+919601423424" className="hover:text-clothcare-teal transition-colors">+91 96014 23424</a>
-                  <a href="tel:+919284546378" className="hover:text-clothcare-teal transition-colors">+91 92845 46378</a>
-                </div>
-              </li>
-            </ul>
-          </div>
+  {/* Company */}
+  <div className="col-span-1 lg:col-span-2">
+    <h4 className="font-display font-bold text-lg mb-6">Company</h4>
+    <ul className="space-y-4 text-clothcare-tealSoft/60">
+      <FooterLink text="About Us" />
+      <FooterLink text="Careers" badge="Hiring" />
+      <FooterLink text="Sustainability" />
+      <FooterLink text="Press & Media" />
+      <FooterLink text="Partners" />
+    </ul>
+  </div>
+
+  {/* Services */}
+  <div className="col-span-1 lg:col-span-2">
+    <h4 className="font-display font-bold text-lg mb-6">Services</h4>
+    <ul className="space-y-4 text-clothcare-tealSoft/60">
+      <FooterLink text="Wash & Fold" />
+      <FooterLink text="Dry Cleaning" />
+      <FooterLink text="Shoe Care" />
+      <FooterLink text="Alterations" />
+      <FooterLink text="Corporate" />
+    </ul>
+  </div>
+
+  {/* Locations */}
+  <div className="col-span-2 lg:col-span-2">
+    <h4 className="font-display font-bold text-lg mb-6">Locations</h4>
+    <ul className="space-y-4 text-clothcare-tealSoft/60">
+      <FooterLink text="Ahmedabad" />
+      <FooterLink text="Gandhinagar" />
+    </ul>
+  </div>
+
+  {/* Contact */}
+  <div className="col-span-2 lg:col-span-2">
+    <h4 className="font-display font-bold text-lg mb-6">Contact</h4>
+    <ul className="space-y-6 text-clothcare-tealSoft/60">
+      <li className="flex items-start gap-3">
+        <MapPinnedIcon size={20} className="mt-1 shrink-0" />
+        <span className="text-sm leading-relaxed">
+          First Floor, 101 Ansh Arambh, Nr. Saligram Prime,
+          <br />
+          Sobo Center Road, South Bopal, Ahmedabad 380058
+        </span>
+      </li>
+
+      <li className="flex items-start gap-3">
+        <PhoneCall size={20} className="mt-1 shrink-0" />
+        <div className="flex flex-col gap-1 text-sm">
+          <a href="tel:+919601423424" className="hover:text-clothcare-teal">
+            +91 96014 23424
+          </a>
+          <a href="tel:+919284546378" className="hover:text-clothcare-teal">
+            +91 92845 46378
+          </a>
         </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
 
         {/* =========================
             PART 3: BOTTOM BAR
