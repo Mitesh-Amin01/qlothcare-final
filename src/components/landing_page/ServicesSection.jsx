@@ -1,144 +1,207 @@
-import React from 'react';
-import { Shirt, Sparkles, Footprints, Layers, Check, ArrowRight } from 'lucide-react';
+'use client';
 
-const services = [
-  {
-    id: 'laundry',
-    title: "Premium Laundry",
-    description: "Professional washing and drying with fabric-specific care for your everyday clothes.",
-    icon: <Shirt className="w-6 h-6 text-white" />,
-    features: ["Gentle fabric care", "Stain removal", "Soft & fresh results"],
-    accent: "bg-clothcare-teal"
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Shirt, Droplets, Wind, Sparkles, Package, Clock } from 'lucide-react';
+
+/* Motion Variants */
+const gridVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
   },
-  {
-    id: 'dry-clean',
-    title: "Dry Cleaning",
-    description: "Specialized chemical cleaning for delicate fabrics that require extra attention.",
-    icon: <Sparkles className="w-6 h-6 text-white" />,
-    features: ["Delicate fabric care", "Odor removal", "Shape preservation"],
-    accent: "bg-clothcare-navy"
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
-  {
-    id: 'shoes',
-    title: "Shoe Cleaning",
-    description: "Expert cleaning and conditioning for all types of footwear to restore their original shine.",
-    icon: <Footprints className="w-6 h-6 text-white" />,
-    features: ["Leather conditioning", "Deodorizing", "Waterproofing"],
-    accent: "bg-clothcare-teal"
-  },
-  {
-    id: 'ironing',
-    title: "Premium Ironing",
-    description: "Professional pressing services for crisp, wrinkle-free clothes with perfect folding.",
-    icon: <Layers className="w-6 h-6 text-white" />, // Layers represents folded clothes
-    features: ["Professional pressing", "Crisp finishing", "Perfect folding"],
-    accent: "bg-clothcare-navy"
-  }
-];
+};
 
 const ServicesSection = () => {
-  return (
-    <section id="services" className="py-24 bg-bg-light font-sans relative">
-      
-      {/* Background Pattern (Subtle grid for structure) */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" 
-           style={{ backgroundImage: 'radial-gradient(#0A2540 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
-      </div>
+  const [hoveredCard, setHoveredCard] = useState(null);
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Section Header: Left Aligned for Modern Feel */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6 border-b border-border-light pb-8">
-          <div className="max-w-2xl">
-            <span className="text-clothcare-teal font-display font-bold text-sm tracking-wider uppercase mb-2 block">
-              Our Expertise
-            </span>
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-text-primary leading-tight">
-              Comprehensive garment care <br />
-              <span className="text-text-muted/60">tailored to your needs.</span>
-            </h2>
-          </div>
-          <div className="hidden lg:block pb-2">
-            <a href="/services" className="group flex items-center gap-2 font-display font-semibold text-clothcare-navy hover:text-clothcare-teal transition-colors">
-              View Full Price List
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </div>
+  const services = [
+    {
+      icon: <Shirt className="w-8 h-8" />,
+      title: "Wash & Fold",
+      description:
+        "Professional washing and folding service with premium detergents and fabric care for everyday clothing",
+      image:
+        "/landingservices/fold.jpg",
+      iconBg: "bg-clothcare-primaryDark",
+    },
+    {
+      icon: <Droplets className="w-8 h-8" />,
+      title: "Dry Cleaning",
+      description:
+        "Expert dry cleaning for delicate fabrics, suits, and special garments with eco-friendly solvents",
+      image:
+        "/landingservices/drycleaning.jpg",
+      iconBg: "bg-clothcare-primaryDark",
+    },
+    {
+      icon: <Wind className="w-8 h-8" />,
+      title: "Press & Iron",
+      description:
+        "Crisp pressing and ironing to keep your clothes looking sharp and professional every day",
+      image:
+        "landingservices/pressiron.jpeg",
+      iconBg: "bg-clothcare-primaryDark",
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Stain Removal",
+      description:
+        "Advanced stain treatment for tough spots and set-in stains using specialized cleaning techniques",
+      image:
+        "landingservices/stain.jpg",
+      iconBg: "bg-clothcare-primaryDark",
+    },
+    {
+      icon: <Package className="w-8 h-8" />,
+      title: "Pickup & Delivery",
+      description:
+        "Convenient doorstep service where we pick up, clean, and deliver your laundry on schedule",
+      image:
+        "landingservices/delivery.jpg",
+      iconBg: "bg-clothcare-primaryDark",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-bold text-gray-900 mb-3">
+            Our Services
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Professional laundry care solutions tailored to meet all your cleaning needs
+          </p>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <div 
-              key={service.id} 
-              className="group bg-white rounded-2xl p-8 border border-border-light hover:border-clothcare-teal/30 shadow-sm hover:shadow-clothcareSoft transition-all duration-300 flex flex-col h-full"
+        <motion.div
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+         className="flex flex-wrap justify-center gap-6 mb-8"
+
+        >
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover={{ y: -8, scale: 1.03 }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="group relative rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-80 w-full md:w-[48%] lg:w-[30%]"
             >
-              {/* Icon Container */}
-              <div className={`w-14 h-14 rounded-xl ${service.accent} flex items-center justify-center shadow-md mb-8 group-hover:scale-110 transition-transform duration-300`}>
-                {service.icon}
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className={`w-full h-full object-cover transition-transform duration-500 ${
+                    hoveredCard === index ? 'scale-110' : 'scale-100'
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90" />
               </div>
 
               {/* Content */}
-              <div className="flex-grow">
-                <h3 className="font-display text-xl font-bold text-text-primary mb-3 group-hover:text-clothcare-teal transition-colors">
-                  {service.title}
+              <div className="relative h-full flex flex-col justify-between p-6">
+                <motion.div
+                  whileHover={{ scale: 1.15, rotate: 6 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
+                  className={`w-12 h-12 ${service.iconBg} rounded-lg flex items-center justify-center text-white shadow-lg`}
+                >
+                  {service.icon}
+                </motion.div>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-200 text-sm leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+
+                  <div className="flex items-center text-clothcare-primary opacity-80 group-hover:opacity-100 transition-opacity">
+                    <svg
+                      className="w-7 h-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Express Service Card */}
+          {/* <motion.div
+            variants={cardVariants}
+            whileHover={{ y: -8, scale: 1.03 }}
+            onMouseEnter={() => setHoveredCard(5)}
+            onMouseLeave={() => setHoveredCard(null)}
+            className="md:col-span-2 lg:col-span-1 group relative rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-80"
+          >
+            <div className="absolute inset-0">
+              <img
+                src=""
+                alt="Express Service"
+                className={`w-full h-full object-cover transition-transform duration-500 ${
+                  hoveredCard === 5 ? 'scale-110' : 'scale-100'
+                }`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
+            </div>
+
+            <div className="relative h-full flex flex-col justify-between p-6">
+              <motion.div
+                whileHover={{ scale: 1.15, rotate: 6 }}
+                className="w-12 h-12 bg-clothcare-primaryDark rounded-lg flex items-center justify-center text-white shadow-lg"
+              >
+                <Clock className="w-8 h-8" />
+              </motion.div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  Express Service
                 </h3>
-                <p className="text-text-muted text-sm leading-relaxed mb-8">
-                  {service.description}
+                <p className="text-gray-200 text-sm leading-relaxed mb-4">
+                  Same-day and 24-hour express service available for urgent laundry needs
                 </p>
               </div>
-
-              {/* Divider */}
-              <div className="h-px w-full bg-bg-soft mb-6 group-hover:bg-clothcare-teal/20 transition-colors"></div>
-
-              {/* Feature List */}
-              <ul className="space-y-3">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-sm font-medium text-text-primary/80">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-clothcare-tealSoft flex items-center justify-center">
-                      <Check className="w-3 h-3 text-clothcare-tealDark" />
-                    </div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              
-              {/* Mobile "View More" (Hidden on desktop as content is visible) */}
-              <div className="lg:hidden mt-6 pt-4 border-t border-dashed border-border-light">
-                 <span className="text-xs font-bold text-clothcare-teal uppercase tracking-wide flex items-center gap-1">
-                    Book {service.title} <ArrowRight className="w-3 h-3" />
-                 </span>
-              </div>
             </div>
-          ))}
-        </div>
-
-        {/* Bottom CTA Bar (High-End Touch) */}
-        <div className="mt-16 bg-clothcare-navy rounded-2xl p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-clothcare overflow-hidden relative">
-          {/* Decorative Gradient Overlay */}
-          <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-clothcare-navySoft to-transparent opacity-50 pointer-events-none"></div>
-          
-          <div className="relative z-10">
-            <h3 className="font-display text-2xl lg:text-3xl font-bold text-white mb-2">
-              Not sure what you need?
-            </h3>
-            <p className="text-clothcare-tealSoft/80 font-sans">
-              Our experts inspect every item to determine the perfect care method.
-            </p>
-          </div>
-          
-          <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-             <button className="bg-white text-clothcare-navy font-display font-bold py-3 px-6 rounded-xl hover:bg-clothcare-teal hover:text-white transition-colors shadow-lg">
-                Get a Custom Quote
-             </button>
-             <button className="bg-transparent border border-white/20 text-white font-display font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm">
-                Contact Support
-             </button>
-          </div>
-        </div>
-
+          </motion.div> */}
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 
