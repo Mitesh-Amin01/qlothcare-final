@@ -179,9 +179,9 @@ const Footer = () => {
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-clothcare-tealSoft/40">
           <div>&copy; 2025 Qlothcare Inc. All rights reserved.</div>
           <div className="flex gap-8">
-             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-             <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
+             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Privacy Policy</a>
+             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Terms of Service</a>
+             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Cookie Settings</a>
           </div>
         </div>
       </div>
