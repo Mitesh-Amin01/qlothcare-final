@@ -167,7 +167,7 @@ const Footer = () => {
             <h4 className="font-display font-bold text-lg mb-6">Contact</h4>
             <ul className="space-y-6 text-clothcare-tealSoft/60">
               <li className="flex items-start gap-3 group">
-                <MapPinnedIcon size={20} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
+                <MapPinnedIcon size={25} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
                 <span className="text-sm leading-relaxed">
                   First Floor, 101 Ansh Arambh, Nr. Saligram Prime,
                   <br />
@@ -175,8 +175,8 @@ const Footer = () => {
                 </span>
               </li>
 
-              <li className="flex items-start gap-3 group">
-                <PhoneCall size={20} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
+              <li className="flex items-center gap-3 group">
+                <PhoneCall size={25} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
                 <div className="flex flex-col gap-1 text-sm">
                   <a href="tel:+919601423424" className="hover:text-clothcare-teal transition-colors">
                     +91 96014 23424
