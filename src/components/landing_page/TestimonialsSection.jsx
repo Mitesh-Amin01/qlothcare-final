@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Star, Quote, ArrowRight, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const reviews = [
    {
@@ -36,35 +37,83 @@ const reviews = [
    }
 ];
 
+const containerVariants = {
+   hidden: { opacity: 0 },
+   visible: {
+      opacity: 1,
+      transition: {
+         staggerChildren: 0.1,
+         delayChildren: 0.2
+      }
+   }
+};
+
+const itemVariants = {
+   hidden: { opacity: 0, y: 30 },
+   visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+         duration: 0.6,
+         ease: "easeOut"
+      }
+   }
+};
+
+const bgOrbVariants = {
+   animate: {
+      scale: [1, 1.2, 1],
+      opacity: [0.05, 0.08, 0.05],
+      transition: {
+         duration: 8,
+         repeat: Infinity,
+         ease: "easeInOut"
+      }
+   }
+};
+
 const TestimonialsSection = () => {
    return (
       <section className="relative py-24 font-sans overflow-hidden bg-gray-50">
-         {/* Subtle Gradient Background */}
-         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-teal-50/60"></div>
+         {/* Subtle Background Decor */}
+         <motion.div
+            className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px]"
+            style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}
+            variants={bgOrbVariants}
+            animate="animate"
+         />
+         <motion.div
+            className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px]"
+            style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}
+            variants={bgOrbVariants}
+            animate="animate"
+            transition={{ delay: 2, duration: 10, repeat: Infinity, ease: "easeInOut" }}
+         />
 
-         {/* Decorative Floating Elements - More Subtle */}
-         <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-200/10 to-cyan-200/10 rounded-full blur-3xl animate-pulse"></div>
-         <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-teal-200/10 to-emerald-200/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-         <div className="container mx-auto px-6 lg:px-12 relative z-10">
-
+         <motion.div
+            className="container mx-auto px-6 lg:px-12 relative z-10"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+         >
 
             {/* =========================
             PART 2: REVIEWS HEADER
         ========================= */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-               <div className="max-w-2xl">
+               <motion.div className="max-w-2xl" variants={itemVariants}>
                   <h2 className="font-display text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                      Loved by thousands. <br />
-                     <span className="bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent font-extrabold">
+                     <span className="bg-gradient-to-r from-[#E46F33] to-[#CC5F2B] bg-clip-text text-transparent font-extrabold">
                         Recommended by 99%.
                      </span>
                   </h2>
-               </div>
+               </motion.div>
 
-               {/* Summary Stats - Enhanced with Glassmorphism */}
-               <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-300"></div>
+               {/* Summary Stats */}
+               <motion.div className="relative group" variants={itemVariants}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#E46F33] to-[#CC5F2B] rounded-xl opacity-0 group-hover:opacity-10 blur-md transition-opacity duration-300"></div>
                   <div className="relative flex items-center gap-6 bg-white backdrop-blur-sm px-6 py-4 rounded-xl border border-gray-200 shadow-lg">
                      <div className="text-right">
                         <p className="font-bold text-gray-900 text-2xl leading-none flex items-center gap-1">
@@ -77,29 +126,27 @@ const TestimonialsSection = () => {
                      <div className="text-right">
                         <p className="font-bold text-gray-900 text-2xl leading-none flex items-center gap-1">
                            12k+
-                           <TrendingUp className="w-5 h-5 text-teal-600" />
+                           <TrendingUp className="w-5 h-5 text-[#E46F33]" />
                         </p>
                         <p className="text-xs text-gray-600 mt-1">Active Users</p>
                      </div>
                   </div>
-               </div>
+               </motion.div>
             </div>
 
             {/* =========================
             PART 3: REVIEW CARDS
         ========================= */}
             <div className="grid md:grid-cols-3 gap-8">
-               {reviews.map((review, index) => (
-                  <div
+               {reviews.map((review) => (
+                  <motion.div
                      key={review.id}
-                     style={{
-                        animation: `fadeInUp 0.6s ease-out ${index * 0.15}s both`
-                     }}
-                     className="flex flex-col justify-between bg-white border border-gray-200 p-8 rounded-2xl shadow-lg relative overflow-hidden"
+                     variants={itemVariants}
+                     className="group flex flex-col justify-between bg-white border border-gray-200 p-8 rounded-2xl shadow-lg relative overflow-hidden"
                   >
                      {/* Decorative Quote Icon */}
                      <div className="absolute top-6 right-6 opacity-5">
-                        <Quote size={72} fill="currentColor" stroke="none" className="text-teal-600" />
+                        <Quote size={72} fill="currentColor" stroke="none" className="text-[#E46F33]" />
                      </div>
 
                      <div className="relative z-10">
@@ -115,9 +162,9 @@ const TestimonialsSection = () => {
 
                         {/* Quote */}
                         <p className="text-gray-700 text-base leading-relaxed font-medium mb-8">
-                           <span className="text-teal-600 text-2xl font-serif leading-none">"</span>
+                           <span className="text-[#E46F33] text-2xl font-serif leading-none">"</span>
                            {review.quote}
-                           <span className="text-teal-600 text-2xl font-serif leading-none">"</span>
+                           <span className="text-[#E46F33] text-2xl font-serif leading-none">"</span>
                         </p>
                      </div>
 
@@ -136,42 +183,15 @@ const TestimonialsSection = () => {
 
                      {/* Tag */}
                      <div className="absolute bottom-6 right-6">
-                        <span className="text-xs font-bold text-clothcare-primary uppercase tracking-wider border border-clothcare-primary bg-white px-3 py-1.5 rounded-full">
+                        <span className="text-xs font-bold text-[#E46F33] uppercase tracking-wider border border-[#E46F33]/20 bg-white px-3 py-1.5 rounded-full">
                            {review.tag}
                         </span>
                      </div>
-                  </div>
+                  </motion.div>
                ))}
             </div>
 
-            {/* =========================
-            PART 4: CALL TO ACTION STRIP
-        ========================= */}
-            <div className="mt-20 text-center">
-               <a href="#" className="group inline-flex items-center gap-3 bg-gradient-to-r from-clothcare-navy to-clothcare-teal text-white font-bold px-8 py-4 rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden">
-                  {/* Shimmer Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-
-                  <span className="relative z-10">Read all 2,400+ reviews on Trustpilot</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-               </a>
-            </div>
-
-         </div>
-
-         {/* Keyframe Animations */}
-         <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+         </motion.div>
       </section>
    );
 };
