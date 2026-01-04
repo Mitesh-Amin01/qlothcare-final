@@ -127,12 +127,12 @@ const AboutSection = () => {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
-                className="row-span-2 min-h-[500px] rounded-2xl overflow-hidden relative group"
+                className="row-span-2 min-h-125 rounded-2xl overflow-hidden relative group"
               >
                 <div className="absolute inset-0 bg-[#E5E7EB] flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                   <img src="/landingabout/about.png" alt="" />
                 </div>
-                <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                <div className="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-black/90 to-transparent">
                   <p className="text-white/90 font-bold text-lg">Eco-Tech Facility</p>
                   <p className="text-white/70 text-sm">State-of-the-art filtration</p>
                 </div>
@@ -142,7 +142,7 @@ const AboutSection = () => {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="bg-clothcare-accent-gradient p-8 rounded-2xl text-white flex flex-col justify-between h-[240px]"
+                className="bg-clothcare-accent-gradient p-8 rounded-2xl text-white flex flex-col justify-between h-60"
               >
                 <p className="text-sm font-bold uppercase tracking-wider">Locations</p>
                 <p className="text-2xl font-bold">Gandhinagar<br />Ahemdabad</p>
@@ -153,7 +153,7 @@ const AboutSection = () => {
               <motion.div
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.4 }}
-                className="relative h-[240px] rounded-2xl overflow-hidden group"
+                className="relative h-60 rounded-2xl overflow-hidden group"
               >
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
