@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react';
-import { ShieldCheck, Leaf, Smartphone, Clock, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Leaf, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const features = [
   {
@@ -34,58 +35,117 @@ const features = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const bgOrbVariants = {
+  animate: {
+    scale: [1, 1.2, 1],
+    opacity: [0.05, 0.08, 0.05],
+    transition: {
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
 const WhyChooseUs = () => {
   return (
     <section className="relative py-24 font-sans overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
       {/* Subtle Background Decor */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] opacity-5"
-        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}></div>
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] opacity-5"
-        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}></div>
+      <motion.div
+        className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px]"
+        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}
+        variants={bgOrbVariants}
+        animate="animate"
+      />
+      <motion.div
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px]"
+        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}
+        variants={bgOrbVariants}
+        animate="animate"
+        transition={{ delay: 2, duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+      <motion.div
+        className="container mx-auto px-6 lg:px-12 relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
 
         {/* Header Section - Clean Light Design */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
           {/* Small Label */}
-          <div className="mb-6" style={{ animation: 'fadeInUp 0.6s ease-out' }}>
+          <motion.div className="mb-6" variants={itemVariants}>
             <span className="text-sm font-bold uppercase tracking-[0.2em]" style={{ color: '#E46F33' }}>
               The Qlothcare Advantage
             </span>
-          </div>
+          </motion.div>
 
           {/* Main Heading */}
-          <h2 className="font-display text-5xl lg:text-7xl font-bold leading-[1.1] mb-6"
-            style={{ animation: 'fadeInUp 0.6s ease-out 0.1s both', color: '#2F343A' }}>
+          <motion.h2
+            className="font-display text-5xl lg:text-7xl font-bold leading-[1.1] mb-6"
+            variants={itemVariants}
+            style={{ color: '#2F343A' }}
+          >
             Engineered for
             <span style={{ color: '#E46F33' }}> perfection</span>.
-          </h2>
+          </motion.h2>
 
           {/* Decorative Line */}
-          <div className="flex justify-center mb-6" style={{ animation: 'fadeInUp 0.6s ease-out 0.2s both' }}>
+          <motion.div
+            className="flex justify-center mb-6"
+            variants={itemVariants}
+          >
             <div className="h-1 w-24 rounded-full" style={{ backgroundColor: '#E46F33' }}></div>
-          </div>
+          </motion.div>
 
           {/* Subtitle */}
-          <p className="text-lg lg:text-xl leading-relaxed"
-            style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both', color: '#778582' }}>
+          <motion.p
+            className="text-lg lg:text-xl leading-relaxed"
+            variants={itemVariants}
+            style={{ color: '#778582' }}
+          >
             We've replaced the traditional, manual laundry experience with a seamless,
             <br className="hidden lg:block" />
             tech-driven process that prioritizes quality and consistency.
-          </p>
+          </motion.p>
         </div>
 
         {/* Bento Grid Layout - Clean Light Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {features.map((item, index) => {
+          {features.map((item) => {
             const Icon = item.icon;
             const isFeatured = item.featured;
 
             return (
-              <div
+              <motion.div
                 key={item.id}
+                variants={itemVariants}
                 style={{
-                  animation: `fadeInUp 0.6s ease-out ${0.4 + index * 0.1}s both`,
                   gridColumn: isFeatured ? 'span 1 lg:span 2' : 'span 1',
                   backgroundColor: '#FFFFFF',
                   borderColor: '#D1D3CF'
@@ -134,26 +194,12 @@ const WhyChooseUs = () => {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
-      </div>
-
-      {/* Keyframe Animations */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+      </motion.div>
     </section>
   );
 };
