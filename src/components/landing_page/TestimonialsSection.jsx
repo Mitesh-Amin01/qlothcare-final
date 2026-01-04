@@ -61,7 +61,7 @@ const reviews = [
    }
 ];
 
-// Animation Variants
+
 const containerVariants = {
    hidden: { opacity: 0 },
    visible: {
@@ -97,42 +97,44 @@ const bgOrbVariants = {
    }
 };
 
-// --- Parallax Horizontal Scroll Component ---
+
 function ParallaxText({ children, baseVelocity = 100 }) {
    const baseX = useMotionValue(0);
    const { scrollY } = useScroll();
    const scrollVelocity = useVelocity(scrollY);
-   const smoothVelocity = useSpring(scrollVelocity, {
-      damping: 50,
-      stiffness: 400
-   });
-   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+
+
+   const velocityFactor = useTransform(scrollVelocity, [0, 1000], [0, 5], {
       clamp: false
    });
 
-   /**
-    * We have 4 identical children. To loop smoothly, we translate from 0% to -25%.
-    * -25% of the total width = exactly the width of 1 child block.
-    * This creates a seamless infinite loop.
-    */
-   const x = useTransform(baseX, (v) => `${wrap(-20, 0, v)}%`);
+   const smoothVelocity = useSpring(velocityFactor, {
+      damping: 50,
+      stiffness: 300,
+      mass: 0.8
+   });
+   const x = useTransform(baseX, (v) => `${wrap(-25, 0, v)}%`);
 
    const directionFactor = useRef(1);
+   const currentMove = useRef(0);
+
    useAnimationFrame((t, delta) => {
-      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+      const dt = delta / 1000;
 
-      /**
-       * Change direction based on scroll velocity direction
-       */
-      if (velocityFactor.get() < 0) {
-         directionFactor.current = -1;
-      } else if (velocityFactor.get() > 0) {
-         directionFactor.current = 1;
-      }
 
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
+      let v = smoothVelocity.get();
+      if (v < -2) v = -2;
+      if (v > 2) v = 2;
 
-      baseX.set(baseX.get() + moveBy);
+
+      if (v < -0.05) directionFactor.current = -1;
+      else if (v > 0.05) directionFactor.current = 1;
+
+      const targetMove = directionFactor.current * baseVelocity * (1 + Math.abs(v));
+
+      currentMove.current += (targetMove - currentMove.current) * 0.08;
+
+      baseX.set(baseX.get() + currentMove.current * dt);
    });
 
    return (
