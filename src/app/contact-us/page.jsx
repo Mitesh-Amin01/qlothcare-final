@@ -7,25 +7,25 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 /* ==========================================
-   ANIMATION VARIANTS (Professional & Fast)
+   ANIMATION CONFIG (Professional & Smooth)
    ========================================== */
-const fadeUp = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
-
-const staggerContainer = {
+const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
+      staggerChildren: 0.1, // Delays each item slightly
+      delayChildren: 0.2
     }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" }
   }
 };
 
@@ -40,17 +40,16 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSent(true);
-    }, 1000);
+    }, 1500);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-white relative overflow-hidden">
       
-      {/* STATIC BACKGROUND (Zero Lag) */}
+      {/* STATIC BACKGROUND */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[10%] -right-[10%] w-120 h-120 bg-orange-100/60 rounded-full blur-[80px]" />
         <div className="absolute -bottom-[10%] -left-[10%] w-96 h-96 bg-blue-50/80 rounded-full blur-[80px]" />
@@ -61,10 +60,10 @@ const ContactPage = () => {
         
         {/* HEADER */}
         <motion.div 
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className="mb-12 lg:mb-16 max-w-3xl"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 lg:mb-16 max-w-3xl mt-14 lg:mt-10"
         >
           <h1 className="text-4xl lg:text-6xl font-display font-bold leading-tight text-clothcare-dark">
             We are here to <br className="hidden lg:block" />
@@ -76,20 +75,20 @@ const ContactPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* LEFT COLUMN: INFO CARDS */}
+          {/* LEFT COLUMN: ANIMATED CARDS */}
           <motion.div 
-            variants={staggerContainer}
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="lg:col-span-5 space-y-8"
           >
-            <motion.p variants={fadeUp} className="text-gray-500 text-lg font-medium leading-relaxed">
+            <motion.p variants={cardVariants} className="text-gray-500 text-lg font-medium leading-relaxed">
               Whether it's a stubborn stain or a scheduling conflict, our team is ready to sort it out instantly.
             </motion.p>
 
-            {/* PROFESSIONAL CARDS GRID */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
               
+              {/* ANIMATED CARDS */}
               <ContactCard 
                 icon={<Mail size={22} />}
                 colorClass="bg-orange-50 text-clothcare-primary group-hover:bg-clothcare-primary group-hover:text-white"
@@ -117,7 +116,7 @@ const ContactPage = () => {
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-7"
           >
             <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-gray-100 relative overflow-hidden">
@@ -143,6 +142,7 @@ const ContactPage = () => {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-clothcare-dark uppercase tracking-wider pl-1">Your Name</label>
                         <input 
+                          suppressHydrationWarning // FIX FOR ERROR
                           className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
                           placeholder="John Doe"
                           value={formState.name}
@@ -152,6 +152,7 @@ const ContactPage = () => {
                       <div className="space-y-2">
                         <label className="text-xs font-bold text-clothcare-dark uppercase tracking-wider pl-1">Email Address</label>
                         <input 
+                          suppressHydrationWarning // FIX FOR ERROR
                           type="email"
                           className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-4 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
                           placeholder="john@example.com"
@@ -167,6 +168,7 @@ const ContactPage = () => {
                         {['Support', 'Orders', 'Pricing', 'Partner'].map((item) => (
                           <button
                             key={item}
+                            suppressHydrationWarning // FIX FOR ERROR
                             type="button"
                             onClick={() => setFormState({...formState, subject: item.toLowerCase()})}
                             className={`px-6 py-3 rounded-xl text-sm font-bold transition-all border ${
@@ -194,6 +196,7 @@ const ContactPage = () => {
 
                     <button 
                       type="submit"
+                      suppressHydrationWarning // FIX FOR ERROR
                       disabled={isSubmitting}
                       className="w-full bg-clothcare-accent-gradient text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-orange-200 hover:shadow-xl hover:shadow-orange-300 transition-all flex items-center justify-center gap-3 active:scale-[0.99]"
                     >
@@ -237,39 +240,42 @@ const ContactPage = () => {
 };
 
 /* ==========================================
-   HELPER COMPONENTS (Professional & Stable)
+   HELPER COMPONENTS (Animation Wrapper)
    ========================================== */
 
 const ContactCard = ({ icon, colorClass, title, sub, value, href }) => (
-  <a 
-    href={href}
-    className="group relative bg-white border border-gray-100 p-8 rounded-2xl transition-all duration-300 ease-out hover:border-clothcare-primary/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] block"
-  >
-    <div className="flex justify-between items-start mb-6">
-      {/* Icon with hover color transition */}
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300 ${colorClass}`}>
-        {icon}
+  <motion.div variants={cardVariants}>
+    <a 
+      href={href}
+      suppressHydrationWarning // Safety for links too
+      className="group relative bg-white border border-gray-100 p-8 rounded-2xl transition-all duration-300 ease-out hover:border-clothcare-primary/40 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] block"
+    >
+      <div className="flex justify-between items-start mb-6">
+        {/* Icon with hover color transition */}
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors duration-300 ${colorClass}`}>
+          {icon}
+        </div>
+        
+        {/* Arrow moves slightly on hover (Mini Animation) */}
+        <ArrowRight 
+          size={20} 
+          className="text-gray-300 transition-transform duration-300 group-hover:text-clothcare-primary group-hover:translate-x-1" 
+        />
       </div>
-      
-      {/* Arrow moves slightly on hover */}
-      <ArrowRight 
-        size={20} 
-        className="text-gray-300 transition-transform duration-300 group-hover:text-clothcare-primary group-hover:translate-x-1" 
-      />
-    </div>
 
-    <div>
-      <h3 className="text-clothcare-dark font-bold text-lg mb-1">{title}</h3>
-      <p className="text-gray-400 text-sm font-medium mb-3">{sub}</p>
-      <p className="text-clothcare-dark font-mono text-base font-semibold tracking-tight">
-        {value}
-      </p>
-    </div>
-  </a>
+      <div>
+        <h3 className="text-clothcare-dark font-bold text-lg mb-1">{title}</h3>
+        <p className="text-gray-400 text-sm font-medium mb-3">{sub}</p>
+        <p className="text-clothcare-dark font-mono text-base font-semibold tracking-tight">
+          {value}
+        </p>
+      </div>
+    </a>
+  </motion.div>
 );
 
 const LocationCard = () => (
-  <div className="sm:col-span-2 lg:col-span-1 h-full">
+  <motion.div variants={cardVariants} className="sm:col-span-2 lg:col-span-1 h-full">
     <div className="group h-full bg-clothcare-dark text-white p-8 rounded-2xl relative overflow-hidden transition-all duration-300 hover:shadow-xl">
       {/* Subtle Gradient Overlay */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none transition-opacity group-hover:opacity-100 opacity-50"></div>
@@ -292,7 +298,7 @@ const LocationCard = () => (
         </div>
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const SuccessMessage = ({ onReset, email }) => (
@@ -318,6 +324,7 @@ const SuccessMessage = ({ onReset, email }) => (
 
 const FAQPill = ({ text }) => (
   <button 
+    suppressHydrationWarning // Safety
     className="whitespace-nowrap px-6 py-3 rounded-full bg-white hover:bg-gray-50 border border-gray-200 text-gray-600 font-bold text-sm transition-all flex items-center gap-2 group shadow-sm hover:shadow-md hover:text-clothcare-primary active:scale-95"
   >
     {text} <MoveRight size={14} className="opacity-0 group-hover:opacity-100 transition-all text-clothcare-primary -ml-2 group-hover:ml-0" />
