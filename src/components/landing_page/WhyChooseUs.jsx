@@ -1,132 +1,159 @@
+'use client'
+
 import React from 'react';
-import { ShieldCheck, Leaf, Smartphone, Clock, ArrowUpRight, Droplets } from 'lucide-react';
+import { ShieldCheck, Leaf, Smartphone, Clock, CheckCircle2 } from 'lucide-react';
 
 const features = [
   {
     id: 1,
     title: "Hygiene First Technology",
     description: "We don't mix loads. Your clothes are washed separately in sanitized machines using hospital-grade hygiene protocols.",
-    icon: <ShieldCheck className="w-6 h-6 text-clothcare-teal" />,
+    icon: ShieldCheck,
     stat: "99.9%",
-    statLabel: "Germ Removal"
+    statLabel: "Germ Removal",
+    featured: true,
+    color: "#E46F33"
   },
   {
     id: 2,
     title: "Eco-Smart Solvents",
     description: "Our GreenEarth® cleaning process is non-toxic, odorless, and gentle on sensitive skin and delicate fabrics.",
-    icon: <Leaf className="w-6 h-6 text-clothcare-teal" />,
+    icon: Leaf,
     stat: "0%",
-    statLabel: "Toxic Chems"
-  },
-  {
-    id: 3,
-    title: "Real-Time Tracking",
-    description: "Track your driver, view photo proofs of stains, and manage delivery windows instantly via our mobile dashboard.",
-    icon: <Smartphone className="w-6 h-6 text-clothcare-teal" />,
-    stat: "Live",
-    statLabel: "Order Status"
+    statLabel: "Toxic Chems",
+    color: "#4CAF50"
   },
   {
     id: 4,
     title: "24h Express Turnaround",
     description: "Need it fast? Select our Express Service for same-day pickup and next-morning delivery at no extra cost.",
-    icon: <Clock className="w-6 h-6 text-clothcare-teal" />,
+    icon: Clock,
     stat: "24h",
-    statLabel: "Standard Time"
+    statLabel: "Standard Time",
+    color: "#9C27B0"
   }
 ];
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-clothcare-navy relative overflow-hidden font-sans">
-      
-      {/* Background Decor: Subtle Mesh Gradient for Depth */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-clothcare-teal/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[100px] pointer-events-none" />
+    <section className="relative py-24 font-sans overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
+      {/* Subtle Background Decor */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[120px] opacity-5"
+        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}></div>
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-[100px] opacity-5"
+        style={{ background: 'radial-gradient(circle, #E46F33 0%, transparent 70%)' }}></div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        
-        {/* Header Section: Split Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-20 border-b border-white/10 pb-10">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-clothcare-teal"></span>
-              <span className="text-clothcare-teal font-display font-bold text-sm tracking-widest uppercase">
-                The Qlothcare Advantage
-              </span>
-            </div>
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white leading-[1.1]">
-              Engineered for perfection. <br />
-              <span className="text-gray-500">Designed for peace of mind.</span>
-            </h2>
+
+        {/* Header Section - Clean Light Design */}
+        <div className="text-center mb-16 max-w-4xl mx-auto">
+          {/* Small Label */}
+          <div className="mb-6" style={{ animation: 'fadeInUp 0.6s ease-out' }}>
+            <span className="text-sm font-bold uppercase tracking-[0.2em]" style={{ color: '#E46F33' }}>
+              The Qlothcare Advantage
+            </span>
           </div>
-          
-          <div className="max-w-md">
-            <p className="text-gray-400 text-lg leading-relaxed">
-              We’ve replaced the traditional, manual laundry experience with a seamless, tech-driven process that prioritizes quality and consistency.
-            </p>
+
+          {/* Main Heading */}
+          <h2 className="font-display text-5xl lg:text-7xl font-bold leading-[1.1] mb-6"
+            style={{ animation: 'fadeInUp 0.6s ease-out 0.1s both', color: '#2F343A' }}>
+            Engineered for
+            <span style={{ color: '#E46F33' }}> perfection</span>.
+          </h2>
+
+          {/* Decorative Line */}
+          <div className="flex justify-center mb-6" style={{ animation: 'fadeInUp 0.6s ease-out 0.2s both' }}>
+            <div className="h-1 w-24 rounded-full" style={{ backgroundColor: '#E46F33' }}></div>
           </div>
+
+          {/* Subtitle */}
+          <p className="text-lg lg:text-xl leading-relaxed"
+            style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both', color: '#778582' }}>
+            We've replaced the traditional, manual laundry experience with a seamless,
+            <br className="hidden lg:block" />
+            tech-driven process that prioritizes quality and consistency.
+          </p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((item) => (
-            <div 
-              key={item.id} 
-              className="group relative bg-clothcare-navySoft/40 backdrop-blur-sm border border-white/5 hover:border-clothcare-teal/50 rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
-            >
-              {/* Hover Gradient Effect */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        {/* Bento Grid Layout - Clean Light Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {features.map((item, index) => {
+            const Icon = item.icon;
+            const isFeatured = item.featured;
 
-              {/* Icon Header */}
-              <div className="flex justify-between items-start mb-8 relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-clothcare-teal/20 group-hover:border-clothcare-teal/30 transition-all duration-300">
-                  {item.icon}
+            return (
+              <div
+                key={item.id}
+                style={{
+                  animation: `fadeInUp 0.6s ease-out ${0.4 + index * 0.1}s both`,
+                  gridColumn: isFeatured ? 'span 1 lg:span 2' : 'span 1',
+                  backgroundColor: '#FFFFFF',
+                  borderColor: '#D1D3CF'
+                }}
+                className="relative border rounded-3xl p-8 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                {/* Top Accent Line */}
+                <div className="absolute top-0 left-0 right-0 h-1"
+                  style={{ backgroundColor: item.color }}></div>
+
+                {/* Stat Badge - Top Right */}
+                <div className="absolute top-6 right-6 z-20">
+                  <div className="border rounded-xl px-4 py-2"
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      borderColor: '#D1D3CF'
+                    }}>
+                    <span className="text-2xl font-display font-bold tracking-tight block" style={{ color: '#2F343A' }}>
+                      {item.stat}
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider"
+                      style={{ color: '#E46F33' }}>
+                      {item.statLabel}
+                    </span>
+                  </div>
                 </div>
-                {/* Arrow Icon that appears on hover */}
-                <ArrowUpRight className="w-5 h-5 text-gray-600 group-hover:text-clothcare-teal transition-colors duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </div>
 
-              {/* Content */}
-              <div className="relative z-10">
-                <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-clothcare-tealSoft transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-8 border-b border-white/5 pb-8 min-h-[80px]">
-                  {item.description}
-                </p>
+                {/* Icon */}
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                    style={{
+                      backgroundColor: '#FFFFFF50',
+                      borderWidth: '1px',
+                      borderColor: '#D1D3CF'
+                    }}>
+                    <Icon className="w-8 h-8" style={{ color: item.color }} />
+                  </div>
+                </div>
 
-                {/* Stat Footer */}
-                <div className="flex items-end gap-3">
-                  <span className="text-3xl font-display font-bold text-white tracking-tight">
-                    {item.stat}
-                  </span>
-                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
-                    {item.statLabel}
-                  </span>
+                {/* Content */}
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-display font-bold mb-4" style={{ color: '#2F343A' }}>
+                    {item.title}
+                  </h3>
+                  <p className="text-base leading-relaxed" style={{ color: '#778582' }}>
+                    {item.description}
+                  </p>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom "Technology" Strip */}
-        <div className="mt-6 p-6 rounded-2xl border border-dashed border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-400 text-sm font-medium">
-          <span className="uppercase tracking-widest text-xs opacity-50">Powered By</span>
-          <div className="flex items-center gap-8 opacity-70">
-            <span className="flex items-center gap-2 hover:text-white transition-colors cursor-default">
-              <Droplets className="w-4 h-4" /> HydroClean™
-            </span>
-            <span className="flex items-center gap-2 hover:text-white transition-colors cursor-default">
-              <Smartphone className="w-4 h-4" /> Q-Track App
-            </span>
-            <span className="flex items-center gap-2 hover:text-white transition-colors cursor-default">
-              <ShieldCheck className="w-4 h-4" /> FabricGuard
-            </span>
-          </div>
+            );
+          })}
         </div>
 
       </div>
+
+      {/* Keyframe Animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
