@@ -65,14 +65,6 @@ const AboutSection = () => {
       twitter: '#'
     },
     {
-      name: 'Rahul Mehta',
-      role: 'Head of Operations',
-      bio: 'Operations expert optimizing logistics and customer experience at scale',
-      image: '/landingabout/team_member_ops_1767511796826.png',
-      linkedin: '#',
-      twitter: '#'
-    },
-    {
       name: 'Anjali Desai',
       role: 'Marketing Director',
       bio: 'Brand strategist crafting compelling narratives for modern consumers',
@@ -261,26 +253,25 @@ const AboutSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto"
           >
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
                 variants={teamCard}
                 whileHover={{ y: -12 }}
-                className="group relative"
+                className="group h-full"
               >
-                {/* Card Container - Responsive Height */}
-                <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#E5E7EB] hover:border-clothcare-primary/30 h-auto sm:h-[400px] md:h-[420px] flex flex-col">
+                {/* Card Container */}
+                <div className="relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-[#E5E7EB] hover:border-clothcare-primary/40 h-full flex flex-col">
 
                   {/* Gradient Accent */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-clothcare-accent-gradient rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* <div className="absolute top-0 left-0 right-0 h-1.5 bg-clothcare-accent-gradient rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" /> */}
 
                   {/* Profile Image */}
-                  <div className="relative mb-5 sm:mb-6 flex justify-center">
+                  <div className="relative mb-8 flex justify-center">
                     <div className="relative">
-                      {/* Image Container */}
-                      <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                      <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
                         <motion.img
                           src={member.image}
                           alt={member.name}
@@ -293,35 +284,35 @@ const AboutSection = () => {
                   </div>
 
                   {/* Member Info */}
-                  <div className="text-center">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#0F172A] mb-1 group-hover:text-clothcare-primary transition-colors duration-300">
+                  <div className="text-center flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold text-[#0F172A] mb-1 group-hover:text-clothcare-primary transition-colors duration-300">
                       {member.name}
                     </h3>
-                    <p className="text-xs sm:text-sm font-semibold text-clothcare-primary mb-2 sm:mb-3 uppercase tracking-wider">
+                    <p className="text-sm font-semibold text-clothcare-primary mb-4 uppercase tracking-wider">
                       {member.role}
                     </p>
-                    <p className="text-sm text-[#64748B] leading-relaxed mb-4 sm:mb-6">
+                    <p className="text-sm text-[#64748B] leading-relaxed mb-8 flex-grow">
                       {member.bio}
                     </p>
 
                     {/* Social Links */}
-                    <div className="flex items-center justify-center gap-3">
+                    <div className="flex items-center justify-center gap-4 pt-6 border-t border-gray-50">
                       <a
                         href={member.linkedin}
-                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F1F5F9] hover:bg-clothcare-accent-gradient flex items-center justify-center text-[#64748B] hover:text-white transition-all duration-300 group/icon"
+                        className="w-10 h-10 rounded-full bg-[#F1F5F9] hover:bg-clothcare-accent-gradient flex items-center justify-center text-[#64748B] hover:text-white transition-all duration-300 transform hover:scale-110"
                         aria-label={`${member.name} LinkedIn`}
                       >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                         </svg>
                       </a>
 
                       <a
                         href={member.twitter}
-                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F1F5F9] hover:bg-clothcare-accent-gradient flex items-center justify-center text-[#64748B] hover:text-white transition-all duration-300 group/icon"
+                        className="w-10 h-10 rounded-full bg-[#F1F5F9] hover:bg-clothcare-accent-gradient flex items-center justify-center text-[#64748B] hover:text-white transition-all duration-300 transform hover:scale-110"
                         aria-label={`${member.name} Twitter`}
                       >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                       </a>
