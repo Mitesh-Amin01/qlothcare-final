@@ -176,52 +176,6 @@ const AboutSection = () => {
 
         </div>
 
-        {/* TEAM SECTION */}
-        <motion.div
-          className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 pt-12 sm:pt-16 border-t border-[#E5E7EB]"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Section Header */}
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center justify-center gap-3 mb-6"
-            >
-              <span className="h-px w-8 sm:w-12 bg-clothcare-primary" />
-              <span className="text-[#0F172A] font-bold text-xs sm:text-sm tracking-widest uppercase">
-                Our Team
-              </span>
-              <span className="h-px w-8 sm:w-12 bg-clothcare-primary" />
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F172A] mb-3 sm:mb-4"
-            >
-              Meet the <span className="text-clothcare-primary">Innovators</span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg text-[#64748B] max-w-2xl mx-auto px-4"
-            >
-              Passionate professionals revolutionizing the laundry industry through technology and care
-            </motion.p>
-          </div>
-        </motion.div>
-
       </div>
     </motion.section>
   );
