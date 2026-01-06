@@ -189,9 +189,6 @@ const MissionVision = () => {
                 We treat garment care as a science. By integrating <span className="text-clothcare-primary font-bold italic">Ozone technology</span> and precision robotics, we eliminate human error while preserving the delicate structure of every fiber.
               </p>
             </div>
-            <div className="absolute bottom-[-10%] right-[-5%] opacity-5 group-hover:opacity-10 transition-opacity">
-              <Zap size={200} />
-            </div>
           </motion.div>
 
           {/* The Care - Human Focus */}
@@ -257,7 +254,7 @@ const Difference = () => {
             </div>
             <div className="flex gap-3 overflow-x-auto pb-2">
               {['Single-Load Only', 'Sanitized Cycles', 'Hospital Grade'].map(tag => (
-                <span key={tag} className="px-4 py-2 bg-[#F1F5F9] rounded-full text-[10px] font-bold text-clothcare-primary whitespace-nowrap">{tag}</span>
+                <span key={tag} className="px-4 py-2 bg-[#e5e5e5] rounded-full text-[10px] font-bold text-clothcare-primary whitespace-nowrap">{tag}</span>
               ))}
             </div>
           </motion.div>
