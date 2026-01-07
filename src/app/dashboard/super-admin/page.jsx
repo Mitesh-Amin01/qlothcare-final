@@ -423,7 +423,7 @@ const SuperAdminLayout = () => {
             {activeTab === 'alerts' && (
               <div className="bg-status-danger/10 p-6 rounded-2xl text-status-danger flex items-center gap-4 animate-fade-in">
                 <AlertTriangle />
-                <span className="font-bold">System Alert: .</span>
+                <span className="font-bold">System Alert: Payment gateway latency detected.</span>
               </div>
             )}
             {activeTab === 'settings' && <div className="text-text-muted">System Settings Panel</div>}
