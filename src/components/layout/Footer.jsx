@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { 
-  Facebook, Twitter, Instagram, Linkedin, 
-  ArrowRight, MapPinnedIcon, PhoneCall 
+import {
+  Facebook, Twitter, Instagram, Linkedin,
+  ArrowRight, MapPinnedIcon, PhoneCall
 } from 'lucide-react';
 
 /**
@@ -14,10 +14,10 @@ import {
  */
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
@@ -32,11 +32,11 @@ const staggerContainer = {
 const Footer = () => {
   return (
     <footer className="bg-clothcare-dark text-white font-sans relative overflow-hidden">
-      
+
       {/* =========================
           BACKGROUND ELEMENTS
       ========================= */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.03 }}
         transition={{ duration: 1 }}
@@ -46,17 +46,17 @@ const Footer = () => {
           QLOTHCARE
         </h1>
       </motion.div>
-      
+
       {/* Mesh Gradients - Static for performance */}
       <div className="absolute top-0 right-0 w-200 h-200 bg-clothcare-teal/10 rounded-full blur-[150px] pointer-events-none opacity-50"></div>
       <div className="absolute bottom-0 left-0 w-150 h-150 bg-blue-900/20 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        
+
         {/* =========================
             PART 1: THE "BIG" CTA
         ========================= */}
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -71,22 +71,22 @@ const Footer = () => {
               </span>
             </h2>
             <p className="text-xl text-clothcare-tealSoft/60 max-w-xl leading-relaxed">
-              Join 12,000+ professionals reclaiming their weekends. 
+              Join 12,000+ professionals reclaiming their weekends.
               Download the app today and get $20 off your first order.
             </p>
           </motion.div>
-          
+
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-            <AppButton 
-                platform="Apple" 
-                title="Download on the" 
-                subtitle="App Store" 
-                primary 
+            <AppButton
+              platform="Apple"
+              title="Download on the"
+              subtitle="App Store"
+              primary
             />
-            <AppButton 
-                platform="Google" 
-                title="Get it on" 
-                subtitle="Google Play" 
+            <AppButton
+              platform="Google"
+              title="Get it on"
+              subtitle="Google Play"
             />
           </motion.div>
         </motion.div>
@@ -94,7 +94,7 @@ const Footer = () => {
         {/* =========================
             PART 2: LINKS & INFO
         ========================= */}
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -197,9 +197,9 @@ const Footer = () => {
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-clothcare-tealSoft/40">
           <div>&copy; {new Date().getFullYear()} Qlothcare Inc. All rights reserved.</div>
           <div className="flex gap-8">
-             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Privacy Policy</a>
-             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Terms of Service</a>
-             <a href="#" className="hover:text-clothcare-primaryDark transition-colors">Cookie Settings</a>
+            <a href="/privacy-policy" className="hover:text-clothcare-primaryDark transition-colors">Privacy Policy</a>
+            <a href="/terms-and-conditions" className="hover:text-clothcare-primaryDark transition-colors">Terms of Service</a>
+            <a href="/cookies-policy" className="hover:text-clothcare-primaryDark transition-colors">Cookie Settings</a>
           </div>
         </div>
       </div>
@@ -210,10 +210,10 @@ const Footer = () => {
 // --- HELPER COMPONENTS ---
 
 const SocialLink = ({ icon }) => (
-  <motion.a 
+  <motion.a
     whileHover={{ y: -5, scale: 1.1 }}
     whileTap={{ scale: 0.9 }}
-    href="#" 
+    href="#"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-clothcare-primary hover:text-white transition-all duration-300 text-white/60"
   >
     {icon}
@@ -224,7 +224,7 @@ const FooterLink = ({ text, badge }) => (
   <li className="group">
     <a href="#" className="flex items-center gap-2 hover:text-clothcare-primary transition-colors duration-300">
       <span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100">
-         <ArrowRight size={12} />
+        <ArrowRight size={12} />
       </span>
       {text}
       {badge && (
@@ -237,31 +237,30 @@ const FooterLink = ({ text, badge }) => (
 );
 
 const AppButton = ({ platform, title, subtitle, primary }) => (
-    <motion.button 
-        whileHover={{ y: -2, scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 shadow-lg group cursor-pointer ${
-            primary 
-            ? "bg-white text-clothcare-dark hover:bg-white/90" 
-            : "bg-transparent border border-white/20 text-white hover:bg-white/10"
-        }`}
-    >
-        <span className="text-2xl">
-            {platform === "Apple" ? (
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.24-1.99 1.1-3.15-1.07.04-2.32.74-3.08 1.63-.68.8-.27 2.13.26 2.15 1.12.02 1.99-.65 2.52-1.63z" />
-                </svg>
-            ) : (
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="#A6D864">
-                    <path d="M3 20.5V3.5L19 12L3 20.5Z" fill="currentColor" />
-                </svg>
-            )}
-        </span>
-        <div className="text-left">
-            <p className="text-xs font-bold uppercase tracking-wider opacity-60">{title}</p>
-            <p className="text-lg font-display font-bold leading-none">{subtitle}</p>
-        </div>
-    </motion.button>
+  <motion.button
+    whileHover={{ y: -2, scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 shadow-lg group cursor-pointer ${primary
+        ? "bg-white text-clothcare-dark hover:bg-white/90"
+        : "bg-transparent border border-white/20 text-white hover:bg-white/10"
+      }`}
+  >
+    <span className="text-2xl">
+      {platform === "Apple" ? (
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.24-1.99 1.1-3.15-1.07.04-2.32.74-3.08 1.63-.68.8-.27 2.13.26 2.15 1.12.02 1.99-.65 2.52-1.63z" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#A6D864">
+          <path d="M3 20.5V3.5L19 12L3 20.5Z" fill="currentColor" />
+        </svg>
+      )}
+    </span>
+    <div className="text-left">
+      <p className="text-xs font-bold uppercase tracking-wider opacity-60">{title}</p>
+      <p className="text-lg font-display font-bold leading-none">{subtitle}</p>
+    </div>
+  </motion.button>
 );
 
 export default Footer;
