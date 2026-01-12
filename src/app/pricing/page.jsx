@@ -6,6 +6,7 @@ import {
   Heart, ChevronDown, Wind, Droplets
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Button from '@/components/common/Button';
 
 /* ==========================================
    GLOBAL MOTION VARIANTS
@@ -201,9 +202,7 @@ const SavingsCalculator = () => {
                 </div>
               </div>
 
-              <button className="w-full py-4 rounded-2xl bg-clothcare-primary text-white font-bold hover:bg-clothcare-primaryDark transition-all shadow-lg shadow-clothcare-primary/20">
-                Start Saving Now
-              </button>
+              <Button children={"Start saving"} />
             </div>
           </div>
         </motion.div>

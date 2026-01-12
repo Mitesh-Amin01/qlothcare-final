@@ -21,6 +21,7 @@ import {
   Globe,
   Target,
 } from 'lucide-react';
+import Button from '@/components/common/Button';
 
 /* ==========================================
    THEME COLORS REFERENCE
@@ -64,14 +65,10 @@ const FranchiseHero = () => {
 
       <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
         <div className={`text-center max-w-5xl mx-auto mb-16 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#E46F33]/10 border border-[#E46F33]/20 rounded-full text-[#E46F33] text-sm font-medium mb-6 backdrop-blur-sm">
-            <Zap size={16} className="animate-pulse" />
-            India's Most Advanced Laundry Franchise
-          </div>
 
           <h1 className="text-6xl md:text-8xl font-black text-white leading-tight mb-8">
             Own a
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#E46F33] to-[#CC5F2B] animate-gradient">
+            <span className="block text-transparent bg-clip-text bg-linear-to-r from-[#E46F33] to-[#CC5F2B] animate-gradient">
               Smart Laundry
             </span>
             <span className="block text-5xl md:text-6xl mt-2">Powerhouse</span>
@@ -84,15 +81,8 @@ const FranchiseHero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <button className="group px-10 py-5 bg-[#E46F33] hover:bg-[#CC5F2B] text-white rounded-2xl font-bold text-lg transition-all shadow-lg shadow-[#E46F33]/30 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3">
-              Start Your Journey
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button className="group px-10 py-5 bg-white/5 hover:bg-white/10 border-2 border-[#778582] text-white rounded-2xl font-bold text-lg backdrop-blur-md transition-all flex items-center justify-center gap-3">
-              <Download size={20} />
-              Download Brochure
-            </button>
+            <Button rightIcon={ArrowRight}>Start your journey</Button>
+            <Button variant='outline' leftIcon={Download} className='text-white'>Download Brochure</Button>
           </div>
 
           {/* Stats Grid */}

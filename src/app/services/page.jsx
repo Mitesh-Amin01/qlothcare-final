@@ -6,6 +6,7 @@ import {
     CheckCircle2, ArrowRight, Clock, Star
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Button from '@/components/common/Button';
 
 /* ==========================================
    GLOBAL MOTION VARIANTS
@@ -312,9 +313,7 @@ const ServiceArea = () => {
                                     className="w-full pl-14 pr-6 py-5 bg-[#F1F5F9] border-none rounded-2xl focus:ring-2 focus:ring-clothcare-primary outline-none font-bold placeholder:text-[#94A3B8]"
                                 />
                             </div>
-                            <button className="px-10 py-5 bg-[#0F172A] text-white rounded-2xl font-bold hover:bg-clothcare-primary transition-all">
-                                Check Coverage
-                            </button>
+                            <Button className='cursor-pointer'>Check Coverage</Button>
                         </div>
 
                         <div className="mt-8 flex items-center gap-6">
@@ -369,12 +368,8 @@ export default function ServicesPage() {
                             <h2 className="text-4xl lg:text-6xl font-display font-bold mb-8">Ready for a fresh start?</h2>
                             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">Join 10,000+ happy customers who have outsourced their laundry to experts.</p>
                             <div className="flex flex-col sm:flex-row justify-center gap-6">
-                                <button className="px-12 py-6 bg-clothcare-primary text-white rounded-2xl font-bold text-lg hover:bg-clothcare-primaryDark transition-all shadow-xl shadow-clothcare-primary/20">
-                                    Schedule My First Pickup
-                                </button>
-                                <button className="px-12 py-6 bg-white/10 text-white border border-white/20 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all backdrop-blur-sm">
-                                    View Full Price List
-                                </button>
+                                <Button>Schedule Pick-Up</Button>
+                                <Button variant='outline' className='text-white cursor-pointer'>View all services</Button>
                             </div>
                         </div>
                     </motion.div>
