@@ -10,8 +10,8 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { organizations } from "./organizations";
-import { users } from "./users";
+import { organizations } from "../organization/organization";
+import { users } from "../user/user";
 
 export const branches = pgTable(
   "branches",

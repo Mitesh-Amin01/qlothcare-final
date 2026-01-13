@@ -9,7 +9,7 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { organizations } from "./organizations";
+import { organizations } from "../organization/organization";
 
 export const roles = pgTable(
   "roles",

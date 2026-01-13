@@ -9,7 +9,7 @@ import {
   timestamp,
   index,
 } from "drizzle-orm/pg-core";
-import { customers } from "./customers";
+import { customers } from "./customer";
 
 export const customer_subscriptions = pgTable(
   "customer_subscriptions",

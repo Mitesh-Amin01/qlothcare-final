@@ -7,9 +7,9 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { users } from "./users";
-import { roles } from "./roles";
-import { branches } from "./branches";
+import { users } from "../user/user";
+import { roles } from "./role";
+import { branches } from "../branch/branch";
 
 export const user_roles = pgTable(
   "user_roles",

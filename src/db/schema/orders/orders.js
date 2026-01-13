@@ -9,10 +9,10 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { organizations } from "./organizations";
-import { branches } from "./branches";
-import { customers } from "./customers";
-import { customer_addresses } from "./customer_addresses";
+import { organizations } from "../organization/organization";
+import { branches } from "../branch/branch";
+import { customers } from "../customer/customer";
+import { customer_addresses } from "../customer/customer_addresses";
 
 export const orders = pgTable(
   "orders",

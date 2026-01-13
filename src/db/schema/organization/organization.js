@@ -10,7 +10,7 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { users } from "./users";
+import { users } from "../user/user";
 
 /**
  * Status enum

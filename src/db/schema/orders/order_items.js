@@ -8,9 +8,9 @@ import {
   index,
 } from "drizzle-orm/pg-core";
 import { orders } from "./orders";
-import { services } from "./services";
-import { service_variants } from "./service_variants";
-import { cloth_items } from "./cloth_items";
+import { services } from "../services/services";
+import { service_variants } from "../services/service_variants";
+import { cloth_items } from "../services/cloth_items";
 
 export const order_items = pgTable(
   "order_items",

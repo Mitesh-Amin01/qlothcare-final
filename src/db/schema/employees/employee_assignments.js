@@ -9,9 +9,9 @@ import {
   index,
 } from "drizzle-orm/pg-core";
 import { employees } from "./employees";
-import { branches } from "./branches";
-import { roles } from "./roles";
-import { users } from "./users";
+import { branches } from "../branch/branch";
+import { roles } from "../RBAC/role";
+import { users } from "../user/user";
 
 export const employee_assignments = pgTable(
   "employee_assignments",

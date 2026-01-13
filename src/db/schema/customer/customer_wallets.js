@@ -6,7 +6,7 @@ import {
   timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { customers } from "./customers";
+import { customers } from "./customer";
 
 export const customer_wallets = pgTable(
   "customer_wallets",

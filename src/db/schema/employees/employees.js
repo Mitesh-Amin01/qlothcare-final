@@ -9,8 +9,8 @@ import {
   index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { users } from "./users";
-import { organizations } from "./organizations";
+import { users } from "../user/user";
+import { organizations } from "../organization/organization";
 
 export const employees = pgTable(
   "employees",
