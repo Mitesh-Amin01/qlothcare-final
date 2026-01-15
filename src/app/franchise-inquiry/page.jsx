@@ -1,391 +1,414 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import {
-    TrendingUp, Building2, Smartphone, Users,
-    ArrowRight, CheckCircle2, Download, DollarSign,
-    PieChart, MapPin, Briefcase, ChevronRight, Zap, Activity, MousePointer2
+import React, { useState } from 'react';
+import { 
+  Building2, TrendingUp, Smartphone, Users, ArrowRight, 
+  CheckCircle2, Globe, LayoutDashboard, Shirt, Sparkles, 
+  ChevronDown, Wallet, PieChart, BarChart3, Play
 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 /* ==========================================
-   COMPONENT: HERO (The "Investment" Look)
+   ANIMATION CONFIG (Snappy & Corporate)
    ========================================== */
-const FranchiseHero = () => {
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-    return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#05111F] pt-20">
-
-            {/* 1. BACKGROUND: DEEP SPACE MESH & GRID */}
-            <div className="absolute inset-0 z-0">
-                {/* Perspective Grid Floor */}
-                <div className="absolute bottom-0 left-[-50%] right-[-50%] h-[50vh] bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_top,black,transparent)] [transform:perspective(500px)_rotateX(60deg)] opacity-30"></div>
-
-                {/* Glowing Orbs */}
-                <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-clothcare-teal/20 rounded-full blur-[120px] animate-pulse"></div>
-                <div className="absolute top-[20%] right-[-20%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]"></div>
-
-                {/* Spotlight Center */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#05111F] via-transparent to-[#05111F]/50"></div>
-            </div>
-
-            <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
-
-                {/* 2. LEFT SIDE: AUTHORITATIVE COPY */}
-                <div className={`transition-all duration-1000 transform ${mounted ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-                    <h1 className="text-5xl lg:text-7xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight">
-                        Scale with <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-clothcare-teal via-cyan-400 to-blue-500">
-                            Intelligent Laundry.
-                        </span>
-                    </h1>
-
-                    <p className="text-xl text-slate-400 max-w-lg leading-relaxed mb-10 font-light border-l-2 border-clothcare-teal/30 pl-6">
-                        Don't just buy a shop. Invest in a <strong>vertically integrated tech stack</strong>. We provide the robots, the customers, and the playbook.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                        <button className="px-8 py-4 bg-clothcare-teal hover:bg-clothcare-tealDark text-white rounded-xl font-bold transition-all shadow-[0_0_40px_-10px_rgba(15,185,177,0.5)] hover:shadow-[0_0_60px_-10px_rgba(15,185,177,0.6)] flex items-center justify-center gap-3 group">
-                            Start Application <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button className="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-xl font-bold hover:bg-white/10 transition-all backdrop-blur-md flex items-center justify-center gap-3">
-                            <Download size={18} /> Financial Model
-                        </button>
-                    </div>
-
-                    {/* Social Proof / Stats */}
-                    <div className="flex items-center gap-8 pt-8 border-t border-white/5">
-                        <div>
-                            <p className="text-3xl font-display font-bold text-white">45+</p>
-                            <p className="text-xs text-slate-500 uppercase tracking-wider">Live Hubs</p>
-                        </div>
-                        <div className="w-px h-10 bg-white/10"></div>
-                        <div>
-                            <p className="text-3xl font-display font-bold text-white">₹12Cr</p>
-                            <p className="text-xs text-slate-500 uppercase tracking-wider">Network Rev</p>
-                        </div>
-                        <div className="w-px h-10 bg-white/10"></div>
-                        <div className="flex items-center gap-2">
-                            <div className="flex -space-x-3">
-                                {[1, 2, 3].map(i => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#05111F] bg-slate-700">
-                                        <img src={`https://i.pravatar.cc/100?img=${i + 10}`} className="w-full h-full rounded-full grayscale opacity-70" alt="Partner" />
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="text-xs text-slate-500 ml-2">Join elite operators</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* 3. RIGHT SIDE: THE "TECH STACK" VISUALIZATION 
-             This simulates a 3D view of the Franchise Dashboard 
-        */}
-                <div className={`relative h-[600px] w-full hidden lg:block transition-all duration-1000 delay-300 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-
-                    {/* Floating Element 1: The Main Dashboard (Tilted) */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#0A1A2F]/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 z-10 [transform:perspective(1000px)_rotateY(-15deg)_rotateX(5deg)] transition-transform hover:[transform:perspective(1000px)_rotateY(-5deg)_rotateX(0deg)] duration-500 group">
-
-                        {/* Fake UI Header */}
-                        <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
-                            <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-                            </div>
-                            <div className="text-xs font-mono text-slate-500">franchise.qlothcare.com</div>
-                        </div>
-
-                        {/* Fake UI Content */}
-                        <div className="grid grid-cols-3 gap-4 mb-6">
-                            <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                                <p className="text-[10px] text-slate-400 uppercase mb-1">Total Revenue</p>
-                                <p className="text-xl font-bold text-white">₹24.5L</p>
-                                <div className="text-[10px] text-green-400 flex items-center gap-1 mt-1"><TrendingUp size={10} /> +12% this month</div>
-                            </div>
-                            <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                                <p className="text-[10px] text-slate-400 uppercase mb-1">Active Orders</p>
-                                <p className="text-xl font-bold text-white">142</p>
-                                <div className="text-[10px] text-clothcare-teal mt-1">Processing now</div>
-                            </div>
-                            <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                                <p className="text-[10px] text-slate-400 uppercase mb-1">Cust. Rating</p>
-                                <p className="text-xl font-bold text-white">4.9/5</p>
-                                <div className="flex gap-0.5 mt-1 text-yellow-500"><Zap size={10} fill="currentColor" /></div>
-                            </div>
-                        </div>
-
-                        {/* Chart Mockup */}
-                        <div className="h-32 w-full bg-gradient-to-t from-clothcare-teal/20 to-transparent rounded-lg border border-clothcare-teal/10 relative overflow-hidden">
-                            <div className="absolute bottom-0 left-0 right-0 h-full flex items-end justify-between px-2 pb-0">
-                                {[40, 65, 45, 70, 50, 80, 60, 90, 75, 100].map((h, i) => (
-                                    <div key={i} style={{ height: `${h}%` }} className="w-full mx-1 bg-clothcare-teal/50 rounded-t-sm hover:bg-clothcare-teal transition-colors"></div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Floating Element 2: Location Map (Bottom Left) */}
-                    <div className="absolute bottom-10 left-0 w-64 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-[float_6s_ease-in-out_infinite_1s] z-20">
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-8 h-8 rounded-full bg-clothcare-teal flex items-center justify-center text-white">
-                                <MapPin size={16} />
-                            </div>
-                            <div>
-                                <p className="text-xs font-bold text-white">Territory Lock</p>
-                                <p className="text-[10px] text-slate-400">Patan, Gujarat</p>
-                            </div>
-                        </div>
-                        <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                            <div className="w-[85%] h-full bg-clothcare-teal"></div>
-                        </div>
-                        <p className="text-[10px] text-right text-slate-500 mt-1">High Demand</p>
-                    </div>
-
-                    {/* Floating Element 3: ROI Badge (Top Right) */}
-                    <div className="absolute top-20 right-0 w-48 bg-gradient-to-br from-clothcare-teal to-blue-600 rounded-2xl p-4 shadow-[0_0_40px_rgba(15,185,177,0.3)] animate-[float_8s_ease-in-out_infinite] z-20 text-white">
-                        <div className="flex justify-between items-start mb-2">
-                            <Activity size={20} />
-                            <span className="text-[10px] font-bold bg-white/20 px-1.5 py-0.5 rounded">PRO</span>
-                        </div>
-                        <p className="text-3xl font-bold">14 Mo</p>
-                        <p className="text-xs opacity-80">Avg. ROI Period</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 animate-bounce">
-                <span className="text-[10px] uppercase tracking-widest">Explore Model</span>
-                <MousePointer2 size={16} />
-            </div>
-
-        </section>
-    );
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] } 
+  }
 };
 
-const StatItem = ({ label, value }) => (
-    <div className="border-l border-white/10 pl-6">
-        <p className="text-2xl lg:text-3xl font-display font-bold text-white mb-1">{value}</p>
-        <p className="text-xs text-clothcare-teal uppercase tracking-wider font-bold">{label}</p>
-    </div>
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+  }
+};
+
+/* ==========================================
+   SECTION 1: HERO (Clean White & Professional)
+   ========================================== */
+const HeroSection = () => {
+  return (
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+      
+      {/* 1. PROFESSIONAL BACKGROUND MESH */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Subtle Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        {/* Soft Ambient Glows (Not Neon) */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-orange-50/50 to-transparent rounded-full blur-[100px] opacity-60"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-slate-50 rounded-full blur-[100px]"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+          className="max-w-5xl mx-auto text-center"
+        >
+          {/* 2. EYEBROW BADGE (Capsule Style) */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 shadow-sm text-slate-600 text-xs font-bold tracking-widest uppercase hover:bg-white hover:shadow-md transition-all cursor-default">
+              <span className="w-2 h-2 rounded-full bg-clothcare-primary animate-pulse"></span>
+              Franchise Partner Program 2026
+            </div>
+          </motion.div>
+          
+          {/* 3. HEADLINE (Swiss Style - Tight & Huge) */}
+          <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-display font-bold text-slate-900 tracking-tight leading-[1.05] mb-8">
+            Scale with <br className="hidden md:block"/>
+            <span className="relative whitespace-nowrap text-clothcare-primary">
+              <svg className="absolute -bottom-2 w-full h-3 text-orange-200/50 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" /></svg>
+              Intelligent Laundry.
+            </span>
+          </motion.h1>
+
+          <motion.p variants={fadeUp} className="text-xl text-slate-500 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
+            Don't just open a shop. Invest in a <strong>vertically integrated tech stack</strong>. We provide the machinery, the customers, and the <span className="text-slate-900 font-bold">Qlothcare OS</span> to run on autopilot.
+          </motion.p>
+
+          {/* 4. BUTTONS (High Tactile Feel) */}
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="px-8 py-4 rounded-xl bg-clothcare-primary hover:bg-clothcare-primaryDark text-white font-bold text-lg shadow-[0_4px_14px_0_rgba(228,111,51,0.39)] hover:shadow-[0_6px_20px_rgba(228,111,51,0.23)] hover:-translate-y-0.5 transition-all flex items-center gap-3">
+              Start Application <ArrowRight size={20} />
+            </button>
+            <button className="group px-8 py-4 rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-white border border-slate-200 transition-colors">
+                 <Play size={12} fill="currentColor" className="text-slate-900 ml-0.5"/>
+              </div>
+              Watch The Model
+            </button>
+          </motion.div>
+
+        </motion.div>
+
+        {/* 5. FLOATING STATS STRIP (Glassmorphism Bridge) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="mt-24 max-w-6xl mx-auto"
+        >
+          <div className="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x divide-slate-100">
+             <StatItem value="45+" label="Live Outlets" />
+             <StatItem value="₹12Cr" label="Network Revenue" />
+             <StatItem value="14 Mo" label="Avg. ROI Period" />
+             <StatItem value="0%" label="Failure Rate" />
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+};
+
+const StatItem = ({ value, label }) => (
+  <div className="text-center md:text-left md:pl-8 group cursor-default">
+    <div className="text-4xl font-display font-bold text-slate-900 mb-1 group-hover:text-clothcare-primary transition-colors">{value}</div>
+    <div className="text-xs text-slate-400 uppercase tracking-widest font-bold">{label}</div>
+  </div>
 );
 
 /* ==========================================
-   COMPONENT: THE "WHY INVEST" BENTO GRID
+   SECTION 2: BENTO VALUE PROP (Light Gray)
    ========================================== */
 const ValueProp = () => {
-    return (
-        <section className="py-24 bg-bg-light">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-                    <div className="max-w-2xl">
-                        <h2 className="text-4xl font-display font-bold text-clothcare-navy mb-4">A "Business-in-a-Box" Model</h2>
-                        <p className="text-text-muted text-lg">We don't just sell you a brand name. We hand over a fully operational technology stack and supply chain.</p>
-                    </div>
-                    <div className="hidden md:block">
-                        <button className="text-clothcare-navy font-bold flex items-center gap-2 hover:gap-4 transition-all">
-                            View Success Stories <ArrowRight size={18} />
-                        </button>
-                    </div>
+  return (
+    <section className="py-24 bg-slate-50">
+      <div className="container mx-auto px-6">
+        
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl font-display font-bold text-slate-900 mb-4">A "Business-in-a-Box" Model</h2>
+            <p className="text-slate-500 text-lg">We don't just sell you a brand name. We hand over a fully operational technology ecosystem and supply chain.</p>
+          </div>
+          <div className="hidden md:block">
+            <button className="text-slate-900 font-bold flex items-center gap-2 hover:gap-4 transition-all hover:text-clothcare-primary underline decoration-slate-200 underline-offset-8">
+               View Success Stories <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[340px]">
+          
+          {/* Card 1: App Ecosystem (Dark Card for Contrast) */}
+          <motion.div whileHover={{ y: -5 }} className="row-span-2 bg-slate-900 rounded-[2rem] p-10 relative overflow-hidden group shadow-2xl shadow-slate-200">
+             <div className="absolute inset-0 bg-gradient-to-b from-slate-800/50 to-black/80 z-10"></div>
+             <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2070&auto=format&fit=crop" alt="App Tech" className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700 grayscale mix-blend-overlay" />
+             
+             <div className="relative z-20 h-full flex flex-col justify-end">
+                <div className="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center text-white mb-8">
+                   <Smartphone size={32} />
                 </div>
+                <h3 className="text-3xl font-display font-bold text-white mb-4">Complete App Ecosystem</h3>
+                <p className="text-slate-300 leading-relaxed text-lg">You get the driver app, customer app, and POS pre-configured. No tech headaches, just pure operation.</p>
+             </div>
+          </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+          {/* Card 2: Operations */}
+          <motion.div whileHover={{ y: -5 }} className="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+             <div className="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-clothcare-primary mb-6 group-hover:rotate-12 transition-transform">
+                <LayoutDashboard size={28} />
+             </div>
+             <h3 className="text-2xl font-bold text-slate-900 mb-3">Turnkey Operations</h3>
+             <p className="text-slate-500 leading-relaxed font-medium">We handle site selection, interior design, and machinery installation. Walk in on day one ready to earn.</p>
+          </motion.div>
 
-                    {/* Card 1: The App (Tall) */}
-                    <div className="row-span-2 bg-clothcare-navy rounded-3xl p-8 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10"></div>
-                        <img src="https://images.unsplash.com/photo-1512428559087-560fa5ce7d87?q=80&w=2070&auto=format&fit=crop" alt="App Tech" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />
+          {/* Card 3: Marketing */}
+          <motion.div whileHover={{ y: -5 }} className="bg-white rounded-[2rem] p-10 border border-slate-200 shadow-sm hover:shadow-xl transition-all group">
+             <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:-rotate-12 transition-transform">
+                <TrendingUp size={28} />
+             </div>
+             <h3 className="text-2xl font-bold text-slate-900 mb-3">Centralized Marketing</h3>
+             <p className="text-slate-500 leading-relaxed font-medium">We run national ads. You get high-intent local leads automatically assigned to your dashboard.</p>
+          </motion.div>
 
-                        <div className="relative z-20 h-full flex flex-col justify-end">
-                            <div className="w-12 h-12 bg-clothcare-teal rounded-xl flex items-center justify-center text-white mb-6">
-                                <Smartphone size={24} />
-                            </div>
-                            <h3 className="text-2xl font-bold text-white mb-2">Proprietary App Ecosystem</h3>
-                            <p className="text-white/70">You get the driver app, customer app, and POS pre-configured. No tech headaches.</p>
-                        </div>
-                    </div>
-
-                    {/* Card 2: Operations */}
-                    <div className="bg-white rounded-3xl p-8 border border-border-light shadow-sm hover:shadow-lg transition-shadow">
-                        <div className="w-12 h-12 bg-bg-soft rounded-xl flex items-center justify-center text-clothcare-navy mb-6">
-                            <Briefcase size={24} />
-                        </div>
-                        <h3 className="text-xl font-bold text-clothcare-navy mb-2">Turnkey Operations</h3>
-                        <p className="text-text-muted text-sm">We handle site selection, interior design, and machinery installation. You walk in on day one ready to earn.</p>
-                    </div>
-
-                    {/* Card 3: Marketing */}
-                    <div className="bg-white rounded-3xl p-8 border border-border-light shadow-sm hover:shadow-lg transition-shadow">
-                        <div className="w-12 h-12 bg-bg-soft rounded-xl flex items-center justify-center text-clothcare-navy mb-6">
-                            <TrendingUp size={24} />
-                        </div>
-                        <h3 className="text-xl font-bold text-clothcare-navy mb-2">Centralized Marketing</h3>
-                        <p className="text-text-muted text-sm">We run national ads. You get local leads automatically assigned to your dashboard.</p>
-                    </div>
-
-                    {/* Card 4: Sustainability (Wide) */}
-                    <div className="md:col-span-2 bg-clothcare-tealSoft rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 border border-clothcare-teal/20">
-                        <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-clothcare-navy mb-4">Future-Proof & Sustainable</h3>
-                            <p className="text-clothcare-navy/70 mb-6">The government is cracking down on chemical solvents. Our water-based, eco-friendly tech is compliant for the next 20 years.</p>
-                            <ul className="space-y-2">
-                                {['Zero PERC Used', 'Solar Ready Setup', 'Water Recycling'].map(item => (
-                                    <li key={item} className="flex items-center gap-2 text-sm font-bold text-clothcare-navy">
-                                        <CheckCircle2 size={16} className="text-clothcare-teal" /> {item}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="w-full md:w-1/3 aspect-square bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                            <PieChart size={64} className="text-clothcare-teal" />
-                        </div>
-                    </div>
-
+          {/* Card 4: Sustainability (Wide) */}
+          <motion.div whileHover={{ y: -5 }} className="md:col-span-2 bg-white rounded-[2rem] p-10 flex flex-col md:flex-row items-center gap-12 border border-slate-200 shadow-sm hover:shadow-xl transition-all relative overflow-hidden">
+             
+             <div className="flex-1 relative z-10">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Future-Proof & Sustainable</h3>
+                <p className="text-slate-500 text-lg mb-8">Government compliant eco-friendly tech. Zero PERC used, Solar ready setups, and advanced water recycling.</p>
+                <div className="flex gap-3 flex-wrap">
+                  {['Eco-Detergents', 'Water Saving', 'Energy Efficient'].map((tag) => (
+                    <span key={tag} className="px-4 py-2 bg-slate-100 rounded-full text-sm font-bold text-slate-700 border border-slate-200">{tag}</span>
+                  ))}
                 </div>
-            </div>
-        </section>
-    );
+             </div>
+             
+             {/* Visual Chart */}
+             <div className="w-full md:w-auto flex justify-center">
+                 <div className="relative w-40 h-40">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                      <path className="text-slate-100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                      <path className="text-clothcare-primary" strokeDasharray="40, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center flex-col">
+                      <span className="text-3xl font-bold text-slate-900">40%</span>
+                      <span className="text-[10px] uppercase font-bold text-slate-400">Less Water</span>
+                    </div>
+                 </div>
+             </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 /* ==========================================
-   COMPONENT: INQUIRY FORM SECTION
+   SECTION 3: TECH SHOWCASE (Dark Contrast)
+   ========================================== */
+const TechShowcase = () => {
+  return (
+    <section className="py-24 bg-slate-900 relative overflow-hidden">
+      
+      {/* Background Decor */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-950"></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+               <span className="flex h-3 w-3 relative">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-clothcare-primary opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-3 w-3 bg-clothcare-primary"></span>
+               </span>
+               <span className="text-clothcare-primary font-bold tracking-widest uppercase text-xs">The Qlothcare OS</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8">Not just a shop. <br />A Tech Company.</h2>
+            <p className="text-slate-400 text-xl mb-10 leading-relaxed font-light">
+              Most franchises give you a signboard. We give you a brain. Our centralized <strong>Cloud ERP</strong> manages everything from customer pickups to machinery load balancing.
+            </p>
+
+            <div className="space-y-4">
+               <TechListItem icon={<LayoutDashboard/>} title="Centralized Dashboard" desc="Real-time sales & inventory tracking." />
+               <TechListItem icon={<Globe/>} title="Automated Logistics" desc="Auto-assign drivers for pickup & delivery." />
+               <TechListItem icon={<Wallet/>} title="Automated Billing" desc="GST compliant invoicing & digital payments." />
+            </div>
+          </div>
+
+          {/* Dashboard Visual */}
+          <div className="relative">
+             {/* The "Card" */}
+             <div className="relative bg-[#0F172A] border border-slate-700/50 rounded-3xl p-8 shadow-2xl">
+                {/* Header */}
+                <div className="flex justify-between items-center mb-10 border-b border-slate-800 pb-6">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                  </div>
+                  <div className="text-slate-600 font-mono text-xs">admin.qlothcare.com</div>
+                </div>
+                
+                {/* Stats Row */}
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
+                    <p className="text-slate-500 text-xs uppercase font-bold tracking-wider">Today's Revenue</p>
+                    <p className="text-3xl font-bold text-white mt-2">₹42,500</p>
+                    <div className="text-green-400 text-xs flex items-center gap-1 mt-3 font-bold bg-green-400/10 w-fit px-2 py-1 rounded"><TrendingUp size={12}/> +15%</div>
+                  </div>
+                  <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
+                    <p className="text-slate-500 text-xs uppercase font-bold tracking-wider">Active Orders</p>
+                    <p className="text-3xl font-bold text-white mt-2">128</p>
+                    <div className="text-clothcare-primary text-xs mt-3 font-bold bg-orange-500/10 w-fit px-2 py-1 rounded">Processing Now</div>
+                  </div>
+                </div>
+
+                {/* Chart Area Mockup */}
+                <div className="h-48 bg-slate-800/30 rounded-2xl border border-slate-700/50 flex items-end justify-between px-6 pb-0 overflow-hidden relative">
+                   {[40, 65, 45, 70, 60, 85, 75, 95, 80, 100].map((h, i) => (
+                     <div 
+                       key={i} 
+                       style={{ height: `${h}%` }}
+                       className="w-1/12 mx-1 bg-clothcare-primary/90 rounded-t-sm opacity-80 hover:opacity-100 transition-opacity"
+                     ></div>
+                   ))}
+                </div>
+             </div>
+             
+             {/* Decor Blur */}
+             <div className="absolute -z-10 inset-0 bg-clothcare-primary/20 blur-[100px] rounded-full opacity-30"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TechListItem = ({ icon, title, desc }) => (
+  <div className="flex gap-5 p-5 rounded-2xl hover:bg-white/5 transition-colors border border-transparent hover:border-white/10 group cursor-default">
+    <div className="w-12 h-12 rounded-xl bg-slate-800 text-clothcare-primary flex items-center justify-center group-hover:bg-clothcare-primary group-hover:text-white transition-colors border border-slate-700">
+      {React.cloneElement(icon, { size: 22 })}
+    </div>
+    <div>
+      <h4 className="text-white font-bold text-lg">{title}</h4>
+      <p className="text-slate-400 text-sm mt-1">{desc}</p>
+    </div>
+  </div>
+);
+
+/* ==========================================
+   SECTION 4: FORM (Clean & Inviting)
    ========================================== */
 const FranchiseForm = () => {
-    const [formData, setFormData] = useState({
-        firstName: '', lastName: '', email: '', phone: '',
-        location: '', capital: '10-20L', timeline: 'immediate'
-    });
+  return (
+    <section id="inquiry-form" className="py-24 bg-white border-t border-slate-100">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="bg-slate-900 rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row">
 
-    return (
-        <section id="inquiry-form" className="py-24 bg-white">
-            <div className="container mx-auto px-6 max-w-6xl">
-                <div className="bg-clothcare-navy rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+          {/* Left: Persuasion */}
+          <div className="lg:w-5/12 p-12 lg:p-20 relative flex flex-col justify-between bg-clothcare-darker">
+             {/* Texture */}
+             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+             
+             <div className="relative z-10">
+               <h3 className="text-3xl font-display font-bold text-white mb-6">Partner Application</h3>
+               <p className="text-slate-400 mb-10 leading-relaxed text-lg">
+                 We are selective. We look for operators who understand that quality and technology are the future.
+               </p>
+               
+               <div className="space-y-8">
+                 {[
+                   { step: 1, title: 'Submit Inquiry', sub: 'Fill out this form' },
+                   { step: 2, title: 'Discovery Call', sub: '30 min zoom with Founder' },
+                   { step: 3, title: 'Site Visit', sub: 'Tour our flagship' }
+                 ].map((item, i) => (
+                   <div key={i} className="flex items-center gap-5">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg border-2 ${i===0 ? 'bg-clothcare-primary border-clothcare-primary text-white shadow-lg shadow-orange-900/50' : 'border-slate-700 text-slate-500'}`}>
+                        {item.step}
+                      </div>
+                      <div>
+                        <p className={`font-bold text-lg ${i===0 ? 'text-white' : 'text-slate-500'}`}>{item.title}</p>
+                        <p className="text-sm text-slate-600">{item.sub}</p>
+                      </div>
+                   </div>
+                 ))}
+               </div>
+             </div>
 
-                    {/* Left: Persuasion */}
-                    <div className="lg:w-2/5 p-12 lg:p-16 relative bg-clothcare-navy flex flex-col justify-between">
-                        {/* Decor */}
-                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-clothcare-teal/10 rounded-full blur-[80px] pointer-events-none"></div>
+             <div className="mt-16 pt-8 border-t border-slate-800 relative z-10">
+               <p className="text-clothcare-primary text-xs uppercase font-bold tracking-wider">Direct Franchise Line</p>
+               <p className="text-white font-display text-2xl mt-1 font-bold">+91 98765 00000</p>
+             </div>
+          </div>
 
-                        <div className="relative z-10">
-                            <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">Let's build something great.</h2>
-                            <p className="text-white/60 mb-8 leading-relaxed">
-                                We are selective about our partners. We are looking for operators who share our obsession with quality and technology.
-                            </p>
+          {/* Right: The Form */}
+          <div className="lg:w-7/12 bg-white p-12 lg:p-20">
+             <h3 className="text-3xl font-bold text-slate-900 mb-10">Enter your details</h3>
 
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4 text-white">
-                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-clothcare-teal font-bold">1</div>
-                                    <div>
-                                        <p className="font-bold">Submit Inquiry</p>
-                                        <p className="text-xs text-white/50">Fill out this form</p>
-                                    </div>
-                                </div>
-                                <div className="h-8 border-l border-white/10 ml-6"></div>
-                                <div className="flex items-center gap-4 text-white">
-                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/40 font-bold">2</div>
-                                    <div>
-                                        <p className="font-bold text-white/60">Discovery Call</p>
-                                        <p className="text-xs text-white/40">30 min zoom with Founder</p>
-                                    </div>
-                                </div>
-                                <div className="h-8 border-l border-white/10 ml-6"></div>
-                                <div className="flex items-center gap-4 text-white">
-                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/40 font-bold">3</div>
-                                    <div>
-                                        <p className="font-bold text-white/60">Site Visit</p>
-                                        <p className="text-xs text-white/40">Tour our flagship</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-12 pt-8 border-t border-white/10 relative z-10">
-                            <p className="text-white/40 text-xs">Direct Franchise Line</p>
-                            <p className="text-white font-display text-xl mt-1">+91 98765 00000</p>
-                        </div>
-                    </div>
-
-                    {/* Right: The Form */}
-                    <div className="lg:w-3/5 bg-white p-12 lg:p-16">
-                        <h3 className="text-2xl font-bold text-clothcare-navy mb-8">Franchise Application</h3>
-
-                        <form className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <InputGroup label="First Name" placeholder="Rahul" />
-                                <InputGroup label="Last Name" placeholder="Sharma" />
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <InputGroup label="Email Address" type="email" placeholder="rahul@business.com" />
-                                <InputGroup label="Phone Number" type="tel" placeholder="+91 98765 43210" />
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <InputGroup label="City / Location of Interest" placeholder="e.g. Ahmedabad, SG Highway" />
-                                <div>
-                                    <label className="block text-xs font-bold text-clothcare-navy uppercase tracking-wider mb-2">Liquid Capital Available</label>
-                                    <div className="relative">
-                                        <select className="w-full bg-bg-light border border-border-light rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clothcare-teal/50 transition-all text-clothcare-navy font-medium appearance-none">
-                                            <option>₹10 Lakh - ₹20 Lakh</option>
-                                            <option>₹20 Lakh - ₹50 Lakh</option>
-                                            <option>₹50 Lakh+</option>
-                                        </select>
-                                        <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 rotate-90 text-text-muted pointer-events-none" size={16} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-xs font-bold text-clothcare-navy uppercase tracking-wider mb-2">Tell us about your experience</label>
-                                <textarea
-                                    rows={3}
-                                    placeholder="Do you have prior business experience? Why ClothCare?"
-                                    className="w-full bg-bg-light border border-border-light rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clothcare-teal/50 transition-all text-clothcare-navy placeholder:text-text-muted/50 resize-none"
-                                ></textarea>
-                            </div>
-
-                            <button className="w-full bg-clothcare-navy text-white font-bold py-4 rounded-xl shadow-clothcare hover:bg-clothcare-navySoft transition-all flex items-center justify-center gap-2 group">
-                                Submit Application <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-
-                            <p className="text-center text-xs text-text-muted mt-4">
-                                Protected by reCAPTCHA and our <a href="#" className="underline">Privacy Policy</a>.
-                            </p>
-                        </form>
-                    </div>
+             <form className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                   <InputGroup label="First Name" placeholder="Rahul" />
+                   <InputGroup label="Last Name" placeholder="Sharma" />
                 </div>
-            </div>
-        </section>
-    );
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <InputGroup label="Email Address" type="email" placeholder="rahul@business.com" />
+                  <InputGroup label="Phone Number" type="tel" placeholder="+91 98765 43210" />
+                </div>
+
+                <div>
+                   <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">Liquid Capital Available</label>
+                   <div className="relative">
+                      <select className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-5 py-4 focus:outline-none focus:border-clothcare-primary transition-all text-slate-900 font-bold appearance-none cursor-pointer">
+                         <option>₹10 Lakh - ₹20 Lakh</option>
+                         <option>₹20 Lakh - ₹50 Lakh</option>
+                         <option>₹50 Lakh+</option>
+                      </select>
+                      <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={20} />
+                   </div>
+                </div>
+
+                <div className="pt-6">
+                   <button className="w-full bg-slate-900 hover:bg-black text-white font-bold text-lg py-5 rounded-xl shadow-xl transition-all flex items-center justify-center gap-3 group transform active:scale-[0.99]">
+                      Submit Application <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                   </button>
+                   <p className="text-center text-xs text-slate-400 mt-6">Protected by reCAPTCHA and our Privacy Policy.</p>
+                </div>
+             </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 const InputGroup = ({ label, type = "text", placeholder }) => (
-    <div>
-        <label className="block text-xs font-bold text-clothcare-navy uppercase tracking-wider mb-2">{label}</label>
-        <input
-            type={type}
-            placeholder={placeholder}
-            className="w-full bg-bg-light border border-border-light rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clothcare-teal/50 transition-all text-clothcare-navy placeholder:text-text-muted/50 font-medium"
-        />
-    </div>
+  <div>
+    <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">{label}</label>
+    <input 
+      type={type} 
+      placeholder={placeholder} 
+      className="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-5 py-4 focus:outline-none focus:border-clothcare-primary transition-all text-slate-900 placeholder:text-slate-400 font-bold"
+    />
+  </div>
 );
 
 /* ==========================================
    MAIN PAGE LAYOUT
    ========================================== */
 const FranchisePage = () => {
-    return (
-        <div className="font-sans antialiased bg-white min-h-screen">
-            <FranchiseHero />
-            <ValueProp />
-            <FranchiseForm />
-        </div>
-    );
+  return (
+    <div className="font-sans antialiased bg-white min-h-screen selection:bg-clothcare-primary selection:text-white">
+      <HeroSection />
+      <ValueProp />
+      <TechShowcase />
+      <FranchiseForm />
+    </div>
+  );
 };
 
 export default FranchisePage;
