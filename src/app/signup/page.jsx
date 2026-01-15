@@ -1,232 +1,212 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import {
-  Mail,
-  Lock,
+  Mail, Lock, Eye, EyeOff, ArrowRight,
+  Sparkles, Chrome, Command, ShieldCheck,
   User,
-  Eye,
-  EyeOff,
-  ArrowRight,
-  Sparkles,
-  Chrome,
-  Command
-} from 'lucide-react'
-import Image from 'next/image'
+  ArrowLeft
+} from 'lucide-react';
 import heroImage from '@/assets/pages/landing_image/heroImage.png'
+import Image from 'next/image';
+import Link from 'next/link';
 
 /* ==========================================
    COMPONENT: SIGNUP PAGE
    ========================================== */
 const SignupPage = () => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [isVisible, setIsVisible] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleSignup = (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-
-    // Simulate API call
-    setTimeout(() => setIsLoading(false), 2000)
-  }
+    e.preventDefault();
+    setIsLoading(true);
+    // Simulate API delay
+    setTimeout(() => setIsLoading(false), 2000);
+  };
 
   return (
-    <div className="min-h-screen w-full flex bg-white">
+    <div className="min-h-screen w-full flex bg-white font-sans overflow-hidden">
 
       {/* ==========================================
-          LEFT SIDE: VISUAL STORYTELLING
+          LEFT SIDE: VISUAL STORYTELLING (Desktop)
           ========================================== */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-clothcare-navy overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-clothcare-dark overflow-hidden p-16 flex-col justify-between text-white">
+        {/* Background Image with Depth */}
         <div className="absolute inset-0 z-0">
           <Image
             src={heroImage}
-            alt="ClothCare Facility"
-            className="w-full h-full object-cover opacity-60"
+            alt="Qlothcare Operations"
+            className="w-full h-full object-cover opacity-30 scale-105"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-clothcare-navy via-clothcare-navy/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-clothcare-dark via-clothcare-dark/90 to-transparent"></div>
         </div>
 
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-clothcare-teal/20 rounded-full blur-[100px] animate-pulse"></div>
+        {/* Dynamic Animated Shapes */}
+        <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-clothcare-primary/10 rounded-full blur-[120px] animate-pulse"></div>
 
-        <div className="relative z-10 w-full h-full flex flex-col justify-between p-16 text-white">
-
-          {/* Brand */}
-          <div className="flex items-center gap-2 text-2xl font-display font-bold tracking-tight">
-            <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center text-clothcare-teal">
-              <Sparkles size={16} fill="currentColor" />
+        {/* Brand Logo Area */}
+        <div className={`relative z-10 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'}`}>
+          <Link href="/" className="inline-flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-clothcare-primary/20 backdrop-blur border border-white/10 flex items-center justify-center text-clothcare-primary shadow-lg group-hover:bg-clothcare-primary group-hover:text-white transition-all duration-300">
+              <Sparkles size={20} fill="currentColor" />
             </div>
-            ClothCare.
+            <span className="text-2xl font-display font-bold tracking-tight text-white">Qlothcare<span className="text-clothcare-primary">.</span></span>
+          </Link>
+        </div>
+
+        {/* Center Message */}
+        <div className={`relative z-10 max-w-sm transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
+          <h2 className="text-5xl font-display font-bold leading-tight mb-6">
+            Join the <br />
+            <span className="text-clothcare-primary italic uppercase tracking-widest text-3xl">Qlothcare</span>
+          </h2>
+          <p className="text-lg text-white/40 leading-relaxed font-medium">
+            Connect your operations to the world's most advanced artisanal laundry distribution network.
+          </p>
+        </div>
+
+        {/* Statistics or Testimonial */}
+        <div className={`relative z-10 bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem] shadow-2xl max-w-sm transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <div className="flex gap-1 mb-4">
+            {[1, 2, 3, 4, 5].map(i => <Sparkles key={i} size={14} className="text-clothcare-primary fill-clothcare-primary" />)}
           </div>
-
-          {/* Testimonial */}
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-2xl max-w-md">
-            <div className="flex gap-1 mb-4">
-              {[1,2,3,4,5].map(i => (
-                <span key={i} className="text-yellow-400">★</span>
-              ))}
-            </div>
-            <p className="text-lg font-medium leading-relaxed mb-6">
-              "Signup took less than a minute. Managing my laundry has never been this smooth and professional."
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">
-                A
-              </div>
-              <div>
-                <p className="font-bold text-sm">Amit Patel</p>
-                <p className="text-xs text-white/60">Premium Member</p>
-              </div>
+          <p className="text-base font-medium leading-relaxed mb-6 text-white/80">
+            "Signup took less than a minute. Managing my laundry operations has never been this smooth and professional."
+          </p>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-clothcare-primary/20 border border-white/10 flex items-center justify-center font-bold text-clothcare-primary text-sm">AP</div>
+            <div>
+              <p className="font-bold text-sm text-white">Amit Patel</p>
+              <p className="text-[10px] text-white/40 uppercase font-black tracking-widest">Premium Partner</p>
             </div>
           </div>
-
         </div>
       </div>
 
       {/* ==========================================
-          RIGHT SIDE: SIGNUP FORM
+          RIGHT SIDE: THE FORM
           ========================================== */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12 relative bg-white">
-        <div className="lg:hidden absolute top-[-10%] right-[-10%] w-64 h-64 bg-clothcare-teal/10 rounded-full blur-[60px]"></div>
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-12 relative bg-gray-50/30">
 
-        <div className="w-full max-w-[420px] relative z-10">
+        <div className={`w-full max-w-[420px] relative z-10 transition-all duration-1000 delay-200 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
 
-          {/* Header */}
-          <div className="mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-light border border-border-light text-text-muted text-xs font-bold uppercase tracking-widest mb-6">
-              <span className="w-2 h-2 rounded-full bg-clothcare-teal"></span>
-              Create Account
+          {/* The Signup Card */}
+          <div className="bg-white rounded-[2.5rem] shadow-[0_24px_50px_rgba(0,0,0,0.06)] overflow-hidden border border-border-soft">
+
+            {/* Header Section */}
+            <div className="pt-10 pb-6 px-10 text-center border-b border-gray-50">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-soft/50 border border-border-soft text-clothcare-dark text-[10px] font-black uppercase tracking-[0.2em] mb-4">
+                <ShieldCheck size={14} className="text-clothcare-primary" />
+                Secure Enrollment
+              </div>
+              <h1 className="text-3xl font-display font-bold text-clothcare-dark tracking-tight mb-1">Create Account</h1>
+              <p className="text-xs text-text-muted font-medium">Start your Qlothcare partner journey today</p>
             </div>
-            <h1 className="text-4xl font-display font-bold text-clothcare-navy mb-3">
-              Get started
-            </h1>
-            <p className="text-text-muted">
-              Start your 14-day free trial. No credit card required.
-            </p>
-          </div>
 
-          {/* Social Signup */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
-            <button className="flex items-center justify-center gap-3 py-3 px-4 border border-border-light rounded-xl font-bold text-sm text-clothcare-navy hover:bg-bg-light hover:border-clothcare-teal/50 transition-all group">
-              <Chrome size={18} className="text-text-muted group-hover:text-clothcare-navy" />
-              Google
-            </button>
-            <button className="flex items-center justify-center gap-3 py-3 px-4 border border-border-light rounded-xl font-bold text-sm text-clothcare-navy hover:bg-bg-light hover:border-clothcare-teal/50 transition-all group">
-              <Command size={18} className="text-text-muted group-hover:text-clothcare-navy" />
-              Apple
-            </button>
-          </div>
+            {/* Form Section */}
+            <div className="p-10">
+              <form onSubmit={handleSignup} className="space-y-6">
 
-          <div className="relative mb-8">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border-light"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-4 text-text-muted font-bold tracking-wider">
-                Or sign up with email
-              </span>
-            </div>
-          </div>
+                {/* Full Name */}
+                <div className={`group space-y-1.5 transition-all duration-700 delay-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <label className="text-[10px] font-black text-clothcare-dark/40 uppercase tracking-[0.2em] ml-1">Name</label>
+                  <div className="relative">
+                    <User className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" size={18} />
+                    <input
+                      type="text"
+                      placeholder="John Doe"
+                      className="w-full bg-transparent border-b-2 border-gray-200 py-3 pl-7 pr-3 font-bold text-clothcare-dark focus:outline-none focus:border-clothcare-primary transition-all placeholder:text-gray-400 text-base"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                    />
+                  </div>
+                </div>
 
-          {/* Form */}
-          <form onSubmit={handleSignup} className="space-y-5">
+                {/* Email Field */}
+                <div className={`group space-y-1.5 transition-all duration-700 delay-400 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <label className="text-[10px] font-black text-clothcare-dark/40 uppercase tracking-[0.2em] ml-1">Email</label>
+                  <div className="relative">
+                    <Mail className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" size={18} />
+                    <input
+                      type="email"
+                      placeholder="name@company.com"
+                      className="w-full bg-transparent border-b-2 border-gray-200 py-3 pl-7 pr-3 font-bold text-clothcare-dark focus:outline-none focus:border-clothcare-primary transition-all placeholder:text-gray-400 text-base"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                    />
+                  </div>
+                </div>
 
-            {/* Name */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-clothcare-navy uppercase tracking-wider ml-1">
-                Full Name
-              </label>
-              <div className="relative group">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-clothcare-teal" />
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full bg-bg-light border border-border-light rounded-xl py-3.5 pl-12 pr-4 font-medium focus:ring-2 focus:ring-clothcare-teal/20 focus:border-clothcare-teal outline-none"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
+                {/* Password Field */}
+                <div className={`group space-y-1.5 transition-all duration-700 delay-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <label className="text-[10px] font-black text-clothcare-dark/40 uppercase tracking-[0.2em] ml-1">Password</label>
+                  <div className="relative">
+                    <Lock className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" size={18} />
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="••••••••"
+                      className="w-full bg-transparent border-b-2 border-gray-200 py-3 pl-7 pr-10 font-bold text-clothcare-dark focus:outline-none focus:border-clothcare-primary transition-all placeholder:text-gray-400 text-base"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-clothcare-primary transition-colors p-2"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Action Button */}
+                <div className={`transition-all duration-700 delay-600 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-clothcare-dark text-white font-black uppercase tracking-[0.2em] py-4 rounded-2xl shadow-xl hover:bg-clothcare-primary hover:shadow-clothcare-primary/20 hover:-translate-y-1 active:scale-[0.98] transition-all flex items-center justify-center gap-3 mt-4 disabled:opacity-70 disabled:cursor-not-allowed group"
+                  >
+                    {isLoading ? (
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    ) : (
+                      <>
+                        Create Account <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+
+              {/* Footer */}
+              <div className={`mt-10 pt-6 text-center border-t border-gray-50 transition-all duration-700 delay-700 transform ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                <p className="text-gray-400 text-xs font-medium">
+                  Already have an account? <Link href="/login" className="text-clothcare-primary font-bold hover:underline">Sign in</Link>
+                </p>
               </div>
             </div>
+          </div>
 
-            {/* Email */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-clothcare-navy uppercase tracking-wider ml-1">
-                Email Address
-              </label>
-              <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-clothcare-teal" />
-                <input
-                  type="email"
-                  placeholder="name@company.com"
-                  className="w-full bg-bg-light border border-border-light rounded-xl py-3.5 pl-12 pr-4 font-medium focus:ring-2 focus:ring-clothcare-teal/20 focus:border-clothcare-teal outline-none"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Password */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-clothcare-navy uppercase tracking-wider ml-1">
-                Password
-              </label>
-              <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted group-focus-within:text-clothcare-teal" />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="••••••••"
-                  className="w-full bg-bg-light border border-border-light rounded-xl py-3.5 pl-12 pr-12 font-medium focus:ring-2 focus:ring-clothcare-teal/20 focus:border-clothcare-teal outline-none"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-            </div>
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-clothcare-navy text-white font-bold py-4 rounded-xl shadow-clothcare hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 mt-4 disabled:opacity-70"
-            >
-              {isLoading ? (
-                <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-              ) : (
-                <>
-                  Create Account
-                  <ArrowRight size={18} />
-                </>
-              )}
-            </button>
-          </form>
-
-          {/* Footer */}
-          <p className="text-center mt-8 text-text-muted text-sm">
-            Already have an account?{' '}
-            <a href="/login" className="font-bold text-clothcare-teal hover:underline">
-              Sign in
-            </a>
-          </p>
-
+          {/* Back Nav */}
+          <div className={`mt-8 text-center transition-all duration-1000 delay-1000 transform ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+            <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-clothcare-primary transition-colors text-xs font-bold tracking-widest uppercase italic group">
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default SignupPage
+    </div>
+  );
+};
+
+export default SignupPage;

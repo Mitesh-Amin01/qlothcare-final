@@ -7,10 +7,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ConditionalLayout>
-          <Navbar />
+        <ConditionalLayout navbar={<Navbar />} footer={<Footer />}>
           <main>{children}</main>
-          <Footer />
         </ConditionalLayout>
       </body>
     </html>
