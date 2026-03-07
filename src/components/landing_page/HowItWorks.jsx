@@ -1,151 +1,231 @@
 "use client";
 
-import { motion } from "framer-motion";
+import React from "react";
+import { motion } from "motion/react";
+import { CreditCard, Wallet, Smartphone, ShieldCheck, MapPin, Truck, Check, Droplets, Sparkles, Wind, TrendingUp, BarChart3, Clock, ChevronRight } from "lucide-react";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
+    transition: { type: "spring", stiffness: 100, damping: 20, mass: 0.8 }
   },
 };
 
-export default function TetonLanding() {
+export default function HowItWorks() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <motion.header
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-7xl mx-auto px-6 py-16 text-center"
-      >
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          How It Works
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          We've streamlined the entire process so you can spend less time worrying
-          about laundry and more time doing what you love.
-        </p>
-      </motion.header>
+    <section className="py-24 md:py-32 bg-white overflow-hidden relative font-sans">
+      <div className="max-w-300 mx-auto px-6">
 
-      {/* Cards Section */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        className="max-w-7xl mx-auto px-6 pb-16"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Card 1 */}
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            variants={cardVariants}
-            className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            className="max-w-4xl flex flex-col items-center"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="aspect-[4/3] overflow-hidden"
-            >
-              <img
-                src="/howitswork/pickup.webp"
-                alt="Pickup"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-            <div className="p-6 relative">
-              <span className="absolute -top-80 bg-white p-5 rounded-full text-2xl">1</span>
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                Schedule Pickup
-              </h2>
-              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded mb-4">
-                Hassle Free
-              </span>
-              <p className="text-gray-600 leading-relaxed">
-                Doorstep laundry pickup with fast, reliable, and hygienic cleaning service.
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
+              How Qlothcare <span className="text-clothcare-primary italic font-serif font-light pr-2">works.</span>
+            </h2>
+            <p className="text-gray-500 text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
+              We've streamlined the entire process so you can spend less time worrying about laundry and more time doing what you love.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* 3-Column Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 auto-rows-[1fr]">
+
+          {/* Card 1: Connect / Schedule */}
+          <motion.div
+            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
+          >
+            <div className="mb-8 relative z-20">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Schedule Pickup</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Easily link your address, set your preferences, and choose a convenient time slot.
               </p>
+            </div>
+
+            {/* Inner UI Widget 1 */}
+            <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 grow flex flex-col relative z-10 will-change-transform">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Connect</p>
+
+              <div className="grow flex flex-col items-center justify-center relative">
+                {/* Central Hub */}
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, type: "spring" }} viewport={{ once: true }}
+                  className="w-16 h-16 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center relative z-20 shadow-sm"
+                >
+                  <div className="grid grid-cols-2 gap-1">
+                    <div className="w-2.5 h-2.5 rounded-sm bg-clothcare-primary"></div>
+                    <div className="w-2.5 h-2.5 rounded-sm bg-clothcare-primary/50"></div>
+                    <div className="w-2.5 h-2.5 rounded-sm bg-gray-300"></div>
+                    <div className="w-2.5 h-2.5 rounded-sm bg-gray-300"></div>
+                  </div>
+                </motion.div>
+
+                {/* Connection Lines (Simulated SVG) */}
+                <svg className="absolute top-1/2 left-0 w-full h-1/2 z-10" style={{ transform: 'translateY(-10px)' }}>
+                  <path d="M 50% 10 L 50% 30 L 15% 30 L 15% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
+                  <path d="M 50% 10 L 50% 30 L 50% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
+                  <path d="M 50% 10 L 50% 30 L 85% 30 L 85% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
+                </svg>
+
+                {/* Bottom Nodes */}
+                <div className="w-full flex justify-between px-2 mt-8 z-20">
+                  <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.4 }} viewport={{ once: true }} className="w-12 h-10 bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center"><CreditCard className="w-5 h-5 text-gray-400" /></motion.div>
+                  <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.5 }} viewport={{ once: true }} className="w-12 h-10 bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center"><Smartphone className="w-5 h-5 text-gray-400" /></motion.div>
+                  <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 }} viewport={{ once: true }} className="w-12 h-10 bg-white border border-gray-100 shadow-sm rounded-xl flex items-center justify-center"><Wallet className="w-5 h-5 text-gray-400" /></motion.div>
+                </div>
+              </div>
+
+              <motion.button
+                initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.8 }} viewport={{ once: true }}
+                className="w-full py-3.5 bg-clothcare-primary hover:bg-clothcare-primary/90 transition-colors text-white text-sm font-bold rounded-xl mt-8 flex items-center justify-center gap-2 group/btn"
+              >
+                Connect <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </motion.button>
             </div>
           </motion.div>
 
-          {/* Card 2 */}
+          {/* Card 2: Process / Goals */}
           <motion.div
-            variants={cardVariants}
-            className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="aspect-[4/3] overflow-hidden"
-            >
-              <img
-                src="/howitswork/laundry.jpg"
-                alt="Expert Care"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-            <div className="p-6 relative">
-              <span className="absolute -top-80 bg-white p-5 rounded-full text-2xl">2</span>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                Expert Care & Cleaning
-              </h2>
-              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded mb-4">
-                Heartly Care
-              </span>
-              <p className="text-gray-600 leading-relaxed">
-                Expert care and cleaning ensuring freshness, fabric safety, and durability.
+            <div className="mb-8 relative z-20">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Expert Care</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Define cleaning preferences, and track your garments through our specialized care stages.
               </p>
+            </div>
+
+            {/* Inner UI Widget 2 */}
+            <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 grow flex flex-col relative z-10 will-change-transform">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Care Tracker</p>
+
+              <div className="space-y-3 grow flex flex-col justify-center">
+
+                {/* Stage 1 */}
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 0.3 }} viewport={{ once: true }}
+                  className="bg-gray-50 border border-gray-100 p-3 rounded-2xl flex items-center gap-4"
+                >
+                  <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-gray-800" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900">Inspection & Sort</p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <div className="w-24 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="w-full h-full bg-clothcare-primary"></div>
+                      </div>
+                      <span className="text-[9px] font-bold text-gray-400">Done</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Stage 2 */}
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 0.4 }} viewport={{ once: true }}
+                  className="bg-white border border-gray-100 shadow-sm p-3 rounded-2xl flex items-center gap-4 relative overflow-hidden"
+                >
+                  {/* Subtle active glow */}
+                  <div className="absolute inset-x-0 -bottom-px h-px bg-linear-to-r from-transparent via-clothcare-primary/50 to-transparent"></div>
+
+                  <div className="w-10 h-10 rounded-full bg-clothcare-primary/10 flex items-center justify-center shrink-0">
+                    <Droplets className="w-5 h-5 text-clothcare-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900">Deep Cleaning</p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <div className="w-24 h-1 bg-gray-100 rounded-full overflow-hidden">
+                        <motion.div initial={{ width: "0%" }} whileInView={{ width: "65%" }} transition={{ delay: 0.8, duration: 1 }} viewport={{ once: true }} className="h-full bg-clothcare-primary"></motion.div>
+                      </div>
+                      <span className="text-[9px] font-bold text-clothcare-primary">Active</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Stage 3 */}
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ delay: 0.5 }} viewport={{ once: true }}
+                  className="bg-white border text-opacity-50 border-gray-100 p-3 rounded-2xl flex items-center gap-4 opacity-50"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0">
+                    <Wind className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400">Press & Fold</p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <div className="w-24 h-1 bg-gray-100 rounded-full overflow-hidden"></div>
+                      <span className="text-[9px] font-bold text-gray-300">Pending</span>
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
             </div>
           </motion.div>
 
-          {/* Card 3 */}
+          {/* Card 3: Manage / Track / Delivery */}
           <motion.div
-            variants={cardVariants}
-            className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="aspect-[4/3] overflow-hidden"
-            >
-              <img
-                src="/howitswork/delivery.jpg"
-                alt="Fresh Delivery"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-           <div className="p-6 relative">
-              <span className="absolute -top-80 bg-white p-5 rounded-full text-2xl">3</span>
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                Fresh Delivery
-              </h2>
-              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded mb-4">
-                Delivery
-              </span>
-              <p className="text-gray-600 leading-relaxed">
-                Professionally cleaned garments delivered fresh to your doorstep.
+            <div className="mb-8 relative z-20">
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Fresh Delivery</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Get real-time insights, track your delivery driver, and manage logistics seamlessly.
               </p>
+            </div>
+
+            {/* Inner UI Widget 3 */}
+            <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100 grow flex flex-col relative z-10 will-change-transform">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Live Status</p>
+                <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div><span className="text-[9px] font-bold text-gray-400">Active</span></div>
+              </div>
+
+              <div className="grow flex flex-col justify-between">
+
+                {/* Simulated Chart/Map area */}
+                <div className="flex items-end justify-between h-24 gap-2 mb-6 px-2">
+                  {[40, 60, 30, 85, 50, 70, 45].map((height, i) => (
+                    <div key={i} className="w-full bg-gray-50 rounded-t-lg relative group/bar cursor-pointer">
+                      <motion.div
+                        initial={{ height: 0 }} whileInView={{ height: `${height}%` }} transition={{ delay: 0.3 + (i * 0.1), type: "spring" }} viewport={{ once: true }}
+                        className={`absolute bottom-0 w-full rounded-t-lg transition-colors ${i === 3 ? 'bg-clothcare-primary' : 'bg-gray-200 group-hover/bar:bg-clothcare-primary/50'}`}
+                      ></motion.div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Status Footer */}
+                <motion.div
+                  initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.8 }} viewport={{ once: true }}
+                  className="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex items-center gap-4"
+                >
+                  <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center shrink-0">
+                    <span className="text-[10px] text-gray-400 font-bold uppercase">ETA</span>
+                    <span className="text-sm font-bold text-gray-900 leading-none mt-1">15m</span>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-900 flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-clothcare-primary" /> Out for delivery</p>
+                    <p className="text-[10px] text-gray-500 mt-1 leading-snug">
+                      Your fresh laundry is 2.5 miles away and approaching quickly.
+                    </p>
+                  </div>
+                </motion.div>
+
+              </div>
             </div>
           </motion.div>
 
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </section>
   );
 }
