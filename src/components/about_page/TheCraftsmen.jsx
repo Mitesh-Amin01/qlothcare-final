@@ -1,6 +1,7 @@
 'use client';
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Linkedin, Twitter, Sparkles } from 'lucide-react';
 
 const TheCraftsmen = () => {
@@ -8,20 +9,17 @@ const TheCraftsmen = () => {
         {
             name: "Alexander Voss",
             role: "Master of Preservation",
-            desc: "Former head of conservation at the Met Archives. Oversees all specialized garment handling and historical restorations.",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+            desc: "Former head of conservation at the Met Archives. Oversees all specialized garment handling and historical restorations."
         },
         {
             name: "Dr. Elena Rostova",
             role: "Chief of Bio-Chemistry",
-            desc: "PhD in Organic Chemistry. Developed our proprietary enzyme-based cleaning solvent that revolutionized eco-laundry.",
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"
+            desc: "PhD in Organic Chemistry. Developed our proprietary enzyme-based cleaning solvent that revolutionized eco-laundry."
         },
         {
             name: "Marcus Chen",
             role: "Head of Logistics",
-            desc: "Engineered our zero-loss RFID tracking system. Ensures 99.9% on-time delivery across all major metropolitan zones.",
-            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop"
+            desc: "Engineered our zero-loss RFID tracking system. Ensures 99.9% on-time delivery across all major metropolitan zones."
         }
     ];
 
@@ -34,8 +32,8 @@ const TheCraftsmen = () => {
     };
 
     const cardVariants = {
-        hidden: { opacity: 0, y: 50, scale: 0.9 },
-        visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", bounce: 0.4, duration: 1.2 } }
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
     };
 
     return (
@@ -93,11 +91,7 @@ const TheCraftsmen = () => {
 
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-clothcare-primary/20 rounded-full blur-3xl scale-0 group-hover:scale-100 transition-transform duration-700 pointer-events-none origin-bottom-left"></div>
 
-                                <motion.div
-                                    className="relative w-40 h-40 rounded-full overflow-hidden border-2 border-white/20 mb-8 z-10 group-hover:border-clothcare-primary transition-colors duration-500 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]"
-                                >
-                                    <img src={member.image} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" />
-                                </motion.div>
+
 
                                 <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
                                 <p className="text-clothcare-primary font-bold text-[10px] tracking-[0.2em] uppercase mb-6 flex items-center justify-center gap-2 bg-clothcare-primary/10 px-4 py-1.5 rounded-full">

@@ -15,10 +15,10 @@ export default function FranchiseOpportunity() {
 
                     {/* Left Content */}
                     <motion.div
-                        initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
-                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                        initial={{ x: -40 }}
+                        whileInView={{ x: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <div className="flex items-center gap-4 mb-8">
                             <div className="w-10 h-10 rounded-full bg-clothcare-primary/10 flex items-center justify-center">
@@ -44,18 +44,18 @@ export default function FranchiseOpportunity() {
                             </div>
                         </div>
 
-                        <button className="mt-12 flex items-center gap-3 text-white bg-black hover:bg-clothcare-primary transition-colors px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-clothcare-primary/30">
+                        <button suppressHydrationWarning className="mt-12 flex items-center gap-3 text-white bg-black hover:bg-clothcare-primary transition-colors px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-clothcare-primary/30">
                             Secure Your Zone <ArrowRight size={18} />
                         </button>
                     </motion.div>
 
                     {/* Right Data Viz Card */}
                     <motion.div
-                        initial={{ opacity: 0, y: 80, scale: 0.9, filter: "blur(10px)", rotateX: 10 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotateX: 0 }}
+                        initial={{ y: 40 }}
+                        whileInView={{ y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
-                        transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative h-[500px] w-full bg-white border border-gray-200 shadow-[0_30px_60px_rgba(0,0,0,0.05)] rounded-[2rem] overflow-hidden group p-10 flex flex-col justify-between"
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative h-[500px] w-full bg-white border border-gray-200 shadow-[0_30px_60px_rgba(0,0,0,0.05)] rounded-4xl overflow-hidden group p-10 flex flex-col justify-between"
                     >
                         <div className="absolute top-0 w-full h-2 left-0 bg-linear-to-r from-clothcare-primary via-orange-400 to-clothcare-primary"></div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import {
    Smartphone, MapPin, Search, QrCode,
    CheckCircle2, Package, Truck, CreditCard,
@@ -10,7 +11,7 @@ import {
    These simulate your actual App Interface to look premium.
    ========================================== */
 const AppMockupBooking = () => (
-   <div className="bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 max-w-sm mx-auto transform rotate-[-2deg] hover:rotate-0 transition-all duration-500">
+   <div className="bg-white p-6 rounded-3xl shadow-2xl border border-gray-100 max-w-sm mx-auto transform -rotate-2 hover:rotate-0 transition-all duration-500">
       <div className="flex justify-between items-center mb-6">
          <div className="flex gap-2">
             <span className="w-3 h-3 rounded-full bg-red-400"></span>
@@ -81,8 +82,8 @@ const NewHero = () => {
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-[#FAFAFA] overflow-hidden">
 
          {/* Dynamic Background */}
-         <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-gray-100 to-transparent z-0"></div>
-         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-clothcare-primary/50 to-transparent"></div>
+         <div className="absolute top-0 right-0 w-[50%] h-full bg-linear-to-l from-gray-100 to-transparent z-0"></div>
+         <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-clothcare-primary/50 to-transparent"></div>
 
          <div className="container mx-auto px-6 lg:px-12 relative z-10">
             <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -94,7 +95,7 @@ const NewHero = () => {
                      <span className="text-xs font-bold text-[#0F172A] uppercase tracking-widest">System Operational</span>
                   </div>
 
-                  <h1 className="font-display text-5xl lg:text-7xl font-bold text-[#0F172A] mb-6 leading-[1.1]">
+                  <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-[#0F172A] mb-6 leading-[1.1]">
                      The Lifecycle of <br />
                      <span className="text-clothcare-primary">Perfectly Clean.</span>
                   </h1>
@@ -137,9 +138,12 @@ const NewHero = () => {
                               className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-clothcare-primary focus:ring-2 focus:ring-clothcare-primary/20 transition-all font-mono text-sm"
                            />
                         </div>
-                        <button className="w-full bg-[#0F172A] text-white font-bold py-4 rounded-xl hover:bg-clothcare-primary transition-all shadow-lg flex items-center justify-center gap-2">
-                           Start Tracking
-                        </button>
+                        <Link
+                           href="/login"
+                           className="w-full bg-[#0F172A] text-white font-bold py-4 rounded-xl hover:bg-clothcare-primary transition-all shadow-lg flex items-center justify-center gap-2 group"
+                        >
+                           Start Tracking <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </Link>
                      </div>
 
                      <div className="mt-6 pt-6 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
@@ -161,7 +165,7 @@ const NewHero = () => {
    ========================================== */
 const ProcessGrid = () => {
    return (
-      <section className="py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
          <div className="container mx-auto px-6 lg:px-12">
 
             {/* PHASE 1: INITIATION */}
@@ -244,8 +248,8 @@ const ProcessGrid = () => {
             <div className="mb-32">
                <div className="text-center mb-16">
                   <span className="text-clothcare-primary font-bold uppercase tracking-widest text-sm mb-2 block">Phase 03</span>
-                  <h2 className="font-display text-4xl lg:text-5xl font-bold text-[#0F172A]">Artisanal Finishing</h2>
-                  <p className="text-text-muted mt-4 max-w-2xl mx-auto">
+                  <h2 className="font-display text-3xl lg:text-5xl font-bold text-[#0F172A]">Artisanal Finishing</h2>
+                  <p className="text-text-muted mt-4 max-w-2xl mx-auto px-4">
                      Beyond cleaning, we restore. Our finishing process ensures every garment returns in a condition that exceeds "like-new".
                   </p>
                </div>
@@ -313,7 +317,7 @@ const ProcessGrid = () => {
 
             <div className="grid md:grid-cols-2 gap-8">
                {/* Step 08 */}
-               <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 p-8 rounded-3xl group hover:border-clothcare-primary/30 transition-colors">
+               <div className="bg-linear-to-br from-gray-50 to-white border border-gray-200 p-8 rounded-3xl group hover:border-clothcare-primary/30 transition-colors">
                   <div className="flex items-center gap-4 mb-6">
                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
                         <Truck size={24} />
@@ -334,7 +338,7 @@ const ProcessGrid = () => {
                </div>
 
                {/* Step 09 */}
-               <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 p-8 rounded-3xl group hover:border-clothcare-primary/30 transition-colors">
+               <div className="bg-linear-to-br from-gray-50 to-white border border-gray-200 p-8 rounded-3xl group hover:border-clothcare-primary/30 transition-colors">
                   <div className="flex items-center gap-4 mb-6">
                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                         <CreditCard size={24} />
@@ -369,7 +373,7 @@ const ProcessGrid = () => {
    ========================================== */
 const ProfessionalCTA = () => {
    return (
-      <section className="bg-[#0F172A] py-20 border-t border-white/10">
+      <section className="bg-[#0F172A] py-16 lg:py-20 border-t border-white/10">
          <div className="container mx-auto px-6 lg:px-12 text-center">
             <h2 className="text-white font-display text-4xl lg:text-5xl font-bold mb-8">
                Experience the new standard.

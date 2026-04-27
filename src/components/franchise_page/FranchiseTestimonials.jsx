@@ -35,10 +35,10 @@ export default function FranchiseTestimonials() {
                     {testimonials.map((testimonial, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 60, scale: 0.9, filter: "blur(10px)" }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                            initial={{ y: 30 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
                             className="relative bg-gray-50 border border-gray-200 rounded-[3rem] p-12 hover:border-clothcare-primary hover:shadow-[0_40px_80px_rgba(228,111,51,0.1)] transition-all duration-500 group"
                         >
                             <div className="absolute -top-8 -left-8 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-2xl border border-gray-100 text-clothcare-primary group-hover:scale-110 transition-transform duration-500">
@@ -62,7 +62,7 @@ export default function FranchiseTestimonials() {
                                     </div>
                                 </div>
 
-                                <div className="bg-clothcare-primary text-white font-black px-6 py-3 rounded-2xl text-xs uppercase tracking-[0.1em] shadow-[0_10px_20px_rgba(228,111,51,0.3)]">
+                                <div className="bg-clothcare-primary text-white font-black px-6 py-3 rounded-2xl text-xs uppercase tracking-widest shadow-[0_10px_20px_rgba(228,111,51,0.3)]">
                                     {testimonial.roi}
                                 </div>
                             </div>

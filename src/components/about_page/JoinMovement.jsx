@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const JoinMovement = () => {
     return (
@@ -42,14 +43,24 @@ const JoinMovement = () => {
                     transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
                     className="flex justify-center"
                 >
-                    <button className="group relative overflow-hidden inline-flex items-center gap-4 bg-white text-clothcare-primary px-10 py-5 rounded-full font-bold text-lg hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] transition-all duration-300">
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-500">Book Your First Collection</span>
-                        <div className="relative z-10 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-white group-hover:text-clothcare-primary transition-colors duration-500">
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </div>
-                        {/* the fill effect */}
-                        <div className="absolute inset-0 bg-blue-900 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-                    </button>
+                    <Link href="/login">
+                        <button className="group relative overflow-hidden inline-flex items-center gap-4 bg-white text-clothcare-primary px-10 py-5 rounded-full font-bold text-lg hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-300">
+                            <span className="relative z-10 group-hover:text-white transition-colors duration-500">Book Your First Collection</span>
+                            <div className="relative z-10 w-8 h-8 rounded-full bg-clothcare-primary/10 flex items-center justify-center group-hover:bg-white group-hover:text-clothcare-primary transition-colors duration-500">
+                                <motion.div
+                                    variants={{
+                                        initial: { x: 0 },
+                                        hover: { x: 5 }
+                                    }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                >
+                                    <ArrowRight size={16} />
+                                </motion.div>
+                            </div>
+                            {/* the fill effect */}
+                            <div className="absolute inset-0 bg-clothcare-midnight translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+                        </button>
+                    </Link>
                 </motion.div>
             </div>
             {/* Noise overlay */}

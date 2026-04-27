@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown } from 'lucide-react';
+import Image from 'next/image';
 
 const AboutHero = () => {
     const containerRef = useRef(null);
@@ -16,11 +17,11 @@ const AboutHero = () => {
     const opacityContent = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
     // Instead of transforming padding directly (which can be janky), we scale the inner container
-    const containerScale = useTransform(scrollYProgress, [0, 0.4, 1], [0.95, 1, 1]);
-    const borderRadius = useTransform(scrollYProgress, [0, 0.4], ["3rem", "0rem"]);
+    const containerScale = useTransform(scrollYProgress, [0, 0.7, 1], [0.95, 1, 1]);
+    const borderRadius = useTransform(scrollYProgress, [0, 0.7], ["3rem", "0rem"]);
 
     return (
-        <section ref={containerRef} className="relative h-[200vh] w-full bg-[#050505]">
+        <section ref={containerRef} className="relative h-[140vh] w-full bg-[#050505]">
             <div className="sticky top-0 h-screen w-full flex items-center justify-center p-4 md:p-8 overflow-hidden bg-[#050505]">
 
                 <motion.div
@@ -33,10 +34,12 @@ const AboutHero = () => {
                         className="absolute inset-0 w-full h-full pointer-events-none"
                     >
                         {/* High-end editorial mood image */}
-                        <img
-                            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000&auto=format&fit=crop"
-                            className="w-full h-full object-cover opacity-60 grayscale-30 contrast-125 brightness-75"
+                        <Image
+                            src="/about/hero.png"
                             alt="Luxury garment preservation"
+                            fill
+                            className="object-cover opacity-60 grayscale-30 contrast-125 brightness-75"
+                            priority
                         />
                         {/* Elegant edge darkening */}
                         <div className="absolute inset-0 bg-linear-to-b from-[#050505]/80 via-transparent to-[#050505]"></div>
@@ -49,7 +52,7 @@ const AboutHero = () => {
                         className="absolute inset-0 z-10 w-full h-full container mx-auto px-6 lg:px-16 py-12 lg:py-20 flex flex-col justify-between"
                     >
                         {/* Top Nav/Header Area within Hero */}
-                        <div className="flex justify-between items-center w-full mt-10 lg:mt-0">
+                        <div className="flex justify-between items-center w-full mt-16 md:mt-10 lg:mt-0">
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -87,13 +90,18 @@ const AboutHero = () => {
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-[3.5rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-medium text-white leading-[0.85] tracking-tighter"
+                                    className="text-[2.8rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-medium text-white leading-[0.85] tracking-tighter relative"
                                 >
+                                    {/* Massive background ghost text for brand presence */}
+                                    <span className="absolute -top-1/2 left-0 text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] font-bold text-white/5 tracking-tighter whitespace-nowrap pointer-events-none select-none z-0 mix-blend-overlay -translate-y-1/4">
+                                        QLOTHCARE
+                                    </span>
+
                                     THE FINEST <br />
-                                    <span className="italic font-light text-white/50 pr-4">GARMENT</span> <br className="md:hidden" />
-                                    <span className="relative">
-                                        PRESERVATION
-                                        <div className="absolute -bottom-2 md:-bottom-4 left-0 w-full h-px md:h-[2px] bg-white/20"></div>
+                                    <span className="italic font-light text-white/50 pr-4">GARMENT</span> <br className="block md:hidden" />
+                                    <span className="relative z-10">
+                                        CARE
+                                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-px md:h-[2px] bg-white/20"></div>
                                     </span>
                                 </motion.h1>
                             </div>
@@ -111,7 +119,15 @@ const AboutHero = () => {
                                 <div className="flex items-center gap-6 text-white hover:text-clothcare-primary transition-colors cursor-pointer group">
                                     <span className="text-xs font-bold uppercase tracking-[0.2em]">Discover Our Journey</span>
                                     <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-clothcare-primary transition-colors bg-white/5 backdrop-blur-sm">
-                                        <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform" />
+                                        <motion.div
+                                            variants={{
+                                                initial: { y: 0 },
+                                                hover: { y: 5 }
+                                            }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                        >
+                                            <ArrowDown size={18} />
+                                        </motion.div>
                                     </div>
                                 </div>
                             </motion.div>

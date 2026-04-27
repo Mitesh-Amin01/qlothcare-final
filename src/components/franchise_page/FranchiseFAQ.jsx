@@ -47,6 +47,7 @@ export default function FranchiseFAQ() {
                             className={`border rounded-3xl overflow-hidden transition-all duration-500 ${openIndex === idx ? 'border-clothcare-primary/50 bg-[#111] shadow-[0_20px_40px_rgba(228,111,51,0.05)]' : 'border-white/10 bg-black hover:border-white/30 hover:bg-[#0A0A0A]'}`}
                         >
                             <button
+                                suppressHydrationWarning
                                 onClick={() => setOpenIndex(idx === openIndex ? -1 : idx)}
                                 className="w-full flex items-center justify-between p-8 md:p-10 text-left"
                             >

@@ -1,16 +1,15 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import {
   Facebook, Twitter, Instagram, Linkedin,
-  ArrowRight, MapPinnedIcon, PhoneCall
+  ArrowRight, MapPinnedIcon, PhoneCall, Mail
 } from 'lucide-react';
 
 /**
  * ANIMATION VARIANTS
- * Using variants ensures the engine doesn't re-calculate styles on every frame, 
- * keeping it "lag-free".
  */
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -30,8 +29,16 @@ const staggerContainer = {
 };
 
 const Footer = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentYear = mounted ? new Date().getFullYear() : "2026";
+
   return (
-    <footer className="bg-clothcare-dark text-white font-sans relative overflow-hidden">
+    <footer className="bg-clothcare-darker text-white font-sans relative overflow-hidden">
 
       {/* =========================
           BACKGROUND ELEMENTS
@@ -40,16 +47,16 @@ const Footer = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.03 }}
         transition={{ duration: 1 }}
-        className="absolute bottom-32.5 left-0 w-full pointer-events-none select-none"
+        className="absolute bottom-32 left-0 w-full pointer-events-none select-none hidden lg:block"
       >
         <h1 className="text-[18vw] font-bold text-white leading-none tracking-tighter text-center translate-y-1/4">
           QLOTHCARE
         </h1>
       </motion.div>
 
-      {/* Mesh Gradients - Static for performance */}
-      <div className="absolute top-0 right-0 w-200 h-200 bg-clothcare-teal/10 rounded-full blur-[150px] pointer-events-none opacity-50"></div>
-      <div className="absolute bottom-0 left-0 w-150 h-150 bg-blue-900/20 rounded-full blur-[150px] pointer-events-none"></div>
+      {/* Smooth Gradients */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-clothcare-primary/5 rounded-full blur-[150px] pointer-events-none opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-clothcare-primary/10 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
@@ -61,18 +68,18 @@ const Footer = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="py-24 lg:py-32 border-b border-white/10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12"
+          className="py-20 lg:py-32 border-b border-white/5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12"
         >
           <motion.div variants={fadeInUp} className="max-w-3xl">
-            <h2 className="font-display text-5xl lg:text-7xl font-bold mb-6 tracking-tight">
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-[1.1]">
               Don't do laundry. <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-clothcare-teal to-white">
+              <span className="text-transparent bg-clip-text bg-clothcare-accent-gradient">
                 Do life.
               </span>
             </h2>
-            <p className="text-xl text-clothcare-tealSoft/60 max-w-xl leading-relaxed">
-              Join 12,000+ professionals reclaiming their weekends.
-              Download the app today and get $20 off your first order.
+            <p className="text-lg md:text-xl text-clothcare-graySoft opacity-70 max-w-xl leading-relaxed">
+              Join thousands of professionals reclaiming their weekends.
+              Premium fabric care delivered to your doorstep.
             </p>
           </motion.div>
 
@@ -99,92 +106,92 @@ const Footer = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="py-20 grid grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8"
+          className="py-16 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8"
         >
 
           {/* Brand */}
-          <motion.div variants={fadeInUp} className="col-span-2 lg:col-span-4 space-y-8">
-            <div className="flex items-center gap-2 group cursor-pointer w-fit">
-              <div className="w-8 h-8 bg-clothcare-teal rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4 space-y-8">
+            <Link href="/" className="flex items-center gap-3 group cursor-pointer w-fit">
+              <div className="w-10 h-10 bg-clothcare-primary rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">
-                Qlothcare<span className="text-clothcare-teal">.</span>
+                Qlothcare<span className="text-clothcare-primary">.</span>
               </span>
-            </div>
+            </Link>
 
-            <p className="text-clothcare-tealSoft/60 leading-relaxed max-w-sm">
-              The world's most advanced fabric care infrastructure. We combine
-              sustainable chemistry with logistics technology to extend the life of
-              your wardrobe.
+            <p className="text-clothcare-graySoft/80 leading-relaxed max-w-sm">
+              India's most advanced fabric care infrastructure. We combine
+              sustainable cleaning with smart logistics to extend the life of
+              your cherished wardrobe.
             </p>
 
             <div className="flex gap-4">
-              <SocialLink icon={<Facebook size={20} />} />
-              <SocialLink icon={<Twitter size={20} />} />
-              <SocialLink icon={<Instagram size={20} />} />
-              <SocialLink icon={<Linkedin size={20} />} />
+              <SocialLink icon={<Facebook size={18} />} />
+              <SocialLink icon={<Twitter size={18} />} />
+              <SocialLink icon={<Instagram size={18} />} />
+              <SocialLink icon={<Linkedin size={18} />} />
             </div>
           </motion.div>
 
           {/* Company */}
-          <motion.div variants={fadeInUp} className="col-span-1 lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Company</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="About Us" />
-              <FooterLink text="Careers" badge="Hiring" />
-              <FooterLink text="Sustainability" />
-              <FooterLink text="Press & Media" />
-              <FooterLink text="Partners" />
+          <motion.div variants={fadeInUp} className="lg:col-span-2">
+            <h4 className="font-display font-bold text-lg mb-6 text-white">Company</h4>
+            <ul className="space-y-4 text-clothcare-graySoft/70">
+              <FooterLink text="About Us" href="/about-us" />
+              <FooterLink text="Services" href="/services" />
+              <FooterLink text="Pricing" href="/pricing" />
+              <FooterLink text="Franchise" href="/franchise-inquiry" />
+              <FooterLink text="Contact Us" href="/contact-us" />
             </ul>
           </motion.div>
 
-          {/* Services */}
-          <motion.div variants={fadeInUp} className="col-span-1 lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Services</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="Wash & Fold" />
-              <FooterLink text="Dry Cleaning" />
-              <FooterLink text="Shoe Care" />
-              <FooterLink text="Alterations" />
-              <FooterLink text="Corporate" />
-            </ul>
-          </motion.div>
-
-          {/* Locations */}
-          <motion.div variants={fadeInUp} className="col-span-2 lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Locations</h4>
-            <ul className="space-y-4 text-clothcare-tealSoft/60">
-              <FooterLink text="Ahmedabad" />
-              <FooterLink text="Gandhinagar" />
+          {/* Resources */}
+          <motion.div variants={fadeInUp} className="lg:col-span-2">
+            <h4 className="font-display font-bold text-lg mb-6 text-white">Resources</h4>
+            <ul className="space-y-4 text-clothcare-graySoft/70">
+              <FooterLink text="How It Works" href="/how-it-works" />
+              <FooterLink text="Support" href="/contact-us" />
             </ul>
           </motion.div>
 
           {/* Contact */}
-          <motion.div variants={fadeInUp} className="col-span-2 lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6">Contact</h4>
-            <ul className="space-y-6 text-clothcare-tealSoft/60">
-              <li className="flex items-start gap-3 group">
-                <MapPinnedIcon size={25} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
-                <span className="text-sm leading-relaxed">
+          <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4">
+            <h4 className="font-display font-bold text-lg mb-6 text-white">Contact</h4>
+            <ul className="space-y-6 text-clothcare-graySoft/70">
+              <li className="flex items-start gap-4 group">
+                <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
+                  <MapPinnedIcon size={20} className="text-clothcare-primary" />
+                </div>
+                <span className="text-sm leading-relaxed max-w-[240px]">
                   First Floor, 101 Ansh Arambh, Nr. Saligram Prime,
-                  <br />
-                  Sobo Center Road, South Bopal, Ahmedabad 380058
+                  South Bopal, Ahmedabad 380058
                 </span>
               </li>
 
-              <li className="flex items-center gap-3 group">
-                <PhoneCall size={25} className="mt-1 shrink-0 group-hover:text-clothcare-teal transition-colors" />
-                <div className="flex flex-col gap-1 text-sm">
-                  <a href="tel:+919601423424" className="hover:text-clothcare-teal transition-colors">
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
+                  <PhoneCall size={20} className="text-clothcare-primary" />
+                </div>
+                <div className="flex flex-col text-sm">
+                  <a href="tel:+919601423424" className="hover:text-white transition-colors">
                     +91 96014 23424
                   </a>
-                  <a href="tel:+919284546378" className="hover:text-clothcare-teal transition-colors">
+                  <a href="tel:+919284546378" className="hover:text-white transition-colors">
                     +91 92845 46378
                   </a>
                 </div>
+              </li>
+
+              <li className="flex items-center gap-4 group">
+                <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
+                  <Mail size={20} className="text-clothcare-primary" />
+                </div>
+                <a href="mailto:support@qlothcare.com" className="text-sm hover:text-white transition-colors">
+                  support@qlothcare.com
+                </a>
               </li>
             </ul>
           </motion.div>
@@ -194,12 +201,12 @@ const Footer = () => {
         {/* =========================
             PART 3: BOTTOM BAR
         ========================= */}
-        <div className="py-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-clothcare-tealSoft/40">
-          <div>&copy; {new Date().getFullYear()} Qlothcare Inc. All rights reserved.</div>
-          <div className="flex gap-8">
-            <a href="/privacy-policy" className="hover:text-clothcare-primaryDark transition-colors">Privacy Policy</a>
-            <a href="/terms-and-conditions" className="hover:text-clothcare-primaryDark transition-colors">Terms of Service</a>
-            <a href="/cookies-policy" className="hover:text-clothcare-primaryDark transition-colors">Cookie Settings</a>
+        <div className="py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-clothcare-graySoft/40">
+          <div className="font-medium">&copy; {currentYear} Qlothcare. Powered by advanced fabric care tech.</div>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+            <Link href="/privacy-policy" className="hover:text-clothcare-primary transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-clothcare-primary transition-colors">Terms of Service</Link>
+            <Link href="/cookies-policy" className="hover:text-clothcare-primary transition-colors">Cookie Settings</Link>
           </div>
         </div>
       </div>
@@ -211,53 +218,54 @@ const Footer = () => {
 
 const SocialLink = ({ icon }) => (
   <motion.a
-    whileHover={{ y: -5, scale: 1.1 }}
-    whileTap={{ scale: 0.9 }}
+    whileHover={{ y: -4, scale: 1.1 }}
+    whileTap={{ scale: 0.95 }}
     href="#"
-    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-clothcare-primary hover:text-white transition-all duration-300 text-white/60"
+    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-clothcare-primary hover:text-white transition-all duration-300 text-clothcare-graySoft/60 border border-white/5"
   >
     {icon}
   </motion.a>
 );
 
-const FooterLink = ({ text, badge }) => (
+const FooterLink = ({ text, href = "#", badge }) => (
   <li className="group">
-    <a href="#" className="flex items-center gap-2 hover:text-clothcare-primary transition-colors duration-300">
-      <span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 opacity-0 group-hover:opacity-100">
-        <ArrowRight size={12} />
+    <Link href={href} className="flex items-center gap-2 hover:text-white transition-all duration-300 w-fit">
+      <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 opacity-0 group-hover:opacity-100 text-clothcare-primary">
+        <ArrowRight size={12} strokeWidth={3} />
       </span>
       {text}
       {badge && (
-        <span className="text-[10px] font-bold uppercase bg-clothcare-primary text-white px-1.5 py-0.5 rounded ml-2">
+        <span className="text-[10px] font-black uppercase bg-clothcare-primary text-white px-1.5 py-0.5 rounded ml-2">
           {badge}
         </span>
       )}
-    </a>
+    </Link>
   </li>
 );
 
 const AppButton = ({ platform, title, subtitle, primary }) => (
   <motion.button
-    whileHover={{ y: -2, scale: 1.02 }}
+    whileHover={{ y: -3, scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
-    className={`flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 shadow-lg group cursor-pointer ${primary
-        ? "bg-white text-clothcare-dark hover:bg-white/90"
-        : "bg-transparent border border-white/20 text-white hover:bg-white/10"
+    suppressHydrationWarning
+    className={`flex items-center gap-4 px-7 py-4 rounded-2xl transition-all duration-300 shadow-xl group cursor-pointer border ${primary
+      ? "bg-white text-clothcare-dark darker border-transparent hover:shadow-white/5"
+      : "bg-transparent border-white/10 text-white hover:bg-white/5"
       }`}
   >
-    <span className="text-2xl">
+    <span className="text-3xl">
       {platform === "Apple" ? (
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.24-1.99 1.1-3.15-1.07.04-2.32.74-3.08 1.63-.68.8-.27 2.13.26 2.15 1.12.02 1.99-.65 2.52-1.63z" />
         </svg>
       ) : (
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="#A6D864">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="#E46F33">
           <path d="M3 20.5V3.5L19 12L3 20.5Z" fill="currentColor" />
         </svg>
       )}
     </span>
     <div className="text-left">
-      <p className="text-xs font-bold uppercase tracking-wider opacity-60">{title}</p>
+      <p className="text-[10px] font-black uppercase tracking-widest opacity-40">{title}</p>
       <p className="text-lg font-display font-bold leading-none">{subtitle}</p>
     </div>
   </motion.button>

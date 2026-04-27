@@ -4,42 +4,42 @@ import React, { useState } from 'react';
 import { Search, Sparkles, CheckCircle2, SlidersHorizontal, ToggleRight, CalendarClock, MessageSquare, Paperclip, Check, ChevronDown, CircleDot } from 'lucide-react';
 import { motion } from 'motion/react';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+const slideUp = {
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 120, damping: 20, mass: 0.5 }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -40, y: 10 },
+  hidden: { opacity: 0, x: -30, y: 10 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
 const zoomIn = {
-  hidden: { opacity: 0, scale: 0.85, y: 15 },
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
 const slideInRight = {
-  hidden: { opacity: 0, x: 40, y: 10 },
+  hidden: { opacity: 0, x: 30, y: 10 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
@@ -48,13 +48,13 @@ const WhyChooseUs = () => {
   const [isRepeating, setIsRepeating] = useState(true);
 
   return (
-    <section className="py-20 md:py-32 bg-gray-50 overflow-hidden relative font-sans">
-      <div className="max-w-300 mx-auto px-6">
+    <section className="py-16 md:py-32 bg-gray-50 overflow-hidden relative font-sans">
+      <div className="max-w-7xl mx-auto px-6">
 
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}
             className="max-w-4xl flex flex-col items-center"
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
@@ -62,7 +62,7 @@ const WhyChooseUs = () => {
               <span className="text-clothcare-primary italic font-serif font-light pr-2">classic fabric care.</span>
             </h2>
             <p className="text-gray-500 text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
-              Experience a sophisticated, tech-driven process designed to elevate your wardrobe management with software-level precision.
+              We combine world-class machinery with eco-friendly practices to ensure your wardrobe receives the premium care it deserves.
             </p>
           </motion.div>
         </div>
@@ -75,12 +75,16 @@ const WhyChooseUs = () => {
               hidden: { opacity: 0 },
               visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
             }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 auto-rows-[220px]"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr md:auto-rows-[220px]"
           >
 
             {/* Widget 1: Search Bar */}
             {/* Widget 1: Search Bar (Left) */}
-            <motion.div variants={slideInLeft} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden group">
+            <motion.div
+              variants={slideInLeft}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden group hover:shadow-xl transition-all duration-300"
+            >
               <motion.div
                 initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, type: "spring" }} viewport={{ once: true }}
                 className="w-full max-w-[200px] absolute top-6"
@@ -103,7 +107,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 2: Action Menu */}
             {/* Widget 2: Action Menu (Center) */}
-            <motion.div variants={zoomIn} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center justify-center relative">
+            <motion.div
+              variants={zoomIn}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center justify-center relative group hover:shadow-xl transition-all duration-300"
+            >
               <motion.div
                 initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.4, type: "spring" }} viewport={{ once: true }}
                 className="bg-white border border-gray-100 shadow-xl rounded-2xl p-2 w-48 z-10"
@@ -128,7 +136,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 3: Progress Tracker */}
             {/* Widget 3: Progress Tracker (Right) */}
-            <motion.div variants={slideInRight} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col justify-center items-center">
+            <motion.div
+              variants={slideInRight}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col justify-center items-center group hover:shadow-xl transition-all duration-300"
+            >
               <div className="w-full max-w-[220px]">
                 <div className="bg-white border border-gray-100 shadow-sm rounded-xl p-3 mb-4 flex items-center justify-between">
                   <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden">
@@ -167,7 +179,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 4: Calendar/Shift */}
             {/* Widget 4: Calendar/Shift (Left) */}
-            <motion.div variants={slideInLeft} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center">
+            <motion.div
+              variants={slideInLeft}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center group hover:shadow-xl transition-all duration-300"
+            >
               <div className="flex gap-4 w-full max-w-[240px] mx-auto">
                 <div className="flex flex-col items-center pt-2">
                   <span className="text-2xl font-bold text-gray-900 leading-none">8</span>
@@ -198,7 +214,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 5: Alert Modal */}
             {/* Widget 5: Alert Modal (Center) */}
-            <motion.div variants={zoomIn} className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100">
+            <motion.div
+              variants={zoomIn}
+              whileHover={{ y: -5 }}
+              className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 group hover:shadow-xl transition-all duration-300"
+            >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ delay: 0.3, type: "spring" }} viewport={{ once: true }}
                 className="bg-white border border-gray-100 shadow-xl rounded-2xl p-5 w-48 text-center flex flex-col items-center"
@@ -208,7 +228,7 @@ const WhyChooseUs = () => {
                 </div>
                 <p className="font-bold text-sm text-gray-900 mb-2">Quality Check Passed</p>
                 <p className="text-[9px] text-gray-500 mb-4 leading-relaxed">
-                  Your items have successfully passed our intense 5-point quality inspection.
+                  Your garments have passed our rigorous 5-point quality inspection and are ready for delivery.
                 </p>
                 <motion.div
                   initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.7 }} viewport={{ once: true }}
@@ -224,7 +244,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 6: Schedule Toggle */}
             {/* Widget 6: Schedule Toggle (Right) */}
-            <motion.div variants={slideInRight} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center justify-center">
+            <motion.div
+              variants={slideInRight}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex items-center justify-center group hover:shadow-xl transition-all duration-300"
+            >
               <div className="w-full max-w-[220px] bg-white border border-gray-100 shadow-xl rounded-2xl p-4">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-sm font-bold text-gray-900">Is repeating</span>
@@ -261,7 +285,11 @@ const WhyChooseUs = () => {
 
             {/* Widget 7: Stats Dashboard */}
             {/* Widget 7: Stats Dashboard (Left) */}
-            <motion.div variants={slideInLeft} className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100">
+            <motion.div
+              variants={slideInLeft}
+              whileHover={{ y: -5 }}
+              className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 group hover:shadow-xl transition-all duration-300"
+            >
               <div className="bg-white border border-gray-100 shadow-xl rounded-2xl p-4 w-[220px] flex items-center justify-between">
                 <div className="flex flex-col items-center gap-2">
                   <ShieldCheckIcon />
@@ -284,28 +312,62 @@ const WhyChooseUs = () => {
 
             {/* Widget 8: Slider Widget */}
             {/* Widget 8: Slider Widget (Center) */}
-            <motion.div variants={zoomIn} className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100">
-              <div className="bg-white border border-gray-100 shadow-xl rounded-2xl p-6 w-[220px] text-center">
+            <motion.div
+              variants={zoomIn}
+              className="bg-white flex items-center justify-center rounded-4xl will-change-transform shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 p-6 sm:p-4 group hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="bg-white border border-gray-100 shadow-xl rounded-2xl p-4 sm:p-6 w-full max-w-[240px] text-center">
                 <p className="text-sm font-bold text-gray-900 mb-4">How happy are you?</p>
-                <div className="flex justify-between text-[10px] font-bold text-gray-300 px-2 mb-2">
-                  <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span className="text-gray-900 text-sm -mt-0.5">8</span><span>9</span><span>10</span>
+                <div className="flex justify-between text-[10px] font-bold text-gray-300 px-1 mb-3 relative">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                    <span
+                      key={num}
+                      onClick={() => setSliderVal(num)}
+                      className={`cursor-pointer transition-colors duration-200 z-10 w-4 ${sliderVal === num ? 'text-gray-900 text-sm -mt-0.5 font-black' : 'hover:text-gray-500'}`}
+                    >
+                      {num}
+                    </span>
+                  ))}
                 </div>
-                <div className="relative w-full h-1.5 bg-gray-100 rounded-full mt-2">
+                <div className="relative w-full h-1.5 bg-gray-100 rounded-full mt-2 cursor-pointer" onClick={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                  setSliderVal(Math.round(percent / 10) || 1);
+                }}>
                   <motion.div
-                    initial={{ width: "0%" }} whileInView={{ width: "80%" }} transition={{ delay: 0.4, duration: 1, ease: "easeOut" }} viewport={{ once: true }}
-                    className="absolute left-0 top-0 h-full bg-gray-900 rounded-full"
-                  ></motion.div>
+                    initial={false}
+                    animate={{ width: `${(sliderVal - 1) * 11.111}%` }}
+                    className="absolute left-0 top-0 h-full bg-clothcare-primary rounded-full"
+                  />
                   <motion.div
-                    initial={{ left: "0%" }} whileInView={{ left: "80%" }} transition={{ delay: 0.4, duration: 1, ease: "easeOut" }} viewport={{ once: true }}
-                    className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border border-gray-200 shadow-md rounded-full cursor-grab" style={{ transform: 'translate(-50%, -50%)' }}
-                  ></motion.div>
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0}
+                    onDrag={(e, info) => {
+                      const container = e.target.parentElement;
+                      if (!container) return;
+                      const rect = container.getBoundingClientRect();
+                      const x = info.point.x - rect.left;
+                      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                      const newVal = Math.max(1, Math.min(10, Math.round((percent / 100) * 9) + 1));
+                      if (newVal !== sliderVal) setSliderVal(newVal);
+                    }}
+                    animate={{ left: `${(sliderVal - 1) * 11.111}%` }}
+                    className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-2 border-clothcare-primary shadow-md rounded-full cursor-grab active:cursor-grabbing z-20"
+                    style={{ x: "-50%" }}
+                  />
                 </div>
               </div>
             </motion.div>
 
             {/* Widget 9: Chat / Instruction */}
             {/* Widget 9: Chat / Instruction (Right) */}
-            <motion.div variants={slideInRight} className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col justify-center items-center">
+            <motion.div
+              variants={slideInRight}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-4xl will-change-transform p-6 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col justify-center items-center group hover:shadow-xl transition-all duration-300"
+            >
               <div className="w-full max-w-[220px]">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }} viewport={{ once: true }}

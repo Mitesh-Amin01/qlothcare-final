@@ -41,8 +41,8 @@ export default function CookiesPolicy() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-clothcare-primary text-sm font-bold mb-8">
               <Cookie size={16} /> Digital Footprint
             </div>
-            <h1 className="text-[3.5rem] lg:text-[5.5rem] font-display font-black leading-[1.05] tracking-tight mb-8">
-              Cookies & <br />
+            <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-display font-black leading-[1.1] lg:leading-[1.05] tracking-tight mb-8">
+              Cookies & <br className="hidden sm:block" />
               <span className="text-gray-400">Tracking.</span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-500 font-medium max-w-2xl leading-relaxed">
@@ -73,7 +73,7 @@ export default function CookiesPolicy() {
             <div className="flex-1 max-w-4xl space-y-32">
 
               {/* 01. Overview */}
-              <motion.section id="overview" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative">
+              <motion.section id="overview" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative overflow-hidden lg:overflow-visible">
                 <Watermark number="01" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Overview</h2>
@@ -94,7 +94,7 @@ export default function CookiesPolicy() {
               </motion.section>
 
               {/* 02. Essential */}
-              <motion.section id="essential" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative">
+              <motion.section id="essential" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative overflow-hidden lg:overflow-visible">
                 <Watermark number="02" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Essential & Core</h2>
@@ -115,7 +115,7 @@ export default function CookiesPolicy() {
               </motion.section>
 
               {/* 03. Analytics */}
-              <motion.section id="analytics" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative">
+              <motion.section id="analytics" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative overflow-hidden lg:overflow-visible">
                 <Watermark number="03" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Analytics Insight</h2>
@@ -133,7 +133,7 @@ export default function CookiesPolicy() {
               </motion.section>
 
               {/* 04. Marketing */}
-              <motion.section id="marketing" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative">
+              <motion.section id="marketing" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative overflow-hidden lg:overflow-visible">
                 <Watermark number="04" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Tailored Marketing</h2>
@@ -151,24 +151,24 @@ export default function CookiesPolicy() {
               </motion.section>
 
               {/* 05. Management */}
-              <motion.section id="management" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative">
+              <motion.section id="management" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp} className="relative overflow-hidden lg:overflow-visible">
                 <Watermark number="05" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Cookie Management</h2>
 
-                  <div className="bg-[#18181B] text-white p-10 lg:p-14 rounded-3xl relative overflow-hidden shadow-2xl">
-                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-clothcare-primary/20 blur-[100px] rounded-full"></div>
+                  <div className="bg-[#18181B] text-white p-8 lg:p-14 rounded-3xl relative overflow-hidden shadow-2xl">
+                    <div className="absolute top-0 right-0 w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] bg-clothcare-primary/20 blur-[80px] lg:blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
 
                     <Settings className="text-clothcare-primary mb-8" size={48} strokeWidth={1} />
-                    <h3 className="text-3xl font-display font-bold mb-6">Absolute Sovereignty.</h3>
+                    <h3 className="text-2xl lg:text-3xl font-display font-bold mb-6">Absolute Sovereignty.</h3>
                     <p className="text-gray-400 text-lg leading-relaxed mb-10">
                       You retain full control over your digital footprint. While essential cookies cannot be disabled, you can instruct your browser to refuse all non-essential trackers or to indicate when a cookie is being deployed.
                     </p>
 
-                    <div className="flex flex-wrap gap-4">
+                    <div className="grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4">
                       {['Chrome', 'Safari', 'Firefox', 'Edge'].map((browser) => (
-                        <span key={browser} className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-xs font-bold tracking-widest text-gray-300 hover:bg-white hover:text-clothcare-dark transition-all cursor-pointer">
-                          {browser} SETTINGS
+                        <span key={browser} className="px-4 lg:px-5 py-2.5 bg-white/5 border border-white/10 rounded-xl md:rounded-full text-[10px] lg:text-xs font-bold tracking-widest text-center text-gray-300 hover:bg-white hover:text-clothcare-dark transition-all cursor-pointer">
+                          {browser.toUpperCase()}
                         </span>
                       ))}
                     </div>
@@ -201,7 +201,7 @@ const NavButton = ({ title, active, onClick }) => (
 );
 
 const Watermark = ({ number }) => (
-  <div className="absolute -top-16 -left-12 lg:-left-24 text-[10rem] lg:text-[14rem] font-display font-black text-gray-100 select-none pointer-events-none leading-none z-0">
+  <div className="absolute -top-12 -left-8 lg:-top-16 lg:-left-24 text-[8rem] lg:text-[14rem] font-display font-black text-gray-100 select-none pointer-events-none leading-none z-0 opacity-50 lg:opacity-100">
     {number}
   </div>
 );

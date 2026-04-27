@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'motion/react';
+import Image from 'next/image';
 
 const ArchiveVault = () => {
     return (
@@ -19,9 +20,9 @@ const ArchiveVault = () => {
                     className="w-full lg:w-1/2"
                 >
                     <span className="text-white/40 font-bold uppercase tracking-[0.2em] text-xs">03 / The Vault</span>
-                    <h2 className="text-5xl lg:text-7xl font-bold mt-6 mb-8 tracking-tighter leading-tight">Couture <br />Preservation.</h2>
+                    <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-6 mb-8 tracking-tighter leading-tight">Specialized <br />Care.</h2>
                     <p className="text-xl text-white/60 leading-relaxed mb-10 font-light">
-                        Certain pieces require more than just cleaning—they require archiving. Our specialized restoration team handles wedding gowns, vintage leather, and bespoke tailoring with museum-grade techniques and acid-free boxing.
+                        Certain pieces require more than just cleaning—they require expert preservation. Our specialized team handles designer wear, wedding gowns, and heritage silks with the finest attention to detail.
                     </p>
 
                     <ul className="space-y-6 border-t border-white/10 pt-10">
@@ -34,8 +35,8 @@ const ArchiveVault = () => {
                         >
                             <span className="text-clothcare-primary text-sm font-mono mt-1">01</span>
                             <div>
-                                <h4 className="text-lg font-bold">Museum-Grade Boxing</h4>
-                                <p className="text-white/50 text-sm mt-1">Acid-free tissue and hermetic sealing prevents yellowing over decades.</p>
+                                <h4 className="text-lg font-bold">Designer Wear Care</h4>
+                                <p className="text-white/50 text-sm mt-1">Expert handling of high-end brands and delicate embellishments to maintain original texture.</p>
                             </div>
                         </motion.li>
                         <motion.li
@@ -47,8 +48,8 @@ const ArchiveVault = () => {
                         >
                             <span className="text-clothcare-primary text-sm font-mono mt-1">02</span>
                             <div>
-                                <h4 className="text-lg font-bold">Leather & Suede Restoration</h4>
-                                <p className="text-white/50 text-sm mt-1">Rehydrating and color-matching scuffed or aged natural skins.</p>
+                                <h4 className="text-lg font-bold">Silk & Saree Preservation</h4>
+                                <p className="text-white/50 text-sm mt-1">Specialized folding and storage techniques to prevent permanent creasing and color fading.</p>
                             </div>
                         </motion.li>
                     </ul>
@@ -61,11 +62,12 @@ const ArchiveVault = () => {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="w-full lg:w-1/2"
                 >
-                    <div className="relative w-full aspect-4/5 rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl group">
-                        <img
-                            src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1000&auto=format&fit=crop"
+                    <div className="relative w-full aspect-4/5 rounded-4xl sm:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl group">
+                        <Image
+                            src="/services/archive.png"
                             alt="Couture dress preservation"
-                            className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-in-out"
+                            fill
+                            className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-in-out"
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60"></div>
                     </div>

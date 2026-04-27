@@ -12,7 +12,7 @@ export default function FranchisePartners() {
     ];
 
     return (
-        <section className="bg-black py-24 border-b border-white/5 relative z-10">
+        <section className="bg-black py-16 lg:py-24 border-b border-white/5 relative z-10">
             <div className="container mx-auto px-6 text-center">
                 <p className="text-clothcare-primary text-xs font-black uppercase tracking-[0.2em] mb-12">Enterprise Infrastructure Integrations</p>
 
@@ -20,10 +20,10 @@ export default function FranchisePartners() {
                     {partners.map((partner, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 40, scale: 0.9, filter: "blur(5px)" }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                            initial={{ y: 20 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true, amount: 0.5 }}
-                            transition={{ delay: idx * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ delay: idx * 0.05, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                             className="flex items-center justify-center gap-3 grayscale hover:grayscale-0 opacity-40 hover:opacity-100 transition-all duration-500 cursor-pointer text-white"
                         >
                             <span className="text-clothcare-primary">{partner.icon}</span>

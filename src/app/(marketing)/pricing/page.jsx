@@ -73,12 +73,12 @@ const HeroSection = () => {
    COMPONENT 2: SAVINGS CALCULATOR
    ========================================== */
 const SavingsCalculator = () => {
-  const [pounds, setPounds] = useState(25);
+  const [items, setItems] = useState(25);
 
-  const guestRate = 2.50;
-  const memberRate = 1.75;
-  const guestCost = pounds * guestRate + 9.99; // + Delivery
-  const memberCost = pounds * memberRate; // Free delivery
+  const guestRate = 180;
+  const memberRate = 162; // 10% discount for Classic members
+  const guestCost = items * guestRate + 99; // + Delivery
+  const memberCost = items * memberRate; // Free delivery
   const savings = guestCost - memberCost;
 
   return (
@@ -96,23 +96,23 @@ const SavingsCalculator = () => {
             </div>
 
             <h3 className="text-4xl font-medium text-gray-900 mb-4 tracking-tight">Project Your Savings</h3>
-            <p className="text-gray-500 mb-12">Drag the slider based on your household's weekly laundry output to see the exact economic benefit.</p>
+            <p className="text-gray-500 mb-12">Drag the slider based on your household's weekly garment output to see the exact economic benefit.</p>
 
             <div className="space-y-10">
               <div className="relative p-6 border border-gray-100 rounded-3xl bg-gray-50">
                 <div className="flex justify-between items-center mb-6">
-                  <label className="font-bold text-gray-600 text-sm">Weekly Output</label>
-                  <span className="font-bold text-gray-900 text-2xl">{pounds} <span className="text-sm text-gray-400">lbs</span></span>
+                  <label className="font-bold text-gray-600 text-sm">Weekly Items</label>
+                  <span className="font-bold text-gray-900 text-2xl">{items} <span className="text-sm text-gray-400">pcs</span></span>
                 </div>
 
                 <input
-                  type="range" min="10" max="100" step="5" value={pounds} onChange={(e) => setPounds(Number(e.target.value))}
+                  type="range" min="10" max="100" step="5" value={items} onChange={(e) => setItems(Number(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer hover:bg-gray-300 transition-colors accent-black"
                 />
 
                 <div className="flex justify-between mt-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                  <span>Small Load (10 lb)</span>
-                  <span>Estate Load (100 lb)</span>
+                  <span>Small Batch (10 pcs)</span>
+                  <span>Estate Batch (100 pcs)</span>
                 </div>
               </div>
             </div>
@@ -126,12 +126,12 @@ const SavingsCalculator = () => {
               <div>
                 <p className="text-gray-400 text-xs uppercase tracking-widest font-bold mb-4">Monthly Value Retained</p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-gray-500 font-bold text-3xl">$</span>
+                  <span className="text-gray-500 font-bold text-3xl">₹</span>
                   <motion.span
-                    key={savings} initial={{ scale: 1.1, color: "#E46F33" }} animate={{ scale: 1, color: "#ffffff" }}
+                    animate={{ color: "#ffffff" }}
                     className="text-6xl lg:text-7xl font-bold tracking-tighter"
                   >
-                    {(savings * 4).toFixed(0)}
+                    {(savings * 4).toLocaleString('en-IN')}
                   </motion.span>
                 </div>
               </div>
@@ -139,16 +139,16 @@ const SavingsCalculator = () => {
               <div className="space-y-4 pt-8 border-t border-white/10">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400 font-medium">Guest Price</span>
-                  <span className="font-bold line-through text-gray-500">${(guestCost * 4).toFixed(2)}</span>
+                  <span className="font-bold line-through text-gray-500">₹{(guestCost * 4).toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-white fill-current font-bold">Member Rate</span>
-                  <span className="font-bold text-white text-xl">${(memberCost * 4).toFixed(2)}</span>
+                  <span className="font-bold text-white text-xl">₹{(memberCost * 4).toLocaleString('en-IN')}</span>
                 </div>
               </div>
 
-              <button className="w-full bg-white text-black font-bold py-4 rounded-full hover:bg-gray-100 transition-colors text-sm tracking-widest">
-                EXECUTE PLAN
+              <button className="w-full bg-white text-black font-bold py-4 rounded-full hover:bg-gray-100 transition-colors text-sm tracking-widest uppercase">
+                Unlock Member Rates
               </button>
             </div>
           </div>
@@ -170,16 +170,16 @@ const ValueProps = () => {
           <h2 className="text-4xl lg:text-5xl font-bold mt-4 tracking-tight">More than just a wash.</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Bento 1: Large Wide */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} className="md:col-span-2 bg-gray-50 border border-gray-100 p-10 lg:p-12 rounded-3xl flex flex-col justify-between group overflow-hidden relative transition-transform duration-300 hover:-translate-y-1">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} className="sm:col-span-2 bg-gray-50 border border-gray-100 p-10 lg:p-12 rounded-3xl flex flex-col justify-between group overflow-hidden relative transition-transform duration-300 hover:-translate-y-1">
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
             <div className="w-14 h-14 bg-white border border-gray-200 shadow-sm rounded-full flex items-center justify-center text-gray-900 mb-10 group-hover:scale-110 transition-transform">
               <ShieldCheck size={24} />
             </div>
             <div className="relative z-10">
               <h3 className="text-3xl font-medium text-gray-900 mb-3 tracking-tight">Zero-Friction Guarantee.</h3>
-              <p className="text-gray-500 leading-relaxed">Missing button? Scratched zipper? We replace or repair items instantly. Our $1,000 protection policy covers every member automatically.</p>
+              <p className="text-gray-500 leading-relaxed">Missing button? Scratched zipper? We replace or repair items instantly. Our ₹50,000 protection policy covers every member automatically.</p>
             </div>
           </motion.div>
 
@@ -197,7 +197,7 @@ const ValueProps = () => {
             <h3 className="text-7xl font-bold leading-none mb-6 relative z-10 tracking-tighter">0</h3>
             <div className="relative z-10">
               <p className="font-bold text-xl leading-tight mb-2">Logistics Fees</p>
-              <p className="text-white/80 text-sm">Retain over $400 annually simply by avoiding service charges.</p>
+              <p className="text-white/80 text-sm">Retain over ₹25,000 annually simply by avoiding service charges.</p>
             </div>
           </motion.div>
         </div>
@@ -211,14 +211,14 @@ const ValueProps = () => {
    ========================================== */
 const FAQSection = () => {
   const faqs = [
-    { q: "Is there a minimum order threshold?", a: "For our Standard Pay-as-you-go service, we enforce a strict 15 lb minimum to maintain logistical efficiency. For Dry Cleaning operations, there is no minimum item count required." },
+    { q: "Is there a minimum order threshold?", a: "For our Standard Pay-as-you-go service, we enforce a strict 5 kg minimum to maintain logistical efficiency. For Dry Cleaning operations, there is no minimum item count required." },
     { q: "How is the initial pickup executed?", a: "Upon selecting your preferred tier, you will be directed to our logistics portal to designate a collection window. Our operative will arrive with a secure Qlothcare transfer bag." },
     { q: "Can a subscription protocol be paused?", a: "Affirmative. You possess absolute sovereignty over your subscription. The Professional Care plan can be paused instantly via your dashboard with zero administrative penalties." },
     { q: "Are delicate fabrics processed securely?", a: "We utilize eco-solvent technologies and hand-finished pressing specifically designed to extend the lifespan of your most delicate archival pieces." }
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-gray-50 border-t border-gray-100">
+    <section className="py-20 lg:py-32 pb-32 lg:pb-32 bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-6 max-w-4xl">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariants} className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-4">Operational Inquiries</h2>

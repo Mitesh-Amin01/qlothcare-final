@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { Layers, Wind, Droplets, Zap, ShieldCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -40,9 +41,14 @@ const CoreProtocols = () => {
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                     {/* Bento 1: Wash & Fold (Large) */}
-                    <motion.div variants={fadeUpVariants} className="lg:col-span-2 bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative group h-[500px] flex flex-col justify-end">
+                    <motion.div variants={fadeUpVariants} className="lg:col-span-2 bg-gray-50 border border-gray-100 rounded-4xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 overflow-hidden relative group h-[400px] sm:h-[500px] flex flex-col justify-end">
                         <div className="absolute inset-0 z-0">
-                            <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?q=80&w=1200&auto=format&fit=crop" alt="Wash and Fold" className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" />
+                            <Image
+                                src="/services/wash_fold.png"
+                                alt="Wash and Fold"
+                                fill
+                                className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                            />
                             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
                         </div>
 
@@ -50,15 +56,20 @@ const CoreProtocols = () => {
                             <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mb-6 border border-white/20">
                                 <Layers size={24} />
                             </div>
-                            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">Wash & Fold</h3>
-                            <p className="text-white/80 leading-relaxed text-lg">The weekly ritual, simplified. We sort by color and fabric, wash with eco-detergents, and return everything retail-folded and ready for your shelves.</p>
+                            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">Premium Laundry</h3>
+                            <p className="text-white/80 leading-relaxed text-lg">Professional washing and drying with fabric-specific care for your everyday clothes. Gentle on fibers, tough on stains.</p>
                         </div>
                     </motion.div>
 
                     {/* Bento 2: Dry Cleaning */}
-                    <motion.div variants={fadeUpVariants} className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative group h-[500px] flex flex-col justify-end">
+                    <motion.div variants={fadeUpVariants} className="bg-gray-50 border border-gray-100 rounded-4xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 overflow-hidden relative group h-[400px] sm:h-[500px] flex flex-col justify-end">
                         <div className="absolute inset-0 z-0">
-                            <img src="https://images.unsplash.com/photo-1582735689141-8600cd5c25db?q=80&w=800&auto=format&fit=crop" alt="Dry Cleaning" className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" />
+                            <Image
+                                src="/services/dry_cleaning.png"
+                                alt="Dry Cleaning"
+                                fill
+                                className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                            />
                             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
                         </div>
 
@@ -67,40 +78,40 @@ const CoreProtocols = () => {
                                 <Wind size={24} />
                             </div>
                             <h3 className="text-2xl font-bold text-white mb-3">Dry Cleaning</h3>
-                            <p className="text-white/80 leading-relaxed">Eco-friendly solvents that are tough on stains but gentle on fibers. Ideal for suits, silk, and formal wear.</p>
+                            <p className="text-white/80 leading-relaxed">Specialized chemical cleaning for delicate fabrics. Ideal for suits, silk, and formal wear, ensuring shape and color preservation.</p>
                         </div>
                     </motion.div>
 
                     {/* Bento 3: Household */}
-                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
+                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-4xl sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
                         <div>
                             <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-gray-900 mb-6 group-hover:bg-clothcare-primary group-hover:text-white transition-colors">
                                 <Droplets size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Household Items</h3>
-                            <p className="text-gray-500 leading-relaxed">Comforters, curtains, and linens treated to remove allergens and restore loftiness without the bulk of home machines.</p>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Shoe Cleaning</h3>
+                            <p className="text-gray-500 leading-relaxed">Expert cleaning and conditioning for all footwear. From leather conditioning to deodorizing, we restore your shoes to their original shine.</p>
                         </div>
                     </motion.div>
 
                     {/* Bento 4: Pressing */}
-                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
+                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-4xl sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
                         <div>
                             <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-gray-900 mb-6 group-hover:bg-clothcare-primary group-hover:text-white transition-colors">
                                 <Zap size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Press & Finish</h3>
-                            <p className="text-gray-500 leading-relaxed">Perfectly crisp collars and knife-edge creases. Our specialized pressing equipment restores the precise silhouette of your garments.</p>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Premium Ironing</h3>
+                            <p className="text-gray-500 leading-relaxed">Professional steam pressing for crisp, wrinkle-free clothes. Perfect creases and fabric protection for a polished, sharp look.</p>
                         </div>
                     </motion.div>
 
                     {/* Bento 5: Commercial */}
-                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-[2.5rem] p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
+                    <motion.div variants={fadeUpVariants} className="bg-[#FAFAFA] border border-gray-100 rounded-4xl sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between group transition-colors hover:bg-gray-50">
                         <div>
                             <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-gray-900 mb-6 group-hover:bg-clothcare-primary group-hover:text-white transition-colors">
                                 <ShieldCheck size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Commercial SLA</h3>
-                            <p className="text-gray-500 leading-relaxed">Reliable high-volume solutions for boutique hotels, gyms, and spas. Custom delivery schedules to keep your operations running perfectly.</p>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Household & Linens</h3>
+                            <p className="text-gray-500 leading-relaxed">Deep cleaning for comforters, curtains, and upholstery. We remove allergens and restore freshness to your home essentials.</p>
                         </div>
                     </motion.div>
                 </motion.div>

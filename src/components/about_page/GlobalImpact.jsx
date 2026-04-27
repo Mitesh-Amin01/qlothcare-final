@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Droplets, Globe, Zap } from 'lucide-react';
 
@@ -33,19 +34,18 @@ const GlobalImpact = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, margin: "0px 0px -50px 0px" }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="bg-white rounded-[4rem] p-8 md:p-16 lg:p-24 border border-gray-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] relative overflow-hidden"
                 >
 
                     {/* Decorative Map BG with slow scale */}
                     <div className="absolute inset-0 opacity-[0.03] z-0 overflow-hidden rounded-[4rem]">
-                        <motion.img
-                            animate={{ scale: [1, 1.1, 1] }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop"
+                        <Image
+                            src="/services/map.png"
                             alt="Map"
-                            className="w-full h-full object-cover grayscale mix-blend-multiply"
+                            fill
+                            className="object-cover grayscale mix-blend-multiply"
                         />
                     </div>
 

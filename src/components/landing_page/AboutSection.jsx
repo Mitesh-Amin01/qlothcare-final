@@ -61,7 +61,7 @@ export default function AboutSection() {
     <section className="py-24 bg-white min-h-screen overflow-hidden text-clothcare-darker font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Top Section */}
+        {/* Top Section - 3 Column Layout (4-5-3) */}
         <motion.div
           className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-20 lg:mb-32 items-start"
           variants={containerVariants}
@@ -69,71 +69,71 @@ export default function AboutSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
         >
-
-          {/* Left Column */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full">
-            <div className="perspective-1000">
+ 
+          {/* Left Column (4/12) */}
+          <div className="lg:col-span-4 flex flex-col justify-between h-full pt-4">
+            <div className="perspective-1000 mb-12 lg:mb-24">
               <motion.h2
                 variants={textRevealVariants}
-                className="text-[5.5rem] lg:text-[7.5rem] leading-[0.85] font-black tracking-tighter uppercase text-clothcare-darker mb-4 lg:mb-0 origin-bottom"
+                className="text-[4.5rem] sm:text-[5.5rem] lg:text-[7rem] leading-[0.85] font-black tracking-tighter uppercase text-clothcare-darker origin-bottom"
               >
                 About<br />Us
               </motion.h2>
             </div>
-
-            <motion.div className="mt-8 lg:mt-32 space-y-6" variants={fadeUpVariants}>
+ 
+            <motion.div className="space-y-6" variants={fadeUpVariants}>
               <div className="relative inline-block">
-                <p className="text-[0.65rem] font-bold tracking-wide uppercase text-clothcare-darker relative z-10 pb-1">
-                  Luxurious Interior and Industrial Design
+                <p className="text-[0.65rem] sm:text-[0.7rem] font-bold tracking-[0.2em] uppercase text-clothcare-primary relative z-10 pb-1">
+                  Premium Fabric Care & Innovation
                 </p>
-                <motion.div variants={lineVariants} className="absolute bottom-0 left-0 h-px bg-clothcare-darker" />
+                <motion.div variants={lineVariants} className="absolute bottom-0 left-0 h-px bg-clothcare-primary" />
               </div>
-              <p className="text-[0.85rem] text-clothcare-gray leading-[1.8] pr-4">
-                Modern Elegance: Designs featuring clean lines, neutral palettes, and high-quality materials.
+              <p className="text-[0.85rem] text-clothcare-gray leading-[1.8] pr-4 max-w-sm">
+                Redefining garment treatment through a blend of artisanal expertise and software-level precision.
               </p>
             </motion.div>
           </div>
-
-          {/* Center Column */}
+ 
+          {/* Center Column (5/12) */}
           <motion.div className="lg:col-span-5 relative group" variants={imageRevealVariants}>
-            <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-[2.5rem] overflow-hidden shadow-sm relative">
+            <div className="w-full h-[350px] sm:h-[450px] lg:h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
               <motion.img
-                src="/landingabout/about.png"
-                alt="Luxury Interior Main"
+                src="/landingabout/about_premium.png"
+                alt="Qlothcare Premium Studio"
                 className="w-full h-full object-cover origin-center"
                 whileHover={{ scale: 1.08 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div
-                className="absolute inset-0 bg-clothcare-primary/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                className="absolute inset-0 bg-clothcare-primary/10 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
               />
             </div>
           </motion.div>
-
-          {/* Right Column */}
-          <div className="lg:col-span-3 flex flex-col pt-2 lg:pt-4">
+ 
+          {/* Right Column (3/12) */}
+          <div className="lg:col-span-3 flex flex-col pt-2 lg:pt-8">
             <motion.div
-              className="w-full h-[180px] lg:h-[160px] relative overflow-hidden rounded-3xl mb-6 shadow-sm group"
+              className="w-full h-[200px] lg:h-[180px] relative overflow-hidden rounded-[2rem] mb-8 shadow-lg group"
               variants={imageRevealVariants}
             >
               <motion.img
-                src="/landingabout/about.png"
-                alt="Detail view"
-                className="w-full h-full object-cover object-top scale-110"
-                whileHover={{ scale: 1, y: -5 }}
+                src="/landingabout/about_detail.png"
+                alt="Fabric Inspection Detail"
+                className="w-full h-full object-cover object-center"
+                whileHover={{ scale: 1.1, y: -5 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
             </motion.div>
             <motion.div variants={fadeUpVariants}>
-              <h3 className="text-2xl lg:text-[1.7rem] font-bold text-clothcare-darker mb-3">
+              <h3 className="text-2xl lg:text-[1.8rem] font-bold text-clothcare-darker mb-4 tracking-tight leading-tight">
                 Our Philosophy
               </h3>
-              <p className="text-[0.85rem] text-clothcare-gray leading-[1.8] mt-4">
-                At Britto Charette, we believe in creating luxurious, personalized environments that reflect our clients' tastes and lifestyles.
+              <p className="text-[0.85rem] text-clothcare-gray leading-[1.8]">
+                At Qlothcare, we believe that every garment is a masterpiece. Our philosophy is rooted in preserving the lifespan of your wardrobe with obsessive quality control.
               </p>
             </motion.div>
           </div>
-
+ 
         </motion.div>
 
         {/* Bottom Section */}
@@ -156,72 +156,65 @@ export default function AboutSection() {
                 transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.15, delayChildren: 0.3 }
               }
             }}
-            className="bg-[#EFEFEF] rounded-[3rem] w-full relative pt-[300px] lg:pt-[100px] pb-12 px-6 lg:px-12 flex flex-col lg:flex-row justify-between items-end gap-12 lg:gap-8 shadow-[0_20px_40px_rgba(0,0,0,0.04)] perspective-[2000px]"
+            className="bg-[#F9F9F9] rounded-[4rem] w-full relative pt-[320px] lg:pt-[120px] pb-16 px-6 lg:px-16 flex flex-col lg:flex-row justify-between items-center lg:items-end gap-12 lg:gap-8 shadow-[0_30px_60px_rgba(0,0,0,0.04)] perspective-[2000px] border border-gray-100"
           >
-
-            {/* The White Notch / Meet The Principals Card */}
+ 
+            {/* The White Notch / Meet The Team Card */}
             <motion.div
               variants={{
                 hidden: { y: -80, opacity: 0, rotate: -2 },
                 visible: { y: -1, opacity: 1, rotate: 0, transition: { duration: 1, type: "spring", bounce: 0.5 } }
               }}
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
-              className="absolute -top-px left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] lg:w-[46%] bg-white pb-8 pt-6 px-4 lg:px-8 rounded-b-[3rem] flex flex-col items-center z-20 shadow-[0_15px_40px_rgba(0,0,0,0.08)] border-b border-l border-r border-[#EFEFEF]"
+              className="absolute -top-px left-1/2 -translate-x-1/2 w-[95%] md:w-[70%] lg:w-[48%] bg-white pb-10 pt-8 px-6 lg:px-10 rounded-b-[4rem] flex flex-col items-center z-20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border-b border-l border-r border-gray-50"
             >
-
-              {/* Inverted seamless borders */}
+ 
+              {/* Inverted seamless corners */}
               <div className="hidden lg:block absolute top-0 -left-[1.45rem] w-6 h-6 bg-transparent" style={{ boxShadow: "10px -10px 0 10px white", borderTopRightRadius: "1.5rem" }}></div>
               <div className="hidden lg:block absolute top-0 -right-[1.45rem] w-6 h-6 bg-transparent" style={{ boxShadow: "-10px -10px 0 10px white", borderTopLeftRadius: "1.5rem" }}></div>
-
-              {/* Text */}
-              <div className="mt-4 lg:mt-2 text-center w-full overflow-hidden">
+ 
+              <div className="text-center w-full overflow-hidden mb-6">
                 <motion.h2
                   variants={textRevealVariants}
-                  className="text-[2.2rem] lg:text-[2.6rem] leading-[1.05] font-black uppercase text-clothcare-darker tracking-tighter"
+                  className="text-[2.5rem] lg:text-[3rem] leading-[1] font-black uppercase text-clothcare-darker tracking-tighter"
                 >
-                  MEET THE
+                  THE MINDS
                 </motion.h2>
                 <motion.h2
                   variants={textRevealVariants}
-                  className="text-[2.2rem] lg:text-[2.6rem] leading-[1.05] font-black uppercase text-clothcare-darker tracking-tighter"
+                  className="text-[2.5rem] lg:text-[3rem] leading-[1] font-black uppercase text-clothcare-primary tracking-tighter italic font-serif"
                 >
-                  PRINCIPALS
+                  BEHIND CARE
                 </motion.h2>
               </div>
-
-              {/* Pill Image Gallery with Stagger */}
+ 
               <motion.div
-                className="flex gap-1.5 lg:gap-2 mt-6 mb-6"
+                className="flex flex-wrap justify-center gap-2 mb-8"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.5 } }
+                  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.6 } }
                 }}
               >
-                {[1, 2, 3, 4].map((i) => (
-                  <motion.div
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, y: 20, scale: 0.5, rotate: -30 },
-                      visible: { opacity: 1, y: 0, scale: 1, rotate: 0, transition: { type: "spring", stiffness: 200, damping: 12 } }
-                    }}
-                    whileHover={{ scale: 1.25, rotate: 10, y: -5, zIndex: 10 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="w-12 h-6 lg:w-18 lg:h-[1.8rem] rounded-full overflow-hidden bg-gray-200 cursor-pointer shadow-sm relative z-0"
+                {['Innovation', 'Quality', 'Hygiene', 'Sustainability'].map((tag) => (
+                  <motion.span
+                    key={tag}
+                    variants={fadeUpVariants}
+                    className="px-4 py-1.5 bg-gray-50 text-clothcare-gray text-[0.6rem] font-bold uppercase tracking-widest rounded-full border border-gray-100"
                   >
-                    <img src={`/landingabout/about.png`} alt={`Project ${i}`} className="w-full h-full object-cover object-center" />
-                  </motion.div>
+                    {tag}
+                  </motion.span>
                 ))}
               </motion.div>
-
+ 
               <motion.p
                 variants={fadeUpVariants}
-                className="text-[0.65rem] lg:text-[0.7rem] leading-[1.6] text-clothcare-gray text-center max-w-[95%] lg:max-w-[92%]"
+                className="text-sm leading-relaxed text-clothcare-gray text-center max-w-[90%]"
               >
-                As principal and licensed designer, the founder oversees the day-to-day operations of Britto Charette and the design and manufacture of our firm's custom furniture and award-winning accessories.
+                Our founders combined decades of experience in textile science and logistical engineering to create a service that treats every garment as a masterpiece.
               </motion.p>
             </motion.div>
-
-            {/* Left Principal Stack */}
+ 
+            {/* Left Member */}
             <motion.div
               variants={fadeUpVariants}
               className="w-full lg:w-[32%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 lg:pt-24 mt-8 lg:mt-0 group"
@@ -229,20 +222,19 @@ export default function AboutSection() {
               <motion.div
                 whileHover={{ y: -15, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-full max-w-[280px] lg:max-w-none rounded-3xl lg:rounded-4xl overflow-hidden mb-6 bg-clothcare-soft/20 shadow-md hover:shadow-2xl border border-clothcare-gray/10 relative transition-all duration-500"
+                className="w-full max-w-[280px] lg:max-w-none aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
               >
                 <img
                   src="/landingabout/team_member_ceo_1767511764298.png"
                   alt="Jay Britto"
-                  className="w-full h-auto object-cover object-top transform transition-transform duration-1000 ease-in-out group-hover:scale-[1.15]"
+                  className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
-              <h3 className="text-2xl lg:text-[2rem] font-bold text-clothcare-darker mb-1.5 tracking-tight group-hover:text-clothcare-primary transition-colors duration-500">Jay Britto</h3>
-              <p className="text-[0.6rem] lg:text-[0.7rem] text-clothcare-gray font-semibold uppercase tracking-widest mt-1">FOUNDER AND PRINCIPAL</p>
+              <h3 className="text-3xl font-bold text-clothcare-darker mb-1 tracking-tight">Jay Britto</h3>
+              <p className="text-xs text-clothcare-primary font-bold uppercase tracking-widest">CHIEF INNOVATION OFFICER</p>
             </motion.div>
-
-            {/* Right Principal Stack */}
+ 
+            {/* Right Member */}
             <motion.div
               variants={fadeUpVariants}
               className="w-full lg:w-[32%] flex flex-col items-center lg:items-end text-center lg:text-right z-10 mt-12 lg:mt-0 group"
@@ -250,17 +242,16 @@ export default function AboutSection() {
               <motion.div
                 whileHover={{ y: -15, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-full max-w-[280px] lg:max-w-none rounded-3xl lg:rounded-4xl overflow-hidden mb-6 bg-clothcare-soft/20 shadow-md hover:shadow-2xl border border-clothcare-gray/10 relative transition-all duration-500"
+                className="w-full max-w-[280px] lg:max-w-none aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
               >
                 <img
                   src="/landingabout/team_member_ops_1767511796826.png"
                   alt="David Charette"
-                  className="w-full h-auto object-cover object-top transform transition-transform duration-1000 ease-in-out group-hover:scale-[1.15]"
+                  className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
-              <h3 className="text-2xl lg:text-[2rem] font-bold text-clothcare-darker mb-1.5 tracking-tight group-hover:text-clothcare-primary transition-colors duration-500">David Charette</h3>
-              <p className="text-[0.6rem] lg:text-[0.7rem] text-clothcare-gray font-semibold uppercase tracking-widest mt-1">FOUNDER AND PRINCIPAL</p>
+              <h3 className="text-3xl font-bold text-clothcare-darker mb-1 tracking-tight">David Charette</h3>
+              <p className="text-xs text-clothcare-primary font-bold uppercase tracking-widest">DIRECTOR OF OPERATIONS</p>
             </motion.div>
 
           </motion.div>

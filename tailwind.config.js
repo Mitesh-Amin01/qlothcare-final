@@ -14,8 +14,9 @@ module.exports = {
         clothcare: {
           primary: '#E46F33',     // CTA buttons, highlights
           primaryDark: '#CC5F2B', // Hover state
-          dark: '#3C4249',        // Hero background
-          darker: '#2F343A',      // Deep sections
+          dark: '#3C4249',        // Secondary dark
+          darker: '#0B0D10',      // Main deep background
+          midnight: '#0B0D10',    // Premium deep black
           gray: '#778582',        // Muted text/icons
           graySoft: '#D1D3CF',    // Cards, borders
           white: '#FFFFFF',

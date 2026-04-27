@@ -22,7 +22,7 @@ const Timeline = () => {
         {
             year: "2029",
             title: "Global Standardization",
-            desc: "Now the trusted garment preservation partner for over 50 luxury fashion houses worldwide."
+            desc: "Now the trusted garment care partner for over 50 luxury fashion houses worldwide."
         }
     ];
 
@@ -66,7 +66,7 @@ const Timeline = () => {
                                 key={idx}
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
+                                viewport={{ once: true, margin: "0px 0px -50px 0px" }}
                                 transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.3 }}
                                 className={`relative flex flex-col md:flex-row items-center cursor-default ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                             >

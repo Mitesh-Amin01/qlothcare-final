@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Store, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react'
 
@@ -15,13 +16,18 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { scrollY } = useScroll()
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   /* ---------------- COLORS / GLASS TRANSFORMS ---------------- */
   const navBg = useTransform(
     scrollY,
     [0, 80],
-    ['rgba(255,255,255,0.55)', 'rgba(11,13,16,0.9)']
+    ['rgba(255,255,255,0.55)', 'rgba(11,13,16,0.95)']
   )
 
   const navBorder = useTransform(
@@ -44,11 +50,11 @@ export default function Navbar() {
   /* ---------------- ENTRY ANIMATION (ON LOAD) ---------------- */
   const navbarEntry = {
     initial: { y: -100, x: '-50%', opacity: 0 },
-    animate: { 
-      y: 0, 
-      x: '-50%', 
-      opacity: 1, 
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+    animate: {
+      y: 0,
+      x: '-50%',
+      opacity: 1,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     }
   }
 
@@ -71,7 +77,7 @@ export default function Navbar() {
   return (
     <motion.nav
       variants={navbarEntry}
-      initial="initial"
+      initial={mounted ? "initial" : false}
       animate="animate"
       style={{
         backgroundColor: navBg,
@@ -80,18 +86,20 @@ export default function Navbar() {
         boxShadow: navShadow,
         backdropFilter: blur,
       }}
-      className="fixed top-4 left-1/2 z-50 w-[96%] max-w-300 rounded-xl overflow-hidden"
+      className="fixed top-4 left-1/2 z-50 w-[96%] max-w-7xl rounded-xl overflow-hidden"
     >
       {/* ================= HEADER ================= */}
-      <div className="flex items-center justify-between px-6 md:px-8 py-4">
+      <div className="flex items-center justify-between px-4 md:px-8 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-clothcare-accent-gradient text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-              <rect x="4" y="2" width="16" height="20" rx="2" />
-              <circle cx="12" cy="14" r="4" />
-            </svg>
-          </div>
+          <Image
+            src="/logo/logo.png"
+            alt="Qlothcare Logo"
+            width={40}
+            height={40}
+            className="rounded-xl object-contain"
+            priority
+          />
           <motion.span style={{ color: textColor }} className="font-display text-2xl font-bold">
             Qlothcare<span className="text-text-accent">.</span>
           </motion.span>
@@ -147,7 +155,7 @@ export default function Navbar() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="md:hidden bg-black/95 text-white border-t border-white/10 backdrop-blur-xl"
+            className="md:hidden bg-clothcare-midnight/95 text-white border-t border-white/10 backdrop-blur-xl"
           >
             <div className="px-6 pt-6 pb-10 space-y-8">
               {/* Links */}

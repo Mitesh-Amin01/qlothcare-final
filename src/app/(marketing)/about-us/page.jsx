@@ -14,7 +14,7 @@ import JoinMovement from '@/components/about_page/JoinMovement';
    ========================================== */
 export default function WhoWeArePage() {
   return (
-    <div className="font-sans antialiased bg-white selection:bg-clothcare-primary/20 selection:text-[#0F172A]">
+    <div className="font-sans antialiased bg-[#050505] selection:bg-clothcare-primary/20 selection:text-white">
       <AboutHero />
       <Manifesto />
       <FoundersVision />

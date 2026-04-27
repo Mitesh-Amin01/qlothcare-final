@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 
 const FoundersVision = () => {
@@ -20,7 +21,7 @@ const FoundersVision = () => {
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
                         variants={{
                             hidden: { opacity: 0 },
                             visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
@@ -31,13 +32,11 @@ const FoundersVision = () => {
                             variants={{ hidden: { opacity: 0, scale: 0.8, rotate: -5 }, visible: { opacity: 1, scale: 1, rotate: 0, transition: { type: "spring", bounce: 0.4, duration: 1.5 } } }}
                             className="relative aspect-4/5 w-full max-w-md mx-auto lg:mx-0 rounded-[3rem] overflow-hidden shadow-2xl"
                         >
-                            <motion.img
-                                initial={{ scale: 1.2 }}
-                                whileInView={{ scale: 1 }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
-                                src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=1000&auto=format&fit=crop"
-                                className="w-full h-full object-cover"
+                            <Image
+                                src="/about/vision.png"
                                 alt="Founder Vision"
+                                fill
+                                className="object-cover"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent"></div>
 
@@ -67,7 +66,7 @@ const FoundersVision = () => {
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
                         variants={{
                             hidden: { opacity: 0 },
                             visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
@@ -102,19 +101,7 @@ const FoundersVision = () => {
                             </motion.p>
                         </div>
 
-                        <motion.div
-                            variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1, transition: { delay: 0.4, type: "spring" } } }}
-                            className="mt-12 p-6 bg-white border border-gray-100 rounded-4xl shadow-xl inline-flex items-center gap-6 group hover:shadow-2xl transition-shadow duration-300"
-                        >
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-clothcare-primary rounded-full blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                                <img src="/landingabout/team_member_ceo_1767511764298.png" alt="Founder" className="w-16 h-16 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-white shadow-md relative z-10" />
-                            </div>
-                            <div>
-                                <h4 className="text-gray-900 font-bold text-lg">Irfan Pathan</h4>
-                                <p className="text-clothcare-primary font-bold tracking-widest uppercase text-xs mt-1">CEO & Co-Founder</p>
-                            </div>
-                        </motion.div>
+
                     </motion.div>
 
                 </div>

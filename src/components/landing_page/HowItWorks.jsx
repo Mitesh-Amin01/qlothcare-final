@@ -1,34 +1,35 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
 import { CreditCard, Wallet, Smartphone, ShieldCheck, MapPin, Truck, Check, Droplets, Sparkles, Wind, TrendingUp, BarChart3, Clock, ChevronRight } from "lucide-react";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+const slideUp = {
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20, mass: 0.8 }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
 export default function HowItWorks() {
   return (
     <section className="py-24 md:py-32 bg-white overflow-hidden relative font-sans">
-      <div className="max-w-300 mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}
             className="max-w-4xl flex flex-col items-center"
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
               How Qlothcare <span className="text-clothcare-primary italic font-serif font-light pr-2">works.</span>
             </h2>
             <p className="text-gray-500 text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
-              We've streamlined the entire process so you can spend less time worrying about laundry and more time doing what you love.
+              We've streamlined our process to deliver the finest attention to detail with absolute comfort and convenience.
             </p>
           </motion.div>
         </div>
@@ -38,13 +39,13 @@ export default function HowItWorks() {
 
           {/* Card 1: Connect / Schedule */}
           <motion.div
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Schedule Pickup</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Book a Pickup</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Easily link your address, set your preferences, and choose a convenient time slot.
+                Schedule a pickup at your convenience through our website or a quick call. We work around your schedule.
               </p>
             </div>
 
@@ -67,10 +68,10 @@ export default function HowItWorks() {
                 </motion.div>
 
                 {/* Connection Lines (Simulated SVG) */}
-                <svg className="absolute top-1/2 left-0 w-full h-1/2 z-10" style={{ transform: 'translateY(-10px)' }}>
-                  <path d="M 50% 10 L 50% 30 L 15% 30 L 15% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
-                  <path d="M 50% 10 L 50% 30 L 50% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
-                  <path d="M 50% 10 L 50% 30 L 85% 30 L 85% 60" fill="none" stroke="#e5e7eb" strokeWidth="2" strokeDasharray="4 4" />
+                <svg className="absolute top-1/2 left-0 w-full h-1/2 z-10" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ transform: 'translateY(-10px)' }}>
+                  <path d="M 50 10 L 50 30 L 15 30 L 15 60" fill="none" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4 4" />
+                  <path d="M 50 10 L 50 30 L 50 60" fill="none" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4 4" />
+                  <path d="M 50 10 L 50 30 L 85 30 L 85 60" fill="none" stroke="#e5e7eb" strokeWidth="1" strokeDasharray="4 4" />
                 </svg>
 
                 {/* Bottom Nodes */}
@@ -81,24 +82,26 @@ export default function HowItWorks() {
                 </div>
               </div>
 
-              <motion.button
-                initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.8 }} viewport={{ once: true }}
-                className="w-full py-3.5 bg-clothcare-primary hover:bg-clothcare-primary/90 transition-colors text-white text-sm font-bold rounded-xl mt-8 flex items-center justify-center gap-2 group/btn"
-              >
-                Connect <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </motion.button>
+              <Link href="/login" className="block mt-8">
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: 0.8 }} viewport={{ once: true }}
+                  className="w-full py-3.5 bg-clothcare-primary hover:bg-clothcare-primary/90 transition-colors text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 group/btn"
+                >
+                  Connect <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
 
           {/* Card 2: Process / Goals */}
           <motion.div
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
+            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Expert Care</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Expert Processing</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Define cleaning preferences, and track your garments through our specialized care stages.
+                Your garments are handled with care using world-class machinery and eco-friendly cleaning solutions.
               </p>
             </div>
 
@@ -172,13 +175,13 @@ export default function HowItWorks() {
 
           {/* Card 3: Manage / Track / Delivery */}
           <motion.div
-            variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}
+            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">
-              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Fresh Delivery</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">Doorstep Delivery</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Get real-time insights, track your delivery driver, and manage logistics seamlessly.
+                Fresh, clean, and perfectly pressed clothes delivered back to your door within the promised timeframe.
               </p>
             </div>
 
@@ -215,7 +218,7 @@ export default function HowItWorks() {
                   <div>
                     <p className="text-xs font-bold text-gray-900 flex items-center gap-1.5"><Truck className="w-3.5 h-3.5 text-clothcare-primary" /> Out for delivery</p>
                     <p className="text-[10px] text-gray-500 mt-1 leading-snug">
-                      Your fresh laundry is 2.5 miles away and approaching quickly.
+                      Your fresh clothes are on their way back to you, perfectly cleaned and ready to wear.
                     </p>
                   </div>
                 </motion.div>

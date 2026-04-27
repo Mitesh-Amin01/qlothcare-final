@@ -34,23 +34,29 @@ export default function FranchiseModels() {
     ];
 
     return (
-        <section className="bg-black py-40 relative z-10 border-t border-white/10">
+        <section className="bg-black py-20 lg:py-40 relative z-10 border-t border-white/10">
             <div className="container mx-auto px-6 max-w-7xl">
-                <div className="mb-24 text-center max-w-3xl mx-auto">
-                    <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter">Deployment Models.</h2>
-                    <p className="text-white/60 text-xl font-medium leading-relaxed">
+                <motion.div
+                    initial={{ y: 20 }}
+                    whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="mb-16 lg:mb-24 text-center max-w-3xl mx-auto"
+                >
+                    <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tighter leading-tight">Deployment Models.</h2>
+                    <p className="text-white/60 text-lg sm:text-xl font-medium leading-relaxed px-4">
                         Select the infrastructure tier aligned with your capital deployment targets and real estate capacity.
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
                     {models.map((model, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ opacity: 0, y: 80, scale: 0.9, filter: "blur(10px)" }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                            initial={{ y: 40 }}
+                            whileInView={{ y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                             className={`relative p-10 md:p-14 flex flex-col justify-between rounded-[3rem] transition-all duration-500 overflow-hidden ${model.highlight
                                 ? 'bg-clothcare-primary shadow-[0_0_80px_rgba(228,111,51,0.2)] lg:scale-105 z-10'
                                 : 'bg-[#111] border border-white/5 hover:border-white/20'
@@ -94,7 +100,7 @@ export default function FranchiseModels() {
                                 ))}
                             </div>
 
-                            <button className={`relative z-10 w-full rounded-2xl py-5 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-black transition-all group ${model.highlight
+                            <button suppressHydrationWarning className={`relative z-10 w-full rounded-2xl py-5 flex items-center justify-center gap-3 uppercase tracking-widest text-sm font-black transition-all group ${model.highlight
                                 ? 'bg-black text-white hover:bg-white hover:text-black'
                                 : 'bg-white/10 text-white hover:bg-clothcare-primary'
                                 }`}>

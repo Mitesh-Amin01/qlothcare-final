@@ -12,25 +12,25 @@ export default function FranchiseSupport() {
     ];
 
     return (
-        <section className="bg-black py-40 relative z-10 border-t border-white/10">
+        <section className="bg-black py-20 lg:py-40 relative z-10 border-t border-white/10">
             <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
 
-                <div className="flex items-center gap-6 mb-20">
-                    <div className="w-16 h-16 rounded-full bg-clothcare-primary/20 flex items-center justify-center border border-clothcare-primary/30 shadow-[0_0_30px_rgba(228,111,51,0.2)]">
-                        <div className="w-8 h-8 rounded-full bg-clothcare-primary animate-pulse"></div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-12 lg:mb-20">
+                    <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-clothcare-primary/20 flex items-center justify-center border border-clothcare-primary/30 shadow-[0_0_30px_rgba(228,111,51,0.2)] shrink-0">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-clothcare-primary animate-pulse"></div>
                     </div>
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-2">Corporate Backbone.</h2>
-                        <span className="text-xs uppercase font-bold tracking-[0.2em] text-clothcare-primary">Engineered for success</span>
+                        <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tighter mb-1 lg:mb-2 leading-tight">Corporate Backbone.</h2>
+                        <span className="text-[10px] lg:text-xs uppercase font-bold tracking-[0.2em] text-clothcare-primary">Engineered for success</span>
                     </div>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-20">
                     <motion.div
-                        initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
-                        whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                        initial={{ x: -30 }}
+                        whileInView={{ x: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <p className="text-white/60 text-xl font-medium leading-relaxed max-w-md">
                             Your growth is the only variable we optimize. From day one, you tap into our centralized resource pool, built to scale across nationwide territories.
@@ -45,10 +45,10 @@ export default function FranchiseSupport() {
                         {supports.map((item, idx) => (
                             <motion.div
                                 key={idx}
-                                initial={{ opacity: 0, y: 60, scale: 0.9, filter: "blur(10px)" }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                                initial={{ y: 30 }}
+                                whileInView={{ y: 0 }}
                                 viewport={{ once: true, amount: 0.2 }}
-                                transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
                                 className="bg-[#111] border border-white/10 rounded-3xl p-8 hover:border-clothcare-primary hover:shadow-[0_20px_40px_rgba(228,111,51,0.15)] transition-all duration-500 group relative overflow-hidden flex flex-col justify-between"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 text-clothcare-primary group-hover:scale-110 transition-transform duration-500 shadow-inner">

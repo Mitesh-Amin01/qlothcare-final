@@ -1,54 +1,56 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 
-const smoothLoad = {
-  hidden: { opacity: 1, y: 20 },
+const slideUp = {
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "linear" }
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
   },
 };
 const ServicesSection = () => {
   const services = [
     {
-      title: "Wash & Fold",
-      description: "Professional washing and folding service with premium detergents and precise fabric care.",
+      title: "Premium Laundry",
+      description: "Professional washing and drying with fabric-specific care for your everyday clothes.",
       image: "/landingservices/fold.jpg",
     },
     {
       title: "Dry Cleaning",
-      description: "Expert dry cleaning for delicate fabrics, suits, and special garments requiring specialized attention.",
-      image: "/landingservices/drycleaning.jpg",
+      description: "Specialized chemical cleaning for delicate fabrics, suits, and premium silks.",
+      image: "/landingservices/dryCleaning.jpg",
     },
     {
-      title: "Press & Iron",
-      description: "Crisp pressing and ironing to keep your clothes looking sharp, professional, and ready to wear.",
-      image: "/landingservices/pressiron.jpeg",
+      title: "Shoe Cleaning",
+      description: "Expert cleaning and conditioning to restore your footwear to its original shine.",
+      image: "/landingservices/delivery.jpg",
+    },
+    {
+      title: "Premium Ironing",
+      description: "Professional steam pressing for crisp, wrinkle-free clothes with perfect creases.",
+      image: "/landingservices/pressIron.jpeg",
     },
     {
       title: "Stain Removal",
-      description: "Advanced stain treatment for tough spots and set-in stains using specialized extraction techniques.",
+      description: "Advanced treatment for tough spots using specialized, eco-friendly extraction techniques.",
       image: "/landingservices/stain.jpg",
-    },
-    {
-      title: "Pickup & Delivery",
-      description: "Convenient doorstep service where we securely pick up, clean, and deliver your fresh laundry.",
-      image: "/landingservices/delivery.jpg",
     },
   ];
 
   return (
     <div className="py-24 md:py-32 bg-gray-50 overflow-hidden relative font-sans">
-      <div className="max-w-300 mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
 
         {/* Modern Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={smoothLoad}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}
             className="max-w-4xl flex flex-col items-center"
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
@@ -75,14 +77,15 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={index}
-                variants={smoothLoad}
+                variants={slideUp}
                 className={`relative rounded-4xl overflow-hidden group transition-all duration-500 bg-black cursor-pointer transform-gpu ${colSpanClass} ${mdSpanClass}`}
               >
                 {/* Background Image with Hover Scale */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
+                    fill
                     className="w-full h-full object-cover transition-transform duration-1000 scale-[1.05] group-hover:scale-[1.12] opacity-80 group-hover:opacity-100"
                   />
                 </div>
@@ -128,10 +131,10 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} viewport={{ once: true }}
           className="mt-16 flex justify-center w-full"
         >
-          <a href="#" className="inline-flex items-center justify-center gap-2 group/btn">
+          <Link href="/services" className="inline-flex items-center justify-center gap-2 group/btn">
             <span className="text-clothcare-primary font-semibold text-lg hover:underline underline-offset-4 decoration-2">View All Care Packages</span>
             <span className="text-2xl text-clothcare-primary leading-none mb-1 group-hover/btn:translate-x-1 transition-transform">&rsaquo;</span>
-          </a>
+          </Link>
         </motion.div>
 
       </div>

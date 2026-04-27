@@ -45,11 +45,11 @@ const QualityProcess = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative z-10">
                         {[
-                            { step: '01', title: 'Intake Profiling', icon: <Smartphone size={24} />, desc: 'Digital logging and condition report creation.' },
-                            { step: '02', title: 'Stain Analysis', icon: <Sparkles size={24} />, desc: 'Microscopic fabric and blemish assessment.' },
-                            { step: '03', title: 'Precision Wash', icon: <Droplets size={24} />, desc: 'Custom formulated enzyme treatment.' },
-                            { step: '04', title: 'Hand Finishing', icon: <Zap size={24} />, desc: 'Steam processing and tensionless pressing.' },
-                            { step: '05', title: 'Final Audit', icon: <ShieldCheck size={24} />, desc: 'Multi-point verification before protective packaging.' }
+                            { step: '01', title: 'Digital Intake', icon: <Smartphone size={24} />, desc: 'Real-time order logging and initial garment profiling.' },
+                            { step: '02', title: 'Stain Assessment', icon: <Sparkles size={24} />, desc: 'Expert analysis of fabric type and stain nature.' },
+                            { step: '03', title: 'Precision Clean', icon: <Droplets size={24} />, desc: 'Eco-friendly processing with world-class machinery.' },
+                            { step: '04', title: 'Professional Finish', icon: <Zap size={24} />, desc: 'Premium steam ironing and crisp hand-finishing.' },
+                            { step: '05', title: 'Final Quality Audit', icon: <ShieldCheck size={24} />, desc: 'Rigorous inspection before secure, fresh packaging.' }
                         ].map((item, index) => (
                             <motion.div
                                 key={index}
@@ -103,9 +103,9 @@ const QualityProcess = () => {
                 >
                     <div className="w-16 h-px bg-gray-300 mx-auto mb-8"></div>
                     <p className="text-lg lg:text-xl text-gray-600 font-medium italic leading-relaxed">
-                        "Our obsessive attention to detail means every thread is inspected, every stain is meticulously targeted, and every garment returns to you in pristine, runway-ready condition."
+                        "We believe in enhancing our customers' lifestyles through continuous innovation and the finest attention to detail in every garment we handle."
                     </p>
-                    <p className="mt-4 text-sm text-gray-400 font-bold uppercase tracking-widest">— Qlothcare Quality Guarantee</p>
+                    <p className="mt-4 text-sm text-gray-400 font-bold uppercase tracking-widest">— Qloth Care Quality Guarantee</p>
                 </motion.div>
             </div>
         </section>

@@ -12,49 +12,71 @@ export default function FranchiseHero() {
     const y2 = useTransform(scrollY, [0, 1000], [0, -50]);
     const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
+    const containerVariants = {
+        initial: {},
+        animate: {
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2,
+            }
+        }
+    };
+
+    const itemVariants = {
+        initial: { y: 20 },
+        animate: {
+            y: 0,
+            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+        }
+    };
+
     return (
-        <section className="relative min-h-[180vh] bg-black overflow-hidden flex flex-col items-center justify-start pt-32 pb-40">
+        <section className="relative min-h-[120vh] lg:min-h-[180vh] bg-black overflow-hidden flex flex-col items-center justify-start pt-24 sm:pt-32 lg:pt-40 pb-20 lg:pb-40">
             {/* Ultra-Premium Cinematic Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {/* Core Deep Space Background */}
                 <div className="absolute inset-0 bg-black"></div>
 
-                {/* Massive Orange Glows */}
-                <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-clothcare-primary/20 rounded-full blur-[180px] opacity-80 mix-blend-screen"></div>
-
-                {/* Subtle White Stars/Noise */}
-                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
+                {/* Massive Orange Glows - Simplified for performance */}
+                <div className="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-clothcare-primary/10 rounded-full blur-[120px] opacity-40 mix-blend-screen"></div>
 
                 {/* Vertical Orange Light Rays */}
-                <div className="absolute top-0 left-1/4 w-px h-[600px] bg-linear-to-b from-transparent via-clothcare-primary/30 to-transparent"></div>
-                <div className="absolute top-20 right-1/3 w-px h-[400px] bg-linear-to-b from-transparent via-white/20 to-transparent"></div>
+                <div className="absolute top-0 left-1/4 w-px h-[600px] bg-linear-to-b from-transparent via-clothcare-primary/15 to-transparent"></div>
+                <div className="absolute top-20 right-1/3 w-px h-[400px] bg-linear-to-b from-transparent via-white/10 to-transparent"></div>
             </div>
 
             {/* Hero Copy */}
             <motion.div
-                style={{ y: y1, opacity }}
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+                style={{ y: y1, opacity, willChange: 'transform, opacity' }}
                 className="relative z-10 container mx-auto px-6 text-center max-w-5xl flex flex-col items-center mt-10 md:mt-20"
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 60, scale: 0.95, filter: 'blur(20px)' }}
-                    animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-                    transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                >
+                <motion.div variants={itemVariants}>
                     <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-clothcare-primary text-clothcare-primary text-xs font-bold tracking-[0.2em] uppercase mb-10 bg-clothcare-primary/10 shadow-[0_0_20px_rgba(228,111,51,0.2)]">
                         <Sparkles size={16} />
                         Enterprise Partnership Portal
                     </div>
+                </motion.div>
 
-                    <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-black text-white leading-[1] tracking-tighter mb-8 font-display mx-auto max-w-4xl">
-                        Own the <br className="hidden md:block" />
-                        <span className="text-clothcare-primary">infrastructure</span> <br className="hidden md:block" />
-                        of tomorrow.
-                    </h1>
+                <motion.h1
+                    variants={itemVariants}
+                    className="text-4xl sm:text-6xl lg:text-[6rem] font-black text-white leading-none tracking-tighter mb-6 sm:mb-8 font-display mx-auto max-w-4xl px-2"
+                >
+                    Own the <br className="hidden sm:block" />
+                    <span className="text-clothcare-primary">infrastructure</span> <br className="hidden sm:block" />
+                    of tomorrow.
+                </motion.h1>
 
-                    <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-medium leading-relaxed tracking-wide">
-                        Deploy aerospace-grade logistics, bio-enzyme tech, and automated CRM systems in your territory. We engineer the backend. You dominate the market.
-                    </p>
+                <motion.p
+                    variants={itemVariants}
+                    className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-medium leading-relaxed tracking-wide"
+                >
+                    Deploy aerospace-grade logistics, bio-enzyme tech, and automated CRM systems in your territory. We engineer the backend. You dominate the market.
+                </motion.p>
 
+                <motion.div variants={itemVariants}>
                     <Link href="#application">
                         <button className="group relative bg-clothcare-primary text-white font-black text-sm uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:bg-clothcare-primaryDark shadow-[0_0_40px_rgba(228,111,51,0.3)] hover:shadow-[0_0_60px_rgba(228,111,51,0.5)] overflow-hidden flex items-center justify-center gap-4 mx-auto w-[280px]">
                             <span className="relative z-10 flex items-center gap-3">Initialize <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" /></span>
@@ -63,22 +85,22 @@ export default function FranchiseHero() {
                 </motion.div>
             </motion.div>
 
-            {/* Application Mockup Image (Replacing CSS mockup for performance & aesthetics based on user feedback) */}
+            {/* Application Mockup Image */}
             <motion.div
-                style={{ y: y2 }}
-                initial={{ opacity: 0, y: 120, scale: 0.95, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-20 w-[95%] lg:w-[85%] max-w-[1900px] mx-auto px-4 sm:px-6 mt-32"
+                initial={{ y: 30 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                style={{ y: y2, willChange: 'transform' }}
+                className="relative z-20 w-[96%] lg:w-[85%] max-w-[1900px] mx-auto px-4 sm:px-6 mt-20 lg:mt-32"
             >
-                <div className="relative rounded-[2rem] bg-black border border-white/10 shadow-[0_0_150px_rgba(228,111,51,0.2)] overflow-hidden aspect-[4/3] md:aspect-[16/10] flex items-center justify-center">
+                <div className="relative rounded-4xl bg-black border border-white/10 shadow-[0_0_150px_rgba(228,111,51,0.15)] overflow-hidden aspect-4/3 md:aspect-16/10 flex items-center justify-center">
 
-                    {/* Placeholder for the user's dashboard image since we cannot easily create a perfect CSS replica of complex images. We will use a highly styled placeholder image here that strongly fits the theme */}
                     <Image
                         src={DashboardImage}
                         alt="Qlothcare Dashboard"
                         fill
                         className="object-cover opacity-80 mix-blend-luminosity"
+                        priority
                     />
 
                     {/* Orange Overlay */}

@@ -1,9 +1,10 @@
 'use client'
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   Phone, Mail, MessageSquare, MapPin,
   Send, ChevronDown, CheckCircle2, ArrowRight, Clock,
-  Truck, Sparkles, Store
+  Truck, Sparkles, Store, Facebook, Twitter, Instagram, Linkedin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -14,16 +15,24 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+      duration: 0.5,
+      ease: "easeOut"
+    }
   }
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] // Custom cubic-bezier for more premium feel
+    }
   }
 };
 
@@ -47,10 +56,10 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-white text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-white">
 
-      {/* ================= HERO SECTION (STUDIO STYLE) ================= */}
+      {/* ================= HERO SECTION (STUDIO STYLE) - COMMENTED FOR FUTURE USE =================
       <section className="relative pt-24 lg:pt-32 pb-16 overflow-hidden bg-[#FAFAFA]">
 
-        {/* Giant Background Text */}
+        {/* Giant Background Text * /}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-full text-center pointer-events-none select-none overflow-hidden z-0">
           <h1 className="text-[18vw] font-display font-black text-black/2 whitespace-nowrap leading-none tracking-tighter">
             Qlothcare
@@ -68,73 +77,99 @@ const ContactPage = () => {
             </motion.h2>
           </div>
 
-          {/* Stepped Image Gallery */}
+          {/* Stepped Image Gallery * /}
           <div className="flex items-end justify-center h-[300px] sm:h-[400px] lg:h-[550px] max-w-6xl mx-auto gap-2 md:gap-4 lg:gap-6">
 
-            {/* 01 */}
+            {/* 01 (Outermost Left - Hidden on Mobile) * /}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="w-[15%] flex flex-col items-center"
+              className="hidden sm:flex w-[15%] flex-col items-center"
             >
               <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">04</span>
-              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5">
-                <img src="/landingabout/team_member_ceo_1767511764298.png" className="w-full h-full object-cover grayscale opacity-80" alt="Hub 1" />
+              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
+                <Image src="/about/alexander.png" fill className="object-cover grayscale opacity-80" alt="Team Member 04" />
               </div>
             </motion.div>
 
-            {/* 02 */}
+            {/* 02 (Middle Left) * /}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="w-[20%] flex flex-col items-center"
+              className="w-[25%] sm:w-[20%] flex flex-col items-center"
             >
               <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">02</span>
-              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5">
-                <img src="/landingabout/team_member_ops_1767511796826.png" className="w-full h-full object-cover grayscale opacity-80" alt="Hub 2" />
+              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
+                <Image src="/about/elena.png" fill className="object-cover grayscale opacity-80" alt="Team Member 02" />
               </div>
             </motion.div>
 
-            {/* 03 (Center / Largest) */}
+            {/* 03 (Center / Largest) * /}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="w-[30%] flex flex-col items-center relative z-20 -mt-8"
+              className="w-[50%] sm:w-[30%] flex flex-col items-center relative z-20 -mt-8"
             >
               <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">01</span>
               <div className="w-full h-[280px] sm:h-[380px] lg:h-[500px] bg-gray-200 overflow-hidden shadow-2xl shadow-black/10 relative group border-[6px] sm:border-10 lg:border-14 border-[#FAFAFA]">
                 <div className="absolute inset-0 bg-clothcare-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
-                <img src="/landingabout/team_member_ceo_1767511764298.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="Hub 3" />
+                <Image src="/landingabout/team_member_ceo_1767511764298.png" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="CEO" priority />
               </div>
             </motion.div>
 
-            {/* 04 */}
+            {/* 04 (Middle Right) * /}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="w-[20%] flex flex-col items-center"
+              className="w-[25%] sm:w-[20%] flex flex-col items-center"
             >
               <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">03</span>
-              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5">
-                <img src="/landingabout/team_member_ops_1767511796826.png" className="w-full h-full object-cover grayscale opacity-80" alt="Hub 4" />
+              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
+                <Image src="/about/marcus.png" fill className="object-cover grayscale opacity-80" alt="Team Member 03" />
               </div>
             </motion.div>
 
-            {/* 05 */}
+            {/* 05 (Outermost Right - Hidden on Mobile) * /}
             <motion.div
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="w-[15%] flex flex-col items-center"
+              className="hidden sm:flex w-[15%] flex-col items-center"
             >
               <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">05</span>
-              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5">
-                <img src="/landingabout/team_member_ceo_1767511764298.png" className="w-full h-full object-cover grayscale opacity-80" alt="Hub 5" />
+              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
+                <Image src="/landingabout/team_member_ops_1767511796826.png" fill className="object-cover grayscale opacity-80" alt="Team Member 05" />
               </div>
             </motion.div>
 
           </div>
         </div>
       </section>
+      */}
+
+      {/* ================= PAGE TITLE ================= */}
+      <section className="pt-32 pb-12 bg-white">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center"
+          >
+            <h1 className="text-5xl md:text-7xl font-display font-bold text-clothcare-dark mb-6 tracking-tight">
+              Get in <span className="text-clothcare-primary italic">Touch</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+              Have a question or need assistance? Our team is dedicated to providing you with the best garment care experience.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* ================= QUICK INFO COLUMNS ================= */}
       <section className="relative z-20 bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16 lg:py-20 border-b border-clothcare-graySoft/20">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16 lg:py-20 border-b border-clothcare-graySoft/20"
+          >
 
             <InfoColumn
               title="Phone"
@@ -168,17 +203,23 @@ const ContactPage = () => {
               val2="South Bopal, Ahmedabad"
             />
 
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ================= FORM & SIDEBAR SECTION ================= */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-16"
+          >
 
             {/* Left Box: Form Container */}
-            <div className="lg:col-span-7">
+            <motion.div variants={fadeUp} className="lg:col-span-7">
               <div className="bg-white rounded-4xl p-8 lg:p-12 shadow-[0_15px_40px_rgb(228,111,51,0.06)] border border-clothcare-graySoft/20">
                 <h2 className="text-3xl font-display font-bold text-clothcare-dark mb-8">Send us a Message</h2>
 
@@ -254,10 +295,10 @@ const ContactPage = () => {
                   )}
                 </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Box: Info Sidebar */}
-            <div className="lg:col-span-5 space-y-12 lg:pt-8">
+            <motion.div variants={fadeUp} className="lg:col-span-5 space-y-12 lg:pt-8">
 
               {/* Business Hours */}
               <div>
@@ -302,27 +343,38 @@ const ContactPage = () => {
                   Stay connected for garment care tips and special offers.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <SocialPill text="Facebook" />
-                  <SocialPill text="Twitter" />
-                  <SocialPill text="Instagram" />
-                  <SocialPill text="LinkedIn" />
+                  <SocialPill text="Facebook" icon={<Facebook size={16} />} />
+                  <SocialPill text="Twitter" icon={<Twitter size={16} />} />
+                  <SocialPill text="Instagram" icon={<Instagram size={16} />} />
+                  <SocialPill text="LinkedIn" icon={<Linkedin size={16} />} />
                 </div>
               </div>
 
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* ================= ACCORDION SECTION (ERP/SERVICES) ================= */}
       <section id="info" className="py-24 bg-clothcare-primary/5">
         <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-clothcare-dark mb-4">Other Important Information</h2>
             <p className="text-gray-500 text-lg font-medium">Find essential details regarding online booking routines, rider tracking, and offline store processes.</p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
             <AccordionItem
               icon={<Truck size={24} strokeWidth={1.5} />}
               title="Online Booking & Rider Pickup"
@@ -338,7 +390,7 @@ const ContactPage = () => {
               title="Without Driver / Offline Store Direct Submit"
               content="Prefer to handle things yourself? We support a 'Direct Submit' process for customers dropping off clothes manually at our flagship hub. Using minimal touchpoints, our store staff directly ingest your items into the system. It connects instantly to your ERP profile, granting you the same tracking transparency as online bookings, but without the rider fees."
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -351,8 +403,12 @@ const ContactPage = () => {
    ========================================== */
 
 const InfoColumn = ({ icon, title, desc, val1, val2 }) => (
-  <motion.div variants={fadeUp} className="flex flex-col items-center text-center p-4">
-    <div className="w-14 h-14 bg-clothcare-primary/10 text-clothcare-primary rounded-full flex items-center justify-center mb-6">
+  <motion.div
+    variants={fadeUp}
+    whileHover={{ y: -5 }}
+    className="flex flex-col items-center text-center p-6 rounded-3xl hover:bg-clothcare-primary/2 transition-colors group"
+  >
+    <div className="w-14 h-14 bg-clothcare-primary/10 text-clothcare-primary rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
       {icon}
     </div>
     <h3 className="text-xl font-display font-bold text-clothcare-dark mb-3">{title}</h3>
@@ -371,20 +427,26 @@ const HourRow = ({ day, time }) => (
   </div>
 );
 
-const SocialPill = ({ text }) => (
-  <button className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-clothcare-graySoft/30 text-sm font-bold text-gray-500 hover:border-clothcare-primary hover:text-clothcare-primary shadow-sm hover:shadow-md transition-all active:scale-95">
-    <span className="w-4 h-4 rounded-full bg-clothcare-graySoft/30 group-hover:bg-clothcare-primary overflow-hidden flex items-center justify-center transition-colors">
-      <div className="w-2 h-2 bg-white rounded-full"></div>
+const SocialPill = ({ text, icon }) => (
+  <motion.button
+    suppressHydrationWarning
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-clothcare-graySoft/30 text-sm font-bold text-gray-500 hover:border-clothcare-primary hover:text-clothcare-primary shadow-sm hover:shadow-md transition-all"
+  >
+    <span className="text-gray-400 group-hover:text-clothcare-primary transition-colors">
+      {icon}
     </span>
     {text}
-  </button>
+  </motion.button>
 );
 
 const AccordionItem = ({ icon, title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-white rounded-3xl shadow-[0_5px_20px_rgb(228,111,51,0.03)] border border-clothcare-graySoft/20 overflow-hidden transition-all duration-300">
+    <motion.div variants={fadeUp} className="bg-white rounded-3xl shadow-[0_5px_20px_rgb(228,111,51,0.03)] border border-clothcare-graySoft/20 overflow-hidden transition-all duration-300">
       <button
+        suppressHydrationWarning
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors"
       >
@@ -410,7 +472,7 @@ const AccordionItem = ({ icon, title, content }) => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
@@ -426,6 +488,7 @@ const SuccessMessage = ({ onReset }) => (
     <h3 className="text-2xl font-display font-bold text-clothcare-dark mb-3">Message Sent Successfully!</h3>
     <p className="text-gray-500 max-w-xs mx-auto mb-8 font-medium">We've received your query and our team will get back to you shortly.</p>
     <button
+      suppressHydrationWarning
       onClick={onReset}
       className="text-white bg-clothcare-primary hover:bg-clothcare-primaryDark px-6 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95"
     >

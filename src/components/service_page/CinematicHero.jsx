@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { Sparkles, ShieldCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -27,7 +28,13 @@ const CinematicHero = () => {
                         initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 2, ease: "easeOut" }}
                         className="absolute inset-0 w-full h-full"
                     >
-                        <img src="https://images.unsplash.com/photo-1549887552-cb1071d3e5ca?q=80&w=2000&auto=format&fit=crop" className="w-full h-full object-cover grayscale mix-blend-luminosity" alt="Full Fabric Background" />
+                        <Image
+                            src="/hero/fabric_bg.png"
+                            alt="Full Fabric Background"
+                            fill
+                            priority
+                            className="object-cover grayscale mix-blend-luminosity"
+                        />
                     </motion.div>
                 </div>
 
@@ -60,27 +67,26 @@ const CinematicHero = () => {
                     className="w-full max-w-6xl mx-auto flex flex-col items-center"
                 >
                     {/* Top Label */}
-                    <motion.div variants={fadeUpVariants} className="flex items-center gap-3 mb-12 sm:mb-16">
-                        <div className="w-8 h-px bg-clothcare-primary"></div>
-                        <span className="text-clothcare-primary text-xs sm:text-sm font-bold uppercase tracking-[0.4em] glow-text">
-                            Next Era Fabric Care
+                    <motion.div variants={fadeUpVariants} className="flex items-center gap-3 mb-8 sm:mb-16">
+                        <div className="w-6 sm:w-8 h-px bg-clothcare-primary"></div>
+                        <span className="text-clothcare-primary text-[10px] sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.4em] glow-text">
+                            India's Most Trusted Fabric Care
                         </span>
-                        <div className="w-8 h-px bg-clothcare-primary"></div>
+                        <div className="w-6 sm:w-8 h-px bg-clothcare-primary"></div>
                     </motion.div>
 
                     {/* Massive Typography */}
                     <motion.div variants={fadeUpVariants} className="relative w-full">
                         {/* Background ghost text */}
-                        <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10rem] md:text-[18rem] lg:text-[24rem] font-bold text-white/3 tracking-tighter whitespace-nowrap pointer-events-none select-none z-0 mix-blend-overlay">
+                        <h1 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12vw] sm:text-[12rem] md:text-[18rem] lg:text-[24rem] font-bold text-white/3 tracking-tighter whitespace-normal sm:whitespace-nowrap text-center pointer-events-none select-none z-0 mix-blend-overlay">
                             QLOTHCARE
                         </h1>
 
-                        <h2 className="relative z-10 text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10.5rem] font-black text-white leading-[0.80] tracking-tighter drop-shadow-2xl">
-                            <span className="inline-block hover:scale-[1.02] transition-transform duration-500 hover:text-white/90 cursor-default">ARTISANAL</span> <br />
+                        <h2 className="relative z-10 text-[2.5rem] xs:text-[3.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10.5rem] font-black text-white leading-[1.1] sm:leading-[0.80] tracking-tighter drop-shadow-2xl">
+                            <span className="inline-block hover:scale-[1.02] transition-transform duration-500 hover:text-white/90 cursor-default">PREMIUM</span> <br className="sm:hidden" />
                             <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-white/80 to-white/40 italic font-light inline-block hover:-rotate-2 transition-transform duration-500 cursor-default">CARE.</span> <br />
                             <span className="inline-block relative">
-                                ENGINEERED.
-                                <Sparkles className="absolute -top-4 -right-12 text-clothcare-primary w-8 h-8 md:w-16 md:h-16 animate-pulse drop-shadow-[0_0_15px_rgba(228,111,51,0.5)]" />
+                                DELIVERED.
                             </span>
                         </h2>
                     </motion.div>
@@ -88,24 +94,37 @@ const CinematicHero = () => {
                     {/* Glassmorphism Info Card */}
                     <motion.div
                         variants={fadeUpVariants}
-                        className="mt-16 sm:mt-24 w-full max-w-4xl relative group"
+                        className="mt-12 sm:mt-24 w-full max-w-4xl relative group"
                     >
                         <div className="absolute inset-0 bg-linear-to-r from-clothcare-primary/30 via-blue-900/20 to-transparent blur-2xl -z-10 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                        <div className="bg-white/3 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-6 sm:p-10 flex flex-col md:flex-row items-center gap-8 shadow-2xl relative overflow-hidden transition-all duration-500 hover:bg-white/5">
+                        <div className="bg-white/3 backdrop-blur-3xl border border-white/10 rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 sm:gap-8 shadow-2xl relative overflow-hidden transition-all duration-500 hover:bg-white/5">
 
                             {/* Card inner shine */}
                             <div className="absolute top-0 -left-full w-1/2 h-full bg-linear-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-[200%] transition-all duration-1000 ease-in-out"></div>
 
-                            <div className="flex -space-x-4 shrink-0 shadow-2xl">
-                                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=200&auto=format&fit=crop" alt="Couture" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#1a1a1a] object-cover" />
-                                <img src="https://images.unsplash.com/photo-1582735689141-8600cd5c25db?q=80&w=200&auto=format&fit=crop" alt="Suits" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#1a1a1a] object-cover" />
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#1a1a1a] bg-clothcare-primary flex items-center justify-center text-white font-bold backdrop-blur-md shadow-[0_0_20px_rgba(228,111,51,0.3)]">
-                                    <ShieldCheck size={24} />
+                            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                                <Image
+                                    src="/hero/couture.png"
+                                    alt="Couture"
+                                    width={80}
+                                    height={80}
+                                    className="w-12 h-12 sm:w-16 md:w-20 rounded-full border-2 border-white/10 object-cover shadow-lg"
+                                />
+                                <Image
+                                    src="/hero/suit.png"
+                                    alt="Suits"
+                                    width={80}
+                                    height={80}
+                                    className="w-12 h-12 sm:w-16 md:w-20 rounded-full border-2 border-white/10 object-cover shadow-lg"
+                                />
+                                <div className="w-12 h-12 sm:w-16 md:w-20 rounded-full border-2 border-white/10 bg-clothcare-primary flex items-center justify-center text-white font-bold backdrop-blur-md shadow-[0_0_20px_rgba(228,111,51,0.3)]">
+                                    <ShieldCheck size={20} className="sm:hidden" />
+                                    <ShieldCheck size={24} className="hidden sm:block" />
                                 </div>
                             </div>
 
-                            <p className="text-base sm:text-xl text-white/70 leading-relaxed font-light text-left pl-4 border-l border-white/10">
-                                From your daily essentials to <span className="text-white font-medium drop-shadow-md">couture preservation</span>, we apply precision technology and expert hand-finishing to restore your wardrobe to its original glory.
+                            <p className="text-sm sm:text-xl text-white/70 leading-relaxed font-light text-center md:text-left pl-0 md:pl-4 border-l-0 md:border-l border-white/10">
+                                Experience <span className="text-white font-medium drop-shadow-md">hassle-free laundry</span> with free pickup and delivery. We combine world-class machinery with eco-friendly practices to restore your wardrobe.
                             </p>
                         </div>
                     </motion.div>
