@@ -8,24 +8,24 @@ import Link from 'next/link';
 const PricingSection = () => {
 
   const containerVariants = {
-    hidden: { opacity: 1 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.1,
       }
     }
   };
 
   const fadeUpVariants = {
-    hidden: { y: 20 },
-    visible: { y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { y: 60, rotateX: -10 },
+    visible: { y: 0, rotateX: 0, transition: { type: "spring", stiffness: 80, damping: 15 } }
   };
 
   const scaleUpVariants = {
-    hidden: { y: 30 },
-    visible: { y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { scale: 0.9, y: 50 },
+    visible: { scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
   };
+
 
   return (
     <section id="pricing" className="relative py-24 md:py-32 bg-white font-sans overflow-hidden">

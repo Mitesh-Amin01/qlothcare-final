@@ -153,6 +153,7 @@ const Footer = () => {
             <h4 className="font-display font-bold text-lg mb-6 text-white">Resources</h4>
             <ul className="space-y-4 text-clothcare-graySoft/70">
               <FooterLink text="How It Works" href="/how-it-works" />
+              <FooterLink text="Request Demo" href="/demo" badge="NEW" />
               <FooterLink text="Support" href="/contact-us" />
             </ul>
           </motion.div>

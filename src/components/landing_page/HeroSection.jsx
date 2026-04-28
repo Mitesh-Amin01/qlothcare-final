@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { ArrowRight, RefreshCcw } from 'lucide-react';
 import { motion } from 'motion/react';
+import Link from 'next/link';
 
 export default function HeroSection() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -65,8 +66,8 @@ export default function HeroSection() {
           <div className="lg:col-span-7 flex flex-col justify-center">
             {introFinished && (
               <motion.div
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 className="text-left"
               >
@@ -95,8 +96,8 @@ export default function HeroSection() {
             {introFinished && (
               <>
                 <motion.p
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={{ x: 50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
                   className="text-base sm:text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-lg drop-shadow-md"
                 >
@@ -106,19 +107,19 @@ export default function HeroSection() {
                 </motion.p>
 
                 <motion.div
-                  initial={{ scale: 0.95, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
+                  initial={{ x: 50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
                   // Stack buttons vertically on mobile (flex-col), row on sm+ devices
                   className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 w-full sm:w-auto"
                 >
                   {/* Primary CTA */}
-                  <button className="group relative flex items-center justify-between sm:justify-start gap-4 bg-clothcare-primary text-white rounded-full pl-6 sm:pl-8 pr-2 py-2 h-14 sm:h-16 font-semibold transition-all hover:bg-clothcare-primaryDark shadow-lg shadow-orange-900/20 hover:shadow-orange-700/40 hover:scale-[1.02] sm:hover:scale-105 active:scale-95 w-full sm:w-auto">
+                  <Link href="/services" className="group relative flex items-center justify-between sm:justify-start gap-4 bg-clothcare-primary text-white rounded-full pl-6 sm:pl-8 pr-2 py-2 h-14 sm:h-16 font-semibold transition-all hover:bg-clothcare-primaryDark shadow-lg shadow-orange-900/20 hover:shadow-orange-700/40 hover:scale-[1.02] sm:hover:scale-105 active:scale-95 w-full sm:w-auto">
                     <span className="text-base sm:text-lg tracking-wide whitespace-nowrap">Explore Services</span>
                     <span className="w-10 h-10 sm:w-12 sm:h-12 bg-white text-clothcare-primary rounded-full flex items-center justify-center transition-transform group-hover:rotate-45">
                       <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-3" />
                     </span>
-                  </button>
+                  </Link>
 
                   {/* Secondary CTA */}
                   <button

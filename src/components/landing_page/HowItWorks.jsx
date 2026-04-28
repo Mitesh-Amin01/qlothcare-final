@@ -5,14 +5,16 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { CreditCard, Wallet, Smartphone, ShieldCheck, MapPin, Truck, Check, Droplets, Sparkles, Wind, TrendingUp, BarChart3, Clock, ChevronRight } from "lucide-react";
 
-const slideUp = {
-  hidden: { opacity: 0, y: 50 },
+const tiltUp = {
+  hidden: { y: 60, rotateX: -20, scale: 0.95 },
   visible: {
-    opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    rotateX: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 70, damping: 15 }
   },
 };
+
 
 export default function HowItWorks() {
   return (
@@ -22,7 +24,7 @@ export default function HowItWorks() {
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={tiltUp}
             className="max-w-4xl flex flex-col items-center"
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
@@ -39,7 +41,7 @@ export default function HowItWorks() {
 
           {/* Card 1: Connect / Schedule */}
           <motion.div
-            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={tiltUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">
@@ -95,7 +97,7 @@ export default function HowItWorks() {
 
           {/* Card 2: Process / Goals */}
           <motion.div
-            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
+            variants={tiltUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">
@@ -175,7 +177,7 @@ export default function HowItWorks() {
 
           {/* Card 3: Manage / Track / Delivery */}
           <motion.div
-            variants={slideUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}
+            variants={tiltUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}
             className="bg-gray-50 rounded-4xl p-8 shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 flex flex-col relative group"
           >
             <div className="mb-8 relative z-20">

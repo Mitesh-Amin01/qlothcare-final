@@ -6,14 +6,15 @@ import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
-const slideUp = {
-  hidden: { opacity: 0, y: 40 },
+const scaleIn = {
+  hidden: { scale: 0.85, rotate: -2 },
   visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    scale: 1,
+    rotate: 0,
+    transition: { type: "spring", stiffness: 80, damping: 15 }
   },
 };
+
 const ServicesSection = () => {
   const services = [
     {
@@ -50,7 +51,7 @@ const ServicesSection = () => {
         {/* Modern Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={slideUp}
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={scaleIn}
             className="max-w-4xl flex flex-col items-center"
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.05] tracking-tight mb-6 md:mb-8">
@@ -77,7 +78,7 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={index}
-                variants={slideUp}
+                variants={scaleIn}
                 className={`relative rounded-4xl overflow-hidden group transition-all duration-500 bg-black cursor-pointer transform-gpu ${colSpanClass} ${mdSpanClass}`}
               >
                 {/* Background Image with Hover Scale */}

@@ -25,22 +25,22 @@ const floatingCards = [
 ];
 
 const containerFade = {
-   hidden: { opacity: 0 },
+   hidden: {},
    visible: {
-      opacity: 1,
       transition: { staggerChildren: 0.1, delayChildren: 0.2 }
    },
 };
 
 const floatUp = {
-   hidden: { opacity: 0, y: 50, scale: 0.95 },
+   hidden: { y: 60, scale: 0.9, rotate: -2 },
    visible: {
-      opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      rotate: 0,
+      transition: { type: "spring", stiffness: 80, damping: 15 }
    },
 };
+
 
 const TestimonialsSection = () => {
    return (
@@ -74,13 +74,13 @@ const TestimonialsSection = () => {
                   >
                      {/* Render based on card type */}
                      {card.type === 'image' && (
-                        <div className="w-full h-full overflow-hidden rounded-xl md:rounded-2xl lg:rounded-[2rem] shadow-lg">
+                        <div className="w-full h-full overflow-hidden rounded-xl md:rounded-2xl lg:rounded-4xl shadow-lg">
                            <img src={card.src} alt="Testimonial User" className="w-full h-full object-cover" />
                         </div>
                      )}
 
                      {card.type === 'text' && (
-                        <div className={`flex flex-col h-full justify-between p-4 md:p-6 backdrop-blur-sm rounded-xl md:rounded-2xl lg:rounded-[2rem] shadow-xl border border-gray-100 ${card.className.includes('bg-clothcare') ? 'bg-clothcare-primary/90' : 'bg-white/95'}`}>
+                        <div className={`flex flex-col h-full justify-between p-4 md:p-6 backdrop-blur-sm rounded-xl md:rounded-2xl lg:rounded-4xl shadow-xl border border-gray-100 ${card.className.includes('bg-clothcare') ? 'bg-clothcare-primary/90' : 'bg-white/95'}`}>
                            <div className="flex gap-0.5 mb-2">
                               {[...Array(5)].map((_, i) => (
                                  <Star key={i} className={`w-3 h-3 md:w-4 md:h-4 fill-current ${card.className.includes('bg-clothcare') ? 'text-white' : 'text-orange-400'}`} />

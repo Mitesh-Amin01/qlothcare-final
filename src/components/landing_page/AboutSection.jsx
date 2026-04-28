@@ -7,9 +7,8 @@ export default function AboutSection() {
 
   // Professional "Crazy" Animation Variants based on motion/react
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {}, // no opacity
     visible: {
-      opacity: 1,
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.1,
@@ -18,10 +17,9 @@ export default function AboutSection() {
   };
 
   const textRevealVariants = {
-    hidden: { y: 120, opacity: 0, rotateX: -45, scale: 0.9 },
+    hidden: { y: 120, rotateX: -45, scale: 0.9 },
     visible: {
       y: 0,
-      opacity: 1,
       rotateX: 0,
       scale: 1,
       transition: { type: "spring", stiffness: 60, damping: 12, duration: 1 }
@@ -29,9 +27,8 @@ export default function AboutSection() {
   };
 
   const fadeUpVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    hidden: { y: 50, scale: 0.95 },
     visible: {
-      opacity: 1,
       y: 0,
       scale: 1,
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
@@ -39,15 +36,15 @@ export default function AboutSection() {
   };
 
   const imageRevealVariants = {
-    hidden: { opacity: 0, scale: 0.85, filter: "blur(15px)", borderRadius: "100px" },
+    hidden: { scale: 0.85, rotate: -2, borderRadius: "100px" },
     visible: {
-      opacity: 1,
       scale: 1,
-      filter: "blur(0px)",
+      rotate: 0,
       borderRadius: "40px",
       transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] }
     }
   };
+
 
   const lineVariants = {
     hidden: { width: "0%" },
@@ -69,7 +66,7 @@ export default function AboutSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
         >
- 
+
           {/* Left Column (4/12) */}
           <div className="lg:col-span-4 flex flex-col justify-between h-full pt-4">
             <div className="perspective-1000 mb-12 lg:mb-24">
@@ -80,7 +77,7 @@ export default function AboutSection() {
                 About<br />Us
               </motion.h2>
             </div>
- 
+
             <motion.div className="space-y-6" variants={fadeUpVariants}>
               <div className="relative inline-block">
                 <p className="text-[0.65rem] sm:text-[0.7rem] font-bold tracking-[0.2em] uppercase text-clothcare-primary relative z-10 pb-1">
@@ -93,7 +90,7 @@ export default function AboutSection() {
               </p>
             </motion.div>
           </div>
- 
+
           {/* Center Column (5/12) */}
           <motion.div className="lg:col-span-5 relative group" variants={imageRevealVariants}>
             <div className="w-full h-[350px] sm:h-[450px] lg:h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl relative">
@@ -109,11 +106,11 @@ export default function AboutSection() {
               />
             </div>
           </motion.div>
- 
+
           {/* Right Column (3/12) */}
           <div className="lg:col-span-3 flex flex-col pt-2 lg:pt-8">
             <motion.div
-              className="w-full h-[200px] lg:h-[180px] relative overflow-hidden rounded-[2rem] mb-8 shadow-lg group"
+              className="w-full h-[200px] lg:h-[180px] relative overflow-hidden rounded-4xl mb-8 shadow-lg group"
               variants={imageRevealVariants}
             >
               <motion.img
@@ -133,7 +130,7 @@ export default function AboutSection() {
               </p>
             </motion.div>
           </div>
- 
+
         </motion.div>
 
         {/* Bottom Section */}
@@ -158,7 +155,7 @@ export default function AboutSection() {
             }}
             className="bg-[#F9F9F9] rounded-[4rem] w-full relative pt-[320px] lg:pt-[120px] pb-16 px-6 lg:px-16 flex flex-col lg:flex-row justify-between items-center lg:items-end gap-12 lg:gap-8 shadow-[0_30px_60px_rgba(0,0,0,0.04)] perspective-[2000px] border border-gray-100"
           >
- 
+
             {/* The White Notch / Meet The Team Card */}
             <motion.div
               variants={{
@@ -168,26 +165,26 @@ export default function AboutSection() {
               whileHover={{ y: -5, transition: { duration: 0.3 } }}
               className="absolute -top-px left-1/2 -translate-x-1/2 w-[95%] md:w-[70%] lg:w-[48%] bg-white pb-10 pt-8 px-6 lg:px-10 rounded-b-[4rem] flex flex-col items-center z-20 shadow-[0_20px_50px_rgba(0,0,0,0.08)] border-b border-l border-r border-gray-50"
             >
- 
+
               {/* Inverted seamless corners */}
               <div className="hidden lg:block absolute top-0 -left-[1.45rem] w-6 h-6 bg-transparent" style={{ boxShadow: "10px -10px 0 10px white", borderTopRightRadius: "1.5rem" }}></div>
               <div className="hidden lg:block absolute top-0 -right-[1.45rem] w-6 h-6 bg-transparent" style={{ boxShadow: "-10px -10px 0 10px white", borderTopLeftRadius: "1.5rem" }}></div>
- 
+
               <div className="text-center w-full overflow-hidden mb-6">
                 <motion.h2
                   variants={textRevealVariants}
-                  className="text-[2.5rem] lg:text-[3rem] leading-[1] font-black uppercase text-clothcare-darker tracking-tighter"
+                  className="text-[2.5rem] lg:text-[3rem] leading-none font-black uppercase text-clothcare-darker tracking-tighter"
                 >
                   THE MINDS
                 </motion.h2>
                 <motion.h2
                   variants={textRevealVariants}
-                  className="text-[2.5rem] lg:text-[3rem] leading-[1] font-black uppercase text-clothcare-primary tracking-tighter italic font-serif"
+                  className="text-[2.5rem] lg:text-[3rem] leading-none font-black uppercase text-clothcare-primary tracking-tighter italic font-serif"
                 >
                   BEHIND CARE
                 </motion.h2>
               </div>
- 
+
               <motion.div
                 className="flex flex-wrap justify-center gap-2 mb-8"
                 variants={{
@@ -205,7 +202,7 @@ export default function AboutSection() {
                   </motion.span>
                 ))}
               </motion.div>
- 
+
               <motion.p
                 variants={fadeUpVariants}
                 className="text-sm leading-relaxed text-clothcare-gray text-center max-w-[90%]"
@@ -213,7 +210,7 @@ export default function AboutSection() {
                 Our founders combined decades of experience in textile science and logistical engineering to create a service that treats every garment as a masterpiece.
               </motion.p>
             </motion.div>
- 
+
             {/* Left Member */}
             <motion.div
               variants={fadeUpVariants}
@@ -222,7 +219,7 @@ export default function AboutSection() {
               <motion.div
                 whileHover={{ y: -15, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-full max-w-[280px] lg:max-w-none aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
+                className="w-full max-w-[280px] lg:max-w-none aspect-4/5 rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
               >
                 <img
                   src="/landingabout/team_member_ceo_1767511764298.png"
@@ -233,7 +230,7 @@ export default function AboutSection() {
               <h3 className="text-3xl font-bold text-clothcare-darker mb-1 tracking-tight">Jay Britto</h3>
               <p className="text-xs text-clothcare-primary font-bold uppercase tracking-widest">CHIEF INNOVATION OFFICER</p>
             </motion.div>
- 
+
             {/* Right Member */}
             <motion.div
               variants={fadeUpVariants}
@@ -242,7 +239,7 @@ export default function AboutSection() {
               <motion.div
                 whileHover={{ y: -15, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="w-full max-w-[280px] lg:max-w-none aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
+                className="w-full max-w-[280px] lg:max-w-none aspect-4/5 rounded-[2.5rem] overflow-hidden mb-8 bg-gray-100 shadow-xl border border-gray-100 relative transition-all duration-500"
               >
                 <img
                   src="/landingabout/team_member_ops_1767511796826.png"

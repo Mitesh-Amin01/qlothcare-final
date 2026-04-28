@@ -5,43 +5,39 @@ import { Search, Sparkles, CheckCircle2, SlidersHorizontal, ToggleRight, Calenda
 import { motion } from 'motion/react';
 
 const slideUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { y: 60 },
   visible: {
-    opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    transition: { type: "spring", stiffness: 80, damping: 15 }
   },
 };
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -30, y: 10 },
+  hidden: { x: -60, rotate: -2 },
   visible: {
-    opacity: 1,
     x: 0,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    rotate: 0,
+    transition: { type: "spring", stiffness: 80, damping: 15 }
   },
 };
 
 const zoomIn = {
-  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  hidden: { scale: 0.85 },
   visible: {
-    opacity: 1,
     scale: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    transition: { type: "spring", stiffness: 100, damping: 15 }
   },
 };
 
 const slideInRight = {
-  hidden: { opacity: 0, x: 30, y: 10 },
+  hidden: { x: 60, rotate: 2 },
   visible: {
-    opacity: 1,
     x: 0,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    rotate: 0,
+    transition: { type: "spring", stiffness: 80, damping: 15 }
   },
 };
+
 
 const WhyChooseUs = () => {
   const [sliderVal, setSliderVal] = useState(8);
