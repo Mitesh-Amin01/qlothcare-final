@@ -12,7 +12,7 @@ export default function FranchiseMetrics() {
     ];
 
     return (
-        <section className="bg-black py-20 lg:py-32 relative z-10 overflow-hidden">
+        <section className="bg-clothcare-black py-20 lg:py-32 relative z-10 overflow-hidden">
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,111,51,0.05)_0%,transparent_70%)]"></div>
 
@@ -20,19 +20,31 @@ export default function FranchiseMetrics() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {stats.map((stat, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ y: 30 }}
-                            whileInView={{ y: 0 }}
-                            viewport={{ once: true, amount: 0.2 }}
-                            transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                            className="bg-[#0A0A0A] border border-white/10 rounded-3xl p-10 flex flex-col justify-between items-center text-center group hover:border-clothcare-primary/50 transition-colors duration-500 shadow-xl"
-                        >
-                            <div className="w-20 h-20 rounded-2xl bg-clothcare-primary/10 text-clothcare-primary flex items-center justify-center mb-8 group-hover:bg-clothcare-primary group-hover:text-white transition-colors duration-500">
+                      <motion.div
+  key={idx}
+  initial={{
+    y: 30,
+    borderColor: "rgba(255,255,255,0.1)",
+  }}
+  whileInView={{
+    y: 0,
+  }}
+  whileHover={{
+    borderColor: "rgba(228,111,51,0.5)",
+  }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{
+    duration: 0.6,
+    delay: idx * 0.05,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+  className="bg-clothcare-black border rounded-3xl p-10 flex flex-col justify-between items-center text-center group shadow-xl"
+>
+                            <div className="w-20 h-20 rounded-2xl bg-clothcare-primary/10 text-text-accent flex items-center justify-center mb-8 group-hover:bg-clothcare-primary group-hover:text-text-primary transition-colors duration-500">
                                 {stat.icon}
                             </div>
-                            <div className="text-5xl font-black text-white tracking-tighter mb-4 group-hover:text-clothcare-primary transition-colors duration-500">{stat.value}</div>
-                            <div className="text-xs text-white/50 uppercase tracking-widest font-bold leading-relaxed">{stat.label}</div>
+                            <div className="text-5xl font-black text-text-primary tracking-tighter mb-4 group-hover:text-text-accent transition-colors duration-500">{stat.value}</div>
+                            <div className="text-xs text-text-primary/50 uppercase tracking-widest font-bold leading-relaxed">{stat.label}</div>
                         </motion.div>
                     ))}
                 </div>

@@ -17,9 +17,9 @@ const Button = ({
 
   // ClothCare Theme Variants
   const variants = {
-    primary: "bg-[#E46F33] text-white hover:bg-[#CC5F2B] shadow-lg shadow-[#E46F33]/20",
+    primary: "bg-[#E46F33] text-text-primary hover:bg-[#CC5F2B] shadow-lg shadow-[#E46F33]/20",
     outline: "border-2 border-[#D1D3CF] text-[#3C4249] hover:border-[#E46F33] hover:text-[#E46F33]",
-    dark: "bg-[#2F343A] text-white hover:bg-[#3C4249]",
+    dark: "bg-[#2F343A] text-text-primary hover:bg-[#3C4249]",
     ghost: "text-[#778582] hover:bg-[#D1D3CF]/20",
   };
 

@@ -41,9 +41,9 @@ const CoreValues = () => {
     };
 
     return (
-        <section className="py-24 lg:py-40 bg-white relative overflow-hidden border-y border-gray-100">
+        <section className="py-24 lg:py-40 bg-clothcare-midnight relative overflow-hidden border-y border-clothcare-graySoft/10">
             {/* Soft decorative blur */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-clothcare-primary/2 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-clothcare-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
 
@@ -53,9 +53,9 @@ const CoreValues = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, type: "spring" }}
-                        className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-50 text-clothcare-primary mb-6"
+                        className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-clothcare-primary/30 bg-clothcare-primary/10 text-clothcare-primary mb-6"
                     >
-                        <ShieldCheck size={20} />
+                        <ShieldCheck size={20} strokeWidth={1.75} />
                     </motion.div>
 
                     <motion.span
@@ -63,16 +63,16 @@ const CoreValues = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="block text-clothcare-primary font-bold uppercase tracking-[0.2em] text-xs"
+                        className="block text-clothcare-primary font-display font-semibold uppercase tracking-[0.25em] text-xs"
                     >
-                        03 / Core Tenets
+                        Core Tenets
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3, duration: 0.8 }}
-                        className="text-5xl lg:text-6xl font-black text-gray-900 mt-4 tracking-tight leading-tight"
+                        className="font-display text-5xl lg:text-6xl font-black text-text-primary mt-4 tracking-tight leading-tight"
                     >
                         The Qlothcare Standards.
                     </motion.h2>
@@ -90,24 +90,33 @@ const CoreValues = () => {
                             key={idx}
                             variants={itemVariants}
                             whileHover={{ y: -10 }}
-                            className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8 md:p-10 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(28,31,173,0.1)] hover:border-clothcare-primary/20 transition-all duration-500 group relative overflow-hidden"
+                            className="group relative bg-clothcare-dark/30 backdrop-blur-sm border border-clothcare-graySoft/10 rounded-[2.5rem] p-8 md:p-10 overflow-hidden transition-colors duration-500 hover:bg-clothcare-dark/50 hover:border-clothcare-primary/30"
                         >
                             {/* Hover effect background glow */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-clothcare-primary/5 rounded-full blur-3xl scale-0 group-hover:scale-100 transition-transform duration-700 origin-center pointer-events-none"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-clothcare-primary/10 rounded-full blur-3xl scale-0 group-hover:scale-100 transition-transform duration-700 origin-center pointer-events-none" />
+
+                            {/* Signature: spectral scan-light sweep */}
+                            <div className="absolute inset-0 overflow-hidden rounded-[2.5rem] pointer-events-none">
+                                <div className="absolute -inset-y-10 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-clothcare-primary/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-[260%] transition-all duration-[1100ms] ease-out" />
+                            </div>
 
                             <motion.div
                                 animate={{ y: [0, -5, 0] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
-                                className="w-16 h-16 bg-white border border-gray-100 rounded-[1.25rem] shadow-sm flex items-center justify-center text-gray-900 mb-8 group-hover:bg-clothcare-primary group-hover:text-white transition-colors duration-500 group-hover:shadow-[0_10px_20px_rgba(28,31,173,0.2)]"
+                                className="relative w-16 h-16 bg-clothcare-midnight/60 border border-clothcare-graySoft/15 rounded-[1.25rem] flex items-center justify-center text-clothcare-graySoft mb-8 transition-all duration-500 group-hover:bg-clothcare-primary group-hover:border-clothcare-primary group-hover:text-text-primary group-hover:shadow-clothcareSoft"
                             >
                                 <item.icon size={30} strokeWidth={1.5} />
                             </motion.div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-clothcare-primary transition-colors">{item.title}</h3>
-                            <p className="text-gray-500 font-light leading-relaxed group-hover:text-gray-600 transition-colors">{item.desc}</p>
+                            <h3 className="relative font-display text-xl font-bold text-text-primary mb-4 group-hover:text-clothcare-primary transition-colors duration-500">
+                                {item.title}
+                            </h3>
+                            <p className="relative text-clothcare-graySoft/70 font-light leading-relaxed group-hover:text-clothcare-graySoft/90 transition-colors duration-500">
+                                {item.desc}
+                            </p>
 
                             {/* Animated line on hover */}
-                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-linear-to-r from-clothcare-primary to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-t-lg"></div>
+                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-clothcare-accent-gradient bg-clothcare-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-t-lg" />
                         </motion.div>
                     ))}
                 </motion.div>

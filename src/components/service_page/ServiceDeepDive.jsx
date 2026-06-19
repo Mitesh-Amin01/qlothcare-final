@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 const ServiceDeepDive = () => {
     return (
-        <section className="py-24 bg-[#0a0a0a] text-white border-y border-white/5 relative overflow-hidden">
+        <section className="py-24 bg-clothcare-darker text-text-primary border-y border-white/5 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-clothcare-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 <motion.div
@@ -14,12 +14,12 @@ const ServiceDeepDive = () => {
                     transition={{ duration: 0.8 }}
                     className="mb-16"
                 >
-                    <span className="text-clothcare-primary font-bold uppercase tracking-[0.2em] text-xs">04 / Material Specific</span>
-                    <h2 className="text-4xl lg:text-5xl font-bold mt-4 tracking-tight">Material Specific Care.</h2>
+                    <span className="text-text-accent font-bold uppercase tracking-[0.2em] text-xs">Fabric Expertise</span>
+                    <h2 className="text-4xl lg:text-5xl font-bold mt-4 tracking-tight">Care tailored to every fabric.</h2>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
-                        className="text-white/60 mt-6 max-w-2xl text-lg font-light leading-relaxed">
-                        Every fabric has a unique cellular structure. Our treatment protocols are scientifically matched to individual material profiles to ensure structural integrity and color fidelity.
+                        className="text-text-primary/60 mt-6 max-w-2xl text-lg font-light leading-relaxed">
+                        No two garments are the same. That's why every fabric receives specialized treatment designed to protect its texture, color, and longevity.
                     </motion.p>
                 </motion.div>
 
@@ -36,10 +36,10 @@ const ServiceDeepDive = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: idx * 0.15 }}
-                            className="p-8 border border-white/10 rounded-3xl bg-white/5 hover:bg-white/10 transition-colors duration-300 group"
+                            className="p-8 border border-white/10 rounded-3xl bg-bg-bg-white/5 hover:bg-bg-bg-white/10 transition-colors duration-300 group"
                         >
-                            <h3 className="text-2xl font-bold mb-4 group-hover:text-clothcare-primary transition-colors">{service.title}</h3>
-                            <p className="text-white/60 leading-relaxed font-light">{service.desc}</p>
+                            <h3 className="text-2xl font-bold mb-4 group-hover:text-text-accent transition-colors">{service.title}</h3>
+                            <p className="text-text-primary/60 leading-relaxed font-light">{service.desc}</p>
                         </motion.div>
                     ))}
                 </div>

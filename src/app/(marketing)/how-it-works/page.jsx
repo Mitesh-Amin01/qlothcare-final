@@ -22,12 +22,12 @@ const AppMockupBooking = () => (
       </div>
       <div className="space-y-4">
          <div className="bg-clothcare-primary/10 p-4 rounded-xl flex items-center gap-4 border border-clothcare-primary">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-clothcare-primary font-bold">1</div>
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-text-accent font-bold">1</div>
             <div>
                <p className="font-bold text-[#0F172A] text-sm">Select Service</p>
                <p className="text-xs text-text-muted">Wash & Fold (12lbs)</p>
             </div>
-            <CheckCircle2 className="w-5 h-5 text-clothcare-primary ml-auto" />
+            <CheckCircle2 className="w-5 h-5 text-text-accent ml-auto" />
          </div>
          <div className="bg-gray-50 p-4 rounded-xl flex items-center gap-4 border border-gray-100">
             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-400 font-bold">2</div>
@@ -48,8 +48,8 @@ const AppMockupProcessing = () => (
       <div className="absolute top-0 right-0 w-32 h-32 bg-clothcare-primary rounded-full blur-[50px] opacity-20"></div>
       <div className="relative z-10">
          <div className="flex items-center gap-3 mb-6">
-            <QrCode className="text-white w-6 h-6" />
-            <span className="text-white font-bold tracking-wide">Item #892-A</span>
+            <QrCode className="text-text-primary w-6 h-6" />
+            <span className="text-text-primary font-bold tracking-wide">Item #892-A</span>
          </div>
          <div className="space-y-3">
             <div className="flex justify-between text-sm text-gray-400 border-b border-white/10 pb-2">
@@ -58,16 +58,16 @@ const AppMockupProcessing = () => (
             </div>
             <div className="flex justify-between text-sm text-gray-400 border-b border-white/10 pb-2">
                <span>Fabric ID</span>
-               <span className="text-white font-bold">Silk/Wool</span>
+               <span className="text-text-primary font-bold">Silk/Wool</span>
             </div>
             <div className="flex justify-between text-sm text-gray-400 pb-2">
                <span>Detergent</span>
-               <span className="text-clothcare-primary font-bold">Eco-Solv™</span>
+               <span className="text-text-accent font-bold">Eco-Solv™</span>
             </div>
          </div>
          <div className="mt-6 bg-white/10 p-3 rounded-lg text-center">
-            <p className="text-xs text-white/50 uppercase tracking-wider">Current Stage</p>
-            <p className="text-lg font-bold text-white animate-pulse">Hydro-Cleaning</p>
+            <p className="text-xs text-text-primary/50 uppercase tracking-wider">Current Stage</p>
+            <p className="text-lg font-bold text-text-primary animate-pulse">Hydro-Cleaning</p>
          </div>
       </div>
    </div>
@@ -97,7 +97,7 @@ const NewHero = () => {
 
                   <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-[#0F172A] mb-6 leading-[1.1]">
                      The Lifecycle of <br />
-                     <span className="text-clothcare-primary">Perfectly Clean.</span>
+                     <span className="text-text-accent">Perfectly Clean.</span>
                   </h1>
 
                   <p className="text-xl text-text-muted mb-10 leading-relaxed max-w-lg">
@@ -106,15 +106,15 @@ const NewHero = () => {
 
                   <div className="flex flex-wrap gap-4">
                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-gray-200 shadow-sm">
-                        <ShieldCheck className="text-clothcare-primary w-5 h-5" />
+                        <ShieldCheck className="text-text-accent w-5 h-5" />
                         <span className="text-sm font-bold text-[#0F172A]">Insured</span>
                      </div>
                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-gray-200 shadow-sm">
-                        <Clock className="text-clothcare-primary w-5 h-5" />
+                        <Clock className="text-text-accent w-5 h-5" />
                         <span className="text-sm font-bold text-[#0F172A]">24h Turnaround</span>
                      </div>
                      <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-gray-200 shadow-sm">
-                        <Zap className="text-clothcare-primary w-5 h-5" />
+                        <Zap className="text-text-accent w-5 h-5" />
                         <span className="text-sm font-bold text-[#0F172A]">Eco-Powered</span>
                      </div>
                   </div>
@@ -140,15 +140,15 @@ const NewHero = () => {
                         </div>
                         <Link
                            href="/login"
-                           className="w-full bg-[#0F172A] text-white font-bold py-4 rounded-xl hover:bg-clothcare-primary transition-all shadow-lg flex items-center justify-center gap-2 group"
+                           className="w-full bg-[#0F172A] text-text-primary font-bold py-4 rounded-xl hover:bg-clothcare-primary transition-all shadow-lg flex items-center justify-center gap-2 group"
                         >
                            Start Tracking <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
                      </div>
 
-                     <div className="mt-6 pt-6 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
+                     <div className="mt-6 pt-6 border-t border-gray-100 flex justify-between items-center text-xs text-text-muted">
                         <span>Recent: #ORD-9921 (Delivered)</span>
-                        <a href="#" className="text-clothcare-primary font-bold hover:underline">View History</a>
+                        <a href="#" className="text-text-accent font-bold hover:underline">View History</a>
                      </div>
                   </div>
                </div>
@@ -171,7 +171,7 @@ const ProcessGrid = () => {
             {/* PHASE 1: INITIATION */}
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-32 items-center">
                <div className="order-2 lg:order-1">
-                  <span className="text-clothcare-primary font-bold uppercase tracking-widest text-sm mb-2 block">Phase 01</span>
+                  <span className="text-text-accent font-bold uppercase tracking-widest text-sm mb-2 block">Phase 01</span>
                   <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Digital Initiation</h2>
 
                   <div className="space-y-8 relative">
@@ -180,7 +180,7 @@ const ProcessGrid = () => {
 
                      {/* Step 1 */}
                      <div className="relative pl-16">
-                        <div className="absolute left-0 top-0 w-12 h-12 bg-white border-2 border-clothcare-primary rounded-full flex items-center justify-center font-bold text-clothcare-primary z-10 shadow-sm">1</div>
+                        <div className="absolute left-0 top-0 w-12 h-12 bg-white border-2 border-clothcare-primary rounded-full flex items-center justify-center font-bold text-text-accent z-10 shadow-sm">1</div>
                         <h3 className="text-xl font-bold text-[#0F172A] mb-2">Service Booking</h3>
                         <p className="text-text-muted leading-relaxed">
                            User selects service type (Wash/Dry Clean) and specific garment preferences via the App.
@@ -189,7 +189,7 @@ const ProcessGrid = () => {
 
                      {/* Step 2 */}
                      <div className="relative pl-16">
-                        <div className="absolute left-0 top-0 w-12 h-12 bg-gray-100 border-2 border-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500 z-10">2</div>
+                        <div className="absolute left-0 top-0 w-12 h-12 bg-gray-100 border-2 border-gray-200 rounded-full flex items-center justify-center font-bold text-text-muted z-10">2</div>
                         <h3 className="text-xl font-bold text-[#0F172A] mb-2">Smart Scheduling</h3>
                         <p className="text-text-muted leading-relaxed">
                            Our algorithm matches your pickup window with the nearest available driver to minimize carbon footprint.
@@ -213,18 +213,18 @@ const ProcessGrid = () => {
                   <div>
                      <AppMockupProcessing />
                   </div>
-                  <div className="text-white">
-                     <span className="text-clothcare-primary font-bold uppercase tracking-widest text-sm mb-2 block">Phase 02</span>
-                     <h2 className="font-display text-4xl font-bold text-white mb-6">The Lab</h2>
+                  <div className="text-text-primary">
+                     <span className="text-text-accent font-bold uppercase tracking-widest text-sm mb-2 block">Phase 02</span>
+                     <h2 className="font-display text-4xl font-bold text-text-primary mb-6">The Lab</h2>
 
                      <div className="grid gap-6">
                         {/* Step 3 */}
                         <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
                            <div className="flex items-center gap-3 mb-3">
-                              <Search className="text-clothcare-primary" />
+                              <Search className="text-text-accent" />
                               <h3 className="text-xl font-bold">Order Verification</h3>
                            </div>
-                           <p className="text-white/60 text-sm">
+                           <p className="text-text-primary/60 text-sm">
                               Every item is photographed, tagged with a QR code, and inspected for pre-existing damage.
                            </p>
                         </div>
@@ -232,10 +232,10 @@ const ProcessGrid = () => {
                         {/* Step 4 */}
                         <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors">
                            <div className="flex items-center gap-3 mb-3">
-                              <Zap className="text-clothcare-primary" />
+                              <Zap className="text-text-accent" />
                               <h3 className="text-xl font-bold">Precision Washing</h3>
                            </div>
-                           <p className="text-white/60 text-sm">
+                           <p className="text-text-primary/60 text-sm">
                               Fabrics are treated with custom pH-balanced solvents in computer-controlled cycles.
                            </p>
                         </div>
@@ -247,7 +247,7 @@ const ProcessGrid = () => {
             {/* PHASE 3: THE REFINEMENT */}
             <div className="mb-32">
                <div className="text-center mb-16">
-                  <span className="text-clothcare-primary font-bold uppercase tracking-widest text-sm mb-2 block">Phase 03</span>
+                  <span className="text-text-accent font-bold uppercase tracking-widest text-sm mb-2 block">Phase 03</span>
                   <h2 className="font-display text-3xl lg:text-5xl font-bold text-[#0F172A]">Artisanal Finishing</h2>
                   <p className="text-text-muted mt-4 max-w-2xl mx-auto px-4">
                      Beyond cleaning, we restore. Our finishing process ensures every garment returns in a condition that exceeds "like-new".
@@ -261,7 +261,7 @@ const ProcessGrid = () => {
                         <ShieldCheck size={32} />
                      </div>
                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-clothcare-primary font-bold font-mono">05</span>
+                        <span className="text-text-accent font-bold font-mono">05</span>
                         <h3 className="text-2xl font-bold text-[#0F172A]">Quality Audit</h3>
                      </div>
                      <p className="text-text-muted leading-relaxed text-sm">
@@ -270,16 +270,16 @@ const ProcessGrid = () => {
                   </div>
 
                   {/* Step 6: Sensory Infusion */}
-                  <div className="group bg-[#0F172A] p-8 rounded-[2.5rem] shadow-clothcare text-white hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
+                  <div className="group bg-[#0F172A] p-8 rounded-[2.5rem] shadow-clothcare text-text-primary hover:-translate-y-2 transition-all duration-500 relative overflow-hidden">
                      <div className="absolute top-0 right-0 w-32 h-32 bg-clothcare-primary/10 rounded-full blur-3xl"></div>
-                     <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-clothcare-primary mb-8 group-hover:rotate-12 transition-transform">
+                     <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-text-accent mb-8 group-hover:rotate-12 transition-transform">
                         <Zap size={32} />
                      </div>
                      <div className="flex items-center gap-3 mb-4 relative z-10">
-                        <span className="text-clothcare-primary font-bold font-mono text-xl">06</span>
+                        <span className="text-text-accent font-bold font-mono text-xl">06</span>
                         <h3 className="text-2xl font-bold">Steam & Scent</h3>
                      </div>
-                     <p className="text-white/60 leading-relaxed text-sm relative z-10">
+                     <p className="text-text-primary/60 leading-relaxed text-sm relative z-10">
                         Clothes undergo an Ozone infusion treatment that neutralizes bacteria and odors, followed by a bespoke steam session to relax fibers and restore drape.
                      </p>
                   </div>
@@ -290,7 +290,7 @@ const ProcessGrid = () => {
                         <Package size={32} />
                      </div>
                      <div className="flex items-center gap-3 mb-4">
-                        <span className="text-clothcare-primary font-bold font-mono">07</span>
+                        <span className="text-text-accent font-bold font-mono">07</span>
                         <h3 className="text-2xl font-bold text-[#0F172A]">Bespoke Pack</h3>
                      </div>
                      <p className="text-text-muted leading-relaxed text-sm">
@@ -299,7 +299,7 @@ const ProcessGrid = () => {
 
                      {/* Mini Label Visual */}
                      <div className="mt-8 bg-gray-50 border border-gray-200 rounded-xl p-3 flex items-center gap-3">
-                        <div className="w-10 h-10 bg-clothcare-primary text-white rounded-lg flex items-center justify-center text-[10px] font-bold">RFID</div>
+                        <div className="w-10 h-10 bg-clothcare-primary text-text-primary rounded-lg flex items-center justify-center text-[10px] font-bold">RFID</div>
                         <div>
                            <p className="text-[10px] font-bold text-[#0F172A] uppercase tracking-tighter">Ready for Dispatch</p>
                            <p className="text-[9px] text-text-muted">ID: #VAULT-Q92</p>
@@ -311,7 +311,7 @@ const ProcessGrid = () => {
 
             {/* PHASE 4: THE RETURN */}
             <div className="text-center mb-12">
-               <span className="text-clothcare-primary font-bold uppercase tracking-widest text-sm mb-2 block">Phase 04</span>
+               <span className="text-text-accent font-bold uppercase tracking-widest text-sm mb-2 block">Phase 04</span>
                <h2 className="font-display text-3xl font-bold text-[#0F172A]">Delivery & Success</h2>
             </div>
 
@@ -322,7 +322,7 @@ const ProcessGrid = () => {
                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
                         <Truck size={24} />
                      </div>
-                     <span className="text-clothcare-primary font-bold font-mono text-xl">08</span>
+                     <span className="text-text-accent font-bold font-mono text-xl">08</span>
                   </div>
                   <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Delivery Process</h3>
                   <p className="text-text-muted mb-6">
@@ -331,7 +331,7 @@ const ProcessGrid = () => {
                   <div className="h-32 bg-gray-200 rounded-xl w-full relative overflow-hidden">
                      {/* Fake Map */}
                      <div className="absolute inset-0 opacity-50" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
-                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0F172A] text-white p-2 rounded-lg shadow-lg text-xs font-bold flex items-center gap-2">
+                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0F172A] text-text-primary p-2 rounded-lg shadow-lg text-xs font-bold flex items-center gap-2">
                         <MapPin size={12} /> Driver (2 min away)
                      </div>
                   </div>
@@ -343,7 +343,7 @@ const ProcessGrid = () => {
                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                         <CreditCard size={24} />
                      </div>
-                     <span className="text-clothcare-primary font-bold font-mono text-xl">09</span>
+                     <span className="text-text-accent font-bold font-mono text-xl">09</span>
                   </div>
                   <h3 className="text-2xl font-display font-bold text-[#0F172A] mb-3">Billing & Wallet</h3>
                   <p className="text-text-muted mb-6">
@@ -351,7 +351,7 @@ const ProcessGrid = () => {
                   </p>
                   <div className="flex items-center justify-between bg-white border border-gray-100 p-4 rounded-xl shadow-sm">
                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-clothcare-primary/10 flex items-center justify-center text-clothcare-primaryDark font-bold">$</div>
+                        <div className="w-8 h-8 rounded-full bg-clothcare-primary/10 flex items-center justify-center text-text-accentDark font-bold">$</div>
                         <div>
                            <p className="font-bold text-sm text-[#0F172A]">Invoice Paid</p>
                            <p className="text-xs text-text-muted">Via Apple Pay</p>
@@ -375,18 +375,18 @@ const ProfessionalCTA = () => {
    return (
       <section className="bg-[#0F172A] py-16 lg:py-20 border-t border-white/10">
          <div className="container mx-auto px-6 lg:px-12 text-center">
-            <h2 className="text-white font-display text-4xl lg:text-5xl font-bold mb-8">
+            <h2 className="text-text-primary font-display text-4xl lg:text-5xl font-bold mb-8">
                Experience the new standard.
             </h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-               <button className="bg-clothcare-primary hover:bg-clothcare-primaryDark text-white font-display font-bold text-lg px-10 py-4 rounded-xl shadow-lg shadow-clothcare-primary/20 transition-all transform hover:-translate-y-1 flex items-center gap-2">
+               <button className="bg-clothcare-primary hover:bg-clothcare-primaryDark text-text-primary font-display font-bold text-lg px-10 py-4 rounded-xl shadow-lg shadow-clothcare-primary/20 transition-all transform hover:-translate-y-1 flex items-center gap-2">
                   Schedule First Pickup <ArrowRight size={20} />
                </button>
-               <button className="text-white hover:text-clothcare-primary transition-colors font-bold underline underline-offset-4">
+               <button className="text-text-primary hover:text-text-accent transition-colors font-bold underline underline-offset-4">
                   View Pricing Plans
                </button>
             </div>
-            <p className="text-white/40 text-sm mt-8">
+            <p className="text-text-primary/40 text-sm mt-8">
                No commitment required. 100% Money-back guarantee.
             </p>
          </div>

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function NotFound() {
   return (
-    <div className="min-h-[100vh] bg-clothcare-dark flex flex-col lg:flex-row items-center justify-center text-white px-6 py-12 lg:py-0 gap-12 lg:gap-20 overflow-hidden">
+    <div className="min-h-[100vh] bg-clothcare-dark flex flex-col lg:flex-row items-center justify-center text-text-primary px-6 py-12 lg:py-0 gap-12 lg:gap-20 overflow-hidden">
       
       {/* Left Side: Animated Illustration */}
       <div className="relative order-1 lg:order-1">
@@ -64,7 +64,7 @@ export default function NotFound() {
         <motion.div 
           animate={{ y: [-10, 10, -10] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="absolute -top-10 -right-4 bg-clothcare-primary text-white font-display font-black px-4 py-2 rounded-2xl shadow-clothcare rotate-12"
+          className="absolute -top-10 -right-4 bg-clothcare-primary text-text-primary font-display font-black px-4 py-2 rounded-2xl shadow-clothcare rotate-12"
         >
           404
         </motion.div>
@@ -77,11 +77,11 @@ export default function NotFound() {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="text-center lg:text-left max-w-xl order-2"
       >
-        <h1 className="text-clothcare-primary font-display font-black text-2xl mb-2 tracking-widest uppercase">
+        <h1 className="text-text-accent font-display font-black text-2xl mb-2 tracking-widest uppercase">
           Error Encountered
         </h1>
         <h2 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
-          Lost in the <br /><span className="text-clothcare-primary">Laundry?</span>
+          Lost in the <br /><span className="text-text-accent">Laundry?</span>
         </h2>
         <p className="text-text-muted text-lg md:text-xl mb-10 leading-relaxed max-w-lg">
           Looks like the page you're searching for got stuck in the spin cycle or vanished like a missing sock. Don't worry, we'll help you find your way back.
@@ -90,13 +90,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
           <Link 
             href="/"
-            className="px-10 py-4 bg-clothcare-accent-gradient rounded-full font-bold text-white shadow-clothcareSoft hover:scale-105 active:scale-95 transition-all duration-300 text-center"
+            className="px-10 py-4 bg-clothcare-accent-gradient rounded-full font-bold text-text-primary shadow-clothcareSoft hover:scale-105 active:scale-95 transition-all duration-300 text-center"
           >
             Back to Home
           </Link>
           <button 
             onClick={() => window.history.back()}
-            className="px-10 py-4 border-2 border-clothcare-graySoft/30 rounded-full font-bold text-white hover:bg-white/5 hover:border-clothcare-primary transition-all duration-300 text-center"
+            className="px-10 py-4 border-2 border-clothcare-graySoft/30 rounded-full font-bold text-text-primary hover:bg-white/5 hover:border-clothcare-primary transition-all duration-300 text-center"
           >
             Go Back
           </button>

@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 
 const FoundersVision = () => {
     return (
-        <section className="py-24 lg:py-40 bg-[#FAFAFA] relative overflow-hidden">
+        <section className="py-24 lg:py-40 bg-bg-white relative overflow-hidden">
             {/* Subtle background element */}
             <motion.div
                 initial={{ opacity: 0 }}
@@ -43,9 +43,9 @@ const FoundersVision = () => {
                             {/* Glassmorphism Badge */}
                             <motion.div
                                 variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } } }}
-                                className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl"
+                                className="absolute bottom-8 left-8 right-8 bg-bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-2xl"
                             >
-                                <p className="text-white font-medium text-lg xl:text-xl italic leading-relaxed">"A garment's true value isn't measured at retail, but in the decades it's worn."</p>
+                                <p className="text-text-primary font-medium text-lg xl:text-xl italic leading-relaxed">"A garment's true value isn't measured at retail, but in the decades it's worn."</p>
                             </motion.div>
                         </motion.div>
 
@@ -75,21 +75,21 @@ const FoundersVision = () => {
                     >
                         <motion.span
                             variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8 } } }}
-                            className="text-gray-400 font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-4"
+                            className="text-text-muted font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-4"
                         >
-                            <div className="w-8 h-px bg-gray-400"></div>
+                            <div className="w-8 h-px bg-bg-soft"></div>
                             02 / Origin
                         </motion.span>
 
                         <motion.h2
                             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}
-                            className="text-4xl lg:text-6xl font-black text-gray-900 mb-10 tracking-tight leading-[1.1]"
+                            className="text-4xl lg:text-6xl font-black text-text-dark mb-10 tracking-tight leading-[1.1]"
                         >
                             Built from frustration, <br />
-                            <span className="text-transparent bg-clip-text bg-linear-to-r from-clothcare-primary to-blue-500">designed for perfection.</span>
+                            <span className="text-transparent bg-clip-text bg-linear-to-r from-clothcare-primary to-blue-900">designed for perfection.</span>
                         </motion.h2>
 
-                        <div className="space-y-6 text-gray-500 text-lg lg:text-xl font-light leading-relaxed">
+                        <div className="space-y-6 text-text-muted text-lg lg:text-xl font-light leading-relaxed">
                             <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
                                 Qlothcare was born in 2026 after our founders realized that premium apparel was being degraded by the very services meant to preserve it. Industrial presses crushed lapels, harsh solvents bleached fibers, and the environmental cost was staggering.
                             </motion.p>

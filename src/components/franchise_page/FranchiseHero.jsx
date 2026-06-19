@@ -2,9 +2,10 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Sparkles, LayoutDashboard, Calendar, FileText, CheckCircle2, ChevronDown, Plus, ShieldCheck } from 'lucide-react';
+import Button from '../ui/btn/Button';
 import Link from 'next/link';
 import Image from 'next/image';
-import DashboardImage from '@/assets/pages/franchise_image/dashboard.png';
+import DashboardImage from '@/assets/pages/franchise_image/dashBoard.jpeg';
 
 export default function FranchiseHero() {
     const { scrollY } = useScroll();
@@ -31,11 +32,11 @@ export default function FranchiseHero() {
     };
 
     return (
-        <section className="relative min-h-[120vh] lg:min-h-[180vh] bg-black overflow-hidden flex flex-col items-center justify-start pt-24 sm:pt-32 lg:pt-40 pb-20 lg:pb-40">
+        <section className="relative min-h-[120vh] lg:min-h-[180vh] bg-clothcare-black overflow-hidden flex flex-col items-center justify-start pt-24 sm:pt-32 lg:pt-40 pb-20 lg:pb-40">
             {/* Ultra-Premium Cinematic Background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {/* Core Deep Space Background */}
-                <div className="absolute inset-0 bg-black"></div>
+                <div className="absolute inset-0 bg-clothcare-black"></div>
 
                 {/* Massive Orange Glows - Simplified for performance */}
                 <div className="absolute top-[-5%] left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-clothcare-primary/10 rounded-full blur-[120px] opacity-40 mix-blend-screen"></div>
@@ -54,7 +55,7 @@ export default function FranchiseHero() {
                 className="relative z-10 container mx-auto px-6 text-center max-w-5xl flex flex-col items-center mt-10 md:mt-20"
             >
                 <motion.div variants={itemVariants}>
-                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-clothcare-primary text-clothcare-primary text-xs font-bold tracking-[0.2em] uppercase mb-10 bg-clothcare-primary/10 shadow-[0_0_20px_rgba(228,111,51,0.2)]">
+                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-clothcare-primary text-text-accent text-xs font-bold tracking-[0.2em] uppercase mb-10 bg-clothcare-primary/10 shadow-[0_0_20px_rgba(228,111,51,0.2)]">
                         <Sparkles size={16} />
                         Enterprise Partnership Portal
                     </div>
@@ -62,25 +63,30 @@ export default function FranchiseHero() {
 
                 <motion.h1
                     variants={itemVariants}
-                    className="text-4xl sm:text-6xl lg:text-[6rem] font-black text-white leading-none tracking-tighter mb-6 sm:mb-8 font-display mx-auto max-w-4xl px-2"
+                    className="text-4xl sm:text-6xl lg:text-[6rem] font-black text-text-primary leading-none tracking-tighter mb-6 sm:mb-8 font-display mx-auto max-w-4xl px-2"
                 >
                     Own the <br className="hidden sm:block" />
-                    <span className="text-clothcare-primary">infrastructure</span> <br className="hidden sm:block" />
+                    <span className="text-text-accent">infrastructure</span> <br className="hidden sm:block" />
                     of tomorrow.
                 </motion.h1>
 
                 <motion.p
                     variants={itemVariants}
-                    className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 font-medium leading-relaxed tracking-wide"
+                    className="text-lg md:text-xl text-text-primary/70 max-w-2xl mx-auto mb-12 font-medium leading-relaxed tracking-wide"
                 >
                     Deploy aerospace-grade logistics, bio-enzyme tech, and automated CRM systems in your territory. We engineer the backend. You dominate the market.
                 </motion.p>
 
                 <motion.div variants={itemVariants}>
                     <Link href="#application">
-                        <button className="group relative bg-clothcare-primary text-white font-black text-sm uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:bg-clothcare-primaryDark shadow-[0_0_40px_rgba(228,111,51,0.3)] hover:shadow-[0_0_60px_rgba(228,111,51,0.5)] overflow-hidden flex items-center justify-center gap-4 mx-auto w-[280px]">
-                            <span className="relative z-10 flex items-center gap-3">Initialize <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform duration-300" /></span>
-                        </button>
+                        
+                         <Button
+            variant="primary"
+            icon={ArrowRight}
+            className="px-7 py-5 rounded-full"
+            iconWrapperClassName="transition-all duration-300 group-hover:translate-x-1">
+             Initialize
+            </Button>
                     </Link>
                 </motion.div>
             </motion.div>
@@ -93,13 +99,13 @@ export default function FranchiseHero() {
                 style={{ y: y2, willChange: 'transform' }}
                 className="relative z-20 w-[96%] lg:w-[85%] max-w-[1900px] mx-auto px-4 sm:px-6 mt-20 lg:mt-32"
             >
-                <div className="relative rounded-4xl bg-black border border-white/10 shadow-[0_0_150px_rgba(228,111,51,0.15)] overflow-hidden aspect-4/3 md:aspect-16/10 flex items-center justify-center">
+                <div className="relative rounded-4xl bg-clothcare-black border border-white/10 shadow-[0_0_150px_rgba(228,111,51,0.15)] overflow-hidden aspect-4/3 md:aspect-16/10 flex items-center justify-center">
 
                     <Image
                         src={DashboardImage}
                         alt="Qlothcare Dashboard"
                         fill
-                        className="object-cover opacity-80 mix-blend-luminosity"
+                        className="object-contain bg-bg-dark rounded-2xl opacity-80"
                         priority
                     />
 
@@ -108,21 +114,15 @@ export default function FranchiseHero() {
 
                     {/* UI Overlay */}
                     <div className="absolute inset-0 flex flex-col">
-                        <div className="h-12 border-b border-white/20 bg-black/50 backdrop-blur-md flex items-center px-6">
+                        <div className="h-12 border-b border-white/20 bg-clothcare-black/50 backdrop-blur-md flex items-center px-6">
                             <div className="flex gap-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
-                            <div className="mx-auto text-white font-bold text-sm tracking-widest uppercase">Operations Console</div>
+                            <div className="mx-auto text-text-primary font-bold text-sm tracking-widest uppercase">Operations Console</div>
                         </div>
-                        <div className="flex-1 flex items-center justify-center p-10">
-                            <div className="bg-black/80 backdrop-blur-xl border border-clothcare-primary p-8 rounded-2xl max-w-sm text-center shadow-[0_0_50px_rgba(228,111,51,0.3)]">
-                                <Sparkles size={40} className="text-clothcare-primary mx-auto mb-4" />
-                                <h3 className="text-2xl font-black text-white mb-2">System Active</h3>
-                                <p className="text-white/60 text-sm">Real-time hub monitoring engaged.</p>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </motion.div>

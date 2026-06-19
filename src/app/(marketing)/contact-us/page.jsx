@@ -1,8 +1,13 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+import Input from '@/components/ui/input/Input';
+import Button from '@/components/ui/btn/Button';
 import {
-  Phone, Mail, MessageSquare, MapPin,
+   User,
+  Mail,
+  FileText,
+   Phone, MessageSquare, MapPin,
   Send, ChevronDown, CheckCircle2, ArrowRight, Clock,
   Truck, Sparkles, Store, Facebook, Twitter, Instagram, Linkedin
 } from 'lucide-react';
@@ -54,95 +59,10 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-white">
-
-      {/* ================= HERO SECTION (STUDIO STYLE) - COMMENTED FOR FUTURE USE =================
-      <section className="relative pt-24 lg:pt-32 pb-16 overflow-hidden bg-[#FAFAFA]">
-
-        {/* Giant Background Text * /}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-full text-center pointer-events-none select-none overflow-hidden z-0">
-          <h1 className="text-[18vw] font-display font-black text-black/2 whitespace-nowrap leading-none tracking-tighter">
-            Qlothcare
-          </h1>
-        </div>
-
-        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
-
-          <div className="text-center mb-10 lg:mb-16">
-            <motion.h2
-              variants={fadeUp} initial="hidden" animate="visible"
-              className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-clothcare-dark uppercase tracking-tight leading-[0.9]"
-            >
-              Connect with<br />Our Team
-            </motion.h2>
-          </div>
-
-          {/* Stepped Image Gallery * /}
-          <div className="flex items-end justify-center h-[300px] sm:h-[400px] lg:h-[550px] max-w-6xl mx-auto gap-2 md:gap-4 lg:gap-6">
-
-            {/* 01 (Outermost Left - Hidden on Mobile) * /}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="hidden sm:flex w-[15%] flex-col items-center"
-            >
-              <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">04</span>
-              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
-                <Image src="/about/alexander.png" fill className="object-cover grayscale opacity-80" alt="Team Member 04" />
-              </div>
-            </motion.div>
-
-            {/* 02 (Middle Left) * /}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="w-[25%] sm:w-[20%] flex flex-col items-center"
-            >
-              <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">02</span>
-              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
-                <Image src="/about/elena.png" fill className="object-cover grayscale opacity-80" alt="Team Member 02" />
-              </div>
-            </motion.div>
-
-            {/* 03 (Center / Largest) * /}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="w-[50%] sm:w-[30%] flex flex-col items-center relative z-20 -mt-8"
-            >
-              <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">01</span>
-              <div className="w-full h-[280px] sm:h-[380px] lg:h-[500px] bg-gray-200 overflow-hidden shadow-2xl shadow-black/10 relative group border-[6px] sm:border-10 lg:border-14 border-[#FAFAFA]">
-                <div className="absolute inset-0 bg-clothcare-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none"></div>
-                <Image src="/landingabout/team_member_ceo_1767511764298.png" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 hover:scale-105" alt="CEO" priority />
-              </div>
-            </motion.div>
-
-            {/* 04 (Middle Right) * /}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="w-[25%] sm:w-[20%] flex flex-col items-center"
-            >
-              <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">03</span>
-              <div className="w-full h-[220px] md:h-[280px] lg:h-[380px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
-                <Image src="/about/marcus.png" fill className="object-cover grayscale opacity-80" alt="Team Member 03" />
-              </div>
-            </motion.div>
-
-            {/* 05 (Outermost Right - Hidden on Mobile) * /}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="hidden sm:flex w-[15%] flex-col items-center"
-            >
-              <span className="text-xs font-bold font-display mb-3 md:mb-5 text-clothcare-dark">05</span>
-              <div className="w-full h-[140px] md:h-[180px] lg:h-[240px] bg-gray-200 overflow-hidden shadow-xl shadow-black/5 relative">
-                <Image src="/landingabout/team_member_ops_1767511796826.png" fill className="object-cover grayscale opacity-80" alt="Team Member 05" />
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-      */}
+    <div className="min-h-screen bg-bg-white text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* ================= PAGE TITLE ================= */}
-      <section className="pt-32 pb-12 bg-white">
+      <section className="pt-32 bg-bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -151,9 +71,9 @@ const ContactPage = () => {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-display font-bold text-clothcare-dark mb-6 tracking-tight">
-              Get in <span className="text-clothcare-primary italic">Touch</span>
+              Get in <span className="text-text-accent italic">Touch</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-text-muted font-medium max-w-2xl mx-auto leading-relaxed">
               Have a question or need assistance? Our team is dedicated to providing you with the best garment care experience.
             </p>
           </motion.div>
@@ -161,7 +81,7 @@ const ContactPage = () => {
       </section>
 
       {/* ================= QUICK INFO COLUMNS ================= */}
-      <section className="relative z-20 bg-white">
+      <section className="relative z-20 bg-bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <motion.div
             variants={staggerContainer}
@@ -208,7 +128,7 @@ const ContactPage = () => {
       </section>
 
       {/* ================= FORM & SIDEBAR SECTION ================= */}
-      <section className="py-20 bg-white">
+      <section className="py-10 bg-bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <motion.div
             variants={staggerContainer}
@@ -220,78 +140,117 @@ const ContactPage = () => {
 
             {/* Left Box: Form Container */}
             <motion.div variants={fadeUp} className="lg:col-span-7">
-              <div className="bg-white rounded-4xl p-8 lg:p-12 shadow-[0_15px_40px_rgb(228,111,51,0.06)] border border-clothcare-graySoft/20">
+              <div className="bg-bg-white rounded-4xl p-8 lg:p-12 shadow-[0_15px_40px_rgb(228,111,51,0.06)] border border-clothcare-graySoft/20">
                 <h2 className="text-3xl font-display font-bold text-clothcare-dark mb-8">Send us a Message</h2>
 
                 <AnimatePresence mode="wait">
                   {isSent ? (
                     <SuccessMessage onReset={() => setIsSent(false)} />
                   ) : (
-                    <motion.form
-                      key="contact-form"
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit}
-                      className="space-y-6"
-                    >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">First Name *</label>
-                          <input
-                            suppressHydrationWarning required
-                            type="text"
-                            className="w-full bg-gray-50 border border-clothcare-graySoft/30 rounded-xl px-4 py-3.5 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
-                            value={formState.firstName} onChange={(e) => setFormState({ ...formState, firstName: e.target.value })}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Last Name</label>
-                          <input
-                            suppressHydrationWarning
-                            type="text"
-                            className="w-full bg-gray-50 border border-clothcare-graySoft/30 rounded-xl px-4 py-3.5 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
-                            value={formState.lastName} onChange={(e) => setFormState({ ...formState, lastName: e.target.value })}
-                          />
-                        </div>
-                      </div>
+                <motion.form
+  key="contact-form"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  onSubmit={handleSubmit}
+  className="space-y-6"
+>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <Input
+      label="First Name"
+      required
+      icon={User}
+      value={formState.firstName}
+      onChange={(e) =>
+        setFormState({
+          ...formState,
+          firstName: e.target.value,
+        })
+      }
+    
+    />
 
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Email *</label>
-                        <input
-                          suppressHydrationWarning required
-                          type="email"
-                          className="w-full bg-gray-50 border border-clothcare-graySoft/30 rounded-xl px-4 py-3.5 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
-                          value={formState.email} onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        />
-                      </div>
+    <Input
+      label="Last Name"
+      icon={User}
+      value={formState.lastName}
+      onChange={(e) =>
+        setFormState({
+          ...formState,
+          lastName: e.target.value,
+        })
+      }
+    
+    />
+  </div>
 
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Subject *</label>
-                        <input
-                          suppressHydrationWarning required
-                          type="text"
-                          className="w-full bg-gray-50 border border-clothcare-graySoft/30 rounded-xl px-4 py-3.5 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none"
-                          value={formState.subject} onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                        />
-                      </div>
+  <Input
+    label="Email"
+    type="email"
+    required
+    icon={Mail}
+    value={formState.email}
+    onChange={(e) =>
+      setFormState({
+        ...formState,
+        email: e.target.value,
+      })
+    }
+    
+  />
 
-                      <div className="space-y-2">
-                        <label className="text-xs font-bold text-gray-500 uppercase tracking-wider block">Comments *</label>
-                        <span className="text-[10px] text-gray-400 -mt-1 block mb-2">Please tell us strictly your need. Are you a rider? A customer? A franchise?</span>
-                        <textarea
-                          suppressHydrationWarning required rows={5}
-                          className="w-full bg-gray-50 border border-clothcare-graySoft/30 rounded-xl px-4 py-3.5 text-clothcare-dark font-medium focus:bg-white focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary transition-all outline-none resize-none"
-                          value={formState.message} onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        />
-                      </div>
+  <Input
+    label="Subject"
+    required
+    icon={FileText}
+    value={formState.subject}
+    onChange={(e) =>
+      setFormState({
+        ...formState,
+        subject: e.target.value,
+      })
+    }
+  />
 
-                      <button
-                        type="submit"
-                        suppressHydrationWarning disabled={isSubmitting}
-                        className="bg-clothcare-accent-gradient hover:opacity-90 text-white font-bold px-10 py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-3 active:scale-[0.98] w-full sm:w-auto mt-4"
-                      >
-                        {isSubmitting ? 'Submitting...' : 'Submit'}
-                      </button>
-                    </motion.form>
+  <Input
+    label="Comments"
+    required
+    textarea
+    rows={5}
+  
+    helperText="Please tell us strictly your need. Are you a rider? A customer? A franchise?"
+    value={formState.message}
+    onChange={(e) =>
+      setFormState({
+        ...formState,
+        message: e.target.value,
+      })
+    }
+
+  />
+
+ <Button
+  type="submit"
+  size='lg'
+  loading={isSubmitting}
+  className="
+  py-7
+  px-10
+    bg-clothcare-accent-gradient
+    hover:opacity-90
+    font-bold
+    w-full
+    rounded-xl
+    sm:w-auto
+    mt-4
+    shadow-lg
+  "
+>
+  Submit
+</Button>
+
+ 
+</motion.form>
                   )}
                 </AnimatePresence>
               </div>
@@ -303,10 +262,10 @@ const ContactPage = () => {
               {/* Business Hours */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <Clock className="text-clothcare-primary" size={24} strokeWidth={1.5} />
+                  <Clock className="text-text-accent" size={24} strokeWidth={1.5} />
                   <h3 className="text-2xl font-display font-bold text-clothcare-dark">Business Hours</h3>
                 </div>
-                <div className="space-y-4 text-sm font-medium text-gray-500">
+                <div className="space-y-4 text-sm font-medium text-text-muted">
                   <HourRow day="Monday" time="8:00 AM - 8:00 PM" />
                   <HourRow day="Tuesday" time="8:00 AM - 8:00 PM" />
                   <HourRow day="Wednesday" time="8:00 AM - 8:00 PM" />
@@ -320,13 +279,13 @@ const ContactPage = () => {
               {/* ERP Links / FAQs */}
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <MessageSquare className="text-clothcare-primary" size={24} strokeWidth={1.5} />
+                  <MessageSquare className="text-text-accent" size={24} strokeWidth={1.5} />
                   <h3 className="text-2xl font-display font-bold text-clothcare-dark">Need ERP Support?</h3>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                <p className="text-sm text-text-muted leading-relaxed mb-4">
                   Check out the frequently asked questions regarding the online software, automated routing, and account tracking.
                 </p>
-                <a href="#info" className="text-clothcare-primary font-bold text-sm hover:underline inline-flex items-center gap-1 group">
+                <a href="#info" className="text-text-accent font-bold text-sm hover:underline inline-flex items-center gap-1 group">
                   View FAQ's <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
@@ -339,7 +298,7 @@ const ContactPage = () => {
                   </div>
                   <h3 className="text-2xl font-display font-bold text-clothcare-dark">Follow Us</h3>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                <p className="text-sm text-text-muted leading-relaxed mb-6">
                   Stay connected for garment care tips and special offers.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -365,7 +324,7 @@ const ContactPage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl lg:text-5xl font-display font-bold text-clothcare-dark mb-4">Other Important Information</h2>
-            <p className="text-gray-500 text-lg font-medium">Find essential details regarding online booking routines, rider tracking, and offline store processes.</p>
+            <p className="text-text-muted text-lg font-medium">Find essential details regarding online booking routines, rider tracking, and offline store processes.</p>
           </motion.div>
 
           <motion.div
@@ -406,16 +365,17 @@ const InfoColumn = ({ icon, title, desc, val1, val2 }) => (
   <motion.div
     variants={fadeUp}
     whileHover={{ y: -5 }}
-    className="flex flex-col items-center text-center p-6 rounded-3xl hover:bg-clothcare-primary/2 transition-colors group"
+    className="flex flex-col items-center text-center p-6 rounded-3xl
+    bg-clothcare-primary/3 hover:bg-clothcare-primary/5 transition-colors group"
   >
-    <div className="w-14 h-14 bg-clothcare-primary/10 text-clothcare-primary rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+    <div className="w-14 h-14 bg-clothcare-primary/10 text-text-accent rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
       {icon}
     </div>
     <h3 className="text-xl font-display font-bold text-clothcare-dark mb-3">{title}</h3>
-    <p className="text-sm font-medium text-gray-500 mb-6 leading-relaxed grow max-w-[200px]">{desc}</p>
+    <p className="text-sm font-medium text-text-muted mb-6 leading-relaxed grow max-w-[200px]">{desc}</p>
     <div className="mt-auto">
       <p className="text-sm font-bold text-clothcare-dark mb-1">{val1}</p>
-      <p className="text-xs font-bold text-gray-500">{val2}</p>
+      <p className="text-xs font-bold text-text-muted">{val2}</p>
     </div>
   </motion.div>
 );
@@ -432,46 +392,80 @@ const SocialPill = ({ text, icon }) => (
     suppressHydrationWarning
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
-    className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-clothcare-graySoft/30 text-sm font-bold text-gray-500 hover:border-clothcare-primary hover:text-clothcare-primary shadow-sm hover:shadow-md transition-all"
+    className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-bg-white border border-clothcare-graySoft/30 text-sm font-bold text-text-muted hover:border-clothcare-primary hover:text-text-accent shadow-sm hover:shadow-md "
   >
-    <span className="text-gray-400 group-hover:text-clothcare-primary transition-colors">
+    <span className="text-text-muted group-hover:text-text-accent transition-colors">
       {icon}
     </span>
     {text}
   </motion.button>
 );
 
+/* ------------------------------------------------------------------------
+   AccordionItem — FIXED to remove the flicker.
+
+   What was causing the flicker:
+   1. Animating to the literal string height: "auto" forces Framer Motion to
+      re-measure on every frame in some browsers, which can cause a visible
+      jump/snap right at the start or end of the animation instead of a
+      smooth interpolation.
+   2. There was no explicit `transition` on the height/opacity animation, so
+      it fell back to a spring with default (somewhat bouncy) physics that
+      doesn't pair well with a height collapse — springs can overshoot and
+      cause the content to visibly "pop" before settling.
+   3. The inner content had a `mt-6` margin-top *inside* the animated
+      element. Margins inside a height:0 -> height:auto animation can cause
+      the browser to recompute layout mid-transition (margin collapsing),
+      which compounds the jump.
+
+   The fix: measure the real pixel height of the content with a ref +
+   ResizeObserver-free approach (just reading scrollHeight on open), animate
+   to that literal pixel value instead of "auto", use a single smooth
+   tween (no spring) for height, and move all spacing to padding on a
+   non-animated wrapper so nothing shifts mid-animation.
+------------------------------------------------------------------------- */
 const AccordionItem = ({ icon, title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef(null);
+
   return (
-    <motion.div variants={fadeUp} className="bg-white rounded-3xl shadow-[0_5px_20px_rgb(228,111,51,0.03)] border border-clothcare-graySoft/20 overflow-hidden transition-all duration-300">
+    <motion.div
+      variants={fadeUp}
+      className="bg-bg-white rounded-3xl shadow-[0_5px_20px_rgb(228,111,51,0.03)] border border-clothcare-graySoft/20 overflow-hidden"
+    >
       <button
         suppressHydrationWarning
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-gray-50 transition-colors"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between p-6 lg:p-8 text-left hover:bg-bg-soft/10 transition-colors"
+        aria-expanded={isOpen}
       >
         <span className="font-display font-bold text-lg lg:text-xl text-clothcare-dark flex items-center gap-4">
-          <span className="flex items-center justify-center w-12 h-12 bg-clothcare-primary/10 text-clothcare-primary rounded-xl shrink-0">{icon}</span> {title}
+          <span className="flex items-center justify-center w-12 h-12 bg-clothcare-primary/10 text-text-accent rounded-xl shrink-0">{icon}</span> {title}
         </span>
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} className="bg-gray-100 p-2 rounded-full text-gray-500">
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-bg-soft/10 p-2 rounded-full text-text-muted shrink-0 ml-4"
+        >
           <ChevronDown size={20} />
         </motion.div>
       </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 lg:px-8 pb-8 pt-2 text-gray-500 leading-relaxed relative">
-              <div className="absolute top-0 left-8 right-8 h-px bg-clothcare-graySoft/20"></div>
-              <p className="mt-6 text-base font-medium">{content}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+      {/* Animate to a measured pixel height instead of "auto" — this is
+          the core fix for the flicker. */}
+      <motion.div
+        initial={false}
+        animate={{
+          height: isOpen ? (contentRef.current?.scrollHeight ?? 0) : 0,
+        }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="overflow-hidden"
+      >
+        <div ref={contentRef} className="px-6 lg:px-8 pb-8 pt-6 text-text-muted leading-relaxed relative">
+          <div className="absolute top-0 left-8 right-8 h-px bg-clothcare-graySoft/20"></div>
+          <p className="text-base font-medium">{content}</p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -480,17 +474,17 @@ const SuccessMessage = ({ onReset }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.95 }}
     animate={{ opacity: 1, scale: 1 }}
-    className="min-h-[400px] flex flex-col items-center justify-center text-center bg-gray-50 rounded-2xl border border-clothcare-graySoft/20"
+    className="min-h-[400px] flex flex-col items-center justify-center text-center bg-bg-soft/10 rounded-2xl border border-clothcare-graySoft/20"
   >
     <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-green-500 mb-6 shadow-green-100 shadow-xl border border-green-100">
       <CheckCircle2 size={40} />
     </div>
     <h3 className="text-2xl font-display font-bold text-clothcare-dark mb-3">Message Sent Successfully!</h3>
-    <p className="text-gray-500 max-w-xs mx-auto mb-8 font-medium">We've received your query and our team will get back to you shortly.</p>
+    <p className="text-text-muted max-w-xs mx-auto mb-8 font-medium">We've received your query and our team will get back to you shortly.</p>
     <button
       suppressHydrationWarning
       onClick={onReset}
-      className="text-white bg-clothcare-primary hover:bg-clothcare-primaryDark px-6 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95"
+      className="text-text-primary bg-clothcare-primary hover:bg-clothcare-primaryDark px-6 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95"
     >
       Send another message
     </button>

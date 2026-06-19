@@ -6,7 +6,7 @@ import { motion } from 'motion/react';
 
 const LogisticsMap = () => {
     return (
-        <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+        <section className="py-24 lg:py-32 bg-bg-white relative overflow-hidden">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -16,13 +16,13 @@ const LogisticsMap = () => {
                     className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8"
                 >
                     <div>
-                        <span className="text-gray-400 font-bold uppercase tracking-[0.2em] text-xs">06 / Our Footprint</span>
-                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4 tracking-tight">Doorstep Convenience.</h2>
+                        <span className="text-text-muted font-bold uppercase tracking-[0.2em] text-xs">Our Footprint</span>
+                        <h2 className="text-4xl lg:text-5xl font-bold text-text-dark mt-4 tracking-tight">Doorstep Convenience.</h2>
                     </div>
                     <motion.div
                         initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.5 }}
                         className="max-w-md">
-                        <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+                        <p className="text-text-muted leading-relaxed text-sm md:text-base">
                             Free pick-up and delivery at your doorstep. We make sure that your requests are processed effectively and affordably, giving you more time for what matters.
                         </p>
                     </motion.div>
@@ -33,15 +33,15 @@ const LogisticsMap = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.8 }}
-                    className="bg-gray-50 border border-gray-100 rounded-4xl sm:rounded-[3rem] p-1.5 sm:p-2 md:p-4 overflow-hidden shadow-sm flex flex-col lg:flex-row relative"
+                    className="bg-bg-soft/20 border border-gray-100 rounded-4xl sm:rounded-[3rem] p-1.5 sm:p-2 md:p-4 overflow-hidden shadow-sm flex flex-col lg:flex-row relative"
                 >
-                    <div className="w-full lg:w-1/3 bg-white rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-md relative z-10 flex flex-col justify-between">
+                    <div className="w-full lg:w-1/3 bg-bg-white rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12 shadow-md relative z-10 flex flex-col justify-between">
                         <div>
-                            <div className="w-12 h-12 bg-gray-50 text-gray-900 rounded-full flex items-center justify-center mb-6">
+                            <div className="w-12 h-12 bg-bg-soft/40 text-text-dark rounded-full flex items-center justify-center mb-6">
                                 <Truck size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Pickup & Delivery</h3>
-                            <p className="text-gray-500 mb-8 leading-relaxed">Schedule a pickup at your convenience. Our team handles everything from your door and returns it fresh and clean.</p>
+                            <h3 className="text-2xl font-bold text-text-dark mb-4">Pickup & Delivery</h3>
+                            <p className="text-text-muted mb-8 leading-relaxed">Schedule a pickup at your convenience. Our team handles everything from your door and returns it fresh and clean.</p>
 
                             <div className="space-y-4 mb-8">
                                 <motion.div
@@ -49,25 +49,25 @@ const LogisticsMap = () => {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.3 }}
-                                    className="flex items-center gap-3 text-sm font-medium text-gray-900"
+                                    className="flex items-center gap-3 text-sm font-medium text-text-dark"
                                 >
-                                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div> Active Zones: South Bopal & Beyond
+                                    <div className="w-2 h-2 rounded-full bg-status-success animate-pulse"></div> Active Zones: South Bopal & Beyond
                                 </motion.div>
                                 <motion.div
                                     initial={{ opacity: 0, x: -20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.4 }}
-                                    className="flex items-center gap-3 text-sm font-medium text-gray-900"
+                                    className="flex items-center gap-3 text-sm font-medium text-text-dark"
                                 >
                                     <div className="w-2 h-2 rounded-full bg-clothcare-primary"></div> Availability: Mon-Sun, 8AM-8PM
                                 </motion.div>
                             </div>
                         </div>
 
-                        <div className="pt-8 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-widest">
+                        <div className="pt-8 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-text-muted uppercase tracking-widest">
                             <span>Fleet Status</span>
-                            <span className="text-green-500">Operational</span>
+                            <span className="text-status-success">Operational</span>
                         </div>
                     </div>
 
@@ -84,11 +84,11 @@ const LogisticsMap = () => {
                                 whileInView={{ scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.5 }}
-                                className="w-12 h-12 bg-black rounded-full text-white flex items-center justify-center shadow-2xl relative z-10"
+                                className="w-12 h-12 bg-clothcare-black rounded-full text-text-primary flex items-center justify-center shadow-2xl relative z-10"
                             >
                                 <MapPin size={24} />
                             </motion.div>
-                            <div className="w-6 h-6 bg-black/20 rounded-full animate-ping absolute z-0 delay-1000"></div>
+                            <div className="w-6 h-6 bg-clothcare-dark/20 rounded-full animate-ping absolute z-0 delay-1000"></div>
                         </div>
                     </div>
                 </motion.div>

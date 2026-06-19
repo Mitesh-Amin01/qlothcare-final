@@ -9,7 +9,7 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
     return (
-        <div className="min-h-screen bg-white text-text-dark font-sans selection:bg-clothcare-primary/30 selection:text-clothcare-primaryDark">
+        <div className="min-h-screen bg-white text-text-dark font-sans selection:bg-clothcare-primary/30 selection:text-text-accentDark">
             {/* Immersive Header Section */}
             <section className="relative h-[60vh] lg:h-[70vh] flex items-center justify-center bg-clothcare-dark overflow-hidden">
                 {/* Animated Mesh Gradients */}
@@ -46,10 +46,10 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <span className="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-clothcare-primary text-xs font-bold uppercase tracking-[0.2em] mb-6">
+                        <span className="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-text-accent text-xs font-bold uppercase tracking-[0.2em] mb-6">
                             Legal Document
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display font-black text-white mb-8 tracking-tighter leading-[0.9]">
+                        <h1 className="text-5xl md:text-8xl font-display font-black text-text-primary mb-8 tracking-tighter leading-[0.9]">
                             {title.split(' ').map((word, i) => (
                                 <motion.span
                                     key={i}
@@ -69,7 +69,7 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="flex items-center justify-center gap-4 text-white/50 text-sm font-medium"
+                            className="flex items-center justify-center gap-4 text-text-primary/50 text-sm font-medium"
                         >
                             <div className="w-8 h-[1px] bg-white/20"></div>
                             <span>REVISED {lastUpdated.toUpperCase()}</span>
@@ -100,16 +100,16 @@ const LegalLayout = ({ title, lastUpdated, children }) => {
             </section>
 
             {/* Immersive CTA */}
-            <footer className="py-24 bg-clothcare-dark text-white relative overflow-hidden">
+            <footer className="py-24 bg-clothcare-dark text-text-primary relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <h3 className="text-3xl md:text-5xl font-display font-bold mb-8">Need further clarification?</h3>
-                    <p className="text-white/60 text-lg mb-12 max-w-xl mx-auto">Our legal team and support specialists are here to help you understand your rights and our commitments.</p>
+                    <p className="text-text-primary/60 text-lg mb-12 max-w-xl mx-auto">Our legal team and support specialists are here to help you understand your rights and our commitments.</p>
                     <motion.a
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href="/contact-us"
-                        className="inline-flex items-center gap-3 px-10 py-5 bg-clothcare-accent-gradient text-white font-black rounded-2xl transition-all shadow-[0_15px_30px_rgba(228,111,51,0.3)] hover:shadow-[0_20px_40px_rgba(228,111,51,0.4)]"
+                        className="inline-flex items-center gap-3 px-10 py-5 bg-clothcare-accent-gradient text-text-primary font-black rounded-2xl transition-all shadow-[0_15px_30px_rgba(228,111,51,0.3)] hover:shadow-[0_20px_40px_rgba(228,111,51,0.4)]"
                     >
                         Connect With Us
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

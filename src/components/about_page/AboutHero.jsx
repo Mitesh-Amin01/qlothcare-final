@@ -21,12 +21,12 @@ const AboutHero = () => {
     const borderRadius = useTransform(scrollYProgress, [0, 0.7], ["3rem", "0rem"]);
 
     return (
-        <section ref={containerRef} className="relative h-[140vh] w-full bg-[#050505]">
-            <div className="sticky top-0 h-screen w-full flex items-center justify-center p-4 md:p-8 overflow-hidden bg-[#050505]">
+        <section ref={containerRef} className="relative h-[140vh] w-full bg-clothcare-black">
+            <div className="sticky top-0 h-screen w-full flex items-center justify-center p-4 md:p-8 overflow-hidden bg-clothcare-black">
 
                 <motion.div
                     style={{ scale: containerScale, borderRadius }}
-                    className="relative w-full h-full overflow-hidden bg-black shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center"
+                    className="relative w-full h-full overflow-hidden bg-clothcare-black shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center"
                 >
                     {/* Background Media */}
                     <motion.div
@@ -59,9 +59,9 @@ const AboutHero = () => {
                                 transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
                                 className="flex items-center gap-6"
                             >
-                                <span className="text-white/80 text-xs font-bold tracking-[0.4em] uppercase hidden sm:block">Archive</span>
-                                <div className="hidden sm:block w-12 h-px bg-white/30"></div>
-                                <span className="text-clothcare-primary text-xs font-medium tracking-[0.4em] uppercase">Est. 2026</span>
+                                <span className="text-text-primary/80 text-xs font-bold tracking-[0.4em] uppercase hidden sm:block">Archive</span>
+                                <div className="hidden sm:block w-12 h-px bg-bg-white/30"></div>
+                                <span className="text-text-accent text-xs font-medium tracking-[0.4em] uppercase">Est. 2026</span>
                             </motion.div>
 
                             <motion.div
@@ -70,8 +70,8 @@ const AboutHero = () => {
                                 transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
                                 className="flex items-center gap-2 group cursor-pointer lg:hidden"
                             >
-                                <span className="text-white/50 text-[10px] font-bold tracking-widest uppercase mb-1">Scroll</span>
-                                <ArrowDown size={14} className="text-white group-hover:translate-y-1 transition-transform" />
+                                <span className="text-text-primary/50 text-[10px] font-bold tracking-widest uppercase mb-1">Scroll</span>
+                                <ArrowDown size={14} className="text-text-primary group-hover:translate-y-1 transition-transform" />
                             </motion.div>
                         </div>
 
@@ -90,18 +90,18 @@ const AboutHero = () => {
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-[2.8rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-medium text-white leading-[0.85] tracking-tighter relative"
+                                    className="text-[2.8rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-medium text-text-primary leading-[0.85] tracking-tighter relative"
                                 >
                                     {/* Massive background ghost text for brand presence */}
-                                    <span className="absolute -top-1/2 left-0 text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] font-bold text-white/5 tracking-tighter whitespace-nowrap pointer-events-none select-none z-0 mix-blend-overlay -translate-y-1/4">
+                                    <span className="absolute -top-1/2 left-0 text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] font-bold text-text-primary/5 tracking-tighter whitespace-nowrap pointer-events-none select-none z-0 mix-blend-overlay -translate-y-1/4">
                                         QLOTHCARE
                                     </span>
 
                                     THE FINEST <br />
-                                    <span className="italic font-light text-white/50 pr-4">GARMENT</span> <br className="block md:hidden" />
+                                    <span className="italic font-light text-text-primary/50 pr-4">GARMENT</span> <br className="block md:hidden" />
                                     <span className="relative z-10">
                                         CARE
-                                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-px md:h-[2px] bg-white/20"></div>
+                                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-px md:h-[2px] bg-bg-white/20"></div>
                                     </span>
                                 </motion.h1>
                             </div>
@@ -112,13 +112,13 @@ const AboutHero = () => {
                                 transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
                                 className="hidden lg:flex flex-col items-start lg:items-end gap-12 pb-4"
                             >
-                                <p className="text-white/60 text-right text-lg xl:text-xl font-light leading-relaxed max-w-sm">
-                                    A sanctuary for the world's most delicate fabrics. Built for those who demand <span className="text-white font-medium">nothing less than perfection.</span>
+                                <p className="text-text-primary/60 text-right text-lg xl:text-xl font-light leading-relaxed max-w-sm">
+                                    A sanctuary for the world's most delicate fabrics. Built for those who demand <span className="text-text-primary font-medium">nothing less than perfection.</span>
                                 </p>
 
-                                <div className="flex items-center gap-6 text-white hover:text-clothcare-primary transition-colors cursor-pointer group">
+                                <div className="flex items-center gap-6 text-text-primary hover:text-text-accent transition-colors cursor-pointer group">
                                     <span className="text-xs font-bold uppercase tracking-[0.2em]">Discover Our Journey</span>
-                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-clothcare-primary transition-colors bg-white/5 backdrop-blur-sm">
+                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-clothcare-primary transition-colors bg-bg-white/5 backdrop-blur-sm">
                                         <motion.div
                                             variants={{
                                                 initial: { y: 0 },

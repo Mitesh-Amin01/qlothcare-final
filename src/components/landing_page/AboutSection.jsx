@@ -80,7 +80,7 @@ export default function AboutSection() {
 
             <motion.div className="space-y-6" variants={fadeUpVariants}>
               <div className="relative inline-block">
-                <p className="text-[0.65rem] sm:text-[0.7rem] font-bold tracking-[0.2em] uppercase text-clothcare-primary relative z-10 pb-1">
+                <p className="text-[0.65rem] sm:text-[0.7rem] font-bold tracking-[0.2em] uppercase text-text-accent relative z-10 pb-1">
                   Premium Fabric Care & Innovation
                 </p>
                 <motion.div variants={lineVariants} className="absolute bottom-0 left-0 h-px bg-clothcare-primary" />
@@ -179,7 +179,7 @@ export default function AboutSection() {
                 </motion.h2>
                 <motion.h2
                   variants={textRevealVariants}
-                  className="text-[2.5rem] lg:text-[3rem] leading-none font-black uppercase text-clothcare-primary tracking-tighter italic font-serif"
+                  className="text-[2.5rem] lg:text-[3rem] leading-none font-black uppercase text-text-accent tracking-tighter italic font-serif"
                 >
                   BEHIND CARE
                 </motion.h2>
@@ -228,7 +228,7 @@ export default function AboutSection() {
                 />
               </motion.div>
               <h3 className="text-3xl font-bold text-clothcare-darker mb-1 tracking-tight">Jay Britto</h3>
-              <p className="text-xs text-clothcare-primary font-bold uppercase tracking-widest">CHIEF INNOVATION OFFICER</p>
+              <p className="text-xs text-text-accent font-bold uppercase tracking-widest">CHIEF INNOVATION OFFICER</p>
             </motion.div>
 
             {/* Right Member */}
@@ -248,7 +248,7 @@ export default function AboutSection() {
                 />
               </motion.div>
               <h3 className="text-3xl font-bold text-clothcare-darker mb-1 tracking-tight">David Charette</h3>
-              <p className="text-xs text-clothcare-primary font-bold uppercase tracking-widest">DIRECTOR OF OPERATIONS</p>
+              <p className="text-xs text-text-accent font-bold uppercase tracking-widest">DIRECTOR OF OPERATIONS</p>
             </motion.div>
 
           </motion.div>

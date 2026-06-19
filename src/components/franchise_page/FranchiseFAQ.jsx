@@ -34,10 +34,10 @@ export default function FranchiseFAQ() {
             <div className="container mx-auto px-6 max-w-4xl relative z-10">
 
                 <div className="text-center mb-24 flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-2xl bg-clothcare-primary/20 text-clothcare-primary flex items-center justify-center mb-8 border border-clothcare-primary/30 rotate-12 shadow-[0_0_40px_rgba(228,111,51,0.2)]">
+                    <div className="w-16 h-16 rounded-2xl bg-clothcare-primary/20 text-text-accent flex items-center justify-center mb-8 border border-clothcare-primary/30 rotate-12 shadow-[0_0_40px_rgba(228,111,51,0.2)]">
                         <Command size={28} className="-rotate-12" />
                     </div>
-                    <h2 className="text-5xl font-black text-white mb-6 tracking-tighter font-display">Intelligence.</h2>
+                    <h2 className="text-5xl font-black text-text-primary mb-6 tracking-tighter font-display">Intelligence.</h2>
                 </div>
 
                 <div className="space-y-4">
@@ -51,10 +51,10 @@ export default function FranchiseFAQ() {
                                 onClick={() => setOpenIndex(idx === openIndex ? -1 : idx)}
                                 className="w-full flex items-center justify-between p-8 md:p-10 text-left"
                             >
-                                <span className={`text-xl md:text-2xl font-black tracking-tight pr-8 transition-colors ${openIndex === idx ? 'text-white' : 'text-white/60'}`}>
+                                <span className={`text-xl md:text-2xl font-black tracking-tight pr-8 transition-colors ${openIndex === idx ? 'text-text-primary' : 'text-text-primary/60'}`}>
                                     {faq.q}
                                 </span>
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-all duration-500 border ${openIndex === idx ? 'bg-clothcare-primary text-white border-clothcare-primary shadow-lg rotate-90' : 'bg-white/5 text-white/40 border-white/10'}`}>
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-all duration-500 border ${openIndex === idx ? 'bg-clothcare-primary text-text-primary border-clothcare-primary shadow-lg rotate-90' : 'bg-white/5 text-text-primary/40 border-white/10'}`}>
                                     {openIndex === idx ? <X size={20} /> : <Plus size={20} />}
                                 </div>
                             </button>
@@ -67,7 +67,7 @@ export default function FranchiseFAQ() {
                                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="px-8 md:px-10 pb-10 text-white/50 leading-relaxed font-medium text-lg">
+                                        <div className="px-8 md:px-10 pb-10 text-text-primary/50 leading-relaxed font-medium text-lg">
                                             {faq.a}
                                         </div>
                                     </motion.div>

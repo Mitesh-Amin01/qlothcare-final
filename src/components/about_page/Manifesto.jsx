@@ -1,131 +1,141 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+
+const CHARGES = [
+  {
+    n: '01',
+    word: 'Trusted Care',
+    body: 'Every garment is individually inspected, professionally cleaned, and handled with the same attention we would give our own wardrobe.',
+  },
+  {
+    n: '02',
+    word: 'Advanced Cleaning',
+    body: 'Fabric-specific cleaning methods, premium detergents, and modern equipment protect color, texture, and longevity.',
+  },
+  {
+    n: '03',
+    word: 'Reliable Delivery',
+    body: 'On-time pickup and doorstep delivery with real-time updates, so your wardrobe is always where it needs to be.',
+  },
+];
 
 const Manifesto = () => {
-    const { scrollYProgress } = useScroll();
-    const x1 = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-    const x2 = useTransform(scrollYProgress, [0, 1], ['-30%', '0%']);
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start end', 'end start'],
+    });
+
+    // Giant background word drifts + scales very slightly — a literal
+    // typographic backdrop the headline sits on top of and cuts into,
+    // rather than ambient texture floating behind everything.
+    const bgX = useTransform(scrollYProgress, [0, 1], ['4%', '-10%']);
+    const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.02, 0.98]);
+
+    // Vertical progress rail fills as you scroll through the charges.
+    const railHeight = useTransform(scrollYProgress, [0.15, 0.85], ['0%', '100%']);
 
     return (
-        <section className="py-32 lg:py-56 bg-[#09090b] overflow-hidden relative border-t border-white/5 selection:bg-red-500/30 selection:text-white">
+        <section
+            ref={sectionRef}
+            className="relative bg-clothcare-black overflow-hidden border-t border-white/5 selection:bg-clothcare-primary/30 selection:text-text-primary py-28 lg:py-40"
+        >
+            {/* Giant cropped backdrop word — bleeds off both edges, sits behind
+                the headline at low opacity so the headline genuinely overlaps
+                it rather than floating in front of separate "decoration". */}
+            <motion.div
+                style={{ x: bgX, scale: bgScale }}
+                aria-hidden
+                className="absolute top-[6%] left-0 w-full pointer-events-none select-none z-0"
+            >
+                <span className="block text-[16rem] sm:text-[22rem] lg:text-[32rem] font-black leading-none tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.18)] whitespace-nowrap">
+                    TRUST
+                </span>
+            </motion.div>
 
-            {/* Background Parallax Typography Decoration */}
-            <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-center gap-12 opacity-[0.015]">
-                <motion.div style={{ x: x1 }} className="whitespace-nowrap flex gap-8">
-                    {Array(3).fill("").map((_, i) => (
-                        <h1 key={`r1-${i}`} className="text-[12rem] md:text-[25rem] font-black text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,1)] tracking-tighter leading-none select-none">
-                            REWRITE THE RULES
-                        </h1>
-                    ))}
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                {/* Eyebrow row */}
+                <motion.div
+                    initial={{ opacity: 0, y: -16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-4 mb-14 lg:mb-20"
+                >
+                    <span className="font-mono text-[11px] text-clothcare-primary tracking-[0.3em]">§ 01</span>
+                    <div className="h-px flex-1 bg-white/10" />
+                    <span className="text-text-primary/40 font-mono text-[11px] tracking-[0.3em] uppercase">The Manifesto</span>
                 </motion.div>
-                <motion.div style={{ x: x2 }} className="whitespace-nowrap flex gap-8">
-                    {Array(3).fill("").map((_, i) => (
-                        <h1 key={`r2-${i}`} className="text-[12rem] md:text-[25rem] font-black text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,1)] tracking-tighter leading-none select-none">
-                            THE MANIFESTO
-                        </h1>
-                    ))}
-                </motion.div>
-            </div>
 
-            <div className="container mx-auto px-6 max-w-7xl relative z-10 flex flex-col">
-
-                {/* Top Numbering and Line */}
-                <div className="w-full flex justify-between items-start mb-20 lg:mb-32">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "0px 0px -50px 0px" }}
-                        className="flex items-center gap-6"
-                    >
-                        <div className="w-16 h-px bg-clothcare-primary"></div>
-                        <span className="text-clothcare-primary font-bold uppercase tracking-[0.4em] text-xs">
-                            01 / The Core Defect
+                {/* Editorial opening line with drop cap */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '0px 0px -100px 0px' }}
+                    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-5xl"
+                >
+                    <p className="text-2xl sm:text-3xl lg:text-4xl text-text-primary/90 font-light leading-[1.25] tracking-tight">
+                        <span className="float-left text-[5.5rem] sm:text-[7rem] leading-[0.8] font-black pr-3 pt-1 text-text-accent italic">
+                            F
                         </span>
-                    </motion.div>
+                       or us, laundry isn't a routine chore—it's the responsibility of preserving the clothes you wear with confidence. Every fabric deserves expert attention, every customer deserves complete transparency, and every order deserves to be treated with care.
+                    </p>
+                </motion.div>
 
-                    <motion.div
-                        initial={{ scale: 0, opacity: 0, rotate: -45 }}
-                        whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, type: "spring" }}
-                        className="w-14 h-14 rounded-full border border-white/10 items-center justify-center text-white bg-white/5 backdrop-blur-md hidden md:flex ring-4 ring-black shadow-[0_0_30px_rgba(255,255,255,0.05)]"
-                    >
-                        <Sparkles size={18} />
-                    </motion.div>
-                </div>
-
-                {/* Main Statement */}
-                <div className="max-w-6xl w-full mx-auto text-left relative">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight relative z-20"
-                    >
-                        The traditional laundry sector is <br className="hidden lg:block" />
-                        <span className="relative inline-block mt-2">
-                            <span className="relative z-10 italic text-transparent bg-clip-text bg-linear-to-r from-red-500 via-orange-400 to-yellow-500 pr-2">
-                                chemically harsh,
-                            </span>
-                            {/* Animated Highlighting Stroke underneath */}
-                            <motion.span
-                                initial={{ scaleX: 0 }}
-                                whileInView={{ scaleX: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: 0.5, ease: "circOut" }}
-                                className="absolute bottom-[10%] left-[-2%] w-[104%] h-[30%] bg-red-600/20 -z-10 origin-left skew-x-[-15deg] blur-sm rounded-full"
-                            ></motion.span>
-                        </span> <br className="hidden md:block" />
-                        operationally archaic, <br className="hidden sm:block" /> and ecologically devastating.
-                    </motion.h2>
-
-                    {/* Gradient separator acting as a dynamic visual divider */}
-                    <motion.div
-                        initial={{ scaleX: 0, opacity: 0 }}
-                        whileInView={{ scaleX: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-                        className="w-full max-w-4xl h-px bg-linear-to-r from-red-500/50 via-clothcare-primary/30 to-transparent my-16 origin-left"
-                    ></motion.div>
-
-                    {/* Lower Text Grid Layout */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 pl-0 md:pl-20 border-l border-white/5 ml-4 md:ml-10">
+                {/* The Charges — vertical indicted list with a fill-on-scroll rail,
+                    replacing the previous two-column paragraph grid. Each item
+                    carries genuine sequence (the brand's stated defects, in
+                    order of how the manifesto resolves them), so numbering here
+                    is informational, not decorative. */}
+                <div className="relative mt-24 lg:mt-32 max-w-5xl">
+                    {/* Static track + animated fill rail */}
+                    <div className="absolute left-0 top-2 bottom-2 w-px bg-white/10 hidden md:block">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="relative"
-                        >
-                            <div className="absolute -left-10 md:-left-[90px] top-1 w-6 h-6 rounded-full bg-[#09090b] border-2 border-clothcare-primary/50 flex items-center justify-center">
-                                <div className="w-1.5 h-1.5 bg-clothcare-primary rounded-full"></div>
-                            </div>
-                            <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed">
-                                We founded Qlothcare to fundamentally <span className="text-white font-medium">rewrite the rules</span> of garment care.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                            className="relative md:pt-16"
-                        >
-                            <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed">
-                                By replacing toxic industrial solvents with biodegradable bio-enzymes and implementing aerospace-grade logistics, we're building the infrastructure for the <span className="text-white font-medium italic border-b border-clothcare-primary/50 pb-1 hover:text-clothcare-primary transition-colors cursor-crosshair">sustainable wardrobe of the future.</span>
-                            </p>
-                        </motion.div>
+                            style={{ height: railHeight }}
+                            className="w-full bg-clothcare-primary"
+                        />
                     </div>
+
+                    <ul className="md:pl-16 divide-y divide-white/5">
+                        {CHARGES.map((c, i) => (
+                            <motion.li
+                                key={c.n}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-80px' }}
+                                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                                className="group py-10 lg:py-12 flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-10"
+                            >
+                                <span className="font-mono text-sm text-text-primary/30 tracking-widest shrink-0 sm:w-10">
+                                    {c.n}
+                                </span>
+                                <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight shrink-0 sm:w-[40%] group-hover:text-text-accent transition-colors duration-500">
+                                    {c.word}
+                                </h3>
+                                <p className="text-text-primary/45 text-base lg:text-lg font-light leading-relaxed sm:pt-3">
+                                    {c.body}
+                                </p>
+                            </motion.li>
+                        ))}
+                    </ul>
                 </div>
 
+                {/* Closing resolution line — answers the charges, sits apart as
+                    the section's turn from problem to stance. */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.8 }}
+                    className="mt-24 lg:mt-32 max-w-3xl border-t border-white/10 pt-12"
+                >
+                    <p className="text-xl lg:text-2xl text-text-primary/70 font-light leading-relaxed">
+                        <span className="text-text-primary font-medium">QlothCare combines professional garment care,</span>{' '}
+                      modern technology, and dependable service to deliver a laundry experience built on trust—not shortcuts.
+                    </p>
+                </motion.div>
             </div>
-
-            {/* Removed shadow gradients to create a hard cut into the next white section */}
-
         </section>
     );
 };

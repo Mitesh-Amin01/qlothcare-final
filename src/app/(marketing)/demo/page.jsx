@@ -50,11 +50,11 @@ export default function DemoPage() {
           animate="visible"
           variants={headerVariants}
         >
-          <p className="text-clothcare-primary font-bold tracking-widest uppercase text-sm mb-4">
+          <p className="text-text-accent font-bold tracking-widest uppercase text-sm mb-4">
             Exclusive Walkthrough
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-clothcare-darker leading-[1.1] tracking-tight mb-6">
-            Book Your <span className="text-clothcare-primary">Demo</span>
+            Book Your <span className="text-text-accent">Demo</span>
           </h1>
           <p className="text-lg text-clothcare-gray leading-relaxed">
             Experience the future of premium fabric care. Schedule a personalized demo with our experts to see how Qlothcare can elevate your wardrobe management.
@@ -73,7 +73,7 @@ export default function DemoPage() {
             <div className="flex flex-col lg:flex-row">
               
               {/* Left Side: Info & Benefits */}
-              <div className="lg:w-2/5 bg-clothcare-darker text-white p-10 lg:p-12 relative overflow-hidden flex flex-col justify-between">
+              <div className="lg:w-2/5 bg-clothcare-darker text-text-primary p-10 lg:p-12 relative overflow-hidden flex flex-col justify-between">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-clothcare-primary/20 rounded-full blur-[80px] -mr-20 -mt-20"></div>
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px] -ml-20 -mb-20"></div>
                 
@@ -82,36 +82,36 @@ export default function DemoPage() {
                   <ul className="space-y-6">
                     <li className="flex items-start gap-4">
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1">
-                        <span className="font-bold text-clothcare-primary text-sm">1</span>
+                        <span className="font-bold text-text-accent text-sm">1</span>
                       </div>
                       <div>
-                        <h4 className="font-bold text-white mb-1">Personalized Consultation</h4>
-                        <p className="text-sm text-white/70 leading-relaxed">We assess your specific garment care needs and volume.</p>
+                        <h4 className="font-bold text-text-primary mb-1">Personalized Consultation</h4>
+                        <p className="text-sm text-text-primary/70 leading-relaxed">We assess your specific garment care needs and volume.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1">
-                        <span className="font-bold text-clothcare-primary text-sm">2</span>
+                        <span className="font-bold text-text-accent text-sm">2</span>
                       </div>
                       <div>
-                        <h4 className="font-bold text-white mb-1">Process Walkthrough</h4>
-                        <p className="text-sm text-white/70 leading-relaxed">Detailed tour of our 8-step quality control systems.</p>
+                        <h4 className="font-bold text-text-primary mb-1">Process Walkthrough</h4>
+                        <p className="text-sm text-text-primary/70 leading-relaxed">Detailed tour of our 8-step quality control systems.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
                       <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1">
-                        <span className="font-bold text-clothcare-primary text-sm">3</span>
+                        <span className="font-bold text-text-accent text-sm">3</span>
                       </div>
                       <div>
-                        <h4 className="font-bold text-white mb-1">Custom Pricing Plan</h4>
-                        <p className="text-sm text-white/70 leading-relaxed">Tailored enterprise or personal pricing recommendations.</p>
+                        <h4 className="font-bold text-text-primary mb-1">Custom Pricing Plan</h4>
+                        <p className="text-sm text-text-primary/70 leading-relaxed">Tailored enterprise or personal pricing recommendations.</p>
                       </div>
                     </li>
                   </ul>
                 </div>
 
                 <div className="relative z-10 mt-12 pt-8 border-t border-white/10">
-                  <p className="text-sm text-white/60 mb-2">Need immediate assistance?</p>
+                  <p className="text-sm text-text-primary/60 mb-2">Need immediate assistance?</p>
                   <p className="font-bold tracking-wider">contact@qlothcare.com</p>
                 </div>
               </div>
@@ -146,12 +146,12 @@ export default function DemoPage() {
                         <label className="text-sm font-bold text-clothcare-darker ml-1">Full Name</label>
                         <div className="relative group">
                           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <User className="h-5 w-5 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" />
+                            <User className="h-5 w-5 text-gray-400 group-focus-within:text-text-accent transition-colors" />
                           </div>
                           <input 
                             required
                             type="text" 
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
+                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
                             placeholder="John Doe"
                           />
                         </div>
@@ -162,12 +162,12 @@ export default function DemoPage() {
                         <label className="text-sm font-bold text-clothcare-darker ml-1">Work Email</label>
                         <div className="relative group">
                           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" />
+                            <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-text-accent transition-colors" />
                           </div>
                           <input 
                             required
                             type="email" 
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
+                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
                             placeholder="john@company.com"
                           />
                         </div>
@@ -178,12 +178,12 @@ export default function DemoPage() {
                         <label className="text-sm font-bold text-clothcare-darker ml-1">Phone Number</label>
                         <div className="relative group">
                           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Phone className="h-5 w-5 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" />
+                            <Phone className="h-5 w-5 text-gray-400 group-focus-within:text-text-accent transition-colors" />
                           </div>
                           <input 
                             required
                             type="tel" 
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
+                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
                             placeholder="+1 (555) 000-0000"
                           />
                         </div>
@@ -194,11 +194,11 @@ export default function DemoPage() {
                         <label className="text-sm font-bold text-clothcare-darker ml-1">Company / Organization</label>
                         <div className="relative group">
                           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Building2 className="h-5 w-5 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" />
+                            <Building2 className="h-5 w-5 text-gray-400 group-focus-within:text-text-accent transition-colors" />
                           </div>
                           <input 
                             type="text" 
-                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
+                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
                             placeholder="Optional"
                           />
                         </div>
@@ -210,11 +210,11 @@ export default function DemoPage() {
                       <label className="text-sm font-bold text-clothcare-darker ml-1">Preferred Date</label>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                          <Calendar className="h-5 w-5 text-gray-400 group-focus-within:text-clothcare-primary transition-colors" />
+                          <Calendar className="h-5 w-5 text-gray-400 group-focus-within:text-text-accent transition-colors" />
                         </div>
                         <input 
                           type="date" 
-                          className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
+                          className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all"
                         />
                       </div>
                     </div>
@@ -224,7 +224,7 @@ export default function DemoPage() {
                       <label className="text-sm font-bold text-clothcare-darker ml-1">How can we help you?</label>
                       <textarea 
                         rows="4"
-                        className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all resize-none"
+                        className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-text-dark focus:outline-none focus:ring-2 focus:ring-clothcare-primary/20 focus:border-clothcare-primary focus:bg-white transition-all resize-none"
                         placeholder="Tell us a little bit about your garment care needs..."
                       ></textarea>
                     </div>
@@ -232,7 +232,7 @@ export default function DemoPage() {
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 py-4 bg-clothcare-primary text-white font-bold rounded-2xl hover:bg-clothcare-primaryDark transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 shadow-lg shadow-orange-900/20"
+                      className="w-full flex items-center justify-center gap-2 py-4 bg-clothcare-primary text-text-primary font-bold rounded-2xl hover:bg-clothcare-primaryDark transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 shadow-lg shadow-orange-900/20"
                     >
                       {isSubmitting ? (
                         <>

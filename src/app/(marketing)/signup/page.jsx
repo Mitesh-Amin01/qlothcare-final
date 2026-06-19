@@ -84,7 +84,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-[#050505] text-white font-sans overflow-hidden">
+    <div className="min-h-screen w-full flex bg-[#050505] text-text-primary font-sans overflow-hidden">
 
       {/* ==========================================
                 LEFT SIDE: CINEMATIC STORYTELLING 
@@ -119,14 +119,14 @@ export default function SignupPage() {
             className="mb-12"
           >
             <div className="flex gap-1.5 mb-6">
-              {[1, 2, 3, 4, 5].map(i => <Sparkles key={i} size={14} className="text-clothcare-primary fill-clothcare-primary" />)}
+              {[1, 2, 3, 4, 5].map(i => <Sparkles key={i} size={14} className="text-text-accent fill-clothcare-primary" />)}
             </div>
-            <h2 className="text-4xl font-light leading-snug mb-8 max-w-lg text-white/90">
+            <h2 className="text-4xl font-light leading-snug mb-8 max-w-lg text-text-primary/90">
               "Signup took less than a minute. Managing my laundry operations has never been this smooth and professional."
             </h2>
             <div className="flex items-center gap-5">
               <div className="relative w-14 h-14 rounded-full border border-white/20 p-1">
-                <div className="w-full h-full rounded-full bg-clothcare-primary/10 flex items-center justify-center text-clothcare-primary">
+                <div className="w-full h-full rounded-full bg-clothcare-primary/10 flex items-center justify-center text-text-accent">
                   <User size={28} strokeWidth={1.5} />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#050505] rounded-full flex items-center justify-center">
@@ -134,7 +134,7 @@ export default function SignupPage() {
                 </div>
               </div>
               <div>
-                <p className="font-bold text-white text-lg tracking-wide uppercase">Verified Partner</p>
+                <p className="font-bold text-text-primary text-lg tracking-wide uppercase">Verified Partner</p>
               </div>
             </div>
           </motion.div>
@@ -166,13 +166,13 @@ export default function SignupPage() {
                   key={step}
                   variants={fadeUp}
                 >
-                  <span className="text-clothcare-primary font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs pb-3 sm:pb-4 block">
+                  <span className="text-text-accent font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs pb-3 sm:pb-4 block">
                     {step === 'signup' ? 'Secure Enrollment' : 'Identity Verification'}
                   </span>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tighter mb-4 leading-tight">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter mb-4 leading-tight">
                     {step === 'signup' ? 'Initialization.' : 'Verify Access.'}
                   </h1>
-                  <p className="text-base sm:text-lg text-white/50 font-light">
+                  <p className="text-base sm:text-lg text-text-primary/50 font-light">
                     {step === 'signup'
                       ? 'Begin your journey and gain access to the Qlothcare vault.'
                       : `We have dispatched a 6-digit security code to ${formData.email || 'your email'}.`}
@@ -188,12 +188,12 @@ export default function SignupPage() {
                   variants={fadeUp}
                   className="grid grid-cols-2 gap-4 my-8 lg:my-10 border-b border-white/10 pb-8 lg:pb-10 overflow-hidden"
                 >
-                  <button className="flex items-center justify-center gap-3 py-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl font-bold text-sm text-white transition-all group">
-                    <Chrome size={18} className="text-white/50 group-hover:text-white transition-colors" />
+                  <button className="flex items-center justify-center gap-3 py-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl font-bold text-sm text-text-primary transition-all group">
+                    <Chrome size={18} className="text-text-primary/50 group-hover:text-text-primary transition-colors" />
                     Google
                   </button>
-                  <button className="flex items-center justify-center gap-3 py-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl font-bold text-sm text-white transition-all group">
-                    <Command size={18} className="text-white/50 group-hover:text-white transition-colors" />
+                  <button className="flex items-center justify-center gap-3 py-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl font-bold text-sm text-text-primary transition-all group">
+                    <Command size={18} className="text-text-primary/50 group-hover:text-text-primary transition-colors" />
                     Apple
                   </button>
                 </motion.div>
@@ -213,15 +213,15 @@ export default function SignupPage() {
 
                     {/* Full Name */}
                     <div className="space-y-3">
-                      <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Full Name</label>
+                      <label className="text-xs font-bold text-text-primary/60 uppercase tracking-widest pl-1">Full Name</label>
                       <div className="relative group">
-                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-clothcare-primary transition-colors">
+                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-text-primary/30 group-focus-within:text-text-accent transition-colors">
                           <User size={20} />
                         </div>
                         <input
                           type="text"
                           placeholder="John Doe"
-                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-6 font-bold text-white focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-white/20"
+                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-6 font-bold text-text-primary focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-text-primary/20"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
@@ -231,15 +231,15 @@ export default function SignupPage() {
 
                     {/* Email */}
                     <div className="space-y-3">
-                      <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Email Address</label>
+                      <label className="text-xs font-bold text-text-primary/60 uppercase tracking-widest pl-1">Email Address</label>
                       <div className="relative group">
-                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-clothcare-primary transition-colors">
+                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-text-primary/30 group-focus-within:text-text-accent transition-colors">
                           <Mail size={20} />
                         </div>
                         <input
                           type="email"
                           placeholder="name@qlothcare.com"
-                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-6 font-bold text-white focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-white/20"
+                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-6 font-bold text-text-primary focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-text-primary/20"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
@@ -250,16 +250,16 @@ export default function SignupPage() {
                     {/* Password */}
                     <div className="space-y-3 pt-2">
                       <div className="flex justify-between items-center pl-1">
-                        <label className="text-xs font-bold text-white/60 uppercase tracking-widest">Master Password</label>
+                        <label className="text-xs font-bold text-text-primary/60 uppercase tracking-widest">Master Password</label>
                       </div>
                       <div className="relative group">
-                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-clothcare-primary transition-colors">
+                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-text-primary/30 group-focus-within:text-text-accent transition-colors">
                           <Lock size={20} />
                         </div>
                         <input
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••••••"
-                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-14 font-bold text-white focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-white/20 tracking-widest"
+                          className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl py-5 pl-14 pr-14 font-bold text-text-primary focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-text-primary/20 tracking-widest"
                           value={formData.password}
                           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                           required
@@ -267,7 +267,7 @@ export default function SignupPage() {
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors"
+                          className="absolute right-5 top-1/2 -translate-y-1/2 text-text-primary/30 hover:text-text-primary transition-colors"
                         >
                           {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
@@ -308,16 +308,16 @@ export default function SignupPage() {
                           value={digit}
                           onChange={(e) => handleOtpChange(index, e.target.value)}
                           onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                          className="w-12 h-16 sm:w-14 sm:h-16 bg-[#0A0A0A] border border-white/10 rounded-2xl text-center font-bold text-2xl text-white focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-white/20"
+                          className="w-12 h-16 sm:w-14 sm:h-16 bg-[#0A0A0A] border border-white/10 rounded-2xl text-center font-bold text-2xl text-text-primary focus:outline-none focus:border-clothcare-primary focus:ring-1 focus:ring-clothcare-primary transition-all placeholder:text-text-primary/20"
                           required
                         />
                       ))}
                     </div>
 
                     <div className="text-center">
-                      <p className="text-sm text-white/40">
+                      <p className="text-sm text-text-primary/40">
                         Didn't receive the code?{' '}
-                        <button type="button" className="text-clothcare-primary font-bold hover:text-white transition-colors">
+                        <button type="button" className="text-text-accent font-bold hover:text-text-primary transition-colors">
                           Resend Signal
                         </button>
                       </p>
@@ -344,7 +344,7 @@ export default function SignupPage() {
                       <button
                         type="button"
                         onClick={() => setStep('signup')}
-                        className="text-xs font-bold text-white/30 hover:text-white/70 uppercase transition-colors tracking-[0.2em]"
+                        className="text-xs font-bold text-text-primary/30 hover:text-text-primary/70 uppercase transition-colors tracking-[0.2em]"
                       >
                         Cancel & Return
                       </button>
@@ -355,11 +355,11 @@ export default function SignupPage() {
             </div>
 
             {/* Footer Links */}
-            <motion.div variants={fadeUp} className="mt-10 lg:mt-12 text-center text-sm font-medium text-white/40 pt-8 lg:pt-10 border-t border-white/5 relative z-10">
+            <motion.div variants={fadeUp} className="mt-10 lg:mt-12 text-center text-sm font-medium text-text-primary/40 pt-8 lg:pt-10 border-t border-white/5 relative z-10">
               <p className="mb-4">
-                Already have credentials? <Link href="/login" className="text-white hover:text-clothcare-primary transition-colors pl-2">Access Vault</Link>
+                Already have credentials? <Link href="/login" className="text-text-primary hover:text-text-accent transition-colors pl-2">Access Vault</Link>
               </p>
-              <Link href="/" className="inline-flex items-center gap-2 text-white/30 hover:text-white transition-colors text-xs font-bold tracking-widest uppercase">
+              <Link href="/" className="inline-flex items-center gap-2 text-text-primary/30 hover:text-text-primary transition-colors text-xs font-bold tracking-widest uppercase">
                 Return to Main Site
               </Link>
             </motion.div>

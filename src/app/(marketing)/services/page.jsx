@@ -13,13 +13,13 @@ import LogisticsMap from '@/components/service_page/LogisticsMap';
    ========================================== */
 export default function ServicesPage() {
     return (
-        <div className="font-sans antialiased text-gray-900 bg-white selection:bg-clothcare-primary/20 selection:text-black">
+        <div className="font-sans antialiased text-text-dark bg-white selection:bg-clothcare-primary/20 selection:text-black">
             <CinematicHero />
             <CoreProtocols />
             <TechnologyStack />
+            <QualityProcess />
             <ArchiveVault />
             <ServiceDeepDive />
-            <QualityProcess />
             <LogisticsMap />
         </div>
     );

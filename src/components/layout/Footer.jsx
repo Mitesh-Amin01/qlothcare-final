@@ -38,7 +38,7 @@ const Footer = () => {
   const currentYear = mounted ? new Date().getFullYear() : "2026";
 
   return (
-    <footer className="bg-clothcare-darker text-white font-sans relative overflow-hidden">
+    <footer className="bg-clothcare-darker text-text-primary font-sans relative overflow-hidden">
 
       {/* =========================
           BACKGROUND ELEMENTS
@@ -49,7 +49,7 @@ const Footer = () => {
         transition={{ duration: 1 }}
         className="absolute bottom-32 left-0 w-full pointer-events-none select-none hidden lg:block"
       >
-        <h1 className="text-[18vw] font-bold text-white leading-none tracking-tighter text-center translate-y-1/4">
+        <h1 className="text-[18vw] font-bold text-text-primary leading-none tracking-tighter text-center translate-y-1/4">
           QLOTHCARE
         </h1>
       </motion.div>
@@ -113,12 +113,12 @@ const Footer = () => {
           <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer w-fit">
               <div className="w-10 h-10 bg-clothcare-primary rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12">
-                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">
-                Qlothcare<span className="text-clothcare-primary">.</span>
+                Qlothcare<span className="text-text-accent">.</span>
               </span>
             </Link>
 
@@ -138,7 +138,7 @@ const Footer = () => {
 
           {/* Company */}
           <motion.div variants={fadeInUp} className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6 text-white">Company</h4>
+            <h4 className="font-display font-bold text-lg mb-6 text-text-primary">Company</h4>
             <ul className="space-y-4 text-clothcare-graySoft/70">
               <FooterLink text="About Us" href="/about-us" />
               <FooterLink text="Services" href="/services" />
@@ -150,9 +150,9 @@ const Footer = () => {
 
           {/* Resources */}
           <motion.div variants={fadeInUp} className="lg:col-span-2">
-            <h4 className="font-display font-bold text-lg mb-6 text-white">Resources</h4>
+            <h4 className="font-display font-bold text-lg mb-6 text-text-primary">Resources</h4>
             <ul className="space-y-4 text-clothcare-graySoft/70">
-              <FooterLink text="How It Works" href="/how-it-works" />
+              <FooterLink text="Send Inquiry" href="/inquiry" />
               <FooterLink text="Request Demo" href="/demo" badge="NEW" />
               <FooterLink text="Support" href="/contact-us" />
             </ul>
@@ -160,11 +160,11 @@ const Footer = () => {
 
           {/* Contact */}
           <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4">
-            <h4 className="font-display font-bold text-lg mb-6 text-white">Contact</h4>
+            <h4 className="font-display font-bold text-lg mb-6 text-text-primary">Contact</h4>
             <ul className="space-y-6 text-clothcare-graySoft/70">
               <li className="flex items-start gap-4 group">
                 <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
-                  <MapPinnedIcon size={20} className="text-clothcare-primary" />
+                  <MapPinnedIcon size={20} className="text-text-accent" />
                 </div>
                 <span className="text-sm leading-relaxed max-w-[240px]">
                   First Floor, 101 Ansh Arambh, Nr. Saligram Prime,
@@ -174,13 +174,13 @@ const Footer = () => {
 
               <li className="flex items-center gap-4 group">
                 <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
-                  <PhoneCall size={20} className="text-clothcare-primary" />
+                  <PhoneCall size={20} className="text-text-accent" />
                 </div>
                 <div className="flex flex-col text-sm">
-                  <a href="tel:+919601423424" className="hover:text-white transition-colors">
+                  <a href="tel:+919601423424" className="hover:text-text-primary transition-colors">
                     +91 96014 23424
                   </a>
-                  <a href="tel:+919284546378" className="hover:text-white transition-colors">
+                  <a href="tel:+919284546378" className="hover:text-text-primary transition-colors">
                     +91 92845 46378
                   </a>
                 </div>
@@ -188,9 +188,9 @@ const Footer = () => {
 
               <li className="flex items-center gap-4 group">
                 <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
-                  <Mail size={20} className="text-clothcare-primary" />
+                  <Mail size={20} className="text-text-accent" />
                 </div>
-                <a href="mailto:support@qlothcare.com" className="text-sm hover:text-white transition-colors">
+                <a href="mailto:support@qlothcare.com" className="text-sm hover:text-text-primary transition-colors">
                   support@qlothcare.com
                 </a>
               </li>
@@ -205,9 +205,9 @@ const Footer = () => {
         <div className="py-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-clothcare-graySoft/40">
           <div className="font-medium">&copy; {currentYear} Qlothcare. Powered by advanced fabric care tech.</div>
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-            <Link href="/privacy-policy" className="hover:text-clothcare-primary transition-colors">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="hover:text-clothcare-primary transition-colors">Terms of Service</Link>
-            <Link href="/cookies-policy" className="hover:text-clothcare-primary transition-colors">Cookie Settings</Link>
+            <Link href="/privacy-policy" className="hover:text-text-accent transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-text-accent transition-colors">Terms of Service</Link>
+            <Link href="/cookies-policy" className="hover:text-text-accent transition-colors">Cookie Settings</Link>
           </div>
         </div>
       </div>
@@ -222,7 +222,7 @@ const SocialLink = ({ icon }) => (
     whileHover={{ y: -4, scale: 1.1 }}
     whileTap={{ scale: 0.95 }}
     href="#"
-    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-clothcare-primary hover:text-white transition-all duration-300 text-clothcare-graySoft/60 border border-white/5"
+    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-clothcare-primary hover:text-text-primary transition-all duration-300 text-clothcare-graySoft/60 border border-white/5"
   >
     {icon}
   </motion.a>
@@ -230,13 +230,13 @@ const SocialLink = ({ icon }) => (
 
 const FooterLink = ({ text, href = "#", badge }) => (
   <li className="group">
-    <Link href={href} className="flex items-center gap-2 hover:text-white transition-all duration-300 w-fit">
-      <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 opacity-0 group-hover:opacity-100 text-clothcare-primary">
+    <Link href={href} className="flex items-center gap-2 hover:text-text-primary transition-all duration-300 w-fit">
+      <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 opacity-0 group-hover:opacity-100 text-text-accent">
         <ArrowRight size={12} strokeWidth={3} />
       </span>
       {text}
       {badge && (
-        <span className="text-[10px] font-black uppercase bg-clothcare-primary text-white px-1.5 py-0.5 rounded ml-2">
+        <span className="text-[10px] font-black uppercase bg-clothcare-primary text-text-primary px-1.5 py-0.5 rounded ml-2">
           {badge}
         </span>
       )}
@@ -251,7 +251,7 @@ const AppButton = ({ platform, title, subtitle, primary }) => (
     suppressHydrationWarning
     className={`flex items-center gap-4 px-7 py-4 rounded-2xl transition-all duration-300 shadow-xl group cursor-pointer border ${primary
       ? "bg-white text-clothcare-dark darker border-transparent hover:shadow-white/5"
-      : "bg-transparent border-white/10 text-white hover:bg-white/5"
+      : "bg-transparent border-white/10 text-text-primary hover:bg-white/5"
       }`}
   >
     <span className="text-3xl">

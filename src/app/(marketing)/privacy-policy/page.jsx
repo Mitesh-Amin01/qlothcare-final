@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-white">
+    <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden border-b border-gray-100">
@@ -38,14 +38,14 @@ export default function PrivacyPolicy() {
 
         <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-clothcare-primary text-sm font-bold mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-text-accent text-sm font-bold mb-8">
               <Shield size={16} /> Data Protection
             </div>
             <h1 className="text-[3.5rem] lg:text-[5.5rem] font-display font-black leading-[1.05] tracking-tight mb-8">
               Privacy & <br />
               <span className="text-gray-400">Security Policy.</span>
             </h1>
-            <p className="text-xl lg:text-2xl text-gray-500 font-medium max-w-2xl leading-relaxed">
+            <p className="text-xl lg:text-2xl text-text-muted font-medium max-w-2xl leading-relaxed">
               We treat your personal data with the same immaculate care and precision as we do your finest garments.
             </p>
           </motion.div>
@@ -77,14 +77,14 @@ export default function PrivacyPolicy() {
                 <Watermark number="01" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Introduction</h2>
-                  <p className="text-xl text-gray-500 leading-relaxed mb-8">
+                  <p className="text-xl text-text-muted leading-relaxed mb-8">
                     At <strong className="text-clothcare-dark">Qlothcare</strong>, transparency isn't just a buzzword; it's the foundation of our premium service. This policy meticulously outlines how our cloud infrastructure and on-the-ground agents collect, secure, and leverage your information to deliver an effortless fabric care experience.
                   </p>
                   <div className="p-6 bg-white border border-gray-100 rounded-2xl flex gap-4 mt-12 shadow-sm">
-                    <FileText className="text-clothcare-primary shrink-0" size={24} />
+                    <FileText className="text-text-accent shrink-0" size={24} />
                     <div>
                       <h4 className="font-bold text-clothcare-dark">Last Updated: January 7, 2026</h4>
-                      <p className="text-gray-500 text-sm mt-1">Updates to this policy will be communicated via your registered email 30 days prior to implementation.</p>
+                      <p className="text-text-muted text-sm mt-1">Updates to this policy will be communicated via your registered email 30 days prior to implementation.</p>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default function PrivacyPolicy() {
                 <Watermark number="02" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Information Collection</h2>
-                  <p className="text-xl text-gray-500 leading-relaxed mb-12">
+                  <p className="text-xl text-text-muted leading-relaxed mb-12">
                     To deliver our 60-minute pickup promise and bespoke garment handling, we securely ingest specific data points.
                   </p>
 
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
                 <Watermark number="03" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Data Usage</h2>
-                  <div className="prose prose-lg prose-gray max-w-none text-gray-500 leading-relaxed">
+                  <div className="prose prose-lg prose-gray max-w-none text-text-muted leading-relaxed">
                     <p>
                       Your data acts as the blueprint for your garment's journey. By analyzing your preferences, our automated routing logic assigns the most suitable rider and alerts the facility to prep specific hypoallergenic cleaning solutions before your clothes even arrive.
                     </p>
@@ -140,10 +140,10 @@ export default function PrivacyPolicy() {
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">Enterprise Security</h2>
 
-                  <div className="bg-[#18181B] text-white p-10 lg:p-14 rounded-3xl relative overflow-hidden shadow-2xl">
+                  <div className="bg-[#18181B] text-text-primary p-10 lg:p-14 rounded-3xl relative overflow-hidden shadow-2xl">
                     <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-clothcare-primary/20 blur-[100px] rounded-full"></div>
 
-                    <Shield className="text-clothcare-primary mb-8" size={48} strokeWidth={1} />
+                    <Shield className="text-text-accent mb-8" size={48} strokeWidth={1} />
                     <h3 className="text-3xl font-display font-bold mb-6">Institutional Grade Protection.</h3>
                     <p className="text-gray-400 text-lg leading-relaxed mb-8">
                       We do not compromise. All telemetry, transaction data, and garment profiles are encrypted via AES-256 protocols. Your financial data is tokenized through Stripe and never resides on our local facility servers.
@@ -161,17 +161,17 @@ export default function PrivacyPolicy() {
                 <Watermark number="05" />
                 <div className="relative z-10">
                   <h2 className="text-4xl lg:text-5xl font-display font-bold mb-8 tracking-tight">User Rights</h2>
-                  <p className="text-xl text-gray-500 leading-relaxed mb-8">
+                  <p className="text-xl text-text-muted leading-relaxed mb-8">
                     You maintain absolute sovereignty over your profile.
                   </p>
                   <div className="space-y-4">
                     <div className="p-6 bg-white border border-gray-100 rounded-2xl hover:border-clothcare-primary/20 transition-colors">
                       <h4 className="font-bold text-clothcare-dark mb-2 text-lg">Data Portability</h4>
-                      <p className="text-gray-500">Request a complete JSON export of your garme history and preferences instantly.</p>
+                      <p className="text-text-muted">Request a complete JSON export of your garme history and preferences instantly.</p>
                     </div>
                     <div className="p-6 bg-white border border-gray-100 rounded-2xl hover:border-clothcare-primary/20 transition-colors">
                       <h4 className="font-bold text-clothcare-dark mb-2 text-lg">Right to Erasure</h4>
-                      <p className="text-gray-500">Demand a permanent wipe of all your data from our ERP ecosystem, executed within 24 hours.</p>
+                      <p className="text-text-muted">Demand a permanent wipe of all your data from our ERP ecosystem, executed within 24 hours.</p>
                     </div>
                   </div>
                 </div>
@@ -193,7 +193,7 @@ const NavButton = ({ title, active, onClick }) => (
   <button
     onClick={onClick}
     className={`w-full text-left px-5 py-3.5 rounded-xl font-bold transition-all duration-300 ${active
-      ? 'bg-white text-clothcare-primary shadow-sm border border-gray-100'
+      ? 'bg-white text-text-accent shadow-sm border border-gray-100'
       : 'text-gray-400 hover:text-clothcare-dark hover:bg-gray-50 border border-transparent'
       }`}
   >
@@ -209,10 +209,10 @@ const Watermark = ({ number }) => (
 
 const DataCard = ({ icon, title, desc }) => (
   <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-clothcare-primary/20 transition-all duration-500 group">
-    <div className="w-12 h-12 bg-[#FAFAFA] rounded-2xl flex items-center justify-center text-clothcare-dark group-hover:bg-clothcare-primary/10 group-hover:text-clothcare-primary transition-colors mb-6">
+    <div className="w-12 h-12 bg-[#FAFAFA] rounded-2xl flex items-center justify-center text-clothcare-dark group-hover:bg-clothcare-primary/10 group-hover:text-text-accent transition-colors mb-6">
       {icon}
     </div>
     <h4 className="text-xl font-bold text-clothcare-dark mb-3 tracking-tight">{title}</h4>
-    <p className="text-gray-500 leading-relaxed font-medium">{desc}</p>
+    <p className="text-text-muted leading-relaxed font-medium">{desc}</p>
   </div>
 );
