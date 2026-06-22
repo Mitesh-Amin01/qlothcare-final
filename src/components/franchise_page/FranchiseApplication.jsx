@@ -91,6 +91,44 @@ const initialState = {
   plan: "",
 };
 
+/* ==========================================
+   VALIDATION HELPERS
+   ========================================== */
+const NAME_REGEX = /^[A-Za-z][A-Za-z .'-]{1,49}$/; // letters/spaces/.'- , 2-50 chars
+const PHONE_REGEX = /^[6-9]\d{9}$/; // Indian mobile: 10 digits, starts 6-9
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PINCODE_REGEX = /^[1-9]\d{5}$/; // 6-digit Indian PIN, never starts with 0
+
+const digitsOnly = (str) => str.replace(/\D/g, "");
+
+// Strips a leading "91" (country code) or leading "0" (trunk prefix) so
+// "+91 98765 43210" and "098765 43210" both validate as the same number.
+const normalizePhone = (str) => {
+  let digits = digitsOnly(str);
+  if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
+  else if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
+  return digits;
+};
+
+const isValidName = (str) => NAME_REGEX.test(str.trim());
+const isValidPhone = (str) => PHONE_REGEX.test(normalizePhone(str));
+const isValidEmail = (str) => EMAIL_REGEX.test(str.trim());
+const isValidPincode = (str) => PINCODE_REGEX.test(str.trim());
+
+// Returns age in years, or null if dobStr isn't a real, past date.
+const getAge = (dobStr) => {
+  const dob = new Date(dobStr);
+  if (Number.isNaN(dob.getTime())) return null;
+  const today = new Date();
+  if (dob > today) return null;
+  let age = today.getFullYear() - dob.getFullYear();
+  const hadBirthdayThisYear =
+    today.getMonth() > dob.getMonth() ||
+    (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
+  if (!hadBirthdayThisYear) age -= 1;
+  return age;
+};
+
 // Tile-select used for experience, income, timeline, "how did you hear" —
 // same selected/unselected language as Button's "outline" / "primary"
 // variants, just laid out as a grid.
@@ -230,13 +268,13 @@ function LockedPlanCard({ plan }) {
         <Lock size={12} className="text-text-muted/70" />
       </label>
 
-      <div className="relative rounded-2xl border-2 border-clothcare-primary bg-clothcare-primary/5 px-5 py-5 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-11 h-11 rounded-xl bg-clothcare-primary/10 text-text-accent flex items-center justify-center shrink-0">
+      <div className="relative rounded-2xl border-2 border-clothcare-primary bg-clothcare-primary/5 px-4 sm:px-5 py-4 sm:py-5 flex items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-clothcare-primary/10 text-text-accent flex items-center justify-center shrink-0">
             <Wallet size={20} />
           </div>
-          <div>
-            <p className="text-sm font-bold text-text-dark">{plan.name}</p>
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-text-dark truncate">{plan.name}</p>
             {!!plan.discount && (
               <p className="text-xs font-bold text-text-accent">
                 {plan.discount}% OFF Every Item
@@ -246,7 +284,7 @@ function LockedPlanCard({ plan }) {
         </div>
 
         <div className="text-right shrink-0">
-          <p className="text-2xl font-black text-text-dark tracking-tight">
+          <p className="text-xl sm:text-2xl font-black text-text-dark tracking-tight">
             ₹{plan.price.toLocaleString("en-IN")}
           </p>
           <p className="text-[10px] font-bold text-text-muted uppercase tracking-widest">
@@ -286,31 +324,57 @@ export default function FranchiseApplication() {
 
   const validateStep = (s) => {
     const next = {};
+
     if (s === 1) {
       if (!form.fullName.trim()) next.fullName = "Enter your full name";
+      else if (!isValidName(form.fullName)) next.fullName = "Enter a valid name (letters only)";
+
+      if (form.dob) {
+        const age = getAge(form.dob);
+        if (age === null) next.dob = "Enter a valid date of birth";
+        else if (age < 18) next.dob = "You must be at least 18 years old";
+      }
+
+      if (form.whatsapp.trim() && !isValidPhone(form.whatsapp)) {
+        next.whatsapp = "Enter a valid 10-digit mobile number";
+      }
+
       if (!form.phone.trim()) next.phone = "Enter a phone number";
+      else if (!isValidPhone(form.phone)) next.phone = "Enter a valid 10-digit mobile number";
+
       if (!form.email.trim()) next.email = "Enter an email address";
-      if (!form.address.trim())
-        next.address = "Enter your residential address";
+      else if (!isValidEmail(form.email)) next.email = "Enter a valid email address";
+
+      if (!form.address.trim()) next.address = "Enter your residential address";
+      else if (form.address.trim().length < 10) next.address = "Please add a more complete address";
+
       if (!form.hearAboutUs) next.hearAboutUs = "Select an option";
     }
+
     if (s === 2) {
       if (!form.occupation.trim()) next.occupation = "Tell us what you do";
+      else if (form.occupation.trim().length < 2) next.occupation = "Enter a valid occupation";
+
       if (!form.experience) next.experience = "Select an option";
       if (!form.incomeRange) next.incomeRange = "Select an income range";
       if (!form.timeline) next.timeline = "Select your timeline";
     }
+
     if (s === 3) {
       if (!form.city.trim()) next.city = "Enter your preferred city";
+      else if (!isValidName(form.city)) next.city = "Enter a valid city name";
+
       if (!form.pincode.trim()) {
         next.pincode = "Enter your pincode";
-      } else if (!/^\d{6}$/.test(form.pincode.trim())) {
+      } else if (!isValidPincode(form.pincode)) {
         next.pincode = "Enter a valid 6-digit pincode";
       }
+
       // Only require an in-form selection when no plan arrived locked
       // from the pricing page.
       if (!lockedPlan && !form.plan) next.plan = "Select a plan";
     }
+
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -325,6 +389,45 @@ export default function FranchiseApplication() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateStep(3)) return;
+
+    const plan = lockedPlan
+      ? {
+          id: lockedPlan.id,
+          name: lockedPlan.name,
+          price: lockedPlan.price,
+          discount: lockedPlan.discount,
+          source: "locked-from-pricing",
+        }
+      : (() => {
+          const opt = PLAN_OPTIONS.find((p) => p.value === form.plan);
+          return opt
+            ? { id: opt.value, name: opt.label, price: opt.price, discount: opt.discount, source: "selected-in-form" }
+            : null;
+        })();
+
+    // Gather every filled field into one object before "sending" it.
+    const payload = {
+      fullName: form.fullName.trim(),
+      dob: form.dob || null,
+      whatsapp: form.whatsapp.trim() ? normalizePhone(form.whatsapp) : null,
+      phone: normalizePhone(form.phone),
+      email: form.email.trim().toLowerCase(),
+      address: form.address.trim(),
+      hearAboutUs: form.hearAboutUs,
+      occupation: form.occupation.trim(),
+      qualification: form.qualification.trim() || null,
+      orgName: form.orgName.trim() || null,
+      experience: form.experience,
+      incomeRange: form.incomeRange,
+      timeline: form.timeline,
+      city: form.city.trim(),
+      pincode: form.pincode.trim(),
+      plan,
+      submittedAt: new Date().toISOString(),
+    };
+
+    console.log("Franchise application submitted:", payload);
+
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
@@ -335,37 +438,105 @@ export default function FranchiseApplication() {
   return (
     <section
       id="application"
-      className="bg-bg-white py-20 lg:py-32 relative z-10 overflow-hidden"
+      className="bg-bg-white py-10 sm:py-16 lg:py-32 relative z-10 overflow-hidden"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(228,111,51,0.07)_0%,transparent_55%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(60,66,73,0.05)_0%,transparent_50%)]" />
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 flex justify-center">
-        <div className="w-full max-w-7xl bg-bg-white border border-clothcare-graySoft/30 rounded-[2rem] lg:rounded-[3rem] shadow-clothcare relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 flex justify-center">
+        <div className="w-full max-w-7xl bg-bg-white border border-clothcare-graySoft/30 rounded-2xl sm:rounded-[2rem] lg:rounded-[3rem] shadow-clothcare relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-clothcare-accent-gradient" />
 
           <div className="grid lg:grid-cols-5">
-            {/* Left rail — garment-tag step tracker */}
-            <div className="lg:col-span-2 bg-clothcare-darker p-10 lg:p-14 flex flex-col">
-              <div className="w-14 h-14 rounded-2xl bg-clothcare-accent-gradient text-white flex items-center justify-center mb-8 shadow-clothcareSoft">
-                <Shirt size={26} />
+            {/* Left rail — garment-tag step tracker.
+                On phone: compact horizontal stepper only, hero copy/stats hidden.
+                On lg+: full hero + vertical step list + stats, unchanged. */}
+            <div className="lg:col-span-2 bg-clothcare-darker p-5 sm:p-6 lg:p-14 flex flex-col">
+              {/* Hero content — desktop/tablet only */}
+              <div className="hidden lg:block">
+                <div className="w-14 h-14 rounded-2xl bg-clothcare-accent-gradient text-white flex items-center justify-center mb-8 shadow-clothcareSoft">
+                  <Shirt size={26} />
+                </div>
+
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-clothcare-primary mb-4 block">
+                  Franchise Application
+                </span>
+
+                <h2 className="text-3xl lg:text-5xl font-black text-text-primary mb-4 tracking-tight leading-[1.05] font-display">
+                  Bring Qlothcare to your city.
+                </h2>
+                <p className="text-clothcare-graySoft/80 font-medium text-sm lg:text-base leading-relaxed">
+                  Tell us a bit about yourself and where you'd like to open.
+                  Our franchise team reviews every application personally.
+                </p>
+
+                <div className="h-px w-16 bg-clothcare-primary/60 my-8" />
               </div>
 
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-clothcare-primary mb-4">
-                Franchise Application
-              </span>
+              {/* Compact mobile header — icon + title only, no paragraph */}
+              <div className="flex items-center gap-3 mb-15 lg:hidden">
+                <div className="w-10 h-10 rounded-xl bg-clothcare-accent-gradient text-white flex items-center justify-center shrink-0 shadow-clothcareSoft">
+                  <Shirt size={18} />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-clothcare-primary/70 block">
+                    Franchise Application
+                  </span>
+                  <h2 className="text-base font-black text-text-primary tracking-tight leading-tight font-display">
+                    Bring Qlothcare to your city.
+                  </h2>
+                </div>
+              </div>
 
-              <h2 className="text-3xl lg:text-5xl font-black text-text-primary mb-4 tracking-tight leading-[1.05] font-display">
-                Bring Qlothcare to your city.
-              </h2>
-              <p className="text-clothcare-graySoft/80 font-medium text-sm lg:text-base leading-relaxed">
-                Tell us a bit about yourself and where you'd like to open.
-                Our franchise team reviews every application personally.
-              </p>
+              {/* Horizontal stepper — phone/tablet only */}
+              <div className="flex items-center justify-between gap-2 lg:hidden">
+                {STEPS.map((s, idx) => {
+                  const isActive = s.id === step;
+                  const isDone = s.id < step || isSuccess;
+                  const Icon = s.icon;
+                  return (
+                    <React.Fragment key={s.id}>
+                      <div className="flex flex-col items-center gap-1.5 flex-1 min-w-0">
+                        <div
+                          className={`relative w-9 h-9 rounded-full flex items-center justify-center shrink-0 border-2 transition-all duration-300 ${
+                            isDone
+                              ? "bg-clothcare-primary border-clothcare-primary"
+                              : isActive
+                              ? "border-clothcare-primary text-clothcare-primary"
+                              : "border-white/20 text-white/40"
+                          }`}
+                        >
+                          <span className="absolute inset-[3px] rounded-full border border-dashed border-current opacity-30" />
+                          {isDone ? (
+                            <Check size={15} className="text-white" />
+                          ) : (
+                            <Icon size={14} />
+                          )}
+                        </div>
+                        <span
+                          className={`text-[9px] font-bold uppercase tracking-wide text-center leading-tight truncate w-full ${
+                            isActive ? "text-clothcare-primary" : "text-white/40"
+                          }`}
+                        >
+                          {s.label}
+                        </span>
+                      </div>
+                      {idx < STEPS.length - 1 && (
+                        <div
+                          className={`h-0.5 flex-1 mb-4 rounded-full transition-all duration-300 ${
+                            s.id < step || isSuccess
+                              ? "bg-clothcare-primary"
+                              : "bg-white/10"
+                          }`}
+                        />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
 
-              <div className="h-px w-16 bg-clothcare-primary/60 my-8" />
-
-              <div className="flex flex-col gap-3 mt-auto">
+              {/* Vertical step list + stats — desktop/tablet only, unchanged */}
+              <div className="hidden lg:flex flex-col gap-3 mt-auto">
                 {STEPS.map((s) => {
                   const isActive = s.id === step;
                   const isDone = s.id < step || isSuccess;
@@ -425,21 +596,21 @@ export default function FranchiseApplication() {
             </div>
 
             {/* Right — form */}
-            <div className="lg:col-span-3 p-8 md:p-12 lg:p-16 flex flex-col lg:border-l lg:border-dashed lg:border-clothcare-graySoft/40">
+            <div className="lg:col-span-3 p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col lg:border-l lg:border-dashed lg:border-clothcare-graySoft/40">
               {isSuccess ? (
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="h-full flex flex-col justify-center items-center text-center py-16"
+                  transition={{ duration: 0.5}}
+                  className="h-full flex flex-col justify-center items-center text-center py-10 sm:py-16"
                 >
-                  <div className="w-20 h-20 bg-status-success/10 text-status-success rounded-full flex items-center justify-center mb-6">
-                    <Check size={36} />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-status-success/10 text-status-success rounded-full flex items-center justify-center mb-6">
+                    <Check size={32} className="sm:w-9 sm:h-9" />
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-black text-text-dark mb-3 tracking-tight font-display">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-text-dark mb-3 tracking-tight font-display">
                     Application received.
                   </h3>
-                  <p className="text-text-muted font-medium text-base leading-relaxed max-w-sm">
+                  <p className="text-text-muted font-medium text-sm sm:text-base leading-relaxed max-w-sm">
                     Thanks, {form.fullName.split(" ")[0] || "there"}. A member
                     of our franchise team will call you within 48 hours to
                     talk next steps
@@ -449,7 +620,12 @@ export default function FranchiseApplication() {
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col h-full">
                   <div className="flex-1">
-                    <AnimatePresence mode="wait">
+                    {/* initial={false} — skips the slide-in animation on the
+                        very first paint. Without it, Step 1 also runs an
+                        "enter" transition on page load while the rest of
+                        the layout (left rail, stepper) appears instantly,
+                        which reads as a flicker/late-pop on first render. */}
+                    <AnimatePresence mode="wait" initial={false}>
                       {step === 1 && (
                         <motion.div
                           key="step1"
@@ -457,7 +633,7 @@ export default function FranchiseApplication() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
-                          className="space-y-8"
+                          className="space-y-6 sm:space-y-8"
                         >
                           <div>
                             <SectionEyebrow>Personal Information</SectionEyebrow>
@@ -480,6 +656,7 @@ export default function FranchiseApplication() {
                                 type="date"
                                 value={form.dob}
                                 onChange={update("dob")}
+                                error={errors.dob}
                               />
                               <Input
                                 label="WhatsApp Number"
@@ -488,6 +665,7 @@ export default function FranchiseApplication() {
                                 placeholder="+91 98765 43210"
                                 value={form.whatsapp}
                                 onChange={update("whatsapp")}
+                                error={errors.whatsapp}
                               />
                             </div>
                           </div>
@@ -532,7 +710,7 @@ export default function FranchiseApplication() {
 
                           <div>
                             <SectionEyebrow>How Did You Find Us?</SectionEyebrow>
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               {HEAR_ABOUT_OPTIONS.map((opt) => (
                                 <OptionTile
                                   key={opt.value}
@@ -558,7 +736,7 @@ export default function FranchiseApplication() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
-                          className="space-y-8"
+                          className="space-y-6 sm:space-y-8"
                         >
                           <div>
                             <SectionEyebrow>Professional Background</SectionEyebrow>
@@ -599,7 +777,7 @@ export default function FranchiseApplication() {
                             <div className="space-y-5">
                               <div>
                                 <RequiredLabel>Business experience</RequiredLabel>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   {EXPERIENCE_OPTIONS.map((opt) => (
                                     <OptionTile
                                       key={opt.value}
@@ -618,7 +796,7 @@ export default function FranchiseApplication() {
 
                               <div>
                                 <RequiredLabel>Annual income range</RequiredLabel>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   {INCOME_OPTIONS.map((opt) => (
                                     <OptionTile
                                       key={opt.value}
@@ -643,7 +821,7 @@ export default function FranchiseApplication() {
                               <RequiredLabel>
                                 When are you looking to start?
                               </RequiredLabel>
-                              <div className="grid grid-cols-2 gap-3">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {TIMELINE_OPTIONS.map((opt) => (
                                   <OptionTile
                                     key={opt.value}
@@ -670,7 +848,7 @@ export default function FranchiseApplication() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.25, ease: "easeOut" }}
-                          className="space-y-8"
+                          className="space-y-6 sm:space-y-8"
                         >
                           <div>
                             <SectionEyebrow>Outlet Location</SectionEyebrow>
@@ -706,7 +884,7 @@ export default function FranchiseApplication() {
                             ) : (
                               <div>
                                 <RequiredLabel>Choose your plan</RequiredLabel>
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   {PLAN_OPTIONS.map((opt) => (
                                     <PlanTile
                                       key={opt.value}
@@ -734,7 +912,7 @@ export default function FranchiseApplication() {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex items-center gap-3 pt-8 mt-2 border-t border-clothcare-graySoft/30">
+                  <div className="flex items-center gap-3 pt-6 sm:pt-8 mt-2 border-t border-clothcare-graySoft/30">
                     {step > 1 && (
                       <Button
                         type="button"

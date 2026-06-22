@@ -1,31 +1,20 @@
 "use client";
 
 import React from "react";
-import { Check, Sparkles, Zap, ShieldCheck, Crown, ArrowUpRight } from "lucide-react";
+import { Sparkles, Zap, ShieldCheck, Crown, ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
-import Button from "../ui/btn/Button";
 import Link from "next/link";
 
 const PricingSection = () => {
   const containerVariants = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.1 } },
   };
 
-  // PERF FIX: rotateX forces 3D transforms / layer promotion on every
-  // staggered child, and spring physics runs many more simulation frames
-  // than a tween. Switched to a 2D-only tween — visually near-identical
-  // easing curve, far cheaper to animate, especially with several of
-  // these firing in a stagger at once.
   const fadeUpVariants = {
     hidden: { y: 60, opacity: 0 },
     visible: {
-      y: 0,
-      opacity: 1,
+      y: 0, opacity: 1,
       transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
@@ -33,88 +22,67 @@ const PricingSection = () => {
   const scaleUpVariants = {
     hidden: { scale: 0.9, y: 50, opacity: 0 },
     visible: {
-      scale: 1,
-      y: 0,
-      opacity: 1,
+      scale: 1, y: 0, opacity: 1,
       transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
-  // Central source of truth for every plan. Each card builds its link to
-  // /coming-soon from this object, so the locked plan card on that page
-  // always receives the exact same numbers shown here.
   const PLANS = {
     starter: {
       id: "starter",
       name: "Starter Franchise",
-      price: 1000000, // 10 Lakhs
+      price: 1000000,
       investment: "₹10L",
       label: "Franchise Investment",
     },
-
     growth: {
       id: "growth",
       name: "Growth Franchise",
-      price: 1500000, // 15 Lakhs
+      price: 1500000,
       investment: "₹15L",
       label: "Franchise Investment",
     },
-
     premium: {
       id: "premium",
       name: "Premium Franchise",
-      price: 2000000, // 20 Lakhs
+      price: 2000000,
       investment: "₹20L",
       label: "Franchise Investment",
     },
-
     master: {
       id: "master",
       name: "Master Franchise",
-      price: 2500000, // 25 Lakhs
+      price: 2500000,
       investment: "₹25L",
       label: "Franchise Investment",
     },
   };
+
   const buildPlanHref = (plan) =>
-    `/coming-soon?plan=${plan.id}&name=${encodeURIComponent(
-      plan.name,
-    )}&price=${plan.price}&discount=${plan.discount}&label=${encodeURIComponent(
-      plan.label,
-    )}`;
+    `/coming-soon?plan=${plan.id}&name=${encodeURIComponent(plan.name)}&price=${plan.price}&discount=${plan.discount}&label=${encodeURIComponent(plan.label)}`;
 
   return (
     <section
       id="pricing"
-      className="relative py-24 md:py-32 bg-bg-white font-sans overflow-hidden"
+      className="relative py-24 md:py-32 font-sans overflow-hidden bg-clothcare-midnight"
     >
-      {/* PERF FIX: repeating-linear-gradient grid + a large CSS blur sitting
-          in the same stacking context is a heavy paint combo, and without
-          layer isolation the browser may re-rasterize this on every scroll
-          frame as content animates above it. `isolate` + `will-change`
-          promote each to its own composited layer so they're painted once
-          and then just composited, instead of repainted alongside the
-          animating cards. transform: translateZ(0) reinforces layer
-          promotion on browsers that need the hint. */}
+      {/* Ambient orange glow — top center */}
       <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none isolate"
+        className="absolute top-0 left-1/2 pointer-events-none"
         style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 28px), repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 28px)",
-          color: "var(--text-dark, #1a1a1a)",
+          transform: "translate(-50%, -40%)",
+          width: "700px",
+          height: "500px",
+          background: "radial-gradient(ellipse, rgba(228,111,51,0.08) 0%, transparent 70%)",
           willChange: "transform",
-          transform: "translateZ(0)",
         }}
-      />
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[60rem] h-[30rem] bg-clothcare-primary/[0.06] blur-[100px] rounded-full pointer-events-none isolate"
-        style={{ willChange: "transform", transform: "translate(-50%, 0) translateZ(0)" }}
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header Area */}
+
+        {/* ── Header ── */}
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-20 md:mb-28"
+          className="text-center max-w-3xl mx-auto mb-0 md:mb-23"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
@@ -122,48 +90,50 @@ const PricingSection = () => {
         >
           <motion.div
             variants={fadeUpVariants}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-clothcare-primary/10 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border border-clothcare-primary/20 bg-clothcare-primary/10"
           >
-            <Sparkles className="w-4 h-4 text-text-accent" />
-            <span className="text-xs font-black uppercase tracking-widest text-text-accent">
+            <Sparkles className="w-3.5 h-3.5 text-text-accent" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-text-accent">
               Franchise Opportunities
             </span>
           </motion.div>
 
           <motion.h2
             variants={fadeUpVariants}
-            className="text-4xl md:text-[4rem] font-black text-text-dark leading-[1.1] tracking-tighter mb-8"
+            className="text-4xl md:text-[4rem] leading-[1.1] tracking-tighter mb-8"
+            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#f0ebe3" }}
           >
-            Four grades of partnership
-            <span className="block text-text-accent italic font-serif font-light mt-1">
+            Four grades of partnership,
+            <span
+              className="block mt-1 italic text-text-accent"
+              style={{ fontWeight: 300 }}
+            >
               one standard of craft.
             </span>
           </motion.h2>
 
           <motion.p
             variants={fadeUpVariants}
-            className="text-lg text-text-muted leading-relaxed font-medium"
+            className="text-base leading-relaxed text-text-muted mx-auto"
+            style={{ maxWidth: "520px" }}
           >
-            Every tier carries the same training, branding, and operational
-            backbone — what scales is your territory, your support, and your
-            ceiling. Choose the grade that matches where your market is headed.
+            Every tier carries the same training, branding, and operational backbone — what scales is your territory, your support, and your ceiling.
           </motion.p>
         </motion.div>
 
-        {/* Pricing Cards Grid */}
+        {/* ── Cards Grid ── */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-28"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-0 md:mb-22 items-end scale-90"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
           variants={containerVariants}
         >
-          {/* Card 1: Starter */}
+          {/* Starter */}
           <motion.div variants={scaleUpVariants} className="h-full">
             <PlanCard
-              grade="No. 01"
-              icon={<Zap className="w-5 h-5" />}
-              iconWrap="bg-gray-50 text-text-muted"
+              tier="Tier I"
+              icon={<Zap className="w-4 h-4" />}
               name="Starter Franchise"
               tagline="Perfect for emerging markets"
               price="₹10L"
@@ -175,19 +145,16 @@ const PricingSection = () => {
               ]}
               href={buildPlanHref(PLANS.starter)}
               cta="Get Started"
-              variant="standard"
             />
           </motion.div>
 
-          {/* Card 2: Growth */}
+          {/* Growth */}
           <motion.div variants={scaleUpVariants} className="h-full">
             <PlanCard
-              grade="No. 02"
-              icon={<ShieldCheck className="w-5 h-5" />}
-              iconWrap="bg-clothcare-primary/5 text-text-accent"
+              tier="Tier II"
+              icon={<ShieldCheck className="w-4 h-4" />}
               name="Growth Franchise"
               tagline="Ideal for growing urban markets"
-              taglineAccent
               price="₹15L"
               features={[
                 "Everything in Starter",
@@ -197,19 +164,15 @@ const PricingSection = () => {
               ]}
               href={buildPlanHref(PLANS.growth)}
               cta="Choose Plan"
-              variant="standard"
             />
           </motion.div>
 
-          {/* Card 3: Premium (Recommended / signature card) */}
-          <motion.div
-            variants={scaleUpVariants}
-            className="h-full lg:scale-[1.06] z-20"
-          >
+          {/* Premium */}
+          <motion.div variants={scaleUpVariants} className="h-full z-20">
             <SignatureCard
-              icon={<Crown className="w-5 h-5" />}
+              icon={<Crown className="w-4 h-4" />}
               name="Premium Franchise"
-              tagline="Built for high-demand commercial zones"
+              tagline="High-demand commercial zones"
               price="₹20L"
               features={[
                 { text: "Exclusive Territory Rights", bold: true },
@@ -221,10 +184,10 @@ const PricingSection = () => {
             />
           </motion.div>
 
-          {/* Card 4: Master (dark) */}
+          {/* Master */}
           <motion.div variants={scaleUpVariants} className="h-full">
             <DarkCard
-              icon={<Crown className="w-5 h-5" />}
+              icon={<Crown className="w-4 h-4" />}
               name="Master Franchise"
               tagline="Multi-city expansion opportunity"
               price="₹25L"
@@ -239,258 +202,288 @@ const PricingSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Footer Info Area */}
+        {/* ── Footer CTA ── */}
         <motion.div
-          className="relative rounded-[3rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden"
+          className="relative rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden bg-clothcare-dark/20 border border-clothcare-dark scale-90"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
           variants={fadeUpVariants}
-          style={{
-            background:
-              "linear-gradient(135deg, var(--bg-soft, #f4f1ea) 0%, transparent 60%)",
-          }}
         >
-          {/* hairline border + corner stitch marks instead of a flat outline */}
-          <div className="absolute inset-0 rounded-[3rem] border border-gray-200/70 pointer-events-none" />
-          <Stitching />
+          {/* orange hairline top */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/3 pointer-events-none"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(228,111,51,0.5), transparent)" }}
+          />
 
           <div className="max-w-xl text-center md:text-left relative z-10">
-            <h3 className="text-2xl font-bold text-text-dark mb-4 tracking-tight">
-              Need a custom plan for business?
+            <h3
+              className="text-2xl mb-4 tracking-tight"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#f0ebe3" }}
+            >
+              Need a custom plan for your business?
             </h3>
-            <p className="text-text-muted leading-relaxed font-medium">
-              We offer bespoke solutions for hotels, spas, and clinics with
-              volume-based pricing and specialized garment treatment protocols.
+            <p className="leading-relaxed text-sm text-text-muted">
+              Bespoke solutions for hotels, spas, and clinics — volume pricing and specialized garment treatment protocols included.
             </p>
           </div>
-          <Link href="/contact-us" className="relative z-10">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                className="p-5 rounded-xl uppercase tracking-[0.2em] shadow-lg"
-                icon={ArrowUpRight}
-                iconSize={15}
-              >
-                Contact
-              </Button>
-            </motion.div>
+
+          <Link href="/contact-us" className="relative z-10 shrink-0">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-3 rounded-full px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-text-accent border border-clothcare-primary/40 bg-transparent hover:bg-clothcare-primary/10 transition-colors"
+            >
+              Contact Us
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </motion.button>
           </Link>
         </motion.div>
+
       </div>
     </section>
   );
 };
 
-/* ----------------------------------------------------------------------- */
-/* Decorative thread-stitch divider used on the footer panel and the
-   signature card — a literal nod to garment-care without being a cliché
-   numbered-marker or gradient-border treatment.
-
-   PERF FIX: `width="calc(100% - 2px)"` / `height="calc(100% - 2px)"` were
-   set as raw SVG geometry attributes, not CSS. Percentage calc() on raw
-   SVG geometry attributes is unreliable across browsers and can trigger
-   extra layout/geometry recalculation. Switched to a 100%-sized <rect>
-   with `vector-effect: non-scaling-stroke` so the stroke renders
-   identically without the inset math. */
-const Stitching = () => (
-  <svg
-    className="absolute inset-3 rounded-[2.6rem] pointer-events-none opacity-[0.18]"
-    width="100%"
-    height="100%"
-    preserveAspectRatio="none"
-  >
-    <rect
-      x="0.75"
-      y="0.75"
-      width="99.5%"
-      height="99.5%"
-      rx="38"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeDasharray="4 6"
-      vectorEffect="non-scaling-stroke"
-      className="text-text-dark"
-    />
-  </svg>
+/* ─── Shared dashed divider ─────────────────────────────────────────────── */
+const DashedDivider = ({ color }) => (
+  <div
+    className="w-full h-px mb-6"
+    style={{
+      background: `repeating-linear-gradient(90deg, ${color} 0, ${color} 4px, transparent 4px, transparent 10px)`,
+    }}
+  />
 );
 
-/* ----------------------------------------------------------------------- */
-/* Standard card (Starter / Growth) */
-const PlanCard = ({
-  grade,
-  icon,
-  iconWrap,
-  name,
-  tagline,
-  taglineAccent,
-  price,
-  features,
-  href,
-  cta,
-}) => (
-  <div className="h-full bg-bg-white rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-100/50 p-8 flex flex-col relative overflow-hidden group hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 will-change-transform">
-    <div className="flex items-start justify-between mb-8">
-      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${iconWrap}`}>
-        {icon}
-      </div>
-      <span className="text-[11px] font-mono font-bold text-text-muted/50 tracking-[0.15em] pt-1">
-        {grade}
-      </span>
+/* ─── Standard card (Starter / Growth) ─────────────────────────────────── */
+// Light parchment card — uses clothcare-graySoft tones for warmth
+const PlanCard = ({ tier, icon, name, tagline, price, features, href, cta }) => (
+  <div
+    className="h-full flex flex-col rounded-3xl p-7 relative overflow-hidden transition-transform duration-500 hover:-translate-y-2 will-change-transform"
+    style={{ background: "#f4f1eb", border: "1px solid #e2dace" }}
+  >
+    {/* Tier label */}
+    <div className="flex items-center gap-1.5 mb-6 text-[9px] font-bold uppercase tracking-[0.2em] text-clothcare-gray">
+      <span className="inline-block w-1 h-1 rounded-full bg-clothcare-gray" />
+      {tier}
     </div>
 
-    <h3 className="text-2xl font-bold text-text-dark mb-2">{name}</h3>
-    <p
-      className={`text-sm font-medium mb-8 ${
-        taglineAccent ? "text-text-accent font-bold" : "text-text-muted"
-      }`}
+    {/* Icon ring */}
+    <div
+      className="w-11 h-11 rounded-full flex items-center justify-center mb-5 text-clothcare-gray"
+      style={{ background: "#ece6d8", border: "1px solid #d8cebe" }}
     >
-      {tagline}
+      {icon}
+    </div>
+
+    {/* Name */}
+    <h3
+      className="text-2xl mb-1.5 leading-tight text-text-dark"
+      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+    >
+      {name}
+    </h3>
+    <p className="text-[11px] mb-6 leading-snug text-clothcare-gray">{tagline}</p>
+
+    <DashedDivider color="#c8bfaa" />
+
+    {/* Price */}
+    <div
+      className="text-5xl mb-1 leading-none text-text-dark"
+      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, letterSpacing: "-1px" }}
+    >
+      {price}
+    </div>
+    <p className="text-[9px] font-bold uppercase tracking-[0.18em] mb-6 text-clothcare-gray">
+      Franchise Investment
     </p>
 
-    <div className="mb-10 pb-8 border-b border-dashed border-gray-200">
-      <span className="text-5xl font-black text-text-dark tracking-tight">
-        {price}
-      </span>
-      <p className="text-xs text-text-muted mt-2 font-bold uppercase tracking-widest leading-relaxed">
-        Franchise Investment
-      </p>
-    </div>
-
-    <ul className="space-y-4 grow mb-10">
+    {/* Features */}
+    <ul className="flex flex-col gap-2.5 flex-1 mb-7">
       {features.map((f) => (
-        <ListItem key={f} text={f} />
+        <li key={f} className="flex items-start gap-2.5 text-[12px] leading-snug text-clothcare-dark">
+          <span
+            className="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-[8px] text-clothcare-gray"
+            style={{ background: "#e8e0ce", border: "1px solid #cec4b0" }}
+          >
+            ✓
+          </span>
+          {f}
+        </li>
       ))}
     </ul>
 
+    {/* CTA */}
     <Link href={href} className="w-full">
-      <Button variant="outline" size="lg" className="w-full rounded-xl p-7">
+      <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-80 bg-clothcare-darker text-text-primary">
         {cta}
-      </Button>
+        <ArrowUpRight className="w-3.5 h-3.5" />
+      </button>
     </Link>
   </div>
 );
 
-/* ----------------------------------------------------------------------- */
-/* Signature card — the one bold, memorable element. Styled as a wax-sealed
-   garment tag rather than a generic gradient-bordered "popular" card: the
-   ribbon sits at the top like a hang-tag, and a stitched border frames the
-   whole card. */
+/* ─── Signature card (Premium) ──────────────────────────────────────────── */
 const SignatureCard = ({ icon, name, tagline, price, features, href }) => (
   <div className="relative h-full">
-    {/* soft ambient glow behind the card only — no spinning gradient border.
-        PERF FIX: isolated to its own layer so the blur is rasterized once
-        rather than recomputed as the parent card animates/scales in. */}
+    {/* Outer glow ring using primary orange */}
     <div
-      className="absolute -inset-4 bg-clothcare-primary/[0.08] blur-2xl rounded-[3rem] pointer-events-none isolate"
-      style={{ willChange: "transform", transform: "translateZ(0)" }}
+      className="absolute -inset-px pointer-events-none"
+      style={{
+        borderRadius: "24px",
+        boxShadow:
+          "0 0 0 1px rgba(228,111,51,0.4), 0 0 60px rgba(228,111,51,0.12), 0 32px 80px rgba(228,111,51,0.08)",
+      }}
     />
 
-    <div className="relative h-full bg-bg-white rounded-[2.5rem] p-8 pt-12 flex flex-col shadow-2xl shadow-clothcare-primary/10 border border-clothcare-primary/15 overflow-hidden">
-      <Stitching />
-
-      {/* Hang-tag ribbon */}
-      <div className="absolute -top-1 left-1/2 -translate-x-1/2">
-        <div className="bg-clothcare-primary text-text-primary text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2 rounded-b-xl shadow-lg shadow-clothcare-primary/30">
-          Most Chosen
+    <div
+      className="relative h-full flex flex-col rounded-3xl overflow-hidden transition-transform duration-500 hover:-translate-y-2 will-change-transform border border-clothcare-primary/30"
+      style={{
+        background: "linear-gradient(160deg, #1a0e06 0%, #231408 50%, #120902 100%)",
+        padding: "52px 28px 28px",
+      }}
+    >
+      {/* Most Chosen badge */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2">
+        <div className="flex items-center gap-1.5 px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.2em] whitespace-nowrap bg-clothcare-primary text-text-primary" style={{ borderRadius: "0 0 14px 14px" }}>
+          <span>★</span> Most Chosen
         </div>
       </div>
 
-      <div className="mb-8 relative z-10">
-        <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-clothcare-primary to-orange-500 flex items-center justify-center mb-6 text-text-primary shadow-lg shadow-clothcare-primary/20">
-          {icon}
-        </div>
-        <h3 className="text-2xl font-bold text-text-dark mb-2">{name}</h3>
-        <p className="text-sm text-text-accent font-bold">{tagline}</p>
+      {/* Hairline below badge */}
+      <div
+        className="absolute left-6 right-6 h-px pointer-events-none"
+        style={{ top: "38px", background: "linear-gradient(90deg, transparent, rgba(228,111,51,0.35), transparent)" }}
+      />
+
+      {/* Tier label */}
+      <div className="flex items-center gap-1.5 mb-5 text-[9px] font-bold uppercase tracking-[0.2em] text-clothcare-primary">
+        <span className="inline-block w-1 h-1 rounded-full bg-clothcare-primary" />
+        Tier III
       </div>
 
-      <div className="mb-10 pb-8 border-b border-dashed border-clothcare-primary/25 relative z-10">
-        <span className="text-5xl font-black text-text-dark tracking-tight">
-          {price}
-        </span>
-        <p className="text-xs text-text-muted mt-2 font-bold uppercase tracking-widest leading-relaxed">
-          Franchise Investment
-        </p>
+      {/* Icon */}
+      <div
+        className="w-11 h-11 rounded-full flex items-center justify-center mb-5 text-clothcare-primary"
+        style={{ background: "rgba(228,111,51,0.1)", border: "1px solid rgba(228,111,51,0.3)" }}
+      >
+        {icon}
       </div>
 
-      <ul className="space-y-4 grow mb-10 relative z-10">
+      <h3
+        className="text-2xl mb-1.5 leading-tight"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, color: "#f0ebe3" }}
+      >
+        {name}
+      </h3>
+      <p className="text-[11px] mb-5 font-medium leading-snug text-clothcare-primary">{tagline}</p>
+
+      <DashedDivider color="rgba(228,111,51,0.3)" />
+
+      {/* Price in brand orange */}
+      <div
+        className="text-5xl mb-1 leading-none text-clothcare-primary"
+        style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, letterSpacing: "-1px" }}
+      >
+        {price}
+      </div>
+      <p className="text-[9px] font-bold uppercase tracking-[0.18em] mb-6" style={{ color: "#6b3a1f" }}>
+        Franchise Investment
+      </p>
+
+      {/* Features */}
+      <ul className="flex flex-col gap-2.5 flex-1 mb-7">
         {features.map((f) => (
-          <ListItem key={f.text} text={f.text} textBold={f.bold} />
+          <li
+            key={f.text}
+            className="flex items-start gap-2.5 text-[12px] leading-snug"
+            style={{ color: f.bold ? "#f0ebe3" : "#9a7a60" }}
+          >
+            <span
+              className="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-[8px] text-clothcare-primary"
+              style={{ background: "rgba(228,111,51,0.12)", border: "1px solid rgba(228,111,51,0.3)" }}
+            >
+              ✓
+            </span>
+            {f.bold ? <strong style={{ fontWeight: 500 }}>{f.text}</strong> : f.text}
+          </li>
         ))}
       </ul>
 
-      <Link href={href} className="w-full relative z-10">
-        <Button
-          variant="primary"
-          className="w-full bg-linear-to-r from-blue-400 via-clothcare-primary to-orange-400 rounded-xl p-7"
-          icon={Crown}
-          iconSize={15}
-          iconWrapperClassName="text-text-primary"
-        >
+      <Link href={href} className="w-full">
+        <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-85 bg-clothcare-primary text-text-primary">
           Reserve Territory
-        </Button>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </button>
       </Link>
     </div>
   </div>
 );
 
-/* ----------------------------------------------------------------------- */
-/* Dark card (Master) */
+/* ─── Dark card (Master) ────────────────────────────────────────────────── */
 const DarkCard = ({ icon, name, tagline, price, features, href }) => (
-  <div className="h-full bg-clothcare-black rounded-[2.5rem] p-8 flex flex-col relative overflow-hidden group shadow-2xl transition-all duration-500 hover:-translate-y-1 will-change-transform">
+  <div
+    className="h-full flex flex-col rounded-3xl p-7 relative overflow-hidden transition-transform duration-500 hover:-translate-y-2 will-change-transform bg-clothcare-dark/20 s"
+    style={{ border: "1px solid #4a5058" }}
+  >
+    {/* Tier label */}
+    <div className="flex items-center gap-1.5 mb-6 text-[9px] font-bold uppercase tracking-[0.2em] text-clothcare-gray">
+      <span className="inline-block w-1 h-1 rounded-full bg-clothcare-gray" />
+      Tier IV
+    </div>
+
+    {/* Icon */}
     <div
-      className="absolute -top-12 -right-12 w-32 h-32 bg-bg-white/5 rounded-full blur-3xl group-hover:bg-bg-white/10 transition-colors isolate"
-      style={{ willChange: "transform", transform: "translateZ(0)" }}
-    />
-    <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-bg-white/10 to-transparent" />
-
-    <div className="mb-8 relative z-10">
-      <div className="w-12 h-12 rounded-2xl bg-bg-white/10 flex items-center justify-center mb-6 text-text-primary">
-        {icon}
-      </div>
-      <h3 className="text-2xl font-bold text-text-primary mb-2">{name}</h3>
-      <p className="text-sm text-text-accent font-bold">{tagline}</p>
+      className="w-11 h-11 rounded-full flex items-center justify-center mb-5 text-clothcare-gray"
+      style={{ background: "#4a5058", border: "1px solid #5a6068" }}
+    >
+      {icon}
     </div>
 
-    <div className="mb-10 pb-8 border-b border-dashed border-bg-white/15 relative z-10">
-      <span className="text-5xl font-black text-text-primary tracking-tight">
-        {price}
-      </span>
-      <p className="text-xs text-text-muted mt-2 font-bold uppercase tracking-widest leading-relaxed">
-        Franchise Investment
-      </p>
-    </div>
+    <h3
+      className="text-2xl mb-1.5 leading-tight text-text-primary"
+      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+    >
+      {name}
+    </h3>
+    <p className="text-[11px] mb-6 leading-snug text-clothcare-gray">{tagline}</p>
 
-    <ul className="space-y-4 grow mb-10 relative z-10">
+    <DashedDivider color="#4a5058" />
+
+    <div
+      className="text-5xl mb-1 leading-none text-text-primary"
+      style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, letterSpacing: "-1px" }}
+    >
+      {price}
+    </div>
+    <p className="text-[9px] font-bold uppercase tracking-[0.18em] mb-6 text-clothcare-gray">
+      Franchise Investment
+    </p>
+
+    <ul className="flex flex-col gap-2.5 flex-1 mb-7">
       {features.map((f) => (
-        <ListItem key={f} text={f} textWhite />
+        <li key={f} className="flex items-start gap-2.5 text-[12px] leading-snug text-clothcare-gray">
+          <span
+            className="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-[8px] text-clothcare-gray"
+            style={{ background: "#3c4249", border: "1px solid #4a5058" }}
+          >
+            ✓
+          </span>
+          {f}
+        </li>
       ))}
     </ul>
 
-    <Link href={href} className="w-full relative z-10">
-      <Button variant="primary" className="w-full rounded-xl p-7">
+    <Link href={href} className="w-full">
+      <button
+        className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-colors text-clothcare-gray hover:text-text-primary"
+        style={{ background: "transparent", border: "1px solid #4a5058" }}
+      >
         Become a Partner
-      </Button>
+        <ArrowUpRight className="w-3.5 h-3.5" />
+      </button>
     </Link>
   </div>
-);
-
-/* ----------------------------------------------------------------------- */
-// List item
-const ListItem = ({ text, textWhite, textBold }) => (
-  <li className="flex items-start gap-4">
-    <div
-      className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${textWhite ? "bg-bg-white/10 text-text-primary" : "bg-clothcare-primary/10 text-text-accent"}`}
-    >
-      <Check className="w-3 h-3" strokeWidth={4} />
-    </div>
-    <span
-      className={`text-[14px] leading-tight ${textWhite ? "text-text-primary/60 font-medium" : "text-text-muted font-medium"} ${textBold ? "font-bold text-text-dark" : ""}`}
-    >
-      {text}
-    </span>
-  </li>
 );
 
 export default PricingSection;

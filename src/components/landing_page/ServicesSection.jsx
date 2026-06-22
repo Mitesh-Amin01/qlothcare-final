@@ -58,7 +58,8 @@ const ServicesSection = () => {
   return (
     <div className="py-24 md:py-32 bg-bg-white overflow-hidden relative font-sans">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Modern Header Section */}
+
+        {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <motion.div
             initial="hidden"
@@ -67,95 +68,82 @@ const ServicesSection = () => {
             variants={scaleIn}
             className="max-w-4xl flex flex-col items-center"
           >
+            <p className="text-xs font-bold tracking-[0.15em] uppercase text-text-muted mb-4">
+              What we offer
+            </p>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-text-dark leading-[1.05] tracking-tight mb-6 md:mb-8">
-              More than {""}
+              More than{" "}
               <span className="text-text-accent italic font-serif font-light pr-2">
                 clean.
               </span>
             </h2>
             <p className="text-text-muted text-base md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
-             Premium garment care that protects your wardrobe, extends fabric life, and keeps you looking your best every day.
+              Premium garment care that protects your wardrobe, extends fabric
+              life, and keeps you looking your best every day.
             </p>
           </motion.div>
         </div>
 
         {/* 2+3 Bento Grid Layout */}
-     <motion.div
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  transition={{ staggerChildren: 0.15 }}
-  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-6 md:gap-8"
->
-  {services.map((service, index) => {
-    // Top two span 3 cols (50% each), bottom three span 2 cols (33% each) on XL.
-    const colSpanClass =
-      index < 2 ? "xl:col-span-3 h-[28rem]" : "xl:col-span-2 h-[24rem]";
-    // On MD (tablet), top row is 2 cols, next row is 2 cols, last one spans 2 cols to center/fill.
-    const mdSpanClass =
-      index === 4 ? "md:col-span-2 xl:col-span-2" : "";
-    return (
-      <motion.div
-        key={index}
-        variants={scaleIn}
-        className={`group relative isolate rounded-4xl overflow-hidden cursor-pointer ${colSpanClass} ${mdSpanClass}`}
-      >
-        {/* Background Image with Hover Scale */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          <Image
-            src={service.image}
-            alt={service.title}
-            fill
-            className="object-cover transition-transform duration-500 will-change-transform group-hover:scale-110"
-          />
-        </div>
-        {/* Deeper Rich Gradient Overlay */}
-        <div
-          className="absolute inset-0 bg-linear-to-t from-clothcare-darker/95 via-clothcare-darker/30
-to-transparent transition-opacity duration-500 group-hover:opacity-90"
-        />
-        {/* Text Content */}
-        <div className="absolute bottom-8 left-8 right-24 z-10 flex flex-col items-start pr-4">
-          <div className="px-3 py-1 mb-4 bg-clothcare-gray/20 backdrop-blur-md border border-white/20 rounded-full text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-sm">
-            Service 0{index + 1}
-          </div>
-          <h3 className="text-text-primary text-2xl md:text-3xl font-bold mb-3 leading-tight tracking-tight">
-            {service.title}
-          </h3>
-          <p className="text-text-primary/60 text-sm md:text-base line-clamp-2 md:line-clamp-3 leading-relaxed font-light">
-            {service.description}
-          </p>
-        </div>
-        {/* Smooth Cutout Bottom Right */}
-        <div className="absolute -bottom-px -right-px bg-bg-white pt-5 pl-5 rounded-tl-[2.5rem] rounded-br-4xl z-20">
-          {/* Visual curves using SVGs to perfectly mask without shadow bleeding */}
-          <svg
-            className="absolute bottom-full -right-px w-9 h-9 text-text-primary translate-y-px"
-            viewBox="0 0 100 100"
-            fill="currentColor"
-            shapeRendering="geometricPrecision"
-          >
-            <path d="M 100 100 V 0 C 100 55.23 55.23 100 0 100 H 100 Z" />
-          </svg>
-          <svg
-            className="absolute right-full -bottom-px w-8 h-8 text-text-primary bg-transparent block translate-x-px"
-            viewBox="0 0 100 100"
-            fill="currentColor"
-            shapeRendering="geometricPrecision"
-          >
-            <path d="M 100 100 V 0 C 100 55.23 55.23 100 0 100 H 100 Z" />
-          </svg>
-          {/* Action Button */}
-          <div className="w-16 h-16 rounded-full flex items-center justify-center bg-bg-dark group-hover:bg-clothcare-primary transition-colors duration-300">
-            <ArrowUpRight className="w-6 h-6 text-text-primary transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125" />
-          </div>
-        </div>
-      </motion.div>
-    );
-  })}
-</motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.15 }}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-6 md:gap-8"
+        >
+          {services.map((service, index) => {
+            const colSpanClass =
+              index < 2
+                ? "xl:col-span-3 h-[28rem]"
+                : "xl:col-span-2 h-[24rem]";
+            const mdSpanClass =
+              index === 4 ? "md:col-span-2 xl:col-span-2" : "";
 
-        {/* Global Action Footer */}
+            return (
+              <motion.div
+                key={index}
+                variants={scaleIn}
+                className={`group relative isolate rounded-4xl overflow-hidden cursor-pointer ${colSpanClass} ${mdSpanClass}`}
+              >
+                {/* Background Image with Hover Scale */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 will-change-transform group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-clothcare-darker/95 via-clothcare-darker/30 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
+
+                {/* Text Content */}
+                <div className="absolute bottom-8 left-8 right-24 z-10 flex flex-col items-start">
+                  <div className="px-3 py-1 mb-4 bg-clothcare-gray/20 backdrop-blur-md border border-white/20 rounded-full text-text-primary text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                    Service 0{index + 1}
+                  </div>
+                  <h3 className="text-text-primary text-2xl md:text-3xl font-bold mb-3 leading-tight tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-text-primary/60 text-sm md:text-base line-clamp-2 md:line-clamp-3 leading-relaxed font-light">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Arrow Button — no SVG cutout, clean floating button */}
+                <div className="absolute bottom-6 right-6 z-10">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center bg-bg-dark group-hover:bg-clothcare-primary transition-all duration-300 group-hover:scale-110">
+                    <ArrowUpRight className="w-5 h-5 text-text-primary transition-transform duration-300 group-hover:rotate-12 group-hover:scale-125" />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Footer Link */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -175,6 +163,7 @@ to-transparent transition-opacity duration-500 group-hover:opacity-90"
             </span>
           </Link>
         </motion.div>
+
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const FoundersVision = () => {
                             className="text-text-muted font-bold uppercase tracking-[0.2em] text-xs mb-6 flex items-center gap-4"
                         >
                             <div className="w-8 h-px bg-bg-soft"></div>
-                            02 / Origin
+                            Origin
                         </motion.span>
 
                         <motion.h2

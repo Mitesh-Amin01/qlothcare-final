@@ -27,11 +27,10 @@ const Manifesto = () => {
         offset: ['start end', 'end start'],
     });
 
-    // Giant background word drifts + scales very slightly — a literal
-    // typographic backdrop the headline sits on top of and cuts into,
-    // rather than ambient texture floating behind everything.
+    // Only animate horizontal drift (cheap, GPU-friendly transform).
+    // Dropped the scale animation — animating scale on a ~32rem text
+    // block forces re-rasterization of a huge layer every frame.
     const bgX = useTransform(scrollYProgress, [0, 1], ['4%', '-10%']);
-    const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.02, 0.98]);
 
     // Vertical progress rail fills as you scroll through the charges.
     const railHeight = useTransform(scrollYProgress, [0.15, 0.85], ['0%', '100%']);
@@ -41,15 +40,20 @@ const Manifesto = () => {
             ref={sectionRef}
             className="relative bg-clothcare-black overflow-hidden border-t border-white/5 selection:bg-clothcare-primary/30 selection:text-text-primary py-28 lg:py-40"
         >
-            {/* Giant cropped backdrop word — bleeds off both edges, sits behind
-                the headline at low opacity so the headline genuinely overlaps
-                it rather than floating in front of separate "decoration". */}
+            {/* Giant cropped backdrop word. Promoted to its own GPU layer via
+                translateZ(0) + will-change so the drift is composited, not
+                repainted. Text-stroke removed in favor of a plain low-opacity
+                fill, which is dramatically cheaper to paint than stroked text. */}
             <motion.div
-                style={{ x: bgX, scale: bgScale }}
+                style={{
+                    x: bgX,
+                    willChange: 'transform',
+                    transform: 'translateZ(0)',
+                }}
                 aria-hidden
                 className="absolute top-[6%] left-0 w-full pointer-events-none select-none z-0"
             >
-                <span className="block text-[16rem] sm:text-[22rem] lg:text-[32rem] font-black leading-none tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.18)] whitespace-nowrap">
+                <span className="block text-[16rem] sm:text-[22rem] lg:text-[32rem] font-black leading-none tracking-tighter text-white/[0.06] whitespace-nowrap">
                     TRUST
                 </span>
             </motion.div>
@@ -76,20 +80,13 @@ const Manifesto = () => {
                     className="max-w-5xl"
                 >
                     <p className="text-2xl sm:text-3xl lg:text-4xl text-text-primary/90 font-light leading-[1.25] tracking-tight">
-                        <span className="float-left text-[5.5rem] sm:text-[7rem] leading-[0.8] font-black pr-3 pt-1 text-text-accent italic">
-                            F
-                        </span>
-                       or us, laundry isn't a routine chore—it's the responsibility of preserving the clothes you wear with confidence. Every fabric deserves expert attention, every customer deserves complete transparency, and every order deserves to be treated with care.
+                        
+                       For us, laundry isn't a routine chore—it's the responsibility of preserving the clothes you wear with confidence. Every fabric deserves expert attention, every customer deserves complete transparency, and every order deserves to be treated with care.
                     </p>
                 </motion.div>
 
-                {/* The Charges — vertical indicted list with a fill-on-scroll rail,
-                    replacing the previous two-column paragraph grid. Each item
-                    carries genuine sequence (the brand's stated defects, in
-                    order of how the manifesto resolves them), so numbering here
-                    is informational, not decorative. */}
+                {/* The Charges */}
                 <div className="relative mt-24 lg:mt-32 max-w-5xl">
-                    {/* Static track + animated fill rail */}
                     <div className="absolute left-0 top-2 bottom-2 w-px bg-white/10 hidden md:block">
                         <motion.div
                             style={{ height: railHeight }}
@@ -121,8 +118,7 @@ const Manifesto = () => {
                     </ul>
                 </div>
 
-                {/* Closing resolution line — answers the charges, sits apart as
-                    the section's turn from problem to stance. */}
+                {/* Closing resolution line */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

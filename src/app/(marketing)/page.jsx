@@ -5,6 +5,7 @@ import PricingSection from "@/components/landing_page/PricingSection";
 import ServicesSection from "@/components/landing_page/ServicesSection";
 import TestimonialsSection from "@/components/landing_page/TestimonialsSection";
 import WhyChooseUs from "@/components/landing_page/WhyChooseUs";
+import Inquiry from "./inquiry/page";
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
       {/* <AboutSection /> */}
       <PricingSection />
       <TestimonialsSection />
+           <Inquiry />
+
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Lock, Eye, CheckCircle2, FileText } from 'lucide-react';
+import { Shield, Lock, Eye, CheckCircle2, FileText, Fingerprint, KeyRound,Database, } from 'lucide-react';
 
 export default function PrivacyPolicy() {
   const [activeSection, setActiveSection] = useState('intro');
@@ -33,24 +33,171 @@ export default function PrivacyPolicy() {
     <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden border-b border-gray-100">
-        <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] bg-size-[24px_24px] opacity-[0.03]"></div>
+     <section className="relative overflow-hidden bg-white border-b border-gray-100 pt-32 pb-20 lg:pt-30 lg:pb-32">
 
-        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-text-accent text-sm font-bold mb-8">
-              <Shield size={16} /> Data Protection
+  {/* Background Pattern */}
+  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:26px_26px] opacity-[0.03]" />
+
+  {/* Orange Glow */}
+  <div className="absolute right-[-180px] top-1/2 h-[650px] w-[650px] -translate-y-1/2 rounded-full bg-[#E46F33]/10 blur-[120px]" />
+
+  {/* Right Illustration */}
+  <div className="absolute right-0 top-1/2 hidden w-[45%] -translate-y-1/2 items-center justify-center lg:flex pointer-events-none">
+
+    {/* Ring */}
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{
+        duration: 40,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="absolute h-[520px] w-[520px] rounded-full border border-[#E46F33]/10"
+    />
+
+    {/* Ring */}
+    <motion.div
+      animate={{ rotate: -360 }}
+      transition={{
+        duration: 30,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="absolute h-[420px] w-[420px] rounded-full border border-[#E46F33]/10"
+    />
+
+    {/* Main Shield */}
+    <motion.div
+      animate={{
+        y: [-10, 10, -10],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+      }}
+      className="relative"
+    >
+      <div className="flex h-[290px] w-[290px] items-center justify-center rounded-full bg-gradient-to-br from-[#F6D3BF] to-[#E46F33] shadow-[0_40px_120px_rgba(228,111,51,.18)]">
+
+        <Shield
+          size={155}
+          strokeWidth={1.6}
+          className="text-white"
+        />
+
+      </div>
+
+      {/* Floating Dots */}
+      <span className="absolute left-12 top-12 h-5 w-5 rounded-full bg-white shadow-lg" />
+      <span className="absolute right-12 top-20 h-4 w-4 rounded-full bg-white shadow-lg" />
+      <span className="absolute bottom-14 left-16 h-6 w-6 rounded-full bg-white shadow-lg" />
+      <span className="absolute bottom-20 right-20 h-4 w-4 rounded-full bg-white shadow-lg" />
+    </motion.div>
+
+    {/* Floating Cards */}
+
+    {[
+      {
+        icon: <Lock size={24} />,
+        title: "Encrypted",
+        position: "top-10 left-10",
+      },
+      {
+        icon: <Fingerprint size={24} />,
+        title: "Identity",
+        position: "top-16 right-8",
+      },
+      {
+        icon: <KeyRound size={24} />,
+        title: "Access",
+        position: "bottom-16 left-0",
+      },
+      {
+        icon: <Database size={24} />,
+        title: "Storage",
+        position: "bottom-6 right-10",
+      },
+    ].map((item, index) => (
+      <motion.div
+        key={index}
+        animate={{
+          y: [-8, 8, -8],
+        }}
+        transition={{
+          duration: 4 + index,
+          repeat: Infinity,
+        }}
+        className={`absolute ${item.position}`}
+      >
+        <div className="rounded-2xl border border-white bg-white/70 px-5 py-4 shadow-xl backdrop-blur-xl">
+
+          <div className="flex items-center gap-3">
+
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E46F33]/10 text-[#E46F33]">
+              {item.icon}
             </div>
-            <h1 className="text-[3.5rem] lg:text-[5.5rem] font-display font-black leading-[1.05] tracking-tight mb-8">
-              Privacy & <br />
-              <span className="text-gray-400">Security Policy.</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-text-muted font-medium max-w-2xl leading-relaxed">
-              We treat your personal data with the same immaculate care and precision as we do your finest garments.
-            </p>
-          </motion.div>
+
+            <div>
+              <p className="text-xs text-gray-400">
+                Security
+              </p>
+
+              <p className="font-semibold text-gray-800">
+                {item.title}
+              </p>
+            </div>
+
+          </div>
+
         </div>
-      </section>
+      </motion.div>
+    ))}
+
+  </div>
+
+  {/* Content */}
+
+  <div className="relative z-10 container mx-auto max-w-[1400px] px-6">
+
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={fadeUp}
+      className="max-w-4xl"
+    >
+
+      <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#E46F33]/5 px-4 py-2 text-sm font-bold text-[#E46F33]">
+
+        <Shield size={16} />
+
+        Data Protection
+
+      </div>
+
+      <h1 className="mb-8 font-display text-[3.5rem] font-black leading-[1.05] tracking-tight lg:text-[5.5rem]">
+
+        Privacy &
+
+        <br />
+
+        <span className="text-text-accent/80">
+          Security Policy.
+        </span>
+
+      </h1>
+
+      <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-500 lg:text-2xl">
+
+        We treat your personal data with the same immaculate care and
+        precision as we do your finest garments.
+
+      </p>
+
+    </motion.div>
+
+  </div>
+
+</section>
 
       {/* Main Content Layout */}
       <section className="py-20 lg:py-32">

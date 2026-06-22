@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Scale, CheckCircle2, ShieldAlert, AlertTriangle, FileText } from 'lucide-react';
+import { Scale,FileCheck, ShieldCheck,
+  BadgeCheck,  CheckCircle2, ShieldAlert, AlertTriangle, FileText } from 'lucide-react';
 
 export default function TermsAndConditions() {
   const [activeSection, setActiveSection] = useState('acceptance');
@@ -29,28 +30,246 @@ export default function TermsAndConditions() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
   };
 
+  const quickFacts = [
+    'Binding from your very first order',
+    'Liability strictly capped at 10× service cost',
+    'Governed by Ahmedabad, Gujarat jurisdiction',
+  ];
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden border-b border-gray-100">
-        <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] bg-size-[24px_24px] opacity-[0.03]"></div>
+    <section className="relative overflow-hidden bg-white border-b border-gray-100 pt-28 pb-20 lg:pt-33 lg:pb-28">
 
-        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-text-accent text-sm font-bold mb-8">
-              <Scale size={16} /> Legal Agreement
-            </div>
-            <h1 className="text-[3.5rem] lg:text-[5.5rem] font-display font-black leading-[1.05] tracking-tight mb-8">
-              Terms & <br />
-              <span className="text-gray-400">Conditions.</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-text-muted font-medium max-w-2xl leading-relaxed">
-              The operational baseline and binding protocols governing our premium garment care services.
-            </p>
-          </motion.div>
+  {/* Background Pattern */}
+  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:26px_26px] opacity-[0.03]" />
+
+  {/* Orange Glow */}
+  <div className="absolute right-[-180px] top-1/2 h-[650px] w-[650px] -translate-y-1/2 rounded-full bg-[#E46F33]/10 blur-[120px]" />
+
+  <div className="container relative z-10 mx-auto max-w-[1400px] px-6">
+
+    <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-16 items-center">
+
+      {/* LEFT */}
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeUp}
+      >
+        <div className="inline-flex items-center gap-2 rounded-full bg-[#E46F33]/5 px-4 py-2 text-sm font-bold text-[#E46F33] mb-8">
+          <Scale size={16} />
+          Legal Agreement
         </div>
-      </section>
+
+        <h1 className="mb-8 font-display text-[3.5rem] font-black leading-[1.05] tracking-tight lg:text-[5.5rem]">
+          Terms &
+          <br />
+          <span className="text-text-accent/80">
+            Conditions.
+          </span>
+        </h1>
+
+        <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-500 lg:text-2xl">
+          The operational baseline and binding protocols governing our premium
+          garment care services.
+        </p>
+      </motion.div>
+
+      {/* RIGHT */}
+
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: .8 }}
+        className="relative hidden lg:flex justify-center items-center h-[320px]"
+      >
+
+        {/* Ring */}
+
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: 45,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute h-[520px] w-[520px] rounded-full border border-[#E46F33]/10"
+        />
+
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{
+            duration: 35,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute h-[420px] w-[420px] rounded-full border border-[#E46F33]/10"
+        />
+
+        {/* Main Document */}
+
+        <motion.div
+          animate={{
+            y: [-10, 10, -10],
+            rotate: [-1.5, 1.5, -1.5],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+          }}
+          className="relative"
+        >
+
+          <div className="w-[300px] rounded-[32px] border border-gray-200 bg-white p-8 shadow-[0_40px_120px_rgba(0,0,0,.08)]">
+
+            {/* Header */}
+
+            <div className="mb-8">
+
+              <div className="h-3 w-28 rounded-full bg-[#E46F33]/20" />
+
+              <div className="mt-5 h-2.5 w-full rounded-full bg-gray-200" />
+
+              <div className="mt-3 h-2.5 w-5/6 rounded-full bg-gray-200" />
+
+              <div className="mt-3 h-2.5 w-4/6 rounded-full bg-gray-200" />
+
+            </div>
+
+            {/* Seal */}
+
+            <div className="my-10 flex justify-center">
+
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#F8C9AF] to-[#E46F33] shadow-xl">
+
+                <Scale
+                  size={42}
+                  className="text-white"
+                  strokeWidth={1.8}
+                />
+
+              </div>
+
+            </div>
+
+            {/* Agreement */}
+
+            <div className="space-y-4">
+
+              {[
+                "Service Agreement",
+                "Payment Terms",
+                "Customer Responsibilities",
+                "Cancellation Policy",
+              ].map((item) => (
+
+                <div
+                  key={item}
+                  className="flex items-center gap-3"
+                >
+
+                  <CheckCircle2
+                    size={16}
+                    className="text-[#E46F33]"
+                  />
+
+                  <div className="h-2.5 flex-1 rounded-full bg-gray-200" />
+
+                </div>
+
+              ))}
+
+            </div>
+
+          </div>
+
+        </motion.div>
+
+        {/* Floating Cards */}
+
+        {[
+          {
+            icon: <ShieldCheck size={22} />,
+            title: "Protected",
+            subtitle: "Customer Rights",
+            position: "top-8 left-0",
+          },
+          {
+            icon: <BadgeCheck size={22} />,
+            title: "Verified",
+            subtitle: "Service Terms",
+            position: "top-12 right-2",
+          },
+          {
+            icon: <Scale size={22} />,
+            title: "Fair Usage",
+            subtitle: "Legal Policy",
+            position: "bottom-24 left-4",
+          },
+          {
+            icon: <FileCheck size={22} />,
+            title: "Agreement",
+            subtitle: "Accepted",
+            position: "bottom-10 right-0",
+          },
+        ].map((card, index) => (
+
+          <motion.div
+            key={index}
+            animate={{
+              y: [-8, 8, -8],
+            }}
+            transition={{
+              duration: 4 + index,
+              repeat: Infinity,
+            }}
+            whileHover={{
+              y: -6,
+              scale: 1.04,
+            }}
+            className={`absolute ${card.position}`}
+          >
+
+            <div className="rounded-2xl border border-white bg-white/70 backdrop-blur-xl px-5 py-4 shadow-xl">
+
+              <div className="flex items-center gap-3">
+
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E46F33]/10 text-[#E46F33]">
+
+                  {card.icon}
+
+                </div>
+
+                <div>
+
+                  <p className="text-xs text-gray-400">
+                    {card.subtitle}
+                  </p>
+
+                  <p className="font-semibold text-gray-800">
+                    {card.title}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </motion.div>
+
+        ))}
+
+      </motion.div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* Main Content Layout */}
       <section className="py-20 lg:py-32">

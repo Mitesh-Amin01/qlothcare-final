@@ -40,7 +40,7 @@ const Timeline = () => {
       ref={containerRef}
       className="py-24 lg:py-40 bg-white relative overflow-hidden"
     >
-      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+      <div className="container mx-auto px-0 max-w-4xl relative z-10">
         <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
@@ -94,7 +94,7 @@ const Timeline = () => {
                       duration: 0.3,
                       ease: "easeOut",
                     }}
-                    className="bg-bg-white p-8 rounded-4xl shadow-xl border border-border-soft group"
+                    className="bg-bg-white p-8 w-[300px] rounded-4xl shadow-xl border border-border-soft group"
                   >
                     <span className="text-text-accent font-black text-3xl md:text-4xl tracking-tighter group-hover:text-blue-600 transition-colors">
                       {event.year}

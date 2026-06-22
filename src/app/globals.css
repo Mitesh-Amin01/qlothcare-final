@@ -2,6 +2,7 @@
 @config "../../tailwind.config.js";
 
 
+
 body{
     overflow-x: hidden;
 }
@@ -27,4 +28,30 @@ input[type="range"]::-moz-range-thumb {
   background: #ff6b00;
   border: 2px solid white;
   cursor: pointer;
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+html,
+body {
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: rgb(255, 248, 239);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  background: linear-gradient(180deg, #E46F33, #CC5F2B);
+  background-clip: content-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF8A4A, #E46F33);
+  background-clip: content-box;
 }

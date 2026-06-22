@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 import { motion } from 'motion/react';
 import {
   Facebook, Twitter, Instagram, Linkedin,
@@ -112,10 +113,8 @@ const Footer = () => {
           {/* Brand */}
           <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer w-fit">
-              <div className="w-10 h-10 bg-clothcare-primary rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12">
-                <svg className="w-6 h-6 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+              <div className="w-13 h-13 bg-bg-soft/15 rounded-xl flex items-center justify-center p-1">
+                 <Image src="/logo/company_logo.png" alt="Qlothcare Logo" width={40} height={40} className="rounded-xl object-contain" priority />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">
                 Qlothcare<span className="text-text-accent">.</span>

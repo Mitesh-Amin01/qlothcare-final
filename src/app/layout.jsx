@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,8 @@ export const metadata = {
   title: "Qlothcare",
   description: "Welcome to Qlothcare - Premium Web Experience",
   icons: {
-    icon: "/logo/logo.png",
-    apple: "/logo/logo.png",
+    icon: "/logo/company_logo.png",
+    apple: "/logo/company_logo.png",
   },
   openGraph: {
     title: "Qlothcare",

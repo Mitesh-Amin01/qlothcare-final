@@ -54,7 +54,7 @@ const TheCraftsmen = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <span className="text-text-accent font-bold uppercase tracking-[0.2em] text-xs">04 / Client Voices</span>
+                        <span className="text-text-accent font-bold uppercase tracking-[0.2em] text-xs">Client Voices</span>
                         <h2 className="text-4xl lg:text-6xl font-black mt-4 tracking-tight text-text-primary leading-tight">Trusted By Customers.</h2>
                     </motion.div>
 

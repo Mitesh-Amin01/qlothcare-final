@@ -27,11 +27,11 @@ export default function Navbar() {
   }, []);
 
   /* ---------------- COLORS / GLASS TRANSFORMS ---------------- */
-  const navBg = useTransform(scrollY, [0, 80], ["rgba(255, 255, 255, 0.55)", "rgba(11,13,16,0.95)"]);
+  const navBg = useTransform(scrollY, [0, 80], ["rgba(255, 255, 255, 0.55)", "rgba(250,247,243,.86)"]);
   const navBorder = useTransform(scrollY, [0, 80], ["rgba(255, 255, 255, 0.35)", "rgba(255,255,255,0.15)"]);
   const navShadow = useTransform(scrollY, [0, 80], ["rgba(0, 0, 0, 0.08) 0px 4px 20px", "0 16px 40px -12px rgba(0,0,0,0.6)"]);
   const blur = useTransform(scrollY, [0, 80], ["blur(12px)", "blur(16px)"]);
-  const textColor = useTransform(scrollY, [0, 80], ["#2F343A", "#FFFFFF"]);
+  const textColor = useTransform(scrollY, [0, 80], ["#2F343A", "#2F343A"]);
 
   /* ---------------- ANIMATIONS ---------------- */
   const navbarEntry = {
@@ -67,7 +67,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-2 md:px-8 py-2">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/logo/logo.png" alt="Qlothcare Logo" width={40} height={40} className="rounded-xl object-contain" priority />
+          <Image src="/logo/company_logo.png" alt="Qlothcare Logo" width={40} height={40} className="rounded-xl object-contain" priority />
           <motion.span style={{ color: textColor }} className="font-display text-2xl font-bold">
             Qlothcare<span className="text-text-accent">.</span>
           </motion.span>
@@ -95,12 +95,12 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden xl:flex items-center gap-5">
-          <Link href="/contact-us"><Button variant="outline" icon={ArrowRight} iconPosition="right" className="px-6 py-2.5 rounded-xl text-bg-dark">Get Started</Button></Link>
+          <Link href="/contact-us"><Button variant="outline" icon={ArrowRight} iconPosition="right" className="px-6 py-2.5 rounded-full text-bg-dark">Get Started</Button></Link>
           <Link href="/franchise-inquiry"><Button variant="primary" icon={Store} iconPosition="right" className="p-6 rounded-full">Franchise Inquiry</Button></Link>
         </div>
 
         {/* Mobile Toggle */}
-        <motion.button onClick={() => setOpen(!open)} style={{ color: "#FFFFFF" }} className="xl:hidden p-2">
+        <motion.button onClick={() => setOpen(!open)} style={{ color: textColor }} className="xl:hidden p-2">
           {open ? <X size={28} /> : <Menu size={28} />}
         </motion.button>
       </div>

@@ -12,7 +12,7 @@ const floatingCards = [
     type: "image",
     src: "/testimonials/t1.png",
     className:
-      "w-24 h-32 md:w-32 md:h-40 rounded-2xl md:rounded-[2rem] object-cover shadow-lg align-self-end mt-10 md:mt-20",
+      "w-24 h-32 md:w-32 md:h-40 rounded-2xl md:rounded-[2rem] object-cover shadow-lg lg:self-end lg:mt-10 lg:md:mt-20",
   },
   {
     type: "text",
@@ -21,24 +21,24 @@ const floatingCards = [
     quote:
       '"Qloth Care has completely changed how I manage my wardrobe. Their precision and door-to-door service is unmatched."',
     className:
-      "bg-bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl border border-gray-100 w-48 md:w-56 self-start",
+      "bg-bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl border border-gray-100 w-full sm:w-56 lg:self-start",
   },
   {
     type: "image",
     src: "/testimonials/t2.png",
     className:
-      "w-20 h-20 md:w-28 md:h-28 rounded-full md:rounded-[2rem] object-cover shadow-lg self-center mb-10",
+      "w-20 h-20 md:w-28 md:h-28 rounded-full md:rounded-[2rem] object-cover shadow-lg lg:self-center lg:mb-10",
   },
   {
     type: "empty",
     className:
-      "w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-[2rem] bg-gray-50 border border-orange-100 self-top mt-5",
+      "hidden lg:block w-24 h-24 rounded-[2rem] bg-gray-50 border border-orange-100 self-start mt-5",
   },
   {
     type: "image",
     src: "/testimonials/t3.png",
     className:
-      "w-32 h-40 md:w-44 md:h-52 rounded-2xl md:rounded-[2rem] object-cover shadow-xl self-end mt-16 md:mt-32 -rotate-2",
+      "w-32 h-40 md:w-44 md:h-52 rounded-2xl md:rounded-[2rem] object-cover shadow-xl lg:self-end lg:mt-32 lg:-rotate-2",
   },
 
   // Middle Row
@@ -49,18 +49,18 @@ const floatingCards = [
     quote:
       '"Finally, a laundry service that understands premium fabrics. My silk collections always return looking brand new!"',
     className:
-      "bg-clothcare-primary text-text-primary p-5 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl w-48 md:w-56 translate-y-10 md:translate-y-20 z-10 rotate-1",
+      "bg-clothcare-primary text-text-primary p-5 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl w-full sm:w-56 lg:translate-y-20 lg:z-10 lg:rotate-1",
   },
   {
     type: "image",
     src: "/testimonials/t4.png",
     className:
-      "w-24 h-24 md:w-36 md:h-36 rounded-2xl md:rounded-[2rem] object-cover shadow-lg self-center",
+      "w-24 h-24 md:w-36 md:h-36 rounded-2xl md:rounded-[2rem] object-cover shadow-lg lg:self-center",
   },
   {
     type: "empty",
     className:
-      "hidden md:block w-32 h-20 rounded-[2rem] bg-gray-50 border border-gray-100 self-end mb-10",
+      "hidden lg:block w-32 h-20 rounded-[2rem] bg-gray-50 border border-gray-100 self-end mb-10",
   },
 
   // Right Side Cluster
@@ -68,7 +68,7 @@ const floatingCards = [
     type: "image",
     src: "/testimonials/t5.png",
     className:
-      "w-28 h-40 md:w-40 md:h-56 rounded-2xl md:rounded-[2rem] object-cover shadow-xl self-start mt-10 rotate-2",
+      "w-28 h-40 md:w-40 md:h-56 rounded-2xl md:rounded-[2rem] object-cover shadow-xl lg:self-start lg:mt-10 lg:rotate-2",
   },
   {
     type: "text",
@@ -77,13 +77,13 @@ const floatingCards = [
     quote:
       '"Efficiency and quality at its best. Qloth Care saves me hours every week, giving me more time to focus on my work."',
     className:
-      "bg-bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl border border-gray-100 w-48 md:w-52 mt-8 md:mt-16 z-10",
+      "bg-bg-white p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-xl border border-gray-100 w-full sm:w-52 lg:mt-16 lg:z-10",
   },
   {
     type: "image",
     src: "/testimonials/t6.png",
     className:
-      "w-24 h-32 md:w-32 md:h-40 rounded-2xl md:rounded-[2rem] object-cover shadow-lg self-end -translate-y-10 md:-translate-y-20",
+      "w-24 h-32 md:w-32 md:h-40 rounded-2xl md:rounded-[2rem] object-cover shadow-lg lg:self-end lg:-translate-y-20",
   },
 ];
 
@@ -106,14 +106,14 @@ const floatUp = {
 
 const TestimonialsSection = () => {
   return (
-    <section className="relative py-24 md:py-32 bg-bg-white overflow-hidden font-sans">
+    <section className="relative py-16 sm:py-24 md:py-32 bg-bg-white overflow-hidden font-sans">
       {/* Dynamic Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-linear-to-b from-orange-50 to-transparent -z-10 rounded-full blur-[100px] opacity-60"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Floating Cards Masonry Grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap justify-center gap-4 md:gap-6 lg:gap-8 mb-16 md:mb-24 px-2"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap justify-center items-stretch lg:items-start gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 md:mb-24"
           variants={containerFade}
           initial="hidden"
           whileInView="visible"
@@ -126,13 +126,11 @@ const TestimonialsSection = () => {
               whileHover={{ scale: 1.05, zIndex: 20 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
               className={`
-    ${card.className} 
-    relative will-change-transform cursor-default
-    ${index > 5 ? "hidden md:block" : ""} 
-    sm:static lg:relative
-    md:translate-y-0 lg:translate-y-inherit
-    mt-0 md:mt-2 lg:mt-inherit
-  `}
+                ${card.className}
+                relative will-change-transform cursor-default
+                ${index > 5 ? "hidden sm:block" : ""}
+                ${card.type === "text" ? "col-span-2 sm:col-span-1" : "justify-self-center"}
+              `}
             >
               {/* Render based on card type */}
               {card.type === "image" && (
@@ -158,7 +156,7 @@ const TestimonialsSection = () => {
                     ))}
                   </div>
                   <p
-                    className={`text-xs md:text-sm lg:text-base font-medium mb-3 leading-snug italic ${card.className.includes("bg-clothcare") ? "text-text-primary" : "text-text-dark"}`}
+                    className={`text-xs md:text-sm lg:text-base font-medium mb-3 leading-snug italic line-clamp-4 ${card.className.includes("bg-clothcare") ? "text-text-primary" : "text-text-dark"}`}
                   >
                     {card.quote}
                   </p>
@@ -200,24 +198,20 @@ const TestimonialsSection = () => {
             cleaning solutions to manage their wardrobes effortlessly.
           </p>
 
-          <Link
-            href="/about-us"
-          >
+          <Link href="/about-us">
             <Button
-            variant="primary"
-            icon={ArrowRight}
-            className="p-7 rounded-full"
-            iconWrapperClassName="transition-all duration-300 group-hover:translate-x-1">
-               Read Success Stories
+              variant="primary"
+              icon={ArrowRight}
+              className="p-7 rounded-full"
+              iconWrapperClassName="transition-all duration-300 group-hover:translate-x-1"
+            >
+              Read Success Stories
             </Button>
-          
           </Link>
-
-           
         </div>
 
         {/* Faded vertical decorative lines (Optional background detail) */}
-        <div className="absolute inset-x-0 h-full top-0 flex justify-evenly pointer-events-none -z-20 opacity-20">
+        <div className="absolute inset-x-0 h-full top-0 hidden sm:flex justify-evenly pointer-events-none -z-20 opacity-20">
           <div className="w-px h-full bg-linear-to-b from-transparent via-gray-300 to-transparent"></div>
           <div className="w-px h-full bg-linear-to-b from-transparent via-gray-300 to-transparent"></div>
           <div className="w-px h-full bg-linear-to-b from-transparent via-clothcare-primary/50 to-transparent"></div>

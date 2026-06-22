@@ -3,14 +3,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Input from '@/components/ui/input/Input';
-import Button from '@/components/common/Button';
+import Button from '@/components/ui/btn/Button';
 import { User, Phone, MapPin, Building2, Check, ArrowRight, Send } from 'lucide-react';
 
 /* ==========================================
    BRANCH DATA
-   Each branch is presented as a selectable dispatch-style card rather
-   than hidden inside a generic <select>, so "nearest branch" reads as
-   an actual place you're choosing, not an abstract list item.
    ========================================== */
 const BRANCHES = [
   { id: 'south-bopal', name: 'South Bopal', area: 'Ahmedabad' },
@@ -20,14 +17,48 @@ const BRANCHES = [
   { id: 'maninagar', name: 'Maninagar', area: 'Ahmedabad' },
 ];
 
+const EASE = [0.16, 1, 0.3, 1];
+
+/* Parent-driven stagger — replaces the old per-field `whileInView`.
+   Children just declare `variants` and inherit "hidden"/"visible"
+   from this container's animate state. No IntersectionObserver
+   involved, so there's nothing to race on remount. */
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+  },
+};
+
 const fieldVariants = {
   hidden: { opacity: 0, y: 16 },
-  visible: (i = 0) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] },
-  }),
+    transition: { duration: 0.5, ease: EASE },
+  },
 };
+
+/* ==========================================
+   VALIDATION
+   ========================================== */
+const NAME_REGEX = /^[A-Za-z][A-Za-z .'-]{1,49}$/; // letters/spaces/.'- , 2-50 chars
+const PHONE_REGEX = /^[6-9]\d{9}$/; // Indian mobile: 10 digits, starts 6-9
+
+const digitsOnly = (str) => str.replace(/\D/g, '');
+
+// Strips a leading "91" (country code) or leading "0" (trunk prefix)
+// so "+91 98765 43210" and "098765 43210" both validate correctly.
+const normalizePhone = (str) => {
+  let digits = digitsOnly(str);
+  if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+  else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+  return digits;
+};
+
+const isValidName = (str) => NAME_REGEX.test(str.trim());
+const isValidPhone = (str) => PHONE_REGEX.test(normalizePhone(str));
 
 const Inquiry = () => {
   const [formState, setFormState] = useState({ name: '', phone: '', city: '', branchId: '' });
@@ -38,15 +69,40 @@ const Inquiry = () => {
   const selectedBranch = BRANCHES.find((b) => b.id === formState.branchId);
 
   const isValid =
-    formState.name.trim().length > 0 &&
-    formState.phone.trim().length >= 10 &&
-    formState.city.trim().length > 0 &&
-    formState.branchId;
+    isValidName(formState.name) &&
+    isValidPhone(formState.phone) &&
+    isValidName(formState.city) &&
+    !!formState.branchId;
+
+  const nameError = touched && !isValidName(formState.name)
+    ? (formState.name.trim() ? 'Enter a valid name (letters only)' : 'Required')
+    : '';
+
+  const phoneError = touched && !isValidPhone(formState.phone)
+    ? (formState.phone.trim() ? 'Enter a valid 10-digit mobile number' : 'Required')
+    : '';
+
+  const cityError = touched && !isValidName(formState.city)
+    ? (formState.city.trim() ? 'Enter a valid city name' : 'Please add your city.')
+    : '';
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setTouched(true);
     if (!isValid) return;
+
+    // Gather everything into one object before "sending" it.
+    const payload = {
+      name: formState.name.trim(),
+      phone: normalizePhone(formState.phone),
+      city: formState.city.trim(),
+      branchId: selectedBranch?.id ?? null,
+      branchName: selectedBranch?.name ?? null,
+      branchArea: selectedBranch?.area ?? null,
+      submittedAt: new Date().toISOString(),
+    };
+    console.log('Inquiry submitted:', payload);
+
     setIsSubmitting(true);
     // Simulated network call — swap for the real endpoint when ready.
     setTimeout(() => {
@@ -79,7 +135,7 @@ const Inquiry = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-clothcare-primary/10 rounded-full mb-5 text-[11px] font-bold uppercase tracking-[0.25em] text-text-accent">
@@ -117,7 +173,11 @@ const Inquiry = () => {
             />
           </svg>
 
-          <AnimatePresence mode="wait">
+          {/* initial={false} — skips AnimatePresence's own enter animation
+              on first mount. The section already fades in via whileInView
+              above; without this, the form fades in a second time right
+              after, which compounds into a visible double-flicker. */}
+          <AnimatePresence mode="wait" initial={false}>
             {isSent ? (
               <ConfirmationTicket
                 key="confirmation"
@@ -128,17 +188,16 @@ const Inquiry = () => {
             ) : (
               <motion.form
                 key="inquiry-form"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, transition: { duration: 0.2 } }}
                 onSubmit={handleSubmit}
                 className="relative p-8 sm:p-10 lg:p-12"
               >
-                {/* Name + Phone share a row on wider screens — uses the
-                    centered column's width instead of leaving it idle */}
+                {/* Name + Phone share a row on wider screens */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                  <motion.div custom={0} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                  <motion.div variants={fieldVariants}>
                     <Input
                       label="Full Name"
                       icon={User}
@@ -146,11 +205,11 @@ const Inquiry = () => {
                       placeholder="Your name"
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      error={touched && !formState.name.trim() ? 'Required' : ''}
+                      error={nameError}
                     />
                   </motion.div>
 
-                  <motion.div custom={1} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                  <motion.div variants={fieldVariants}>
                     <Input
                       label="Phone Number"
                       icon={Phone}
@@ -159,12 +218,12 @@ const Inquiry = () => {
                       placeholder="98765 43210"
                       value={formState.phone}
                       onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                      error={touched && formState.phone.trim().length < 10 ? 'Invalid number' : ''}
+                      error={phoneError}
                     />
                   </motion.div>
                 </div>
 
-                <motion.div custom={2} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mb-8">
+                <motion.div variants={fieldVariants} className="mb-8">
                   <Input
                     label="City"
                     icon={Building2}
@@ -172,24 +231,15 @@ const Inquiry = () => {
                     placeholder="Ahmedabad"
                     value={formState.city}
                     onChange={(e) => setFormState({ ...formState, city: e.target.value })}
-                    error={touched && !formState.city.trim() ? 'Please add your city.' : ''}
+                    error={cityError}
                     helperText="We'll call to confirm your pickup slot."
                   />
                 </motion.div>
 
                 <div className="h-px bg-clothcare-graySoft/15 mb-8" />
 
-                {/* Branch picker — the signature element. 5 cards laid out
-                    3-across so the last row holds 2 centered cards instead
-                    of one orphaned card hanging off to the left. */}
-                <motion.div
-                  custom={3}
-                  variants={fieldVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="mb-5"
-                >
+                {/* Branch picker — the signature element */}
+                <motion.div variants={fieldVariants} className="mb-5">
                   <label className="flex items-center gap-2 text-xs font-bold text-text-muted uppercase tracking-wider">
                     <MapPin size={14} className="text-text-accent" />
                     Nearest Branch
@@ -198,17 +248,13 @@ const Inquiry = () => {
                 </motion.div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-2">
-                  {BRANCHES.map((branch, i) => {
+                  {BRANCHES.map((branch) => {
                     const active = formState.branchId === branch.id;
                     return (
                       <motion.button
                         key={branch.id}
                         type="button"
-                        custom={4 + i * 0.4}
                         variants={fieldVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
                         whileTap={{ scale: 0.97 }}
                         whileHover={{ y: -2 }}
                         onClick={() => setFormState({ ...formState, branchId: branch.id })}
@@ -246,21 +292,14 @@ const Inquiry = () => {
                   <p className="text-sm text-status-danger mb-2">Select the branch nearest you.</p>
                 )}
 
-                <motion.div
-                  custom={9}
-                  variants={fieldVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="mt-9"
-                >
+                <motion.div variants={fieldVariants} className="mt-9">
                   <Button
                     type="submit"
-                    size="sm"
+                    size="xl"
                     loading={isSubmitting}
                     icon={Send}
                     iconSize={16}
-                    className="w-full rounded-xl py-4  shadow-lg"
+                    className="w-full rounded-xl py-3  shadow-lg"
                   >
                     Send Inquiry
                   </Button>
@@ -278,15 +317,13 @@ const Inquiry = () => {
 };
 
 /* ==========================================
-   CONFIRMATION — styled as a stamped dispatch ticket rather than a
-   generic checkmark toast, staying inside the same visual language as
-   the branch-picker cards above it.
+   CONFIRMATION — unchanged design
    ========================================== */
 const ConfirmationTicket = ({ name, branch, onReset }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.97 }}
     animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    transition={{ duration: 0.5, ease: EASE }}
     className="relative px-8 py-16 lg:py-20 flex flex-col items-center text-center"
   >
     <motion.div

@@ -33,24 +33,136 @@ export default function CookiesPolicy() {
     <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-bg-white overflow-hidden border-b border-gray-100">
-        <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] bg-size-[24px_24px] opacity-[0.03]"></div>
+     <section className="relative overflow-hidden bg-bg-white pt-32 pb-20 lg:pt-30 lg:pb-32 border-b border-gray-100">
 
-        <div className="container mx-auto px-6 max-w-[1400px] relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-clothcare-primary/5 text-text-accent text-sm font-bold mb-8">
-              <Cookie size={16} /> Digital Footprint
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-[5.5rem] font-display font-black leading-[1.1] lg:leading-[1.05] tracking-tight mb-8">
-              Cookies & <br className="hidden sm:block" />
-              <span className="text-gray-400">Tracking.</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-text-muted font-medium max-w-2xl leading-relaxed">
-              How we utilize digital signatures to remember your preferences and enhance your fabric care journey.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+  {/* Dot Pattern */}
+  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:26px_26px] opacity-[0.03]" />
+
+  {/* Orange Glow */}
+  <div className="absolute right-[-180px] top-1/2 -translate-y-1/2 h-[650px] w-[650px] rounded-full bg-[#E46F33]/10 blur-[120px]" />
+
+  {/* Cookie Graphic */}
+  <div className="absolute right-0 top-1/2 hidden lg:flex w-[52%] -translate-y-1/2 items-center justify-center pointer-events-none">
+
+    {/* Outer Ring */}
+    <motion.div
+      animate={{
+        rotate: [0, 360],
+      }}
+      transition={{
+        duration: 40,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="absolute w-[520px] h-[520px] rounded-full border border-[#E46F33]/10"
+    />
+
+    <motion.div
+      animate={{
+        rotate: [360, 0],
+      }}
+      transition={{
+        duration: 30,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+      className="absolute w-[420px] h-[420px] rounded-full border border-[#E46F33]/10"
+    />
+
+    {/* Big Cookie */}
+    <motion.div
+      animate={{
+        y: [-10, 10, -10],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+      }}
+      className="relative"
+    >
+
+      <div className="h-[280px] w-[280px] rounded-full bg-gradient-to-br from-[#F4B183] to-[#E46F33] shadow-[0_40px_100px_rgba(228,111,51,.18)] flex items-center justify-center">
+
+        <Cookie
+          size={150}
+          strokeWidth={1.6}
+          className="text-white"
+        />
+
+      </div>
+
+      {/* Chips */}
+
+      <span className="absolute top-10 left-12 h-5 w-5 rounded-full bg-[#7A4A2B]" />
+      <span className="absolute top-20 right-14 h-4 w-4 rounded-full bg-[#8A5530]" />
+      <span className="absolute bottom-16 left-16 h-6 w-6 rounded-full bg-[#7A4A2B]" />
+      <span className="absolute bottom-20 right-20 h-4 w-4 rounded-full bg-[#7A4A2B]" />
+      <span className="absolute top-1/2 left-10 h-4 w-4 rounded-full bg-[#7A4A2B]" />
+
+    </motion.div>
+
+    {/* Floating Icons */}
+
+    {[
+      "top-10 left-20",
+      "top-16 right-16",
+      "bottom-20 left-8",
+      "bottom-10 right-8",
+    ].map((pos, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          y: [-8, 8, -8],
+        }}
+        transition={{
+          duration: 4 + i,
+          repeat: Infinity,
+        }}
+        className={`absolute ${pos} h-16 w-16 rounded-2xl bg-white/70 backdrop-blur-xl border border-white shadow-xl flex items-center justify-center`}
+      >
+        <Cookie
+          size={28}
+          className="text-[#E46F33]"
+        />
+      </motion.div>
+    ))}
+
+  </div>
+
+  {/* Content */}
+
+  <div className="relative z-10 container mx-auto max-w-[1400px] px-6">
+
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={fadeUp}
+      className="max-w-3xl"
+    >
+
+      <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#E46F33]/5 px-4 py-2 text-sm font-bold text-[#E46F33]">
+        <Cookie size={16} />
+        Digital Footprint
+      </div>
+
+      <h1 className="mb-8 font-display text-5xl font-black leading-none tracking-tight lg:text-[5.5rem]">
+        Cookies &
+        <br />
+        <span className="text-text-accent/80">
+          Tracking.
+        </span>
+      </h1>
+
+      <p className="max-w-2xl text-xl leading-relaxed text-gray-500 lg:text-2xl">
+        How we utilize digital signatures to remember your preferences and
+        enhance your fabric care journey.
+      </p>
+
+    </motion.div>
+
+  </div>
+
+</section>
 
       {/* Main Content Layout */}
       <section className="py-20 lg:py-32">

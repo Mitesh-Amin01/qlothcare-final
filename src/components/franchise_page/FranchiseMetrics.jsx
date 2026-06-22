@@ -12,7 +12,7 @@ export default function FranchiseMetrics() {
     ];
 
     return (
-        <section className="bg-clothcare-black py-20 lg:py-32 relative z-10 overflow-hidden">
+        <section className="bg-clothcare-black py-20 lg:py-22 relative z-10 overflow-hidden">
 
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,111,51,0.05)_0%,transparent_70%)]"></div>
 

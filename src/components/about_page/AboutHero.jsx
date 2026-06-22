@@ -11,12 +11,9 @@ const AboutHero = () => {
         offset: ["start start", "end start"]
     });
 
-    // Subtly shrink the padding and increase the border radius to create a "picture frame" that expands
     const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
     const yContent = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacityContent = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-    // Instead of transforming padding directly (which can be janky), we scale the inner container
     const containerScale = useTransform(scrollYProgress, [0, 0.7, 1], [0.95, 1, 1]);
     const borderRadius = useTransform(scrollYProgress, [0, 0.7], ["3rem", "0rem"]);
 
@@ -33,7 +30,6 @@ const AboutHero = () => {
                         style={{ scale }}
                         className="absolute inset-0 w-full h-full pointer-events-none"
                     >
-                        {/* High-end editorial mood image */}
                         <Image
                             src="/about/hero.png"
                             alt="Luxury garment preservation"
@@ -41,7 +37,6 @@ const AboutHero = () => {
                             className="object-cover opacity-60 grayscale-30 contrast-125 brightness-75"
                             priority
                         />
-                        {/* Elegant edge darkening */}
                         <div className="absolute inset-0 bg-linear-to-b from-[#050505]/80 via-transparent to-[#050505]"></div>
                         <div className="absolute inset-0 bg-linear-to-r from-[#050505]/60 via-transparent to-transparent"></div>
                     </motion.div>
@@ -49,10 +44,10 @@ const AboutHero = () => {
                     {/* Premium Typography Content */}
                     <motion.div
                         style={{ y: yContent, opacity: opacityContent }}
-                        className="absolute inset-0 z-10 w-full h-full container mx-auto px-6 lg:px-16 py-12 lg:py-20 flex flex-col justify-between"
+                        className="absolute inset-0 z-10 w-full h-full container mx-auto px-6 lg:px-16 py-10 sm:py-12 lg:py-16 flex flex-col justify-between"
                     >
                         {/* Top Nav/Header Area within Hero */}
-                        <div className="flex justify-between items-center w-full mt-16 md:mt-10 lg:mt-0">
+                        <div className="flex justify-between items-center w-full mt-16 md:mt-10 lg:mt-0 shrink-0">
                             <motion.div
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -76,43 +71,55 @@ const AboutHero = () => {
                         </div>
 
                         {/* Middle/Bottom Main Typography */}
-                        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 lg:gap-0 mt-auto mb-10 w-full">
+                        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-0 mt-auto mb-6 sm:mb-10 w-full min-h-0">
 
-                            <div className="max-w-5xl flex-1">
+                            <div className="max-w-5xl flex-1 min-w-0">
                                 <motion.div
                                     initial={{ opacity: 0, scaleY: 0 }}
                                     animate={{ opacity: 1, scaleY: 1 }}
                                     transition={{ duration: 1, delay: 0.2 }}
-                                    className="w-px h-16 sm:h-24 bg-linear-to-b from-clothcare-primary to-transparent mb-8 origin-top hidden md:block"
+                                    className="w-px h-16 sm:h-24 bg-linear-to-b from-clothcare-primary to-transparent mb-6 sm:mb-8 origin-top hidden md:block"
                                 ></motion.div>
 
                                 <motion.h1
                                     initial={{ opacity: 0, y: 50 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-[2.8rem] sm:text-6xl md:text-8xl lg:text-[9rem] font-medium text-text-primary leading-[0.85] tracking-tighter relative"
+                                    className="relative text-[2.6rem] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[7.5rem] font-medium text-text-primary leading-[0.9] tracking-tighter"
                                 >
-                                    {/* Massive background ghost text for brand presence */}
-                                    <span className="absolute -top-1/2 left-0 text-[10rem] sm:text-[15rem] md:text-[20rem] lg:text-[25rem] font-bold text-text-primary/5 tracking-tighter whitespace-nowrap pointer-events-none select-none z-0 mix-blend-overlay -translate-y-1/4">
-                                        QLOTHCARE
+                                    {/* Ghost background text — capped in size and clipped to its own
+                                        box so it can never push past the heading's bounds and get
+                                        cut off by the section's overflow-hidden. */}
+                                    <span
+                                        aria-hidden
+                                        className="absolute inset-0 flex items-center justify-start overflow-hidden pointer-events-none select-none z-0"
+                                    >
+                                        <span className="text-[6rem] sm:text-[9rem] md:text-[12rem] lg:text-[14rem] font-bold text-text-primary/5 tracking-tighter whitespace-nowrap mix-blend-overlay">
+                                            QLOTHCARE
+                                        </span>
                                     </span>
 
-                                    THE FINEST <br />
-                                    <span className="italic font-light text-text-primary/50 pr-4">GARMENT</span> <br className="block md:hidden" />
-                                    <span className="relative z-10">
-                                        CARE
-                                        <div className="absolute -bottom-1 md:-bottom-4 left-0 w-full h-px md:h-[2px] bg-bg-white/20"></div>
+                                    <span className="relative z-10 block">
+                                        THE FINEST <br />
+                                        <span className="italic font-light text-text-primary/50 pr-4">GARMENT</span> <br className="block md:hidden" />
+                                        <span className="relative">
+                                            CARE
+                                            <div className="absolute -bottom-1 md:-bottom-3 left-0 w-full h-px md:h-[2px] bg-bg-white/20"></div>
+                                        </span>
                                     </span>
                                 </motion.h1>
                             </div>
 
+                            {/* Right-side copy: visible from md up now, not just lg,
+                                so it no longer leaves a void on tablets, and a
+                                shorter variant fills the mobile gap below. */}
                             <motion.div
                                 initial={{ opacity: 0, x: 30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="hidden lg:flex flex-col items-start lg:items-end gap-12 pb-4"
+                                className="hidden md:flex flex-col items-start lg:items-end gap-8 lg:gap-12 pb-2 lg:pb-4 lg:max-w-xs xl:max-w-sm shrink-0"
                             >
-                                <p className="text-text-primary/60 text-right text-lg xl:text-xl font-light leading-relaxed max-w-sm">
+                                <p className="text-text-primary/60 text-left lg:text-right text-base lg:text-lg xl:text-xl font-light leading-relaxed">
                                     A sanctuary for the world's most delicate fabrics. Built for those who demand <span className="text-text-primary font-medium">nothing less than perfection.</span>
                                 </p>
 
@@ -132,6 +139,22 @@ const AboutHero = () => {
                                 </div>
                             </motion.div>
 
+                            {/* Mobile-only fallback so small screens don't feel empty
+                                under the headline — short tagline + scroll cue. */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+                                className="flex md:hidden items-center justify-between gap-4 pt-2 border-t border-white/10"
+                            >
+                                <p className="text-text-primary/60 text-sm font-light leading-relaxed max-w-[65%]">
+                                    A sanctuary for delicate fabrics, built for perfection.
+                                </p>
+                                <div className="flex items-center gap-2 text-text-primary/70 shrink-0">
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Scroll</span>
+                                    <ArrowDown size={14} />
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
 

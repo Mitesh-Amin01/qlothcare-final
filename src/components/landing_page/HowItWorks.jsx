@@ -33,7 +33,7 @@ const tiltUp = {
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 md:py-32 bg-bg-white overflow-hidden relative font-sans">
+    <section className="py-24 md:py-32 bg-bg-white overflow-hidden relative font-sans ">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
@@ -58,7 +58,7 @@ export default function HowItWorks() {
         </div>
 
         {/* 3-Column Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 auto-rows-[1fr]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 auto-rows-[1fr] ">
           {/* Card 1: Connect / Schedule */}
           <motion.div
             variants={tiltUp}

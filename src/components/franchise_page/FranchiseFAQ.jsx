@@ -34,8 +34,8 @@ export default function FranchiseFAQ() {
             <div className="container mx-auto px-6 max-w-4xl relative z-10">
 
                 <div className="text-center mb-24 flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-2xl bg-clothcare-primary/20 text-text-accent flex items-center justify-center mb-8 border border-clothcare-primary/30 rotate-12 shadow-[0_0_40px_rgba(228,111,51,0.2)]">
-                        <Command size={28} className="-rotate-12" />
+                    <div className="w-16 h-16 rounded-2xl bg-clothcare-primary/20 text-text-accent flex items-center justify-center mb-8 border border-clothcare-primary/30 shadow-[0_0_40px_rgba(228,111,51,0.2)]">
+                        <Command size={28}  />
                     </div>
                     <h2 className="text-5xl font-black text-text-primary mb-6 tracking-tighter font-display">Intelligence.</h2>
                 </div>
