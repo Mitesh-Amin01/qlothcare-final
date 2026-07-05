@@ -30,102 +30,139 @@ export default function CookiesPolicy() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
+    <div className="min-h-screen  bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
-     <section className="relative overflow-hidden bg-bg-white pt-32 pb-20 lg:pt-30 lg:pb-32 border-b border-gray-100">
+   <section className="relative overflow-hidden px-10  pt-28 pb-20 lg:pt-28 lg:pb-28 border-b border-gray-100">
 
   {/* Dot Pattern */}
-  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:26px_26px] opacity-[0.03]" />
+  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.025]" />
 
-  {/* Orange Glow */}
-  <div className="absolute right-[-180px] top-1/2 -translate-y-1/2 h-[650px] w-[650px] rounded-full bg-[#E46F33]/10 blur-[120px]" />
+  {/* Grain Overlay */}
+  <div
+    className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+    style={{
+      backgroundImage:
+        "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.45%22/%3E%3C/svg%3E')",
+    }}
+  />
 
-  {/* Cookie Graphic */}
-  <div className="absolute right-0 top-1/2 hidden lg:flex w-[52%] -translate-y-1/2 items-center justify-center pointer-events-none">
+  {/* Gradient Blobs */}
+  <div className="absolute right-[-120px] top-24 h-[420px] w-[420px] rounded-full bg-[#E46F33]/8 blur-[110px]" />
+  <div className="absolute right-[18%] bottom-0 h-[260px] w-[260px] rounded-full bg-amber-200/30 blur-[90px]" />
 
-    {/* Outer Ring */}
+  {/* Graphic */}
+  <div className="absolute right-0 top-1/2 hidden lg:flex w-[50%] -translate-y-1/2 items-center justify-center pointer-events-none">
+
+    {/* Single Ring */}
     <motion.div
       animate={{
-        rotate: [0, 360],
+        rotate: 360,
+        scale: [1, 1.03, 1],
       }}
       transition={{
-        duration: 40,
-        repeat: Infinity,
-        ease: "linear",
+        rotate: {
+          duration: 50,
+          repeat: Infinity,
+          ease: "linear",
+        },
+        scale: {
+          duration: 10,
+          repeat: Infinity,
+        },
       }}
-      className="absolute w-[520px] h-[520px] rounded-full border border-[#E46F33]/10"
+      className="absolute h-[470px] w-[470px] rounded-full border border-[#E46F33]/10"
     />
 
+    {/* Cookie */}
     <motion.div
       animate={{
-        rotate: [360, 0],
+        y: [-8, 10, -8],
+        rotate: [-2, 2, -2],
       }}
       transition={{
-        duration: 30,
+        duration: 8,
         repeat: Infinity,
-        ease: "linear",
-      }}
-      className="absolute w-[420px] h-[420px] rounded-full border border-[#E46F33]/10"
-    />
-
-    {/* Big Cookie */}
-    <motion.div
-      animate={{
-        y: [-10, 10, -10],
-      }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
+        ease: "easeInOut",
       }}
       className="relative"
     >
-
-      <div className="h-[280px] w-[280px] rounded-full bg-gradient-to-br from-[#F4B183] to-[#E46F33] shadow-[0_40px_100px_rgba(228,111,51,.18)] flex items-center justify-center">
+      <div className="flex h-[250px] w-[250px] items-center justify-center rounded-full bg-gradient-to-br from-[#F8C59A] via-[#F0A46A] to-[#E46F33] shadow-[0_30px_70px_rgba(228,111,51,.18)]">
 
         <Cookie
-          size={150}
-          strokeWidth={1.6}
+          size={130}
+          strokeWidth={1.5}
           className="text-white"
         />
 
       </div>
 
       {/* Chips */}
-
-      <span className="absolute top-10 left-12 h-5 w-5 rounded-full bg-[#7A4A2B]" />
-      <span className="absolute top-20 right-14 h-4 w-4 rounded-full bg-[#8A5530]" />
-      <span className="absolute bottom-16 left-16 h-6 w-6 rounded-full bg-[#7A4A2B]" />
-      <span className="absolute bottom-20 right-20 h-4 w-4 rounded-full bg-[#7A4A2B]" />
-      <span className="absolute top-1/2 left-10 h-4 w-4 rounded-full bg-[#7A4A2B]" />
-
+      <span className="absolute top-8 left-12 h-5 w-5 rounded-full bg-[#744728]" />
+      <span className="absolute top-20 right-14 h-4 w-4 rounded-full bg-[#885230]" />
+      <span className="absolute bottom-14 left-14 h-6 w-6 rounded-full bg-[#744728]" />
+      <span className="absolute bottom-18 right-16 h-4 w-4 rounded-full bg-[#744728]" />
+      <span className="absolute top-1/2 left-8 h-4 w-4 rounded-full bg-[#744728]" />
     </motion.div>
 
-    {/* Floating Icons */}
+    {/* Floating Cookies */}
 
-    {[
-      "top-10 left-20",
-      "top-16 right-16",
-      "bottom-20 left-8",
-      "bottom-10 right-8",
-    ].map((pos, i) => (
-      <motion.div
-        key={i}
-        animate={{
-          y: [-8, 8, -8],
-        }}
-        transition={{
-          duration: 4 + i,
-          repeat: Infinity,
-        }}
-        className={`absolute ${pos} h-16 w-16 rounded-2xl bg-white/70 backdrop-blur-xl border border-white shadow-xl flex items-center justify-center`}
-      >
-        <Cookie
-          size={28}
-          className="text-[#E46F33]"
-        />
-      </motion.div>
-    ))}
+    <motion.div
+      animate={{
+        x: [-5, 6, -5],
+        y: [-12, 8, -12],
+        rotate: [-6, 6, -6],
+      }}
+      transition={{
+        duration: 7,
+        repeat: Infinity,
+      }}
+      className="absolute left-24 top-16 flex h-14 w-14 items-center justify-center rounded-2xl border border-white bg-white/80 shadow-lg backdrop-blur-xl"
+    >
+      <Cookie size={24} className="text-[#E46F33]" />
+    </motion.div>
+
+    <motion.div
+      animate={{
+        y: [10, -8, 10],
+        rotate: [0, 12, 0],
+      }}
+      transition={{
+        duration: 8,
+        repeat: Infinity,
+      }}
+      className="absolute right-20 top-20 flex h-16 w-16 items-center justify-center rounded-3xl border border-white bg-white/75 shadow-xl backdrop-blur-xl"
+    >
+      <Cookie size={28} className="text-[#E46F33]" />
+    </motion.div>
+
+    <motion.div
+      animate={{
+        x: [8, -6, 8],
+        y: [-6, 10, -6],
+      }}
+      transition={{
+        duration: 9,
+        repeat: Infinity,
+      }}
+      className="absolute bottom-16 left-8 flex h-14 w-14 items-center justify-center rounded-xl border border-white bg-white/80 shadow-lg backdrop-blur-xl"
+    >
+      <Cookie size={22} className="text-[#E46F33]" />
+    </motion.div>
+
+    <motion.div
+      animate={{
+        y: [-10, 10, -10],
+        rotate: [8, -8, 8],
+      }}
+      transition={{
+        duration: 10,
+        repeat: Infinity,
+      }}
+      className="absolute bottom-12 right-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-white bg-white/80 shadow-xl backdrop-blur-xl"
+    >
+      <Cookie size={26} className="text-[#E46F33]" />
+    </motion.div>
 
   </div>
 
@@ -137,25 +174,29 @@ export default function CookiesPolicy() {
       initial="hidden"
       animate="visible"
       variants={fadeUp}
-      className="max-w-3xl"
+      className="max-w-2xl"
     >
 
-      <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#E46F33]/5 px-4 py-2 text-sm font-bold text-[#E46F33]">
-        <Cookie size={16} />
+      <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#E46F33]/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#E46F33]">
+        <Cookie size={14} />
         Digital Footprint
       </div>
 
-      <h1 className="mb-8 font-display text-5xl font-black leading-none tracking-tight lg:text-[5.5rem]">
+      <h1 className="font-display text-4xl font-black leading-[1.02] tracking-[-0.03em] text-gray-900 lg:text-[4.3rem]">
+
         Cookies &
         <br />
-        <span className="text-text-accent/80">
-          Tracking.
+
+        <span className="bg-gradient-to-r from-[#E46F33] to-[#C95521] bg-clip-text text-transparent">
+          Tracking
         </span>
+
       </h1>
 
-      <p className="max-w-2xl text-xl leading-relaxed text-gray-500 lg:text-2xl">
-        How we utilize digital signatures to remember your preferences and
-        enhance your fabric care journey.
+      <p className="mt-6 max-w-xl text-lg leading-8 text-gray-500 lg:text-xl">
+        Learn how we use cookies and similar technologies to personalize your
+        experience, remember preferences, and improve the overall performance of
+        our website.
       </p>
 
     </motion.div>
@@ -165,7 +206,7 @@ export default function CookiesPolicy() {
 </section>
 
       {/* Main Content Layout */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 px-0 sm:px-10 lg:py-32">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="flex flex-col lg:flex-row gap-16 xl:gap-24">
 

@@ -86,31 +86,109 @@ const Inquiry = () => {
     ? (formState.city.trim() ? 'Enter a valid city name' : 'Please add your city.')
     : '';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTouched(true);
-    if (!isValid) return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Gather everything into one object before "sending" it.
-    const payload = {
-      name: formState.name.trim(),
-      phone: normalizePhone(formState.phone),
-      city: formState.city.trim(),
-      branchId: selectedBranch?.id ?? null,
-      branchName: selectedBranch?.name ?? null,
-      branchArea: selectedBranch?.area ?? null,
-      submittedAt: new Date().toISOString(),
-    };
-    console.log('Inquiry submitted:', payload);
+  setTouched(true);
 
-    setIsSubmitting(true);
-    // Simulated network call — swap for the real endpoint when ready.
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSent(true);
-    }, 1400);
+  if (!isValid) return;
+
+  setIsSubmitting(true);
+
+  // ===================================
+  // ERP Payload
+  // ===================================
+
+  const payload = {
+    name: formState.name.trim(),
+    phone: normalizePhone(formState.phone),
+    city: formState.city.trim(),
+    branchId: selectedBranch?.id ?? null,
+    branchName: selectedBranch?.name ?? null,
+    branchArea: selectedBranch?.area ?? null,
+    submittedAt: new Date().toISOString(),
   };
 
+  // ===================================
+  // Email Payload (Pretty)
+  // ===================================
+
+  const emailPayload = {
+    "Customer Name": payload.name,
+    "Phone Number": payload.phone,
+    City: payload.city,
+    "Selected Branch": payload.branchName || "Not Selected",
+    "Branch Area": payload.branchArea || "-",
+    "Branch ID": payload.branchId || "-",
+    Submitted: new Date(payload.submittedAt).toLocaleString("en-IN"),
+  };
+
+  try {
+    // ===================================
+    // STEP 1 - Send Email
+    // ===================================
+
+    const emailResponse = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "User Inquiry",
+        formData: emailPayload,
+      }),
+    });
+
+    const emailResult = await emailResponse.json();
+
+    if (!emailResult.success) {
+      throw new Error(emailResult.message || "Failed to send email");
+    }
+
+    console.log("✅ Email sent successfully");
+
+    // ===================================
+    // STEP 2 - Submit to ERP
+    // ===================================
+
+    const erpResponse = await fetch(
+      "https://erp-qlothcare.vercel.app/api/v1/user-inquiries",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const erpResult = await erpResponse.json();
+
+    console.log("ERP Response:", erpResult);
+
+    if (!erpResponse.ok || !erpResult.success) {
+      throw new Error(erpResult.message || "Failed to submit to ERP");
+    }
+
+    console.log("✅ Inquiry submitted!", erpResult.data);
+
+    setIsSent(true);
+
+
+    // Optional: Reset form
+    // setFormState({
+    //   name: "",
+    //   phone: "",
+    //   city: "",
+    // });
+
+  } catch (error) {
+    console.error("Submission Error:", error);
+    alert(error.message || "Something went wrong. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   const handleReset = () => {
     setFormState({ name: '', phone: '', city: '', branchId: '' });
     setTouched(false);
@@ -211,9 +289,10 @@ const Inquiry = () => {
 
                   <motion.div variants={fieldVariants}>
                     <Input
+                    type="phone"
                       label="Phone Number"
-                      icon={Phone}
-                      type="tel"
+                     
+                      
                       required
                       placeholder="98765 43210"
                       value={formState.phone}

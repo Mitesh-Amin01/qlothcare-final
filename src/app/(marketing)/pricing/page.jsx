@@ -443,7 +443,7 @@ export default function PricingPage() {
           <PricingSection />
         </div>
 
-        <SavingsCalculator />
+        {/* <SavingsCalculator /> */}
         <ValueProps />
         <FAQSection />
 

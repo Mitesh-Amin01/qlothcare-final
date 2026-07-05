@@ -22,11 +22,34 @@ const Input = ({
   const [showPassword, setShowPassword] = useState(false);
 
   const isPassword = type === "password";
+  const isPhone = type === "phone";
+
+  // Handle phone number input - only digits, max 10
+  const handlePhoneChange = (e) => {
+    const inputValue = e.target.value;
+    // Remove all non-digit characters
+    const digitsOnly = inputValue.replace(/\D/g, "");
+    // Limit to 10 digits
+    const limitedDigits = digitsOnly.slice(0, 10);
+    
+    // Create synthetic event with formatted value
+    const syntheticEvent = {
+      ...e,
+      target: {
+        ...e.target,
+        value: limitedDigits
+      }
+    };
+    
+    onChange(syntheticEvent);
+  };
 
   const inputType = isPassword
     ? showPassword
       ? "text"
       : "password"
+    : isPhone
+    ? "text"
     : type;
 
   const commonClasses = `
@@ -37,6 +60,7 @@ const Input = ({
     bg-bg-soft/10
     px-4
     ${Icon ? "pl-11" : ""}
+    ${isPhone ? "pl-14" : ""}
     ${isPassword ? "pr-11" : ""}
     text-text-dark
     font-medium
@@ -82,11 +106,19 @@ const Input = ({
           </div>
         )}
 
+        {/* Phone prefix - shows +91 */}
+        {isPhone && !textarea && (
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none z-10">
+            <span className="text-text-muted font-semibold">+91</span>
+            <div className="w-px h-5 bg-clothcare-graySoft/20"></div>
+          </div>
+        )}
+
         {textarea ? (
           <textarea
             rows={rows}
             value={value}
-            onChange={onChange}
+            onChange={isPhone ? handlePhoneChange : onChange}
             disabled={disabled}
             placeholder={placeholder}
             className={`${commonClasses} py-3 resize-none`}
@@ -96,9 +128,11 @@ const Input = ({
           <input
             type={inputType}
             value={value}
-            onChange={onChange}
+            onChange={isPhone ? handlePhoneChange : onChange}
             disabled={disabled}
             placeholder={placeholder}
+            inputMode={isPhone ? "numeric" : undefined}
+            maxLength={isPhone ? 10 : undefined}
             className={`${commonClasses} h-12`}
             {...props}
           />

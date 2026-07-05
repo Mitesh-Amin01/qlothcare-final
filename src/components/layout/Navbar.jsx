@@ -95,7 +95,8 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden xl:flex items-center gap-5">
-          <Link href="/contact-us"><Button variant="outline" icon={ArrowRight} iconPosition="right" className="px-6 py-2.5 rounded-full text-bg-dark">Get Started</Button></Link>
+          <Link href="/order"><Button variant="outline" icon={ArrowRight} iconPosition="right" className="px-6 py-2.5 rounded-full text-bg-dark">Make Order</Button></Link>
+
           <Link href="/franchise-inquiry"><Button variant="primary" icon={Store} iconPosition="right" className="p-6 rounded-full">Franchise Inquiry</Button></Link>
         </div>
 
@@ -127,7 +128,8 @@ export default function Navbar() {
                 })}
               </div>
               <motion.div variants={linkVars} custom={NAV_LINKS.length} className="flex flex-col gap-4 pt-4 border-t border-white/10">
-                <Link href="/contact-us" onClick={() => setOpen(false)}><Button variant="outline" className="w-full rounded-xl">Get Started</Button></Link>
+                <Link href="/order" onClick={() => setOpen(false)}><Button variant="outline" className="w-full rounded-xl">Make Order</Button></Link>
+
                 <Link href="/franchise-inquiry" onClick={() => setOpen(false)}><Button variant="primary" className="w-full rounded-xl">Franchise Inquiry</Button></Link>
               </motion.div>
             </div>

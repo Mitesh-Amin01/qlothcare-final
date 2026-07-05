@@ -30,17 +30,29 @@ const CinematicHero = () => {
     alt="Premium clothing care"
     fill
     priority
-    className="object-cover object-center md:hidden"
+    className="object-cover object-bottom-right md:hidden"
   />
 
   {/* Desktop Background */}
-  <Image
-    src="/hero/hero3.png"
+   {/* <Image
+    src="/hero/hero-2.png"
     alt="Premium clothing care"
     fill
     priority
     className="hidden md:block object-cover object-center"
-  />
+  /> 
+  */}
+
+  <video
+  className="hidden md:block absolute inset-0 h-full w-full object-cover object-top"
+  autoPlay
+  muted
+  playsInline
+  preload="auto"
+>
+  <source src="/hero/bg4.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
   {/* Content */}
   <div className="container mx-auto px-6 relative z-10">

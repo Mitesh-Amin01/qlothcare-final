@@ -22,7 +22,7 @@ export default function FranchisePage() {
       <FranchisePartners />
       <FranchiseMetrics />
       <FranchiseOpportunity />
-      <FranchiseModels />
+      {/* <FranchiseModels /> */}
       <FranchiseTech />
       <FranchiseSupport />
       <FranchiseTestimonials />

@@ -35,41 +35,63 @@ const STEPS = [
 ];
 
 const EXPERIENCE_OPTIONS = [
-  { value: "none", label: "First business venture" },
-  { value: "1-3", label: "1–3 years running a business" },
-  { value: "3-5", label: "3–5 years running a business" },
-  { value: "5+", label: "5+ years running a business" },
+  { value: "no Experience", label: "First business venture" },
+  { value: "1-3 Years", label: "1–3 years running a business" },
+  { value: "3-5 Years", label: "3–5 years running a business" },
+  { value: "5+ Years", label: "5+ years running a business" },
 ];
 
 const HEAR_ABOUT_OPTIONS = [
-  { value: "search", label: "Google / Online Search" },
-  { value: "social", label: "Social Media" },
-  { value: "referral", label: "Referral / Word of Mouth" },
+  { value: "From search", label: "Google / Online Search" },
+  { value: "From social Media", label: "Social Media" },
+  { value: "From referral", label: "Referral / Word of Mouth" },
   { value: "other", label: "Other" },
 ];
 
 const INCOME_OPTIONS = [
-  { value: "below-5", label: "Under ₹5L / year" },
-  { value: "5-10", label: "₹5L – ₹10L / year" },
-  { value: "10-20", label: "₹10L – ₹20L / year" },
-  { value: "20+", label: "₹20L+ / year" },
+  { value: "below-5 Lakhs/year", label: "Under ₹5L / year" },
+  { value: "5-10 Lakhs/year", label: "₹5L – ₹10L / year" },
+  { value: "10-20 Lakhs/year", label: "₹10L – ₹20L / year" },
+  { value: "20+ Lakhs/year", label: "₹20L+ / year" },
 ];
 
 const TIMELINE_OPTIONS = [
   { value: "immediate", label: "Immediately" },
-  { value: "1-3", label: "1 – 3 Months" },
-  { value: "3-6", label: "3 – 6 Months" },
-  { value: "exploring", label: "Just exploring" },
+  { value: "1-3 months", label: "1 – 3 Months" },
+  { value: "3-6 months", label: "3 – 6 Months" },
+  { value: "just exploring", label: "Just exploring" },
 ];
 
-// Same 4 plans as the pricing section. Used only when no plan has been
-// locked in via the URL — i.e. when this form is used as a standalone,
-// freely-selectable application rather than landing from a pricing click.
+// Updated plans to match your pricing page (10L, 15L, 20L, 25L)
 const PLAN_OPTIONS = [
-  { value: "standard", label: "Standard", price: 0, discount: 0, icon: Zap },
-  { value: "lite", label: "Lite Investor", price: 2000, discount: 5, icon: ShieldCheck },
-  { value: "classic", label: "Classic Investor", price: 5000, discount: 10, icon: Crown },
-  { value: "elite", label: "Elite Investor", price: 10000, discount: 15, icon: Crown },
+  {
+    value: "starter",
+    label: "Starter Franchise",
+    price: 1000000,
+    discount: 0,
+    icon: Zap,
+  },
+  {
+    value: "growth",
+    label: "Growth Franchise",
+    price: 1500000,
+    discount: 0,
+    icon: ShieldCheck,
+  },
+  {
+    value: "premium",
+    label: "Premium Franchise",
+    price: 2000000,
+    discount: 0,
+    icon: Crown,
+  },
+  {
+    value: "master",
+    label: "Master Franchise",
+    price: 2500000,
+    discount: 0,
+    icon: Crown,
+  },
 ];
 
 const initialState = {
@@ -106,7 +128,8 @@ const digitsOnly = (str) => str.replace(/\D/g, "");
 const normalizePhone = (str) => {
   let digits = digitsOnly(str);
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2);
-  else if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
+  else if (digits.length === 11 && digits.startsWith("0"))
+    digits = digits.slice(1);
   return digits;
 };
 
@@ -274,7 +297,9 @@ function LockedPlanCard({ plan }) {
             <Wallet size={20} />
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-bold text-text-dark truncate">{plan.name}</p>
+            <p className="text-sm font-bold text-text-dark truncate">
+              {plan.name}
+            </p>
             {!!plan.discount && (
               <p className="text-xs font-bold text-text-accent">
                 {plan.discount}% OFF Every Item
@@ -294,8 +319,8 @@ function LockedPlanCard({ plan }) {
       </div>
 
       <p className="mt-2 text-xs text-text-muted font-medium">
-        This plan is locked from the pricing page. Go back there if you'd
-        like to choose a different one.
+        This plan is locked from the pricing page. Go back there if you'd like
+        to choose a different one.
       </p>
     </div>
   );
@@ -327,7 +352,8 @@ export default function FranchiseApplication() {
 
     if (s === 1) {
       if (!form.fullName.trim()) next.fullName = "Enter your full name";
-      else if (!isValidName(form.fullName)) next.fullName = "Enter a valid name (letters only)";
+      else if (!isValidName(form.fullName))
+        next.fullName = "Enter a valid name (letters only)";
 
       if (form.dob) {
         const age = getAge(form.dob);
@@ -340,20 +366,24 @@ export default function FranchiseApplication() {
       }
 
       if (!form.phone.trim()) next.phone = "Enter a phone number";
-      else if (!isValidPhone(form.phone)) next.phone = "Enter a valid 10-digit mobile number";
+      else if (!isValidPhone(form.phone))
+        next.phone = "Enter a valid 10-digit mobile number";
 
       if (!form.email.trim()) next.email = "Enter an email address";
-      else if (!isValidEmail(form.email)) next.email = "Enter a valid email address";
+      else if (!isValidEmail(form.email))
+        next.email = "Enter a valid email address";
 
       if (!form.address.trim()) next.address = "Enter your residential address";
-      else if (form.address.trim().length < 10) next.address = "Please add a more complete address";
+      else if (form.address.trim().length < 10)
+        next.address = "Please add a more complete address";
 
       if (!form.hearAboutUs) next.hearAboutUs = "Select an option";
     }
 
     if (s === 2) {
       if (!form.occupation.trim()) next.occupation = "Tell us what you do";
-      else if (form.occupation.trim().length < 2) next.occupation = "Enter a valid occupation";
+      else if (form.occupation.trim().length < 2)
+        next.occupation = "Enter a valid occupation";
 
       if (!form.experience) next.experience = "Select an option";
       if (!form.incomeRange) next.incomeRange = "Select an income range";
@@ -386,54 +416,175 @@ export default function FranchiseApplication() {
 
   const goBack = () => setStep((s) => Math.max(s - 1, 1));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validateStep(3)) return;
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const plan = lockedPlan
-      ? {
-          id: lockedPlan.id,
-          name: lockedPlan.name,
-          price: lockedPlan.price,
-          discount: lockedPlan.discount,
-          source: "locked-from-pricing",
-        }
-      : (() => {
-          const opt = PLAN_OPTIONS.find((p) => p.value === form.plan);
-          return opt
-            ? { id: opt.value, name: opt.label, price: opt.price, discount: opt.discount, source: "selected-in-form" }
-            : null;
-        })();
+  if (!validateStep(3)) return;
 
-    // Gather every filled field into one object before "sending" it.
-    const payload = {
-      fullName: form.fullName.trim(),
-      dob: form.dob || null,
-      whatsapp: form.whatsapp.trim() ? normalizePhone(form.whatsapp) : null,
-      phone: normalizePhone(form.phone),
-      email: form.email.trim().toLowerCase(),
-      address: form.address.trim(),
-      hearAboutUs: form.hearAboutUs,
-      occupation: form.occupation.trim(),
-      qualification: form.qualification.trim() || null,
-      orgName: form.orgName.trim() || null,
-      experience: form.experience,
-      incomeRange: form.incomeRange,
-      timeline: form.timeline,
-      city: form.city.trim(),
-      pincode: form.pincode.trim(),
-      plan,
-      submittedAt: new Date().toISOString(),
-    };
+  setIsSubmitting(true);
 
-    console.log("Franchise application submitted:", payload);
+  const plan = lockedPlan
+    ? {
+        id: lockedPlan.id,
+        name: lockedPlan.name,
+        price: lockedPlan.price,
+        discount: lockedPlan.discount,
+        source: "locked-from-pricing",
+      }
+    : (() => {
+        const opt = PLAN_OPTIONS.find((p) => p.value === form.plan);
+        return opt
+          ? {
+              id: opt.value,
+              name: opt.label,
+              price: opt.price,
+              discount: opt.discount,
+              source: "selected-in-form",
+            }
+          : null;
+      })();
 
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1600);
+  // ==========================
+  // ERP Payload (DO NOT CHANGE)
+  // ==========================
+
+  const payload = {
+    fullName: form.fullName.trim(),
+    dob: form.dob || null,
+    whatsapp: form.whatsapp.trim()
+      ? normalizePhone(form.whatsapp)
+      : null,
+    phone: normalizePhone(form.phone),
+    email: form.email.trim().toLowerCase(),
+    address: form.address.trim(),
+    hearAboutUs: form.hearAboutUs,
+    occupation: form.occupation.trim(),
+    qualification: form.qualification.trim() || null,
+    orgName: form.orgName.trim() || null,
+    experience: form.experience,
+    incomeRange: form.incomeRange,
+    timeline: form.timeline,
+    city: form.city.trim(),
+    pincode: form.pincode.trim(),
+    plan,
+    submittedAt: new Date().toISOString(),
   };
+
+  // ==========================
+  // EMAIL Payload (Pretty)
+  // ==========================
+
+  const emailPayload = {
+    "Full Name": payload.fullName,
+    "Date of Birth": payload.dob || "-",
+    WhatsApp: payload.whatsapp || "-",
+    Phone: payload.phone,
+    Email: payload.email,
+    Address: payload.address,
+    City: payload.city,
+    Pincode: payload.pincode,
+
+    Occupation: payload.occupation,
+    Qualification: payload.qualification || "-",
+    Organization: payload.orgName || "-",
+
+    "Work Experience":
+      payload.experience === "0"
+        ? "No Experience"
+        : payload.experience === "1-3"
+        ? "1 - 3 Years"
+        : payload.experience === "3-5"
+        ? "3 - 5 Years"
+        : payload.experience === "5+"
+        ? "5+ Years"
+        : payload.experience,
+
+    "Investment Capacity":
+      payload.incomeRange === "10"
+        ? "₹10 Lakh"
+        : payload.incomeRange === "15"
+        ? "₹15 Lakh"
+        : payload.incomeRange === "20+"
+        ? "₹20+ Lakh"
+        : payload.incomeRange,
+
+    Timeline:
+      payload.timeline === "immediate"
+        ? "Immediately"
+        : payload.timeline,
+
+    "Heard About Us":
+      payload.hearAboutUs.charAt(0).toUpperCase() +
+      payload.hearAboutUs.slice(1),
+
+    "Selected Plan": plan
+      ? `${plan.name}
+Price : ₹${plan.price}
+Discount : ${plan.discount}%`
+      : "Not Selected",
+
+    Submitted: new Date(payload.submittedAt).toLocaleString("en-IN"),
+  };
+
+  try {
+    // ==========================
+    // STEP 1 - Send Email
+    // ==========================
+
+    const emailResponse = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Franchise Application",
+        formData: emailPayload,
+      }),
+    });
+
+    const emailResult = await emailResponse.json();
+
+    if (!emailResult.success) {
+      throw new Error(emailResult.message || "Failed to send email");
+    }
+
+    console.log("✅ Email Sent");
+
+    // ==========================
+    // STEP 2 - Send ERP
+    // ==========================
+
+    const erpResponse = await fetch(
+      "https://erp-qlothcare.vercel.app/api/v1/franchise-inquiries",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload), // ORIGINAL payload
+      }
+    );
+
+    const erpResult = await erpResponse.json();
+
+    console.log("ERP Response:", erpResult);
+
+    if (!erpResponse.ok || !erpResult.success) {
+      throw new Error(erpResult.message || "ERP Submission Failed");
+    }
+
+    console.log("✅ ERP Submitted");
+
+    setIsSuccess(true);
+
+
+  } catch (error) {
+    console.error(error);
+    alert(error.message || "Something went wrong.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section
@@ -466,8 +617,8 @@ export default function FranchiseApplication() {
                   Bring Qlothcare to your city.
                 </h2>
                 <p className="text-clothcare-graySoft/80 font-medium text-sm lg:text-base leading-relaxed">
-                  Tell us a bit about yourself and where you'd like to open.
-                  Our franchise team reviews every application personally.
+                  Tell us a bit about yourself and where you'd like to open. Our
+                  franchise team reviews every application personally.
                 </p>
 
                 <div className="h-px w-16 bg-clothcare-primary/60 my-8" />
@@ -502,8 +653,8 @@ export default function FranchiseApplication() {
                             isDone
                               ? "bg-clothcare-primary border-clothcare-primary"
                               : isActive
-                              ? "border-clothcare-primary text-clothcare-primary"
-                              : "border-white/20 text-white/40"
+                                ? "border-clothcare-primary text-clothcare-primary"
+                                : "border-white/20 text-white/40"
                           }`}
                         >
                           <span className="absolute inset-[3px] rounded-full border border-dashed border-current opacity-30" />
@@ -515,7 +666,9 @@ export default function FranchiseApplication() {
                         </div>
                         <span
                           className={`text-[9px] font-bold uppercase tracking-wide text-center leading-tight truncate w-full ${
-                            isActive ? "text-clothcare-primary" : "text-white/40"
+                            isActive
+                              ? "text-clothcare-primary"
+                              : "text-white/40"
                           }`}
                         >
                           {s.label}
@@ -555,8 +708,8 @@ export default function FranchiseApplication() {
                           isDone
                             ? "bg-clothcare-primary border-clothcare-primary"
                             : isActive
-                            ? "border-clothcare-primary text-clothcare-primary"
-                            : "border-white/20 text-white/40"
+                              ? "border-clothcare-primary text-clothcare-primary"
+                              : "border-white/20 text-white/40"
                         }`}
                       >
                         {/* punch-hole detail, like a fabric care tag */}
@@ -570,7 +723,9 @@ export default function FranchiseApplication() {
                       <div className="flex flex-col">
                         <span
                           className={`text-[10px] font-bold uppercase tracking-widest ${
-                            isActive ? "text-clothcare-primary" : "text-white/40"
+                            isActive
+                              ? "text-clothcare-primary"
+                              : "text-white/40"
                           }`}
                         >
                           Step {s.id} of 3
@@ -601,7 +756,7 @@ export default function FranchiseApplication() {
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5}}
+                  transition={{ duration: 0.5 }}
                   className="h-full flex flex-col justify-center items-center text-center py-10 sm:py-16"
                 >
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-status-success/10 text-status-success rounded-full flex items-center justify-center mb-6">
@@ -612,9 +767,12 @@ export default function FranchiseApplication() {
                   </h3>
                   <p className="text-text-muted font-medium text-sm sm:text-base leading-relaxed max-w-sm">
                     Thanks, {form.fullName.split(" ")[0] || "there"}. A member
-                    of our franchise team will call you within 48 hours to
-                    talk next steps
-                    {selectedPlanName ? ` for the ${selectedPlanName} plan` : ""}.
+                    of our franchise team will call you within 48 hours to talk
+                    next steps
+                    {selectedPlanName
+                      ? ` for the ${selectedPlanName} plan`
+                      : ""}
+                    .
                   </p>
                 </motion.div>
               ) : (
@@ -636,7 +794,9 @@ export default function FranchiseApplication() {
                           className="space-y-6 sm:space-y-8"
                         >
                           <div>
-                            <SectionEyebrow>Personal Information</SectionEyebrow>
+                            <SectionEyebrow>
+                              Personal Information
+                            </SectionEyebrow>
                             <div className="grid md:grid-cols-2 gap-5">
                               <div className="md:col-span-2">
                                 <Input
@@ -660,9 +820,8 @@ export default function FranchiseApplication() {
                               />
                               <Input
                                 label="WhatsApp Number"
-                                icon={Smartphone}
-                                type="tel"
-                                placeholder="+91 98765 43210"
+                                type="phone"
+                                placeholder="9876543210"
                                 value={form.whatsapp}
                                 onChange={update("whatsapp")}
                                 error={errors.whatsapp}
@@ -675,9 +834,8 @@ export default function FranchiseApplication() {
                             <div className="grid md:grid-cols-2 gap-5">
                               <Input
                                 label="Phone Number"
-                                icon={Phone}
-                                type="tel"
-                                placeholder="+91 98765 43210"
+                                type="phone"
+                                placeholder="9876543210"
                                 value={form.phone}
                                 onChange={update("phone")}
                                 error={errors.phone}
@@ -709,7 +867,9 @@ export default function FranchiseApplication() {
                           </div>
 
                           <div>
-                            <SectionEyebrow>How Did You Find Us?</SectionEyebrow>
+                            <SectionEyebrow>
+                              How Did You Find Us?
+                            </SectionEyebrow>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               {HEAR_ABOUT_OPTIONS.map((opt) => (
                                 <OptionTile
@@ -739,7 +899,9 @@ export default function FranchiseApplication() {
                           className="space-y-6 sm:space-y-8"
                         >
                           <div>
-                            <SectionEyebrow>Professional Background</SectionEyebrow>
+                            <SectionEyebrow>
+                              Professional Background
+                            </SectionEyebrow>
                             <div className="grid md:grid-cols-2 gap-5">
                               <div className="md:col-span-2">
                                 <Input
@@ -776,7 +938,9 @@ export default function FranchiseApplication() {
                             <SectionEyebrow>Experience & Income</SectionEyebrow>
                             <div className="space-y-5">
                               <div>
-                                <RequiredLabel>Business experience</RequiredLabel>
+                                <RequiredLabel>
+                                  Business experience
+                                </RequiredLabel>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   {EXPERIENCE_OPTIONS.map((opt) => (
                                     <OptionTile
@@ -795,7 +959,9 @@ export default function FranchiseApplication() {
                               </div>
 
                               <div>
-                                <RequiredLabel>Annual income range</RequiredLabel>
+                                <RequiredLabel>
+                                  Annual income range
+                                </RequiredLabel>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                   {INCOME_OPTIONS.map((opt) => (
                                     <OptionTile
@@ -816,7 +982,9 @@ export default function FranchiseApplication() {
                           </div>
 
                           <div>
-                            <SectionEyebrow>Your Franchise Goals</SectionEyebrow>
+                            <SectionEyebrow>
+                              Your Franchise Goals
+                            </SectionEyebrow>
                             <div>
                               <RequiredLabel>
                                 When are you looking to start?

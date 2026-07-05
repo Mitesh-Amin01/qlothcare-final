@@ -109,41 +109,112 @@ const ContactPage = () => {
     setErrors((prev) => ({ ...prev, [field]: validateField(field, formState[field]) }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validate every field
-    const newErrors = {};
-    Object.keys(validators).forEach((field) => {
-      const error = validateField(field, formState[field]);
-      if (error) newErrors[field] = error;
+  // Validate all fields
+  const newErrors = {};
+
+  Object.keys(validators).forEach((field) => {
+    const error = validateField(field, formState[field]);
+    if (error) newErrors[field] = error;
+  });
+
+  setErrors(newErrors);
+
+  setTouched({
+    firstName: true,
+    lastName: true,
+    email: true,
+    subject: true,
+    message: true,
+  });
+
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  const payload = {
+    firstName: formState.firstName.trim(),
+    lastName: formState.lastName.trim(),
+    email: formState.email.trim(),
+    subject: formState.subject.trim(),
+    message: formState.message.trim(),
+    submittedAt: new Date().toISOString("en-IN"),
+  };
+
+  try {
+    // ===============================
+    // STEP 1 - Send Email
+    // ===============================
+
+    const emailResponse = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Contact Us Form",
+        formData: payload,
+      }),
     });
 
-    setErrors(newErrors);
-    setTouched({ firstName: true, lastName: true, email: true, subject: true, message: true });
+    const emailResult = await emailResponse.json();
 
-    // Stop submission if any field is invalid
-    if (Object.keys(newErrors).length > 0) {
-      return;
+    if (!emailResult.success) {
+      throw new Error(emailResult.message || "Failed to send email");
     }
 
-    setIsSubmitting(true);
+    console.log("✅ Email sent successfully");
 
-    // Log all filled details after successful validation
-    console.log('Contact form submitted:', {
-      firstName: formState.firstName.trim(),
-      lastName: formState.lastName.trim(),
-      email: formState.email.trim(),
-      subject: formState.subject.trim(),
-      message: formState.message.trim(),
-      submittedAt: new Date().toISOString(),
-    });
+    // ===============================
+    // STEP 2 - Send to ERP
+    // ===============================
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSent(true);
-    }, 1500);
-  };
+    const erpResponse = await fetch(
+      "https://erp-qlothcare.vercel.app/api/v1/contact-us",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const erpResult = await erpResponse.json();
+
+    if (!erpResult.success) {
+      throw new Error(erpResult.message || "Failed to submit to ERP");
+    }
+
+    console.log("✅ Contact inquiry submitted!", erpResult.data);
+
+    // ===============================
+    // SUCCESS
+    // ===============================
+
+    setIsSent(true);
+
+
+    // Optional: Reset form after success
+    // setFormState({
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   subject: "",
+    //   message: "",
+    // });
+
+  } catch (error) {
+    console.error("Submission Error:", error);
+    alert("Something went wrong. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const handleReset = () => {
     setIsSent(false);

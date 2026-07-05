@@ -53,14 +53,7 @@ export default function FranchiseOpportunity() {
               </div>
             </div>
 
-            <Button
-              variant="primary"
-              icon={ArrowRight}
-              className="mt-12 rounded-full px-8 py-7 bg-clothcare-black hover:bg-clothcare-primary shadow-xl"
-              iconWrapperClassName="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              Secure Your Zone
-            </Button>
+           
           </motion.div>
 
           {/* Right Data Viz Card */}

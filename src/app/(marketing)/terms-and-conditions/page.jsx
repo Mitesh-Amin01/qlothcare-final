@@ -40,239 +40,180 @@ export default function TermsAndConditions() {
     <div className="min-h-screen bg-[#FAFAFA] text-clothcare-dark font-sans selection:bg-clothcare-primary selection:text-text-primary">
 
       {/* Hero Header */}
-    <section className="relative overflow-hidden bg-white border-b border-gray-100 pt-28 pb-20 lg:pt-33 lg:pb-28">
+     <section className="relative overflow-hidden px-10 pt-28 pb-20 lg:pt-28 lg:pb-28 border-b border-gray-100">
 
-  {/* Background Pattern */}
-  <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:26px_26px] opacity-[0.03]" />
+      {/* Dot Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#E46F33_1px,transparent_1px)] [background-size:28px_28px] opacity-[0.025]" />
 
-  {/* Orange Glow */}
-  <div className="absolute right-[-180px] top-1/2 h-[650px] w-[650px] -translate-y-1/2 rounded-full bg-[#E46F33]/10 blur-[120px]" />
+      {/* Grain Overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%220.45%22/%3E%3C/svg%3E')",
+        }}
+      />
 
-  <div className="container relative z-10 mx-auto max-w-[1400px] px-6">
+      {/* Gradient Blobs */}
+      <div className="absolute right-[-120px] top-24 h-[420px] w-[420px] rounded-full bg-[#E46F33]/8 blur-[110px]" />
+      <div className="absolute right-[18%] bottom-0 h-[260px] w-[260px] rounded-full bg-amber-200/30 blur-[90px]" />
 
-    <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1fr] gap-16 items-center">
+      {/* Graphic */}
+      <div className="absolute right-0 top-1/2 hidden lg:flex w-[50%] -translate-y-1/2 items-center justify-center pointer-events-none">
 
-      {/* LEFT */}
-
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <div className="inline-flex items-center gap-2 rounded-full bg-[#E46F33]/5 px-4 py-2 text-sm font-bold text-[#E46F33] mb-8">
-          <Scale size={16} />
-          Legal Agreement
-        </div>
-
-        <h1 className="mb-8 font-display text-[3.5rem] font-black leading-[1.05] tracking-tight lg:text-[5.5rem]">
-          Terms &
-          <br />
-          <span className="text-text-accent/80">
-            Conditions.
-          </span>
-        </h1>
-
-        <p className="max-w-2xl text-xl font-medium leading-relaxed text-gray-500 lg:text-2xl">
-          The operational baseline and binding protocols governing our premium
-          garment care services.
-        </p>
-      </motion.div>
-
-      {/* RIGHT */}
-
-      <motion.div
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: .8 }}
-        className="relative hidden lg:flex justify-center items-center h-[320px]"
-      >
-
-        {/* Ring */}
-
+        {/* Single Ring */}
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 45,
-            repeat: Infinity,
-            ease: "linear",
+          animate={{
+            rotate: 360,
+            scale: [1, 1.03, 1],
           }}
-          className="absolute h-[520px] w-[520px] rounded-full border border-[#E46F33]/10"
+          transition={{
+            rotate: {
+              duration: 50,
+              repeat: Infinity,
+              ease: "linear",
+            },
+            scale: {
+              duration: 10,
+              repeat: Infinity,
+            },
+          }}
+          className="absolute h-[470px] w-[470px] rounded-full border border-[#E46F33]/10"
         />
 
+        {/* Scale Icon */}
         <motion.div
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 35,
-            repeat: Infinity,
-            ease: "linear",
+          animate={{
+            y: [-8, 10, -8],
+            rotate: [-2, 2, -2],
           }}
-          className="absolute h-[420px] w-[420px] rounded-full border border-[#E46F33]/10"
-        />
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="relative"
+        >
+          <div className="flex h-[250px] w-[250px] items-center justify-center rounded-full bg-gradient-to-br from-[#F8C9AF] via-[#F0A46A] to-[#E46F33] shadow-[0_30px_70px_rgba(228,111,51,.18)]">
 
-        {/* Main Document */}
+            <Scale
+              size={130}
+              strokeWidth={1.5}
+              className="text-white"
+            />
+
+          </div>
+
+          {/* Accent Dots */}
+          <span className="absolute top-8 left-12 h-5 w-5 rounded-full bg-[#744728]" />
+          <span className="absolute top-20 right-14 h-4 w-4 rounded-full bg-[#885230]" />
+          <span className="absolute bottom-14 left-14 h-6 w-6 rounded-full bg-[#744728]" />
+          <span className="absolute bottom-18 right-16 h-4 w-4 rounded-full bg-[#744728]" />
+          <span className="absolute top-1/2 left-8 h-4 w-4 rounded-full bg-[#744728]" />
+        </motion.div>
+
+        {/* Floating Cards */}
 
         <motion.div
           animate={{
-            y: [-10, 10, -10],
-            rotate: [-1.5, 1.5, -1.5],
+            x: [-5, 6, -5],
+            y: [-12, 8, -12],
+            rotate: [-6, 6, -6],
           }}
           transition={{
             duration: 7,
             repeat: Infinity,
           }}
-          className="relative"
+          className="absolute left-24 top-16 flex h-14 w-14 items-center justify-center rounded-2xl border border-white bg-white/80 shadow-lg backdrop-blur-xl"
+        >
+          <ShieldCheck size={24} className="text-[#E46F33]" />
+        </motion.div>
+
+        <motion.div
+          animate={{
+            y: [10, -8, 10],
+            rotate: [0, 12, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+          }}
+          className="absolute right-20 top-20 flex h-16 w-16 items-center justify-center rounded-3xl border border-white bg-white/75 shadow-xl backdrop-blur-xl"
+        >
+          <BadgeCheck size={28} className="text-[#E46F33]" />
+        </motion.div>
+
+        <motion.div
+          animate={{
+            x: [8, -6, 8],
+            y: [-6, 10, -6],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+          }}
+          className="absolute bottom-16 left-8 flex h-14 w-14 items-center justify-center rounded-xl border border-white bg-white/80 shadow-lg backdrop-blur-xl"
+        >
+          <FileCheck size={22} className="text-[#E46F33]" />
+        </motion.div>
+
+        <motion.div
+          animate={{
+            y: [-10, 10, -10],
+            rotate: [8, -8, 8],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+          }}
+          className="absolute bottom-12 right-10 flex h-16 w-16 items-center justify-center rounded-2xl border border-white bg-white/80 shadow-xl backdrop-blur-xl"
+        >
+          <CheckCircle2 size={26} className="text-[#E46F33]" />
+        </motion.div>
+
+      </div>
+
+      {/* Content */}
+
+      <div className="relative z-10 container mx-auto max-w-[1400px] px-6">
+
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="max-w-2xl"
         >
 
-          <div className="w-[300px] rounded-[32px] border border-gray-200 bg-white p-8 shadow-[0_40px_120px_rgba(0,0,0,.08)]">
-
-            {/* Header */}
-
-            <div className="mb-8">
-
-              <div className="h-3 w-28 rounded-full bg-[#E46F33]/20" />
-
-              <div className="mt-5 h-2.5 w-full rounded-full bg-gray-200" />
-
-              <div className="mt-3 h-2.5 w-5/6 rounded-full bg-gray-200" />
-
-              <div className="mt-3 h-2.5 w-4/6 rounded-full bg-gray-200" />
-
-            </div>
-
-            {/* Seal */}
-
-            <div className="my-10 flex justify-center">
-
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-[#F8C9AF] to-[#E46F33] shadow-xl">
-
-                <Scale
-                  size={42}
-                  className="text-white"
-                  strokeWidth={1.8}
-                />
-
-              </div>
-
-            </div>
-
-            {/* Agreement */}
-
-            <div className="space-y-4">
-
-              {[
-                "Service Agreement",
-                "Payment Terms",
-                "Customer Responsibilities",
-                "Cancellation Policy",
-              ].map((item) => (
-
-                <div
-                  key={item}
-                  className="flex items-center gap-3"
-                >
-
-                  <CheckCircle2
-                    size={16}
-                    className="text-[#E46F33]"
-                  />
-
-                  <div className="h-2.5 flex-1 rounded-full bg-gray-200" />
-
-                </div>
-
-              ))}
-
-            </div>
-
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#E46F33]/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#E46F33]">
+            <Scale size={14} />
+            Legal Agreement
           </div>
+
+          <h1 className="font-display text-4xl font-black leading-[1.02] tracking-[-0.03em] text-gray-900 lg:text-[4.3rem]">
+
+            Terms &
+            <br />
+
+            <span className="bg-gradient-to-r from-[#E46F33] to-[#C95521] bg-clip-text text-transparent">
+              Conditions
+            </span>
+
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-8 text-gray-500 lg:text-xl">
+            The operational baseline and binding protocols governing our premium
+            garment care services and your rights as a valued customer.
+          </p>
 
         </motion.div>
 
-        {/* Floating Cards */}
+      </div>
 
-        {[
-          {
-            icon: <ShieldCheck size={22} />,
-            title: "Protected",
-            subtitle: "Customer Rights",
-            position: "top-8 left-0",
-          },
-          {
-            icon: <BadgeCheck size={22} />,
-            title: "Verified",
-            subtitle: "Service Terms",
-            position: "top-12 right-2",
-          },
-          {
-            icon: <Scale size={22} />,
-            title: "Fair Usage",
-            subtitle: "Legal Policy",
-            position: "bottom-24 left-4",
-          },
-          {
-            icon: <FileCheck size={22} />,
-            title: "Agreement",
-            subtitle: "Accepted",
-            position: "bottom-10 right-0",
-          },
-        ].map((card, index) => (
+    </section>
 
-          <motion.div
-            key={index}
-            animate={{
-              y: [-8, 8, -8],
-            }}
-            transition={{
-              duration: 4 + index,
-              repeat: Infinity,
-            }}
-            whileHover={{
-              y: -6,
-              scale: 1.04,
-            }}
-            className={`absolute ${card.position}`}
-          >
-
-            <div className="rounded-2xl border border-white bg-white/70 backdrop-blur-xl px-5 py-4 shadow-xl">
-
-              <div className="flex items-center gap-3">
-
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E46F33]/10 text-[#E46F33]">
-
-                  {card.icon}
-
-                </div>
-
-                <div>
-
-                  <p className="text-xs text-gray-400">
-                    {card.subtitle}
-                  </p>
-
-                  <p className="font-semibold text-gray-800">
-                    {card.title}
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
-        ))}
-
-      </motion.div>
-
-    </div>
-
-  </div>
-
-</section>
 
       {/* Main Content Layout */}
-      <section className="py-20 lg:py-32">
+      <section className="py-20 px-0 sm:px-10 lg:py-32">
         <div className="container mx-auto px-6 max-w-[1400px]">
           <div className="flex flex-col lg:flex-row gap-16 xl:gap-24">
 
