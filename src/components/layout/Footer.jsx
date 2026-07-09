@@ -114,7 +114,7 @@ const Footer = () => {
           <motion.div variants={fadeInUp} className="sm:col-span-2 lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer w-fit">
               <div className="w-13 h-13 bg-bg-soft/15 rounded-xl flex items-center justify-center p-1">
-                 <Image src="/logo/company_logo.png" alt="Qlothcare Logo" width={40} height={40} className="rounded-xl object-contain" priority />
+                <Image src="/logo/company_logo.png" alt="Qlothcare Logo" width={40} height={40} className="rounded-xl object-contain" priority />
               </div>
               <span className="font-display text-2xl font-bold tracking-tight">
                 Qlothcare<span className="text-text-accent">.</span>
@@ -189,8 +189,8 @@ const Footer = () => {
                 <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-clothcare-primary/10 transition-colors">
                   <Mail size={20} className="text-text-accent" />
                 </div>
-                <a href="mailto:support@qlothcare.com" className="text-sm hover:text-text-primary transition-colors">
-                  support@qlothcare.com
+                <a href="mailto:Care@qlothcare.com" className="text-sm hover:text-text-primary transition-colors">
+                  Care@qlothcare.com
                 </a>
               </li>
             </ul>

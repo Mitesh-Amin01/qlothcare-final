@@ -12,19 +12,14 @@ const QualityProcess = () => {
     const wrapperRef = useRef(null);
 
     // Tracks scroll progress across the wrapper relative to the viewport.
-    // Desktop: wrapper is 300vh and section is pinned via `sticky`, so
-    // "start start" -> "end end" maps cleanly to the pinned scroll range.
-    // Mobile: wrapper height equals the section's natural height (no pin),
-    // so the same offsets just track the section scrolling through the
-    // viewport normally — the line still fills in as you scroll past it.
+    // Animates naturally as the section enters the screen.
     const { scrollYProgress } = useScroll({
         target: wrapperRef,
-        offset: ["start start", "end end"],
+        offset: ["start 40%", "center 50%"],
     });
 
-    // Line grows over the first ~70% of the pinned scroll range, then holds
-    // briefly at full width before the section unpins (feels less abrupt).
-    const lineScaleX = useTransform(scrollYProgress, [0, 0.75], [0, 1], {
+    // Line grows as you scroll past it
+    const lineScaleX = useTransform(scrollYProgress, [0, 1], [0, 1], {
         clamp: true,
     });
 
@@ -62,15 +57,11 @@ const QualityProcess = () => {
     ];
 
     // Each step's icon/label "activates" once the line has scrolled past it.
-    const stepThresholds = steps.map((_, i) => (i / (steps.length - 1)) * 0.75);
+    const stepThresholds = steps.map((_, i) => i / (steps.length - 1));
 
     return (
-        // Mobile: wrapper is just normal content height, section scrolls like
-        // any other block — no pin, so nothing can hang off-screen.
-        // Desktop (md+): wrapper grows to 300vh and the section pins via
-        // `sticky`, giving the scroll-jack reveal effect.
-        <div ref={wrapperRef} className="relative md:h-[300vh]">
-            <section className="md:sticky md:top-0 py-16 sm:py-20 lg:py-32 bg-bg-white md:h-screen flex flex-col justify-center overflow-visible md:overflow-hidden border-y border-gray-100">
+        <div ref={wrapperRef} className="relative">
+            <section className="py-16 sm:py-20 lg:py-32 bg-bg-white flex flex-col justify-center overflow-visible border-y border-gray-100">
                 {/* Background geometric accents */}
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-b from-transparent to-clothcare-primary/2 pointer-events-none"></div>
                 <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue-600/2 blur-3xl rounded-full -translate-y-1/2 pointer-events-none"></div>
@@ -92,7 +83,7 @@ const QualityProcess = () => {
                             transition={{ delay: 0.1 }}
                             className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-dark mt-3 sm:mt-4 tracking-tight px-2"
                         >
-                           Care, perfected in five steps.
+                            Care, perfected in five steps.
                         </motion.h2>
                     </div>
 
@@ -128,8 +119,8 @@ const QualityProcess = () => {
                         </div>
                     </div>
 
-                 {/* Additional Text at Bottom */}
-                    
+                    {/* Additional Text at Bottom */}
+
                 </div>
             </section>
         </div>

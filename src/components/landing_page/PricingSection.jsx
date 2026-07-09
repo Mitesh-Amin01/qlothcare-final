@@ -103,7 +103,7 @@ const PricingSection = () => {
             className="text-4xl md:text-[4rem] leading-[1.1] tracking-tighter mb-8"
             style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 300, color: "#f0ebe3" }}
           >
-            Four grades of partnership,
+            Three grades of partnership,
             <span
               className="block mt-1 italic text-text-accent"
               style={{ fontWeight: 300 }}
@@ -123,7 +123,7 @@ const PricingSection = () => {
 
         {/* ── Cards Grid ── */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-0 md:mb-22 items-end scale-90"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-0 md:mb-22 items-end max-w-5xl mx-auto scale-90"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
@@ -181,23 +181,6 @@ const PricingSection = () => {
                 { text: "Business Growth Consultation" },
               ]}
               href={buildPlanHref(PLANS.premium)}
-            />
-          </motion.div>
-
-          {/* Master */}
-          <motion.div variants={scaleUpVariants} className="h-full">
-            <DarkCard
-              icon={<Crown className="w-4 h-4" />}
-              name="Master Franchise"
-              tagline="Multi-city expansion opportunity"
-              price="₹25L"
-              features={[
-                "Multi-Location Rights",
-                "Dedicated Business Consultant",
-                "Regional Growth Strategy",
-                "Franchise Recruitment Support",
-              ]}
-              href={buildPlanHref(PLANS.master)}
             />
           </motion.div>
         </motion.div>
@@ -315,7 +298,7 @@ const PlanCard = ({ tier, icon, name, tagline, price, features, href, cta }) => 
 
     {/* CTA */}
     <Link href={href} className="w-full">
-      <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-80 bg-clothcare-darker text-text-primary">
+      <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-80 bg-clothcare-darker text-text-primary cursor-pointer">
         {cta}
         <ArrowUpRight className="w-3.5 h-3.5" />
       </button>
@@ -411,7 +394,7 @@ const SignatureCard = ({ icon, name, tagline, price, features, href }) => (
       </ul>
 
       <Link href={href} className="w-full">
-        <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-85 bg-clothcare-primary text-text-primary">
+        <button className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-opacity hover:opacity-85 bg-clothcare-primary text-text-primary cursor-pointer">
           Reserve Territory
           <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
@@ -474,15 +457,6 @@ const DarkCard = ({ icon, name, tagline, price, features, href }) => (
       ))}
     </ul>
 
-    <Link href={href} className="w-full">
-      <button
-        className="w-full flex items-center justify-between px-6 py-3.5 rounded-full text-[11px] font-bold uppercase tracking-[0.14em] transition-colors text-clothcare-gray hover:text-text-primary"
-        style={{ background: "transparent", border: "1px solid #4a5058" }}
-      >
-        Become a Partner
-        <ArrowUpRight className="w-3.5 h-3.5" />
-      </button>
-    </Link>
   </div>
 );
 
