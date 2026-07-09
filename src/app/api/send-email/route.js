@@ -155,8 +155,18 @@ export async function POST(request) {
 </html>
 `;
 
+    // Format the title to be a clean sender label (e.g. "franchise-inquiry" -> "Franchise Inquiry")
+    const cleanLabel = title
+      ? title
+          .split(/[-_]/)
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      : "Notification";
+
+    const senderName = `Qlothcare - ${cleanLabel}`;
+
     const response = await resend.emails.send({
-      from: process.env.EMAIL_FROM,
+      from: `${senderName} <${process.env.EMAIL_FROM}>`,
       to: process.env.EMAIL_TO,
       subject: title,
       html,

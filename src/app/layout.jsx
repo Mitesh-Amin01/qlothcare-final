@@ -1,23 +1,9 @@
-import { Inter, Pinyon_Script, Playball, Mr_De_Haviland } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
+
 const inter = Inter({ subsets: ["latin"] });
-const pinyon = Pinyon_Script({ 
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-pinyon",
-});
-const playball = Playball({ 
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-playball",
-});
-const deHaviland = Mr_De_Haviland({ 
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-dehaviland",
-});
 
 export const viewport = {
   themeColor: "#ffffff",
@@ -60,9 +46,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${pinyon.variable} ${playball.variable} ${deHaviland.variable} min-h-screen antialiased`}>
+      <body className={`${inter.className} min-h-screen antialiased`}>
         <SmoothScroll>
-        {children}
+          {children}
         </SmoothScroll>
       </body>
     </html>

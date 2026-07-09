@@ -70,8 +70,8 @@ const CinematicHero = () => {
         <div className="flex flex-col">
           {/* Cursive "Elevate" */}
           <span 
-            className="text-[#e87722] text-7xl md:text-8xl lg:text-[7.5rem] leading-[0.8] select-none font-normal" 
-            style={{ fontFamily: "var(--font-dehaviland), var(--font-pinyon), cursive" }}
+            className="text-[#e87722] text-7xl md:text-8xl lg:text-[7rem] leading-[1.1] select-none font-normal" 
+            style={{ fontFamily: "'Playball', 'Dancing Script', cursive" }}
           >
             Elevate
           </span>
