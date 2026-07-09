@@ -62,13 +62,46 @@ const CinematicHero = () => {
       animate="visible"
       className="max-w-2xl"
     >
-      <motion.h1
+      {/* Brand & Heading Area */}
+      <motion.div
         variants={fadeUpVariants}
-        className="text-3xl md:text-4xl lg:text-7xl font-bold text-text-dark leading-[1] tracking-tight mb-8"
+        className="flex flex-col mb-8"
       >
-        Elevate your <br />
-        <span className="text-[#e87722]">wardrobe care.</span>
-      </motion.h1>
+        <div className="flex flex-col">
+          {/* Cursive "Elevate" */}
+          <span 
+            className="text-[#e87722] text-7xl md:text-8xl lg:text-[7.5rem] leading-[0.8] select-none font-normal" 
+            style={{ fontFamily: "var(--font-dehaviland), var(--font-pinyon), cursive" }}
+          >
+            Elevate
+          </span>
+          {/* Serif "your wardrobe care." */}
+          <span 
+            className="text-4xl md:text-5xl lg:text-[4.5rem] font-light tracking-tight text-[#2F343A] leading-[1.05]"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            your wardrobe care.
+          </span>
+        </div>
+
+        {/* Separator: Line + 3 Dots */}
+        <div className="flex items-center gap-3 mt-5 mb-4">
+          <div className="w-16 h-[2px] bg-[#e87722]" />
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#778582]" />
+            <span className="w-2 h-2 rounded-full bg-[#2F343A]" />
+            <span className="w-2 h-2 rounded-full bg-[#e87722]" />
+          </div>
+        </div>
+
+        {/* Tagline */}
+        <div 
+          className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#778582] uppercase"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          Cleaner. Safer. Better.
+        </div>
+      </motion.div>
 
       <motion.p
         variants={fadeUpVariants}
@@ -95,7 +128,7 @@ const CinematicHero = () => {
 <Link href="/services">
         <Button
           variant="outline"
-          className="bg-white/10 backdrop-blur-md text-text-accent rounded-4xl px-8 py-6 text-lg"
+          className="bg-white/10 backdrop-blur-md text-text-accent rounded-4xl px-8 py-6 text-lg border border-[#e87722]/30 hover:bg-[#e87722]/10"
         >
           View Services
         </Button>
