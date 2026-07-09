@@ -1,10 +1,11 @@
 'use client';
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import Button from '../ui/btn/Button';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Loader from '../common/Loader';
 
 // Shared variants
 const fadeUpVariants = {
@@ -21,8 +22,34 @@ const staggerContainer = {
 };
 
 const CinematicHero = () => {
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+    const videoRef = useRef(null);
+
+    // Fallback timeout in case the video fails to load or browser blocks auto-play
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVideoLoaded(true);
+        }, 4000); // 4 seconds fallback
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Also check if video is already ready (e.g. from cache)
+    useEffect(() => {
+        if (videoRef.current && videoRef.current.readyState >= 3) {
+            setIsVideoLoaded(true);
+        }
+    }, []);
+
+    const handleVideoLoad = () => {
+        setIsVideoLoaded(true);
+    };
+
     return (
     <section className="relative w-full h-[90vh] md:h-screen overflow-hidden flex items-center">
+
+      {/* Premium Loader Overlay */}
+      <Loader isLoading={!isVideoLoaded} />
 
   {/* Mobile Background */}
   <Image
@@ -44,13 +71,17 @@ const CinematicHero = () => {
   */}
 
   <video
+  ref={videoRef}
   className="hidden md:block absolute inset-0 h-full w-full object-cover object-top"
   autoPlay
   muted
   playsInline
   preload="auto"
+  poster="/hero/hero_mobile.png"
+  onCanPlayThrough={handleVideoLoad}
+  onPlay={handleVideoLoad}
 >
-  <source src="/hero/bg4.mp4" type="video/mp4" />
+  <source src="https://res.cloudinary.com/dcnb4gg72/video/upload/v1783580822/bg4_yowjp1.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
